@@ -5,7 +5,15 @@ import React from "react";
 
 const Home: NextPage = () => {
   return (
-      <Page title={"bikejc!"}>
+      <Page
+          title={"bikejc!"}
+          banners={[
+              "/files/BikeJcHomeSlide1.jpg",
+              "/files/BikeJcHomeSlide2.jpg",
+              "/files/BikeJcHomeSlide5.jpg",
+              "/files/WardTourSticker_website.jpg",
+          ]}
+      >
           <div className="field field-name-field-page-title field-type-text field-label-hidden field-wrapper">
               Welcome to Bike JC
           </div>

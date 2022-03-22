@@ -339,7 +339,7 @@ export function BigMenu() {
     )
 }
 
-export function Slider() {
+export function Slider({ srcs }: { srcs: string[] }) {
     return (
         <section className="l-header-region row">
             <div className="large-12 columns home-splash-image">
@@ -347,10 +347,13 @@ export function Slider() {
                     <div className="slider-wrapper theme-light">
                         <div className="ribbon"></div>
                         <div className="nivoSlider" id="slider">
-                            <img alt="" className="slide" data-thumb="/files/BikeJcHomeSlide1.jpg" data-transition="" id="slide-0" src="/files/BikeJcHomeSlide1.jpg" title="" typeof="foaf:Image"></img>
-                            <img alt="" className="slide" data-thumb="/files/BikeJcHomeSlide2.jpg" data-transition="" id="slide-1" src="/files/BikeJcHomeSlide2.jpg" title="" typeof="foaf:Image"></img>
-                            <img alt="" className="slide" data-thumb="/files/BikeJcHomeSlide5.jpg" data-transition="" id="slide-2" src="/files/BikeJcHomeSlide5.jpg" title="" typeof="foaf:Image"></img>
-                            <img alt="" className="slide" data-thumb="/files/WardTourSticker_website.jpg" data-transition="" id="slide-3" src="/files/WardTourSticker_website.jpg" title="" typeof="foaf:Image"></img>
+                            {
+                                srcs.map((src, idx) =>
+                                    <img
+                                        id={`slide-${idx}`} data-thumb={src} src={src}
+                                        alt="" title="" typeof="foaf:Image" data-transition="" className="slide" />
+                                )
+                            }
                         </div>
                     </div>
                 </section>
@@ -359,12 +362,38 @@ export function Slider() {
     )
 }
 
-export function Header() {
+export function Banner({ src }: { src: string }) {
+    return (
+        <section className="l-header-region row">
+            <div className="large-12 columns">
+                <section className="block block-views page-header-banner block-views-page-header-image-view-block header">
+                    <div className="view view-page-header-image-view view-id-page_header_image_view view-display-id-block">
+                        <div className="view-content">
+                            <div className="views-row views-row-1 views-row-odd views-row-first views-row-last">
+                                <div className="views-field views-field-field-page-header-image">
+                                    <div className="field-content">
+                                        <img alt="" height="200" src={src} typeof="foaf:Image" width="1000"/>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </section>
+    )
+}
+
+export function Header({ banners }: { banners: string[] }) {
     return (
         <header className="l-header" role="banner">
             <SmallMenu />
             <BigMenu />
-            <Slider />
+            {
+                banners.length > 1
+                    ? <Slider srcs={banners} />
+                    : <Banner src={banners[0]} />
+            }
         </header>
     )
 }
@@ -462,16 +491,43 @@ export function Aside() {
         </aside>
     )
 }
-export function Main({ children }: { children: ReactNode }) {
+
+type Breadcrumb = {
+    href: string
+    text: string
+}
+export function Breadcrumbs({ breadcrumbs }: { breadcrumbs: Breadcrumb[] }) {
+    return (
+        breadcrumbs.length ? (
+            <>
+                <h2 className="element-invisible">You are here</h2>
+                <ul className="breadcrumbs">{
+                    breadcrumbs.map(
+                        ( { href, text }, idx) => {
+                            return (
+                                <li key={href} className={idx + 1 == breadcrumbs.length ? "current" : ""}>
+                                    <a href={href}>{text}</a>
+                                </li>
+                            )
+                        }
+                    )
+                }</ul>
+            </>
+        ) : null
+    )
+}
+
+export function Main({ breadcrumbs, children }: {
+    breadcrumbs?: Breadcrumb[]
+    children: ReactNode
+}) {
     return (
         <main className="row l-main" role="main">
             <div className="large-8 main columns">
-                <a id="main-children"></a>
+                <a id="main-content"></a>
+                <Breadcrumbs breadcrumbs={breadcrumbs || []} />
                 <article about="/home" className="node node-home-page view-mode-full" id="node-45"
                          typeof="sioc:Item foaf:Document">
-                    <span className="rdf-meta element-hidden" property="dc:title"></span>
-                    <span className="rdf-meta element-hidden" datatype="xsd:integer"
-                          property="sioc:num_replies"></span>
                     {children}
                 </article>
             </div>
@@ -568,8 +624,10 @@ export function Footer() {
     )
 }
 
-export function Page({ title, children, }: {
+export function Page({ title, banners, breadcrumbs, children, }: {
     title: string
+    banners: string[]
+    breadcrumbs?: { [href: string]: string }
     children: ReactNode
 }) {
     return (
@@ -587,8 +645,18 @@ export function Page({ title, children, }: {
             </div>
 
             <div className="page home" role="document">
-                <Header />
-                <Main>{children}</Main>
+                <Header banners={banners} />
+                <Main
+                    breadcrumbs={
+                        breadcrumbs
+                        && Object.entries(breadcrumbs).map(
+                            ([ href, text ]) => { return { href, text, } }
+                        )
+                        || undefined
+                    }
+                >{
+                    children
+                }</Main>
                 <Triptych />
                 <Footer />
             </div>
