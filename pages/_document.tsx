@@ -1,5 +1,4 @@
 import { Html, Head, Main, NextScript } from 'next/document'
-import Script from 'next/script'
 
 export default function Document() {
     return (
@@ -55,6 +54,8 @@ export default function Document() {
                 <meta className="foundation-mq-small"></meta>
                 <meta className="foundation-mq-medium"></meta>
                 <meta className="foundation-mq-large"></meta>
+
+                {/* Apparently this is a good way to inject arbitrary 3rd-party JS in next.js, cf. https://stackoverflow.com/a/65349130/544236 */}
                 <script type="text/javascript" dangerouslySetInnerHTML={{ __html: process.env.jqueryJsFromFile || 'console.error("failed to load jquery.js from env")' }}></script>
                 <script type="text/javascript" dangerouslySetInnerHTML={{ __html: process.env.jqueryExtendJsFromFile || 'console.error("failed to load jquery-extend-3.4.0.js from env")' }}></script>
                 <script type="text/javascript" dangerouslySetInnerHTML={{ __html: process.env.jqueryOnceJsFromFile || 'console.error("failed to load jquery-once.js from env")' }}></script>
