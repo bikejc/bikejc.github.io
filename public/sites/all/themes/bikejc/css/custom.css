@@ -7276,11 +7276,11 @@ h2.block-title {
       width: 32px;
       background-position: center center; }
     .sidebar-second.columns .block.social-media div a.twitter {
-      background-image: url("/files/social-media/twitter-icon.png"); }
+      background-image: url("../../../../default/files/social-media/twitter-icon.png"); }
     .sidebar-second.columns .block.social-media div a.facebook {
-      background-image: url("/files/social-media/facebook-icon.png"); }
+      background-image: url("../../../../default/files/social-media/facebook-icon.png"); }
     .sidebar-second.columns .block.social-media div a.instagram {
-      background-image: url("/files/social-media/instagram-icon.png"); }
+      background-image: url("../../../../default/files/social-media/instagram-icon.png"); }
 
 .main .view-calendar {
   max-width: 100%; }
