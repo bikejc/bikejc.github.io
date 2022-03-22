@@ -1,0 +1,65 @@
+console.log("extend drupal:", Drupal.settings)
+jQuery.extend(
+    Drupal.settings, {
+        "basePath": "\/",
+        "pathPrefix":"",
+        "ajaxPageState": {
+            "theme": "bikejc",
+            "theme_token": "3TUIDuBpYliHgf9aBhjd4IesMQIALjB02VxjlO4rWJY",
+            "js": {
+                "sites\/all\/modules\/jquery_update\/replace\/jquery\/1.7\/jquery.js": 1,
+                "misc\/jquery-extend-3.4.0.js":1,
+                "misc\/jquery.once.js":1,
+                "misc\/drupal.js":1,
+                "sites\/all\/modules\/admin_menu\/admin_devel\/admin_devel.js":1,
+                "sites\/all\/modules\/nivo_slider\/js\/nivo_slider.js":1,
+                "sites\/all\/libraries\/nivo-slider\/jquery.nivo.slider.pack.js":1,
+                "sites\/all\/themes\/bikejc\/js\/vendor\/custom.modernizr.js":1,
+                "sites\/all\/themes\/bikejc\/js\/foundation.min.js":1,
+            },
+            "css": {
+                "modules\/system\/system.base.css":1,
+                "modules\/system\/system.messages.css":1,
+                "modules\/system\/system.theme.css":1,
+                "modules\/book\/book.css":1,
+                "sites\/all\/modules\/calendar\/css\/calendar_multiday.css":1,
+                "modules\/comment\/comment.css":1,
+                "sites\/all\/modules\/date\/date_api\/date.css":1,
+                "sites\/all\/modules\/date\/date_repeat_field\/date_repeat_field.css":1,
+                "modules\/field\/theme\/field.css":1,
+                "modules\/node\/node.css":1,
+                "modules\/search\/search.css":1,
+                "modules\/user\/user.css":1,
+                "sites\/all\/modules\/views\/css\/views.css":1,
+                "sites\/all\/modules\/ckeditor\/css\/ckeditor.css":1,
+                "sites\/all\/modules\/ctools\/css\/ctools.css":1,
+                "sites\/all\/libraries\/nivo-slider\/themes\/light\/light.css":1,
+                "sites\/all\/libraries\/nivo-slider\/nivo-slider.css":1,
+                "http:\/\/fonts.googleapis.com\/css?family=Roboto:300,400,700,900,300italic,400italic,700italic,900italic":1,
+                "http:\/\/fonts.googleapis.com\/css?family=Open Sans:300,400,700,900,300italic,400italic,700italic,900italic":1,
+                "http:\/\/fonts.googleapis.com\/css?family=Merriweather:300,400,700,300italic,400italic,700italic":1,
+                "sites\/all\/themes\/zurb_foundation\/css\/normalize.css":1,
+                "sites\/all\/themes\/bikejc\/css\/foundation.min.css":1,
+                "sites\/all\/themes\/bikejc\/css\/custom.css":1,
+            }
+        },
+        "nivo_slider": {
+            "effect":"fade",
+            "slices":15,
+            "boxCols":8,
+            "boxRows":4,
+            "animSpeed":800,
+            "pauseTime":3000,
+            "startSlide":0,
+            "directionNav":true,
+            "controlNav":false,
+            "controlNavThumbs":false,
+            "pauseOnHover":true,
+            "manualAdvance":false,
+            "prevText":"Prev",
+            "nextText":"Next",
+            "randomStart":true,
+        }
+    }
+);
+console.log("extended drupal:", Drupal.settings)
