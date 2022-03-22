@@ -5,9 +5,9 @@ export default function Document() {
     return (
         <Html>
             <Head>
-                <meta content="text/html; charset=UTF-8" http-equiv="Content-Type"></meta>
+                <meta content="text/html; charset=UTF-8" httpEquiv="Content-Type"></meta>
                 <link href="/misc/favicon.ico" rel="shortcut icon"></link>
-                <meta content="false" http-equiv="ImageToolbar"></meta>
+                <meta content="false" httpEquiv="ImageToolbar"></meta>
                 <meta
                     content="Coming soon: step by step instructions on how to get a bike rack installed at your place of business for your bike-riding customers to use and appreciate! For now, please make use of the following form in your request to the city: Bike rack request form"
                     name="description"></meta>
@@ -61,6 +61,7 @@ export default function Document() {
                 <script type="text/javascript" dangerouslySetInnerHTML={{ __html: process.env.jqueryNivoJsFromFile || 'console.error("failed to load jquery.nivo.slider.js from env")' }}></script>
                 <script type="text/javascript" dangerouslySetInnerHTML={{ __html: process.env.nivoJsFromFile || 'console.error("failed to load nivo_slider.js from env")' }}></script>
                 <script type="text/javascript" dangerouslySetInnerHTML={{ __html: process.env.drupalSettingsJsFromFile || 'console.error("failed to load drupal-settings.js from env")' }}></script>
+                <script type="text/javascript" dangerouslySetInnerHTML={{ __html: process.env.foundationJsFromFile || 'console.error("failed to load foundation.min.js from env")' }}></script>
             </Head>
             <body className="html front not-logged-in one-sidebar sidebar-second page-node page-node- page-node-45 node-type-home-page">
             <Main />

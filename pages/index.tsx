@@ -7,6 +7,8 @@ const Home: NextPage = () => {
         <meta content="width=device-width, maximum-scale = 1.0" name="viewport"></meta>
         <title>bikejc!</title>
         <Script src="/files/drupal.js"></Script>
+        <Script src="/files/foundation-init.js"></Script>
+
         <div className="page home" role="document">
           <header className="l-header" role="banner">
             <div className="contain-to-grid show-for-small">

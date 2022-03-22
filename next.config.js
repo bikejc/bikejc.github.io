@@ -11,6 +11,7 @@ const nextConfig = {
     nivoJsFromFile: fs.readFileSync('./public/files/nivo_slider.js').toString(),
     drupalSettingsJsFromFile: fs.readFileSync('./public/files/drupal-settings.js').toString(),
     drupalJsFromFile: fs.readFileSync('./public/files/drupal.js').toString(),
+    foundationJsFromFile: fs.readFileSync('./public/files/foundation.min.js').toString(),
   },
 }
 
