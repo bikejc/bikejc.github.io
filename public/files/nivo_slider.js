@@ -5,11 +5,9 @@
  */
 
 (function ($) {
-  console.log("init slider… drupal:", window.Drupal)
   window.Drupal = window.Drupal || { 'settings': {}, 'behaviors': {}, 'locale': {} };
   Drupal.behaviors.nivoSlider = {
     attach: function (context, settings) {
-      console.log("attach slider")
       // Initialize the slider
       $('#slider').nivoSlider({
         'effect': Drupal.settings.nivo_slider.effect, // Specify sets like: 'fold,fade,sliceDown'

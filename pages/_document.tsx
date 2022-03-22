@@ -7,7 +7,6 @@ export default function Document() {
             <Head>
                 <meta content="text/html; charset=UTF-8" http-equiv="Content-Type"></meta>
                 <link href="/misc/favicon.ico" rel="shortcut icon"></link>
-                <meta content="width=device-width, maximum-scale = 1.0" name="viewport"></meta>
                 <meta content="false" http-equiv="ImageToolbar"></meta>
                 <meta
                     content="Coming soon: step by step instructions on how to get a bike rack installed at your place of business for your bike-riding customers to use and appreciate! For now, please make use of the following form in your request to the city: Bike rack request form"
@@ -62,12 +61,10 @@ export default function Document() {
                 <script type="text/javascript" dangerouslySetInnerHTML={{ __html: process.env.jqueryNivoJsFromFile || 'console.error("failed to load jquery.nivo.slider.js from env")' }}></script>
                 <script type="text/javascript" dangerouslySetInnerHTML={{ __html: process.env.nivoJsFromFile || 'console.error("failed to load nivo_slider.js from env")' }}></script>
                 <script type="text/javascript" dangerouslySetInnerHTML={{ __html: process.env.drupalSettingsJsFromFile || 'console.error("failed to load drupal-settings.js from env")' }}></script>
-                {/*<script type="text/javascript" dangerouslySetInnerHTML={{ __html: process.env.drupalJsFromFile || 'console.error("failed to load drupal.js from env")' }}></script>*/}
             </Head>
             <body className="html front not-logged-in one-sidebar sidebar-second page-node page-node- page-node-45 node-type-home-page">
             <Main />
             <NextScript />
-            {/*<Script src="/files/end.js"></Script>*/}
             </body>
         </Html>
     )

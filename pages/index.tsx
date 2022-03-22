@@ -1,31 +1,12 @@
 import type { NextPage } from 'next'
-import Image from 'next/image'
 import Script from 'next/script'
-import styles from '../styles/Home.module.css'
 
 const Home: NextPage = () => {
   return (
       <>
-        <title>bikejc</title>
-
-        {/*<Script defer={true} src="/files/jquery.js"></Script>*/}
-        {/*<Script defer={true} src="/files/jquery-extend-3.4.0.js"></Script>*/}
-
-        {/*<Script src="/files/jquery-once.js"></Script>*/}
-        {/*<Script src="/files/jquery.nivo.slider.js"></Script>*/}
-        {/*<Script src="/files/nivo_slider.js"></Script>*/}
-        {/*<Script src="/files/drupal-settings.js"></Script>*/}
+        <meta content="width=device-width, maximum-scale = 1.0" name="viewport"></meta>
+        <title>bikejc!</title>
         <Script src="/files/drupal.js"></Script>
-
-        {/*<Script defer src="/files/jquery-extend-3.4.0.js"></Script>*/}
-        {/*<Script defer src="/files/jquery.once.js"></Script>*/}
-        {/*<Script defer src="/files/admin_devel.js"></Script>*/}
-        {/*<Script defer src="/files/drupal-settings.js"></Script>*/}
-        {/*<Script defer src="/files/nivo_slider.js"></Script>*/}
-        {/*<Script defer src="/files/jquery.nivo.slider.js"></Script>*/}
-        {/*<Script defer src="/files/custom.modernizr.js"></Script>*/}
-        {/*<Script defer src="/files/foundation.min.js"></Script>*/}
-
         <div className="page home" role="document">
           <header className="l-header" role="banner">
             <div className="contain-to-grid show-for-small">

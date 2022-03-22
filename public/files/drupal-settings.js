@@ -1,4 +1,3 @@
-console.log("extend drupal:", Drupal.settings)
 jQuery.extend(
     Drupal.settings, {
         "basePath": "/",
@@ -23,4 +22,3 @@ jQuery.extend(
         }
     }
 );
-console.log("extended drupal:", Drupal.settings)
