@@ -52,6 +52,7 @@ export default function Document() {
                 <link rel="stylesheet" href="/files/css(2)"></link>
                 <link rel="stylesheet" href="/files/normalize.css"></link>
                 <link rel="stylesheet" href="/files/custom.css"></link>
+                <link rel="stylesheet" href="/sites/all/libraries/nivo-slider/themes/light/light.css"></link>
                 <meta className="foundation-mq-small"></meta>
                 <meta className="foundation-mq-medium"></meta>
                 <meta className="foundation-mq-large"></meta>
@@ -61,7 +62,7 @@ export default function Document() {
                 <script type="text/javascript" dangerouslySetInnerHTML={{ __html: process.env.jqueryNivoJsFromFile || 'console.error("failed to load jquery.nivo.slider.js from env")' }}></script>
                 <script type="text/javascript" dangerouslySetInnerHTML={{ __html: process.env.nivoJsFromFile || 'console.error("failed to load nivo_slider.js from env")' }}></script>
                 <script type="text/javascript" dangerouslySetInnerHTML={{ __html: process.env.drupalSettingsJsFromFile || 'console.error("failed to load drupal-settings.js from env")' }}></script>
-                <script type="text/javascript" dangerouslySetInnerHTML={{ __html: process.env.drupalJsFromFile || 'console.error("failed to load drupal.js from env")' }}></script>
+                {/*<script type="text/javascript" dangerouslySetInnerHTML={{ __html: process.env.drupalJsFromFile || 'console.error("failed to load drupal.js from env")' }}></script>*/}
             </Head>
             <body className="html front not-logged-in one-sidebar sidebar-second page-node page-node- page-node-45 node-type-home-page">
             <Main />

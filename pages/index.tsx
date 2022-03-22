@@ -7,14 +7,24 @@ const Home: NextPage = () => {
   return (
       <>
         <title>bikejc</title>
+
+        {/*<Script defer={true} src="/files/jquery.js"></Script>*/}
+        {/*<Script defer={true} src="/files/jquery-extend-3.4.0.js"></Script>*/}
+
+        {/*<Script src="/files/jquery-once.js"></Script>*/}
+        {/*<Script src="/files/jquery.nivo.slider.js"></Script>*/}
+        {/*<Script src="/files/nivo_slider.js"></Script>*/}
+        {/*<Script src="/files/drupal-settings.js"></Script>*/}
+        <Script src="/files/drupal.js"></Script>
+
         {/*<Script defer src="/files/jquery-extend-3.4.0.js"></Script>*/}
         {/*<Script defer src="/files/jquery.once.js"></Script>*/}
-        <Script defer src="/files/admin_devel.js"></Script>
+        {/*<Script defer src="/files/admin_devel.js"></Script>*/}
         {/*<Script defer src="/files/drupal-settings.js"></Script>*/}
         {/*<Script defer src="/files/nivo_slider.js"></Script>*/}
         {/*<Script defer src="/files/jquery.nivo.slider.js"></Script>*/}
-        <Script defer src="/files/custom.modernizr.js"></Script>
-        <Script defer src="/files/foundation.min.js"></Script>
+        {/*<Script defer src="/files/custom.modernizr.js"></Script>*/}
+        {/*<Script defer src="/files/foundation.min.js"></Script>*/}
 
         <div className="page home" role="document">
           <header className="l-header" role="banner">
@@ -351,29 +361,10 @@ const Home: NextPage = () => {
                   <div className="slider-wrapper theme-light">
                     <div className="ribbon"></div>
                     <div className="nivoSlider" id="slider">
-                      <img alt="" className="slide" data-thumb="/sites/default/files/banner/BikeJcHomeSlide1.jpg"
-                           data-transition="" id="slide-0" src="/files/BikeJcHomeSlide1.jpg"
-                           style={{ width: "950px", visibility: "hidden", display: "inline-block" }} title=""
-                           typeof="foaf:Image"></img>
-                      <img alt="" className="slide" data-thumb="/sites/default/files/banner/BikeJcHomeSlide2.jpg"
-                           data-transition="" id="slide-1" src="/files/BikeJcHomeSlide2.jpg"
-                           style={{ width: "950px", visibility: "hidden", display: "inline-block" }} title=""
-                           typeof="foaf:Image"></img>
-                      <img alt="" className="slide" data-thumb="/sites/default/files/banner/BikeJcHomeSlide5.jpg"
-                           data-transition="" id="slide-2" src="/files/BikeJcHomeSlide5.jpg"
-                           style={{ width: "950px", visibility: "hidden", display: "inline-block" }} title=""
-                           typeof="foaf:Image"></img>
-                      <img alt="" className="slide" data-thumb="/sites/default/files/banner/WardTourSticker_website.jpg"
-                           data-transition="" id="slide-3" src="/files/WardTourSticker_website.jpg"
-                           style={{ width: "950px", visibility: "hidden", display: "inline-block" }} title=""
-                           typeof="foaf:Image"></img>
-                      <img className="nivo-main-image" src="/files/BikeJcHomeSlide2.jpg"
-                           style={{ display: "inline-block", overflow: "hidden", height: "auto", width: "950px" }}></img>
-                      <div className="nivo-caption"></div>
-                      <div className="nivo-directionNav">
-                        <a className="nivo-prevNav">Prev</a>
-                        <a className="nivo-nextNav">Next</a>
-                      </div>
+                      <img alt="" className="slide" data-thumb="/files/BikeJcHomeSlide1.jpg" data-transition="" id="slide-0" src="/files/BikeJcHomeSlide1.jpg" title="" typeof="foaf:Image"></img>
+                      <img alt="" className="slide" data-thumb="/files/BikeJcHomeSlide2.jpg" data-transition="" id="slide-1" src="/files/BikeJcHomeSlide2.jpg" title="" typeof="foaf:Image"></img>
+                      <img alt="" className="slide" data-thumb="/files/BikeJcHomeSlide5.jpg" data-transition="" id="slide-2" src="/files/BikeJcHomeSlide5.jpg" title="" typeof="foaf:Image"></img>
+                      <img alt="" className="slide" data-thumb="/files/WardTourSticker_website.jpg" data-transition="" id="slide-3" src="/files/WardTourSticker_website.jpg" title="" typeof="foaf:Image"></img>
                     </div>
                   </div>
                 </section>
