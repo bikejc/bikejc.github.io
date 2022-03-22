@@ -59,7 +59,6 @@ export default function Document() {
                 <script src="/files/drupal.js"></script>
                 <script src="/files/admin_devel.js"></script>
                 <script src="/files/drupal-settings.js"></script>
-                <script src="/files/nivo_slider.js"></script>
                 <script src="/files/jquery.nivo.slider.pack.js"></script>
                 <script src="/files/custom.modernizr.js"></script>
                 <script src="/files/foundation.min.js"></script>
