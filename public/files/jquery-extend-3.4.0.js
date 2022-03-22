@@ -10,6 +10,8 @@
  * @see https://github.com/jquery/jquery/pull/4333
  */
 
+console.log("load: jquery-extend");
+
 (function (jQuery) {
 
 // Do not override jQuery.extend() if the jQuery version is already >=3.4.0.

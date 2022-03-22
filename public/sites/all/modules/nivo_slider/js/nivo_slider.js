@@ -4,9 +4,13 @@
  * Attaches the behaviors for the Nivo Slider module.
  */
 
+console.log("modules: load nivo_slider.js");
+
 (function ($) {
+  console.log("modules: Drupal.behaviors.nivoSlider");
   Drupal.behaviors.nivoSlider = {
     attach: function (context, settings) {
+      console.log("modules: attaching nivoSlider");
       // Initialize the slider
       $('#slider').nivoSlider({
         'effect': Drupal.settings.nivo_slider.effect, // Specify sets like: 'fold,fade,sliceDown'

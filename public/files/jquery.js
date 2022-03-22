@@ -13,6 +13,9 @@
  *
  * Date: Wed Mar 21 12:46:34 2012 -0700
  */
+
+console.log("load: jquery");
+
 (function( window, undefined ) {
 
 // Use the correct document accordingly with window argument (sandbox)
@@ -9382,7 +9385,7 @@ jQuery.each( { Height: "height", Width: "width" }, function( name, type ) {
 
 // Expose jQuery to the global object
 window.jQuery = window.$ = jQuery;
-	console.log("window.jQuery!")
+console.log("window.jQuery!");
 // Expose jQuery as an AMD module, but only for AMD loaders that
 // understand the issues with loading multiple versions of jQuery
 // in a page that all might call define(). The loader will indicate
@@ -9403,4 +9406,4 @@ if ( typeof define === "function" && define.amd && define.amd.jQuery ) {
 
 })( window );
 
-console.log("jq!")
+console.log("jq!");

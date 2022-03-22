@@ -31,7 +31,6 @@ export default function Document() {
                     name="twitter:description"></meta>
                 <meta content="2016-09-13T19:02:48-04:00" property="article:published_time"></meta>
                 <meta content="2016-10-02T16:48:26-04:00" property="article:modified_time"></meta>
-                <title>Bike Racks for Businesses | bikejc</title>
                 <link href="/files/nivo-slider.css" rel="stylesheet"></link>
                 <link rel="stylesheet" href="/modules/system/system.base.css"></link>
                 <link rel="stylesheet" href="/modules/system/system.messages.css"></link>
@@ -53,23 +52,16 @@ export default function Document() {
                 <link rel="stylesheet" href="/files/css(2)"></link>
                 <link rel="stylesheet" href="/files/normalize.css"></link>
                 <link rel="stylesheet" href="/files/custom.css"></link>
-                <script src="/files/jquery.js"></script>
-                <script src="/files/jquery-extend-3.4.0.js"></script>
-                <script src="/files/jquery.once.js"></script>
-                <script src="/files/drupal.js"></script>
-                <script src="/files/admin_devel.js"></script>
-                <script src="/files/drupal-settings.js"></script>
-                <script src="/files/jquery.nivo.slider.pack.js"></script>
-                <script src="/files/custom.modernizr.js"></script>
-                <script src="/files/foundation.min.js"></script>
                 <meta className="foundation-mq-small"></meta>
                 <meta className="foundation-mq-medium"></meta>
                 <meta className="foundation-mq-large"></meta>
+                <script type="text/javascript" dangerouslySetInnerHTML={{ __html: process.env.jqueryJsFromFile || 'console.error("failed to load jquery.js from env")' }}></script>
+                <script type="text/javascript" dangerouslySetInnerHTML={{ __html: process.env.drupalJsFromFile || 'console.error("failed to load drupal.js from env")' }}></script>
             </Head>
             <body className="html front not-logged-in one-sidebar sidebar-second page-node page-node- page-node-45 node-type-home-page">
             <Main />
             <NextScript />
-            <script src="/files/end.js"></script>
+            {/*<Script src="/files/end.js"></Script>*/}
             </body>
         </Html>
     )

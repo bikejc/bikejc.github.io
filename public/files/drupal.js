@@ -1,4 +1,6 @@
 
+console.log("load: Drupal", Drupal);
+
 var Drupal = Drupal || { 'settings': {}, 'behaviors': {}, 'locale': {} };
 
 // Allow other JavaScript libraries to use $.
@@ -106,9 +108,12 @@ else if ($.httpData) {
 Drupal.attachBehaviors = function (context, settings) {
   context = context || document;
   settings = settings || Drupal.settings;
+  console.log("Drupal.attachBehaviors:", Drupal.behaviors)
   // Execute all of them.
   $.each(Drupal.behaviors, function () {
+    console.log("drupal attach behavior fn:", this.attach)
     if ($.isFunction(this.attach)) {
+      console.log("drupal calling this.attach:", this.attach)
       this.attach(context, settings);
     }
   });
@@ -590,6 +595,7 @@ $(function () {
 
 //Attach all behaviors.
 $(function () {
+  console.log("drupal call attachBehaviors:",Drupal.settings)
   Drupal.attachBehaviors(document, Drupal.settings);
 });
 
