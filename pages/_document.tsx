@@ -56,6 +56,11 @@ export default function Document() {
                 <meta className="foundation-mq-medium"></meta>
                 <meta className="foundation-mq-large"></meta>
                 <script type="text/javascript" dangerouslySetInnerHTML={{ __html: process.env.jqueryJsFromFile || 'console.error("failed to load jquery.js from env")' }}></script>
+                <script type="text/javascript" dangerouslySetInnerHTML={{ __html: process.env.jqueryExtendJsFromFile || 'console.error("failed to load jquery-extend-3.4.0.js from env")' }}></script>
+                <script type="text/javascript" dangerouslySetInnerHTML={{ __html: process.env.jqueryOnceJsFromFile || 'console.error("failed to load jquery-once.js from env")' }}></script>
+                <script type="text/javascript" dangerouslySetInnerHTML={{ __html: process.env.jqueryNivoJsFromFile || 'console.error("failed to load jquery.nivo.slider.js from env")' }}></script>
+                <script type="text/javascript" dangerouslySetInnerHTML={{ __html: process.env.nivoJsFromFile || 'console.error("failed to load nivo_slider.js from env")' }}></script>
+                <script type="text/javascript" dangerouslySetInnerHTML={{ __html: process.env.drupalSettingsJsFromFile || 'console.error("failed to load drupal-settings.js from env")' }}></script>
                 <script type="text/javascript" dangerouslySetInnerHTML={{ __html: process.env.drupalJsFromFile || 'console.error("failed to load drupal.js from env")' }}></script>
             </Head>
             <body className="html front not-logged-in one-sidebar sidebar-second page-node page-node- page-node-45 node-type-home-page">

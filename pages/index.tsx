@@ -7,14 +7,12 @@ const Home: NextPage = () => {
   return (
       <>
         <title>bikejc</title>
-        {/*<Script defer src="/files/jquery.js"></Script>*/}
-        <Script defer src="/files/jquery-extend-3.4.0.js"></Script>
-        <Script defer src="/files/jquery.once.js"></Script>
-        {/*<Script defer src="/files/drupal.js"></Script>*/}
+        {/*<Script defer src="/files/jquery-extend-3.4.0.js"></Script>*/}
+        {/*<Script defer src="/files/jquery.once.js"></Script>*/}
         <Script defer src="/files/admin_devel.js"></Script>
-        <Script defer src="/files/drupal-settings.js"></Script>
-        <Script defer src="/files/nivo_slider.js"></Script>
-        <Script defer src="/files/jquery.nivo.slider.js"></Script>
+        {/*<Script defer src="/files/drupal-settings.js"></Script>*/}
+        {/*<Script defer src="/files/nivo_slider.js"></Script>*/}
+        {/*<Script defer src="/files/jquery.nivo.slider.js"></Script>*/}
         <Script defer src="/files/custom.modernizr.js"></Script>
         <Script defer src="/files/foundation.min.js"></Script>
 

@@ -1,5 +1,5 @@
 
-console.log("load: Drupal", Drupal);
+console.log("load: drupal.js", Drupal);
 
 var Drupal = Drupal || { 'settings': {}, 'behaviors': {}, 'locale': {} };
 
@@ -8,6 +8,7 @@ jQuery.noConflict();
 
 (function ($) {
 
+console.log("init: drupal.js");
 /**
  * Override jQuery.fn.init to guard against XSS attacks.
  *
@@ -108,12 +109,12 @@ else if ($.httpData) {
 Drupal.attachBehaviors = function (context, settings) {
   context = context || document;
   settings = settings || Drupal.settings;
-  console.log("Drupal.attachBehaviors:", Drupal.behaviors)
+  console.log(`Drupal.attachBehaviors (${Object.keys(Drupal.behaviors).length}):`, Drupal.behaviors)
   // Execute all of them.
   $.each(Drupal.behaviors, function () {
-    console.log("drupal attach behavior fn:", this.attach)
+    console.log("drupal attach behavior fn:")
     if ($.isFunction(this.attach)) {
-      console.log("drupal calling this.attach:", this.attach)
+      console.log("drupal calling this.attach:")
       this.attach(context, settings);
     }
   });
