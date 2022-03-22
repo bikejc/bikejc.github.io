@@ -22,8 +22,8 @@ const Home: NextPage = () => {
               </ul>
               <section className="top-bar-section">
                 <ul className="main-nav left" id="main-menu">
-                  <li className="first expanded has-dropdown about not-click" id="About">
-                    <a className="about" href="/about" id="About">About</a>
+                  <li className="first expanded has-dropdown about not-click">
+                    <a className="about" href="/about">About</a>
                     <ul className="dropdown">
                       <li className="title back js-generated">
                         <h5>
@@ -31,10 +31,10 @@ const Home: NextPage = () => {
                         </h5>
                       </li>
                       <li className="first expanded show-for-small">
-                        <a className="about" href="/about" id="About">About</a>
+                        <a className="about" href="/about">About</a>
                       </li>
-                      <li className="first leaf history" id="History">
-                        <a className="history" href="/about/history" id="History">History</a>
+                      <li className="first leaf history">
+                        <a className="history" href="/about/history">History</a>
                       </li>
                       <li className="leaf">
                         <a href="/about/founding">Founding</a>
@@ -47,8 +47,8 @@ const Home: NextPage = () => {
                       </li>
                     </ul>
                   </li>
-                  <li className="expanded has-dropdown projects not-click" id="Projects">
-                    <a className="projects" href="/projects" id="Projects">Projects</a>
+                  <li className="expanded has-dropdown projects not-click">
+                    <a className="projects" href="/projects">Projects</a>
                     <ul className="dropdown">
                       <li className="title back js-generated">
                         <h5>
@@ -56,7 +56,7 @@ const Home: NextPage = () => {
                         </h5>
                       </li>
                       <li className="expanded show-for-small">
-                        <a className="projects" href="/projects" id="Projects">Projects</a>
+                        <a className="projects" href="/projects">Projects</a>
                       </li>
                       <li className="first leaf bike-lanes projects">
                         <a className="bike-lanes projects" href="/projects/bike-lanes">Bike Lanes</a>
@@ -75,8 +75,8 @@ const Home: NextPage = () => {
                       </li>
                     </ul>
                   </li>
-                  <li className="expanded has-dropdown events not-click" id="Events">
-                    <a className="events" href="/events" id="Events">Events</a>
+                  <li className="expanded has-dropdown events not-click">
+                    <a className="events" href="/events">Events</a>
                     <ul className="dropdown">
                       <li className="title back js-generated">
                         <h5>
@@ -84,11 +84,11 @@ const Home: NextPage = () => {
                         </h5>
                       </li>
                       <li className="expanded show-for-small">
-                        <a className="events" href="/events" id="Events">Events</a>
+                        <a className="events" href="/events">Events</a>
                       </li>
-                      <li className="first expanded has-dropdown ward-tour not-click" id="wardTour"
+                      <li className="first expanded has-dropdown ward-tour not-click"
                           title="Jersey City Ward Tour">
-                        <a className="ward-tour" href="/events/jersey-city-ward-tour" id="wardTour"
+                        <a className="ward-tour" href="/events/jersey-city-ward-tour"
                            title="Jersey City Ward Tour">Jersey City Ward Tour</a>
                         <ul className="dropdown">
                           <li className="title back js-generated">
@@ -97,13 +97,13 @@ const Home: NextPage = () => {
                             </h5>
                           </li>
                           <li className="first expanded show-for-small">
-                            <a className="ward-tour" href="/events/jersey-city-ward-tour" id="wardTour"
+                            <a className="ward-tour" href="/events/jersey-city-ward-tour"
                                title="Jersey City Ward Tour">Jersey City Ward Tour</a>
                           </li>
-                          <li className="first expanded has-dropdown ward-tour not-click" id="wardTourRegistration"
+                          <li className="first expanded has-dropdown ward-tour not-click"
                               title="Ward Tour Waiver">
                             <a className="ward-tour" href="/events/jersey-city-ward-tour/ward-tour-registration"
-                               id="wardTourRegistration" title="Ward Tour Waiver">Ward Tour Registration</a>
+                               title="Ward Tour Waiver">Ward Tour Registration</a>
                             <ul className="dropdown">
                               <li className="title back js-generated">
                                 <h5>
@@ -112,7 +112,7 @@ const Home: NextPage = () => {
                               </li>
                               <li className="first expanded show-for-small">
                                 <a className="ward-tour" href="/events/jersey-city-ward-tour/ward-tour-registration"
-                                   id="wardTourRegistration" title="Ward Tour Waiver">Ward Tour Registration</a>
+                                   title="Ward Tour Waiver">Ward Tour Registration</a>
                               </li>
                               <li className="first leaf">
                                 <a href="/events/jersey-city-ward-tour/ward-tour-registration/15-mile-route-registration-form">15
@@ -124,8 +124,8 @@ const Home: NextPage = () => {
                               </li>
                             </ul>
                           </li>
-                          <li className="leaf ward-tour" id="wardTourVolunteer">
-                            <a className="ward-tour" href="/ward-tour/volunteer" id="wardTourVolunteer">Volunteer for
+                          <li className="leaf ward-tour">
+                            <a className="ward-tour" href="/ward-tour/volunteer">Volunteer for
                               the Ward Tour</a>
                           </li>
                           <li className="leaf">
@@ -166,8 +166,8 @@ const Home: NextPage = () => {
                       </li>
                     </ul>
                   </li>
-                  <li className="expanded has-dropdown news not-click" id="News">
-                    <a className="news" href="/news" id="News">News</a>
+                  <li className="expanded has-dropdown news not-click">
+                    <a className="news" href="/news">News</a>
                     <ul className="dropdown">
                       <li className="title back js-generated">
                         <h5>
@@ -175,7 +175,7 @@ const Home: NextPage = () => {
                         </h5>
                       </li>
                       <li className="expanded show-for-small">
-                        <a className="news" href="/news" id="News">News</a>
+                        <a className="news" href="/news">News</a>
                       </li>
                       <li className="first expanded has-dropdown articles news not-click">
                         <a className="articles news" href="/news/articles">Articles and Press Releases</a>
@@ -226,8 +226,8 @@ const Home: NextPage = () => {
                       </li>
                     </ul>
                   </li>
-                  <li className="expanded has-dropdown support not-click" id="Support">
-                    <a className="support" href="/support" id="Support">Support</a>
+                  <li className="expanded has-dropdown support not-click">
+                    <a className="support" href="/support">Support</a>
                     <ul className="dropdown">
                       <li className="title back js-generated">
                         <h5>
@@ -235,7 +235,7 @@ const Home: NextPage = () => {
                         </h5>
                       </li>
                       <li className="expanded show-for-small">
-                        <a className="support" href="/support" id="Support">Support</a>
+                        <a className="support" href="/support">Support</a>
                       </li>
                       <li className="first leaf sponsors">
                         <a className="sponsors" href="/support/sponsors">Sponsors</a>
@@ -251,8 +251,8 @@ const Home: NextPage = () => {
                       </li>
                     </ul>
                   </li>
-                  <li className="expanded has-dropdown resources not-click" id="Resources">
-                    <a className="resources" href="/resources" id="Resources">Resources</a>
+                  <li className="expanded has-dropdown resources not-click">
+                    <a className="resources" href="/resources">Resources</a>
                     <ul className="dropdown">
                       <li className="title back js-generated">
                         <h5>
@@ -260,7 +260,7 @@ const Home: NextPage = () => {
                         </h5>
                       </li>
                       <li className="expanded show-for-small">
-                        <a className="resources" href="/resources" id="Resources">Resources</a>
+                        <a className="resources" href="/resources">Resources</a>
                       </li>
                       <li className="first leaf">
                         <a href="/citi-bike-usage-jersey-city-2018">Citi Bike Usage 2018</a>
@@ -310,22 +310,22 @@ const Home: NextPage = () => {
               <h2 className="element-invisible">Main menu</h2>
               <ul className="links inline-list clearfix" id="main-menu-links">
                 <li className="menu-398 first">
-                  <a className="about" href="/about" id="About">About</a>
+                  <a className="about" href="/about">About</a>
                 </li>
                 <li className="menu-1045">
-                  <a className="projects" href="/projects" id="Projects">Projects</a>
+                  <a className="projects" href="/projects">Projects</a>
                 </li>
                 <li className="menu-1047">
-                  <a className="events" href="/events" id="Events">Events</a>
+                  <a className="events" href="/events">Events</a>
                 </li>
                 <li className="menu-1048">
-                  <a className="news" href="/news" id="News">News</a>
+                  <a className="news" href="/news">News</a>
                 </li>
                 <li className="menu-1049">
-                  <a className="support" href="/support" id="Support">Support</a>
+                  <a className="support" href="/support">Support</a>
                 </li>
                 <li className="menu-1050">
-                  <a className="resources" href="/resources" id="Resources">Resources</a>
+                  <a className="resources" href="/resources">Resources</a>
                 </li>
                 <li className="menu-3531 last">
                   <a className="contact" href="/contact-us">Contact</a>
