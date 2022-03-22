@@ -53,16 +53,16 @@ export default function Document() {
                 <link rel="stylesheet" href="/files/css(2)"></link>
                 <link rel="stylesheet" href="/files/normalize.css"></link>
                 <link rel="stylesheet" href="/files/custom.css"></link>
-                <script src="/files/jquery.js"></script>
-                <script src="/files/jquery-extend-3.4.0.js"></script>
-                <script src="/files/jquery.once.js"></script>
-                <script src="/files/drupal.js"></script>
-                <script src="/files/admin_devel.js"></script>
-                <script src="/files/drupal-settings.js"></script>
-                <script src="/files/nivo_slider.js"></script>
-                <script src="/files/jquery.nivo.slider.pack.js"></script>
-                <script src="/files/custom.modernizr.js"></script>
-                <script src="/files/foundation.min.js"></script>
+                <Script src="/files/jquery.js"></Script>
+                <Script src="/files/jquery-extend-3.4.0.js"></Script>
+                <Script src="/files/jquery.once.js"></Script>
+                <Script src="/files/drupal.js"></Script>
+                <Script src="/files/admin_devel.js"></Script>
+                <Script src="/files/drupal-settings.js"></Script>
+                <Script src="/files/nivo_slider.js"></Script>
+                <Script src="/files/jquery.nivo.slider.pack.js"></Script>
+                <Script src="/files/custom.modernizr.js"></Script>
+                <Script src="/files/foundation.min.js"></Script>
                 <meta className="foundation-mq-small"></meta>
                 <meta className="foundation-mq-medium"></meta>
                 <meta className="foundation-mq-large"></meta>
@@ -70,7 +70,7 @@ export default function Document() {
             <body className="html front not-logged-in one-sidebar sidebar-second page-node page-node- page-node-45 node-type-home-page">
             <Main />
             <NextScript />
-            <script src="/files/end.js"></script>
+            <Script src="/files/end.js"></Script>
             </body>
         </Html>
     )
