@@ -38,6 +38,24 @@ export default function Home() {
             <p>
                 We at Bike JC are all excited to see your submissions!
             </p>
+            <div className="field-collection-container clearfix">
+                <div
+                    className="field field-name-field-article-photos field-type-field-collection field-label-hidden field-wrapper">
+                    <div className="field-collection-view clearfix view-mode-full field-collection-view-final">
+                        <div about="/field-collection/field-article-photos/36"
+                             className="entity entity-field-collection-item field-collection-item-field-article-photos clearfix"
+                             typeof="">
+                            <div className="content">
+                                <div
+                                    className="field field-name-field-article-page-image field-type-image field-label-hidden field-wrapper">
+                                    <img alt="previous ward tour posters" height="900" src="/files/wardtourposters.jpg"
+                                         typeof="foaf:Image" width="900"></img>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </Page>
     )
 }
