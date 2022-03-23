@@ -593,10 +593,7 @@ export function Main({ breadcrumbs, sectionMenu, children }: {
             <div className="large-8 main columns">
                 <a id="main-content"></a>
                 <Breadcrumbs breadcrumbs={breadcrumbs || []} />
-                <article about="/home" className="node node-home-page view-mode-full" id="node-45"
-                         typeof="sioc:Item foaf:Document">
-                    {children}
-                </article>
+                {children}
             </div>
             <Aside sectionMenu={sectionMenu} />
         </main>
@@ -691,9 +688,11 @@ export function Footer() {
     )
 }
 
-export function Page({ path, banner, children, }: {
+export function Page({ path, h1, banner, article, children, }: {
     path: string
+    h1?: string
     banner?: string[] | string
+    article?: boolean
     children: ReactNode
 }) {
     if (!banner) {
@@ -703,7 +702,9 @@ export function Page({ path, banner, children, }: {
     }
 
     const root = path == '/'
-    const pieces = root ? [""] : path.split('/')
+
+    article = (article !== false) && !(article === undefined && root)
+    console.log("article:", article)
 
     const { breadcrumbs, name, sitemap } = lookup(path)
 
@@ -727,8 +728,7 @@ export function Page({ path, banner, children, }: {
 
     // const name: string = (typeof sitemap === 'string') ? sitemap : (sitemap[""] as any as string)
     const title = `bikejc | ${name}`
-    const article = (children: ReactNode) => <>
-        <h1 className="title" id="page-title">{name}</h1>
+    const wrapArticle = (children: ReactNode) => <>
         <article about={path} className="node node view-mode-full" typeof="sioc:Item foaf:Document">
             <div className="field field-name-body field-type-text-with-summary field-label-hidden field-wrapper body field">
                 {children}
@@ -754,9 +754,12 @@ export function Page({ path, banner, children, }: {
                 <Main
                     sectionMenu={sectionMenu}
                     breadcrumbs={root ? [] : breadcrumbs}
-                >{
-                    root ? children : article(children)
-                }</Main>
+                >
+                    <h1 className="title" id="page-title">{h1 || name}</h1>
+                    {
+                        article ? wrapArticle(children) : children
+                    }
+                </Main>
                 <Triptych />
                 <Footer />
             </div>

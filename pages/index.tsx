@@ -7,6 +7,7 @@ const Home: NextPage = () => {
   return (
       <Page
           path={"/"}
+          h1={"Welcome to Bike JC"}
           banner={[
               "/files/BikeJcHomeSlide1.jpg",
               "/files/BikeJcHomeSlide2.jpg",
@@ -14,9 +15,6 @@ const Home: NextPage = () => {
               "/files/WardTourSticker_website.jpg",
           ]}
       >
-          <div className="field field-name-field-page-title field-type-text field-label-hidden field-wrapper">
-              Welcome to Bike JC
-          </div>
           <div className="field field-name-body field-type-text-with-summary field-label-hidden field-wrapper body field">
               <p/>
               <h4>Welcome to the official website of Bike JC, Jersey City’s advocacy group for bicyclists!</h4>

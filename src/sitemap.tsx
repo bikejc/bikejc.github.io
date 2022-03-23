@@ -48,7 +48,17 @@ export const Sitemap: Sitemap = {
         },
         "news": {
             "": "News",
-            "articles": "Articles and Press Releases",  // TODO: this is a whole section
+            "articles": {
+                "": "Articles and Press Releases",
+                "2016-ward-tour-press-release": "2016 Ward Tour Press Release",
+                "grand-street-vision-protected-bike-lane-petition": "Grand Street Vision - Protected Bike Lane Petition",
+                "job-posting-contract-grant-writer": "Job Posting: Contract Grant Writer",
+                "design-bike-jcs-7th-annual-ward-tour-poster": "Design Bike JC's 7th Annual Ward Tour Poster",
+                "jersey-citys-first-permanent-bike-lane": "Jersey City's First Permanent Bike Lane",
+                "installation-jersey-citys-new-bike-racks-underway": "New Bike Rack Installation Underway",
+                "bike-jc-awarded-jersey-city-green-award": "Bike JC Awarded 'Jersey City Green Award'",
+                "footbridge-liberty-state-park-arrives": "Footbridge to Liberty State Park Arrives",
+            },
             "media-coverage": "Media Coverage",
         },
         "support": {
