@@ -696,7 +696,7 @@ export function Page({ path, banner, children, }: {
     children: ReactNode
 }) {
     if (!banner) {
-        banner = [ "/files/lincoln-park-banner_1.jpg" ]
+        banner = [ "/files/lincoln-park-banner.jpg" ]
     } else if (typeof banner === "string") {
         banner = [ banner ]
     }
