@@ -690,11 +690,17 @@ export function Footer() {
     )
 }
 
-export function Page({ path, banners, children, }: {
+export function Page({ path, banner, children, }: {
     path: string
-    banners: string[]
+    banner?: string[] | string
     children: ReactNode
 }) {
+    if (!banner) {
+        banner = [ "/files/lincoln-park-banner_1.jpg" ]
+    } else if (typeof banner === "string") {
+        banner = [ banner ]
+    }
+
     const root = path == '/'
     const pieces = root ? [""] : path.split('/')
 
@@ -723,7 +729,9 @@ export function Page({ path, banners, children, }: {
     const article = (children: ReactNode) => <>
         <h1 className="title" id="page-title">{name}</h1>
         <article about={path} className="node node view-mode-full" typeof="sioc:Item foaf:Document">
-            {children}
+            <div className="field field-name-body field-type-text-with-summary field-label-hidden field-wrapper body field">
+                {children}
+            </div>
         </article>
     </>
 
@@ -741,7 +749,7 @@ export function Page({ path, banners, children, }: {
                 <a href="#main-content" className="element-invisible element-focusable">Skip to main content</a>
             </div>
             <div className="page home" role="document">
-                <Header path={path} banners={banners} />
+                <Header path={path} banners={banner} />
                 <Main
                     sectionMenu={sectionMenu}
                     breadcrumbs={root ? [] : breadcrumbs}

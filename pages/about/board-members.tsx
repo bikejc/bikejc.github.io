@@ -14,6 +14,7 @@ const BoardMember = ({ name, title, src, children }: {
                  className="entity entity-field-collection-item field-collection-item-field-board-members-bio clearfix"
                  typeof="">
                 <div className="content">
+                    {/* TODO: CSS */}
                     <div className="field field-name-field-bio-position-title field-type-text field-label-hidden field-wrapper">
                         {title}
                     </div>
@@ -36,13 +37,10 @@ const Home: NextPage = () => {
     return (
         <Page
             path={"/about/board-members"}
-            banners={[ "/files/bike-gathering-page-header.jpg" ]}
+            banner={"/files/bike-gathering-page-header.jpg"}
         >
-            <div className="field field-name-body field-type-text-with-summary field-label-hidden field-wrapper body field">
-                <h4>Meet our Bike JC Board Members</h4>
-            </div>
-            <div className="field-collection-container clearfix">
-                <div className="field field-name-field-board-members-bio field-type-field-collection field-label-hidden field-wrapper">
+            <h4>Meet our Bike JC Board Members</h4>
+            <div className="field field-name-field-board-members-bio field-type-field-collection field-label-hidden field-wrapper">
                     <BoardMember name={"Patrick Conlon"} title={"President"} src={"/files/patrick-conlon-bio.JPG"}>
                         <p>
                             That's Patrick and his cargo bike. He bought it in Vermont and pedaled it all
@@ -170,7 +168,6 @@ const Home: NextPage = () => {
                         </p>
                     </BoardMember>
                 </div>
-            </div>
         </Page>
     )
 }

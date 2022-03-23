@@ -7,7 +7,7 @@ const Home: NextPage = () => {
   return (
       <Page
           path={"/"}
-          banners={[
+          banner={[
               "/files/BikeJcHomeSlide1.jpg",
               "/files/BikeJcHomeSlide2.jpg",
               "/files/BikeJcHomeSlide5.jpg",
