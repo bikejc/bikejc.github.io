@@ -15,7 +15,45 @@ export const Sitemap: Sitemap = {
             "founding": "Founding",
             "board-members": "Board Members",
             "non-profit-information": "Non Profit Information",
-        }
+        },
+        "projects": {
+            "": "Projects",
+            "bike-lanes": "Bike Lanes",
+            "bike-share": "Bike Share",
+            "bike-racks": "Bike Racks",
+            "revised-zoning": "Revised Zoning",
+            "gsv": "Grand Street Vision",
+        },
+        "events": {
+            "": "Events",
+            "jersey-city-ward-tour": "Jersey City Ward Tour",
+            "bike-jcast": "Bike JCast",
+            "neighborhood-cleanup": "Neighborhood Cleanup",
+            "calendar": "Calendar",
+        },
+        "news": {
+            "": "News",
+            "articles": "Articles and Press Releases",  // TODO: this is a whole section
+            "media-coverage": "Media Coverage",
+        },
+        "support": {
+            "": "Support",
+            "sponsors": "Sponsors",
+            "volunteer": "Volunteer",
+            "donate": "Donate",
+            "cool-swag-cool-bikers": "Cool Swag for Cool Bikers!",
+        },
+        "resources": {
+            "": "Resources",
+            "citi-bike-usage-jersey-city-2018": "Citi Bike Usage 2018",
+            "rules-road": "Rules of the Road",
+            "bike-maps": "Bike Maps",
+            "national-bike-registry": "National Bike Registry",
+            "speed-hump-requests": "Speed Hump Requests",
+            "bike-racks-businesses": "Bike Racks for Businesses",
+            "useful-links": "Useful Links",
+        },
+        "contact-us": "Contact",
     }
 }
 

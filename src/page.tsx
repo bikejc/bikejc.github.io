@@ -295,7 +295,32 @@ export function SmallMenu() {
     )
 }
 
-export function BigMenu() {
+export function BigMenu({ path }: { path: string }) {
+    const topLevelMap = (Sitemap as any)[""] as any as { [k: string]: string }
+    const menuListItems = Object.entries(topLevelMap).map(
+        ([ name, map ], idx) => {
+            const text = (typeof map === 'string') ? map : ((map as any)[""] as any as string)
+            const topLevelPath = `/${name}`
+            const n = topLevelPath.length
+            return (
+                <MenuListItem
+                    key={name}
+                    idx={idx} n={topLevelMap.length}
+                    active={
+                        path == topLevelPath ||
+                        (
+                            path.substring(0, n) == topLevelPath
+                            && path.length > n
+                            && path[n] == '/'
+                            && path != '/'
+                        )
+                    }
+                    text={text}
+                    href={topLevelPath}
+                />
+            )
+        })
+
     return (
         <section className="row main-menu-wrapper hide-for-small">
             <div className="logo-container">
@@ -314,27 +339,7 @@ export function BigMenu() {
             <nav className="navigation" id="main-menu" role="navigation">
                 <h2 className="element-invisible">Main menu</h2>
                 <ul className="links inline-list clearfix" id="main-menu-links">
-                    <li className="menu-398 first">
-                        <a className="about" href="/about">About</a>
-                    </li>
-                    <li className="menu-1045">
-                        <a className="projects" href="/projects">Projects</a>
-                    </li>
-                    <li className="menu-1047">
-                        <a className="events" href="/events">Events</a>
-                    </li>
-                    <li className="menu-1048">
-                        <a className="news" href="/news">News</a>
-                    </li>
-                    <li className="menu-1049">
-                        <a className="support" href="/support">Support</a>
-                    </li>
-                    <li className="menu-1050">
-                        <a className="resources" href="/resources">Resources</a>
-                    </li>
-                    <li className="menu-3531 last">
-                        <a className="contact" href="/contact-us">Contact</a>
-                    </li>
+                    {menuListItems}
                 </ul>
             </nav>
         </section>
@@ -385,11 +390,11 @@ export function Banner({ src }: { src: string }) {
     )
 }
 
-export function Header({ banners }: { banners: string[] }) {
+export function Header({ path, banners }: { path: string, banners: string[] }) {
     return (
         <header className="l-header" role="banner">
             <SmallMenu />
-            <BigMenu />
+            <BigMenu path={path} />
             {
                 banners.length > 1
                     ? <Slider srcs={banners} />
@@ -405,6 +410,35 @@ type SectionMenu = {
     breadcrumbs: Breadcrumb[]
 }
 
+function MenuListItem({ idx, n, active, text, href, }: {
+    idx: number
+    n: number
+    active: boolean
+    text: string
+    href: string
+}) {
+    let classes = []
+    let linkClasses = []
+    if (idx == 0) {
+        classes.push("first")
+    }
+    classes.push("leaf")
+    if (active) {
+        classes.push("active")
+        classes.push("active-trail")
+        linkClasses.push("active")
+        linkClasses.push("active-trail")
+    }
+    if (idx + 1 == n) {
+        classes.push("last")
+    }
+    return (
+        <li key={text} className={classes.join(" ")}>
+            <a href={href} className={linkClasses.join(" ")}>{text}</a>
+        </li>
+    )
+}
+
 export function SectionMenu({ title, activePath, breadcrumbs }: SectionMenu) {
     const numBreadcrumbs = breadcrumbs.length
     return (
@@ -412,28 +446,14 @@ export function SectionMenu({ title, activePath, breadcrumbs }: SectionMenu) {
             <h2 className="block-title">{title}</h2>
             <div className="menu-block-wrapper menu-block-1 menu-name-main-menu parent-mlid-0 menu-level-2">
                 <ul className="menu">{
-                    breadcrumbs.map(({ href, text }, idx) => {
-                        let classes = []
-                        let linkClasses = []
-                        if (idx == 0) {
-                            classes.push("first")
-                        }
-                        classes.push("leaf")
-                        if (activePath && href == activePath) {
-                            classes.push("active")
-                            classes.push("active-trail")
-                            linkClasses.push("active")
-                            linkClasses.push("active-trail")
-                        }
-                        if (idx + 1 == numBreadcrumbs) {
-                            classes.push("last")
-                        }
-                        return (
-                            <li key={text} className={classes.join(" ")}>
-                                <a href={href} className={linkClasses.join(" ")}>{text}</a>
-                            </li>
-                        )
-                    })
+                    breadcrumbs.map(({ href, text }, idx) =>
+                        <MenuListItem
+                            key={text}
+                            idx={idx} n={numBreadcrumbs}
+                            active={!!activePath && href == activePath}
+                            text={text} href={href}
+                        />
+                    )
                 }</ul>
             </div>
         </>
@@ -715,7 +735,7 @@ export function Page({ path, banners, children, }: {
             </div>
 
             <div className="page home" role="document">
-                <Header banners={banners} />
+                <Header path={path} banners={banners} />
                 <Main
                     sectionMenu={sectionMenu}
                     breadcrumbs={root ? [] : breadcrumbs}
