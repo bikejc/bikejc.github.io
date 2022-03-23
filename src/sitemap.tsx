@@ -26,8 +26,19 @@ export const Sitemap: Sitemap = {
         },
         "events": {
             "": "Events",
-            "jersey-city-ward-tour": "Jersey City Ward Tour",
-            "bike-jcast": "Bike JCast",
+            "jersey-city-ward-tour": {
+                "": "Jersey City Ward Tour",
+                "ward-tour-registration": "Ward Tour Registration",
+                "volunteer": "Volunteer for the Ward Tour",
+                "ward-tour-route": "Ward Tour Route",
+                "finish-line-festival": "Finish Line Festival",
+                "ward-tour-sponsors": "Ward Tour Sponsors",
+                "ward-tour-faqs": "Ward Tour FAQs",
+            },
+            "bike-jcast": {
+                "": "Bike JCast",
+                "bike-jcast-2017": "Bike JCast 2017",
+            },
             "neighborhood-cleanup": "Neighborhood Cleanup",
             "calendar": "Calendar",
         },
