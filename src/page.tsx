@@ -720,6 +720,13 @@ export function Page({ path, banners, children, }: {
 
     // const name: string = (typeof sitemap === 'string') ? sitemap : (sitemap[""] as any as string)
     const title = `bikejc | ${name}`
+    const article = (children: ReactNode) => <>
+        <h1 className="title" id="page-title">{name}</h1>
+        <article about={path} className="node node view-mode-full" typeof="sioc:Item foaf:Document">
+            {children}
+        </article>
+    </>
+
     return (
         <>
             <meta content="width=device-width, maximum-scale = 1.0" name="viewport"></meta>
@@ -733,14 +740,13 @@ export function Page({ path, banners, children, }: {
             <div className="skip-link">
                 <a href="#main-content" className="element-invisible element-focusable">Skip to main content</a>
             </div>
-
             <div className="page home" role="document">
                 <Header path={path} banners={banners} />
                 <Main
                     sectionMenu={sectionMenu}
                     breadcrumbs={root ? [] : breadcrumbs}
                 >{
-                    children
+                    root ? children : article(children)
                 }</Main>
                 <Triptych />
                 <Footer />
