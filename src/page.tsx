@@ -704,7 +704,6 @@ export function Page({ path, h1, banner, article, children, }: {
     const root = path == '/'
 
     article = (article !== false) && !(article === undefined && root)
-    console.log("article:", article)
 
     const { breadcrumbs, name, sitemap } = lookup(path)
 
@@ -726,7 +725,6 @@ export function Page({ path, h1, banner, article, children, }: {
         }
     }
 
-    // const name: string = (typeof sitemap === 'string') ? sitemap : (sitemap[""] as any as string)
     const title = `bikejc | ${name}`
     const wrapArticle = (children: ReactNode) => <>
         <article about={path} className="node node view-mode-full" typeof="sioc:Item foaf:Document">
