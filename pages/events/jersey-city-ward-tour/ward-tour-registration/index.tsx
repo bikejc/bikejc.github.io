@@ -46,8 +46,8 @@ export default function Home() {
                     </strong>
                     This is a fairly relaxed pace for an adult who bikes even occasionally. We also take some short breaks to catch a breath and to allow for smooth traffic control, and our one long break in Lincoln Park roughly at the halfway point, after the only steep uphill on the course (so you can just walk your bike up that hill if you want).
                 </p>
-                <p class="hide">
-                    <a class="button large" href="/events/jersey-city-ward-tour/ward-tour-registration/15-mile-route-registration-form">
+                <p className="hide">
+                    <a className="button large" href="/events/jersey-city-ward-tour/ward-tour-registration/15-mile-route-registration-form">
                         15 Mile Route Registration
                     </a>
                 </p>
@@ -68,8 +68,8 @@ export default function Home() {
                         But we will be especially strict about who does this route, for safety and logistics reasons.
                     </strong>
                 </p>
-                <p class="hide">
-                    <a class="button large secondary" href="/events/jersey-city-ward-tour/ward-tour-registration/register-25-mile-ride">
+                <p className="hide">
+                    <a className="button large secondary" href="/events/jersey-city-ward-tour/ward-tour-registration/register-25-mile-ride">
                         25 Mile Route Registration
                     </a>
                 </p>
