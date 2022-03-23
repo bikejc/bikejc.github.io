@@ -6,7 +6,7 @@ import React from "react";
 const Home: NextPage = () => {
   return (
       <Page
-          title={"bikejc!"}
+          path={"/"}
           banners={[
               "/files/BikeJcHomeSlide1.jpg",
               "/files/BikeJcHomeSlide2.jpg",

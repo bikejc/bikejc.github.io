@@ -1,6 +1,8 @@
 import React, {ReactNode} from "react";
 import Head from "next/head";
 import Script from "next/script";
+import {Breadcrumb, lookup, Sitemap} from "./sitemap";
+import { dirname } from "path";
 
 export function SmallMenu() {
     return (
@@ -346,15 +348,14 @@ export function Slider({ srcs }: { srcs: string[] }) {
                 <section className="block block-nivo-slider block-nivo-slider-nivo-slider header">
                     <div className="slider-wrapper theme-light">
                         <div className="ribbon"></div>
-                        <div className="nivoSlider" id="slider">
-                            {
-                                srcs.map((src, idx) =>
-                                    <img
-                                        id={`slide-${idx}`} data-thumb={src} src={src}
-                                        alt="" title="" typeof="foaf:Image" data-transition="" className="slide" />
-                                )
-                            }
-                        </div>
+                        <div className="nivoSlider" id="slider">{
+                            srcs.map((src, idx) =>
+                                <img
+                                    id={`slide-${idx}`} key={`${idx}`} data-thumb={src} src={src}
+                                    alt="" title="" typeof="foaf:Image" data-transition="" className="slide"
+                                />
+                            )
+                        }</div>
                     </div>
                 </section>
             </div>
@@ -398,7 +399,49 @@ export function Header({ banners }: { banners: string[] }) {
     )
 }
 
-export function Aside() {
+type SectionMenu = {
+    title: string
+    activePath?: string
+    breadcrumbs: Breadcrumb[]
+}
+
+export function SectionMenu({ title, activePath, breadcrumbs }: SectionMenu) {
+    const numBreadcrumbs = breadcrumbs.length
+    console.log("SectionMenu:", title, breadcrumbs)
+    return (
+        <>
+            <h2 className="block-title">{title}</h2>
+            <div className="menu-block-wrapper menu-block-1 menu-name-main-menu parent-mlid-0 menu-level-2">
+                <ul className="menu">{
+                    breadcrumbs.map(({ href, text }, idx) => {
+                        let classes = []
+                        let linkClasses = []
+                        if (idx == 0) {
+                            classes.push("first")
+                        }
+                        classes.push("leaf")
+                        if (activePath && href == activePath) {
+                            classes.push("active")
+                            classes.push("active-trail")
+                            linkClasses.push("active")
+                            linkClasses.push("active-trail")
+                        }
+                        if (idx + 1 == numBreadcrumbs) {
+                            classes.push("last")
+                        }
+                        return (
+                            <li key={text} className={classes.join(" ")}>
+                                <a href={href} className={linkClasses.join(" ")}>{text}</a>
+                            </li>
+                        )
+                    })
+                }</ul>
+            </div>
+        </>
+    )
+}
+
+export function Aside({ sectionMenu }: { sectionMenu?: SectionMenu }) {
     return (
         <aside className="large-4 sidebar-second columns sidebar columns" role="complementary">
             <section className="block block-block social-media block-block-6 block-odd clearfix">
@@ -413,15 +456,22 @@ export function Aside() {
                     <a className="instagram" href="http://www.instagram.com/bikejcgram" target="_blank"></a>
                 </div>
             </section>
+            <section className="block block-menu-block block-menu-block-1 block-even clearfix">{
+                sectionMenu
+                    ? <SectionMenu {...sectionMenu} />
+                    : null
+            }</section>
             <section className="block block-block block-block-13 block-even clearfix">
                 <h2 className="block-title">Ward Tour 2022</h2>
                 <p>
                     <a href="/events/jersey-city-ward-tour">
-                        <strong>PLEASE NOTE: Following 2 years of cancellations due to COVID-19, we are currently hoping to
+                        <strong>
+                            PLEASE NOTE: Following 2 years of cancellations due to COVID-19, we are currently hoping to
                             bring back our Jersey City Ward Tour and other spring events for 2022, if public health and
                             logistics considerations allow it. We will let you know here and through all our other channels,
                             including social media and email to members. If held, the Ward Tour would be Sunday, June 5 (always
-                            the first Sunday in June).</strong>
+                            the first Sunday in June).
+                        </strong>
                     </a>
                 </p>
             </section>
@@ -492,10 +542,6 @@ export function Aside() {
     )
 }
 
-type Breadcrumb = {
-    href: string
-    text: string
-}
 export function Breadcrumbs({ breadcrumbs }: { breadcrumbs: Breadcrumb[] }) {
     return (
         breadcrumbs.length ? (
@@ -517,7 +563,8 @@ export function Breadcrumbs({ breadcrumbs }: { breadcrumbs: Breadcrumb[] }) {
     )
 }
 
-export function Main({ breadcrumbs, children }: {
+export function Main({ breadcrumbs, sectionMenu, children }: {
+    sectionMenu?: SectionMenu
     breadcrumbs?: Breadcrumb[]
     children: ReactNode
 }) {
@@ -531,7 +578,7 @@ export function Main({ breadcrumbs, children }: {
                     {children}
                 </article>
             </div>
-            <Aside />
+            <Aside sectionMenu={sectionMenu} />
         </main>
     )
 }
@@ -624,12 +671,39 @@ export function Footer() {
     )
 }
 
-export function Page({ title, banners, breadcrumbs, children, }: {
-    title: string
+export function Page({ path, banners, children, }: {
+    path: string
     banners: string[]
-    breadcrumbs?: { [href: string]: string }
     children: ReactNode
 }) {
+    const root = path == '/'
+    const pieces = root ? [""] : path.split('/')
+    console.log("pieces:", pieces)
+
+    const { breadcrumbs, name, sitemap } = lookup(path)
+
+    let sectionMenu: SectionMenu | undefined = undefined
+    if (!root) {
+        const sectionPath = (typeof sitemap === 'string') ? dirname(path) : path
+        const { name: sectionName, sitemap: sectionMap } = lookup(sectionPath)
+        const sectionMenuItems: Breadcrumb[] = []
+        Object.entries(sectionMap).forEach(([ piece, map ]) => {
+            if (piece == "") return
+            const href = `${sectionPath}/${piece}`
+            const text = (typeof map === 'string') ? map : (map[""] as any as string)
+            sectionMenuItems.push({ href, text, })
+        })
+        sectionMenu = {
+            title: sectionName,
+            activePath: path,
+            breadcrumbs: sectionMenuItems
+        }
+    }
+    console.log("sectionMenu:", sectionMenu)
+
+    // const name: string = (typeof sitemap === 'string') ? sitemap : (sitemap[""] as any as string)
+    const title = `bikejc | ${name}`
+    console.log("title:", title, "name:", name, "breadcrumbs:", breadcrumbs)
     return (
         <>
             <meta content="width=device-width, maximum-scale = 1.0" name="viewport"></meta>
@@ -647,13 +721,8 @@ export function Page({ title, banners, breadcrumbs, children, }: {
             <div className="page home" role="document">
                 <Header banners={banners} />
                 <Main
-                    breadcrumbs={
-                        breadcrumbs
-                        && Object.entries(breadcrumbs).map(
-                            ([ href, text ]) => { return { href, text, } }
-                        )
-                        || undefined
-                    }
+                    sectionMenu={sectionMenu}
+                    breadcrumbs={root ? [] : breadcrumbs}
                 >{
                     children
                 }</Main>

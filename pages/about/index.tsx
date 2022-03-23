@@ -4,9 +4,10 @@ import {Page} from "../../src/page";
 const Home: NextPage = () => {
     return (
         <Page
-            title="About"
+            path={"/about"}
             banners={[ "/files/lincoln-park-banner.jpg" ]}
-            breadcrumbs={{ "/": "Home", "/about": "About", }}
+            // title="bikejc | About"
+            // breadcrumbs={{ "/": "Home", "/about": "About", }}
         >
             <h1 className="title" id="page-title">About</h1>
             <article about="/about" className="node node-page view-mode-full" id="node-2" typeof="foaf:Document">
