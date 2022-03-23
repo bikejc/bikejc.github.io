@@ -22,7 +22,6 @@ export const Sitemap: Sitemap = {
 export function lookup(path: string) {
     const root = path == '/'
     const pieces = root ? [""] : path.split('/')
-    console.log("pieces:", pieces)
 
     const { breadcrumbs, name, sitemap } =
         pieces.reduce<{
@@ -36,7 +35,6 @@ export function lookup(path: string) {
                 const newPath = `${path}${sep}${piece}`
                 const newSitemap = (sitemap as any)[piece]
                 const newName: string = (typeof newSitemap === 'string') ? newSitemap : (newSitemap[""] as any as string)
-                console.log("newPath:", newPath, "newName:", newName)
                 return {
                     path: newPath,
                     breadcrumbs: breadcrumbs.concat([{ href: newPath, text: newName }]),

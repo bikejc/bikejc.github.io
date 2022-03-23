@@ -407,7 +407,6 @@ type SectionMenu = {
 
 export function SectionMenu({ title, activePath, breadcrumbs }: SectionMenu) {
     const numBreadcrumbs = breadcrumbs.length
-    console.log("SectionMenu:", title, breadcrumbs)
     return (
         <>
             <h2 className="block-title">{title}</h2>
@@ -678,7 +677,6 @@ export function Page({ path, banners, children, }: {
 }) {
     const root = path == '/'
     const pieces = root ? [""] : path.split('/')
-    console.log("pieces:", pieces)
 
     const { breadcrumbs, name, sitemap } = lookup(path)
 
@@ -699,11 +697,9 @@ export function Page({ path, banners, children, }: {
             breadcrumbs: sectionMenuItems
         }
     }
-    console.log("sectionMenu:", sectionMenu)
 
     // const name: string = (typeof sitemap === 'string') ? sitemap : (sitemap[""] as any as string)
     const title = `bikejc | ${name}`
-    console.log("title:", title, "name:", name, "breadcrumbs:", breadcrumbs)
     return (
         <>
             <meta content="width=device-width, maximum-scale = 1.0" name="viewport"></meta>
