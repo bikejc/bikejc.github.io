@@ -28,7 +28,11 @@ export const Sitemap: Sitemap = {
             "": "Events",
             "jersey-city-ward-tour": {
                 "": "Jersey City Ward Tour",
-                "ward-tour-registration": "Ward Tour Registration",
+                "ward-tour-registration": {
+                    "": "Ward Tour Registration",
+                    "15-mile-route-registration-form": "15 Mile Route Registration Form",
+                    "register-25-mile-ride": "25 Mile Route Registration Form",
+                },
                 "volunteer": "Volunteer for the Ward Tour",
                 "ward-tour-route": "Ward Tour Route",
                 "finish-line-festival": "Finish Line Festival",
