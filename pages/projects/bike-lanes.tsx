@@ -13,12 +13,12 @@ export default function Home() {
                 More recently, the focus has shifted to physically protected/separated bike lanes, starting with a nascent network on the wide avenues Downtown, in Journal Square and McGinley Square, and now branching out slowly toward other neighborhoods. Some are tucked between parked cars and the curb "parking-protected," others staked out with plastic "flex-posts," and some now upgraded to protection by concrete "Jersey barriers."
             </p><p>
                 Bike JC’s current bike lane priorities, our focus in speaking with city officials, are to get:
-                <ul>
-                    <li>protected lanes installed throughout Jersey City</li>
-                    <li>the methods of physical separation upgraded</li>
-                    <li>existing and new protected lanes better connected with each other, to form a truly coherent and citywide network.</li>
-                </ul>
             </p>
+            <ul>
+                <li>protected lanes installed throughout Jersey City</li>
+                <li>the methods of physical separation upgraded</li>
+                <li>existing and new protected lanes better connected with each other, to form a truly coherent and citywide network.</li>
+            </ul>
             <p>
                 THESE GOALS ARE, SIMPLY PUT, THE MOST IMPORTANT REASON FOR BIKE JC'S CONTINUED EXISTENCE. Please do everything you can think of to urge and influence your elected representatives to continue this work as quickly and thoroughly as possible, and ask your friends, neighbors, local businesses, community groups and anyone else you can think of to do the same!
             </p>
@@ -29,15 +29,9 @@ export default function Home() {
                 Important Facts About Jersey City Bike Lanes
             </h4>
             <ul>
-                <li>
-                    You’re required by city law to ride in the bike lane on any street that has one, unless you’re biking as fast as the car traffic, in which case you may blend into line with the cars. (That can happen when you’re just a fast cyclist, or when you’re going downhill. It can also happen when car traffic is slowed by congestion—though at that point, riding in the bike lane is probably faster!)
-                </li>
-                <li>
-                    You’re also allowed to leave the bike lane temporarily when it’s blocked or made dangerous by intruding cars, big potholes, debris, or slower cyclists. Use the car lane to get around the obstruction, then return to the bike lane. Remember to use hand signals before making each of these movements, just as you would when changing lanes in a car.
-                </li>
-                <li>
-                    In an unprotected lane, unless you’re riding very slowly, it’s usually safest to ride toward the side of the bike lane that’s closest to the car travel lane, and farthest from any parked cars. That makes it easier to avoid getting “doored”—running into the doors of parked cars when occupants open them suddenly. Always scan the parked cars ahead of you, to spot opening car doors.
-                </li>
+                <li>You’re required by city law to ride in the bike lane on any street that has one, unless you’re biking as fast as the car traffic, in which case you may blend into line with the cars. (That can happen when you’re just a fast cyclist, or when you’re going downhill. It can also happen when car traffic is slowed by congestion—though at that point, riding in the bike lane is probably faster!)</li>
+                <li>You’re also allowed to leave the bike lane temporarily when it’s blocked or made dangerous by intruding cars, big potholes, debris, or slower cyclists. Use the car lane to get around the obstruction, then return to the bike lane. Remember to use hand signals before making each of these movements, just as you would when changing lanes in a car.</li>
+                <li>In an unprotected lane, unless you’re riding very slowly, it’s usually safest to ride toward the side of the bike lane that’s closest to the car travel lane, and farthest from any parked cars. That makes it easier to avoid getting “doored”—running into the doors of parked cars when occupants open them suddenly. Always scan the parked cars ahead of you, to spot opening car doors.</li>
             </ul>
         </Page>
     )

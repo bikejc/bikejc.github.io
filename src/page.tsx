@@ -297,6 +297,7 @@ export function SmallMenu() {
 
 export function BigMenu({ path }: { path: string }) {
     const topLevelMap = (Sitemap as any)[""] as any as { [k: string]: string }
+    const numTopLevels = Object.keys(topLevelMap).length
     const menuListItems = Object.entries(topLevelMap).map(
         ([ name, map ], idx) => {
             const text = (typeof map === 'string') ? map : ((map as any)[""] as any as string)
@@ -305,7 +306,7 @@ export function BigMenu({ path }: { path: string }) {
             return (
                 <MenuListItem
                     key={name}
-                    idx={idx} n={topLevelMap.length}
+                    idx={idx} n={numTopLevels}
                     active={
                         path == topLevelPath ||
                         (
