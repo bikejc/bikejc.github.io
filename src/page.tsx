@@ -688,11 +688,12 @@ export function Footer() {
     )
 }
 
-export function Page({ path, h1, banner, article, children, }: {
+export function Page({ path, h1, banner, article, documentClasses, children, }: {
     path: string
     h1?: string
     banner?: string[] | string
     article?: boolean
+    documentClasses?: string[]
     children: ReactNode
 }) {
     if (!banner) {
@@ -747,7 +748,7 @@ export function Page({ path, h1, banner, article, children, }: {
             <div className="skip-link">
                 <a href="#main-content" className="element-invisible element-focusable">Skip to main content</a>
             </div>
-            <div className="page home" role="document">
+            <div className={`page home ${(documentClasses || []).join(" ")}`} role="document">
                 <Header path={path} banners={banner} />
                 <Main
                     sectionMenu={sectionMenu}
