@@ -608,17 +608,15 @@ export function Triptych() {
                     <h4>Subscribe to Our Mailing List + Monthly Newsletter</h4>
                     <div id="mc_embed_signup">
                         <form
-                            action="https://bikejc.us1.list-manage.com/subscribe/post?u=29e08864eb550bdd5c90dd362&amp;id=9fce58455b"
+                            action="https://bikejc.us1.list-manage.com/subscribe/post?u=29e08864eb550bdd5c90dd362&id=9fce58455b"
                             className="validate" id="mc-embedded-subscribe-form" method="post" name="mc-embedded-subscribe-form"
                             target="_blank">
-                            <input className="email" id="mce-EMAIL" name="EMAIL" placeholder="email address"
-                                   type="email" />
+                            <input className="email" id="mce-EMAIL" name="EMAIL" placeholder="email address" type="email" />
                             <div style={{ position: "absolute", left: "-5000px" }}>
                                 <input name="b_29e08864eb550bdd5c90dd362_9fce58455b" tabIndex={-1} type="text" />
                             </div>
                             <div className="clear">
-                                <input className="button" id="mc-embedded-subscribe" name="subscribe" type="submit"
-                                       value="Subscribe" />
+                                <input className="button" id="mc-embedded-subscribe" name="subscribe" type="submit" value="Subscribe" />
                             </div>
                         </form>
                     </div>
@@ -651,25 +649,25 @@ export function Footer() {
                 <section className="block block-menu-block block-menu-block-2">
                     <div className="menu-block-wrapper menu-block-2 menu-name-menu-footer-main parent-mlid-0 menu-level-1">
                         <ul className="menu">
-                            <li className="first leaf menu-mlid-4368">
+                            <li className="first leaf">
                                 <a href="/about">about</a>
                             </li>
-                            <li className="leaf menu-mlid-4369">
+                            <li className="leaf">
                                 <a href="/projects">projects</a>
                             </li>
-                            <li className="leaf menu-mlid-4370">
+                            <li className="leaf">
                                 <a href="/events">events</a>
                             </li>
-                            <li className="leaf menu-mlid-4371">
+                            <li className="leaf">
                                 <a href="/news">news</a>
                             </li>
-                            <li className="leaf menu-mlid-4372">
+                            <li className="leaf">
                                 <a href="/support">support</a>
                             </li>
-                            <li className="leaf menu-mlid-4373">
+                            <li className="leaf">
                                 <a href="/resources">resources</a>
                             </li>
-                            <li className="last leaf menu-mlid-4374">
+                            <li className="last leaf">
                                 <a href="/contact-us">contact</a>
                             </li>
                         </ul>
@@ -688,12 +686,13 @@ export function Footer() {
     )
 }
 
-export function Page({ path, h1, banner, article, documentClasses, children, }: {
+export function Page({ path, h1, banner, article, documentClasses, articleClasses, children, }: {
     path: string
     h1?: string
     banner?: string[] | string
     article?: boolean
     documentClasses?: string[]
+    articleClasses?: string[]
     children: ReactNode
 }) {
     if (!banner) {
@@ -728,7 +727,7 @@ export function Page({ path, h1, banner, article, documentClasses, children, }: 
 
     const title = `bikejc | ${name}`
     const wrapArticle = (children: ReactNode) => <>
-        <article about={path} className="node node view-mode-full" typeof="sioc:Item foaf:Document">
+        <article about={path} className={`node node view-mode-full ${(articleClasses || []).join(" ")}`} typeof="sioc:Item foaf:Document">
             <div className="field field-name-body field-type-text-with-summary field-label-hidden field-wrapper body field">
                 {children}
             </div>
@@ -759,7 +758,7 @@ export function Page({ path, h1, banner, article, documentClasses, children, }: 
                         article ? wrapArticle(children) : children
                     }
                 </Main>
-                <Triptych />
+                {root && <Triptych/>}
                 <Footer />
             </div>
         </>
