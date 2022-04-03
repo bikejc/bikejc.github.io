@@ -555,7 +555,7 @@ export function Aside({ sectionMenu }: { sectionMenu?: SectionMenu }) {
                 <h4>
                     Donate to Bike JC</h4>
                 <a className="button small radius"
-                   href="http://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&amp;hosted_button_id=BMJXSWD8HGWXW">Make a
+                   href="http://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=BMJXSWD8HGWXW">Make a
                     Paypal Donation</a>
             </section>
         </aside>

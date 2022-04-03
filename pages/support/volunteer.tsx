@@ -13,7 +13,7 @@ export default function Home() {
                 {/*Begin MailChimp Signup Form*/}
                 <link href="/files/classic-10_7.css" rel="stylesheet" type="text/css"/>
                 <div id="mc_embed_signup">
-                    <form action="https://bikejc.us1.list-manage.com/subscribe/post?u=29e08864eb550bdd5c90dd362&amp;id=8e5413c196" className="validate" id="mc-embedded-subscribe-form" method="post" name="mc-embedded-subscribe-form" noValidate={true} target="_blank">
+                    <form action="https://bikejc.us1.list-manage.com/subscribe/post?u=29e08864eb550bdd5c90dd362&id=8e5413c196" className="validate" id="mc-embedded-subscribe-form" method="post" name="mc-embedded-subscribe-form" noValidate={true} target="_blank">
                         <div id="mc_embed_signup_scroll">
                             <h2>
                                 Subscribe to our mailing list

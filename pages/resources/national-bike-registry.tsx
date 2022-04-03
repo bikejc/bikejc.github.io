@@ -30,7 +30,7 @@ import { Page } from "../../src/page";
               If your bike is stolen or you think you've come across someone else's stolen bike,
              </strong>
              submit your bike's information
-             <a href="https://bikeindex.org/bikes?utf8=%E2%9C%93&amp;query=&amp;proximity=Jersey+City+New+Jersey&amp;proximity_radius=5&amp;stolen=true&amp;non_stolen=&amp;non_proximity=&amp;serial=" target="_blank">
+             <a href="https://bikeindex.org/bikes?utf8=%E2%9C%93&query=&proximity=Jersey+City+New+Jersey&proximity_radius=5&stolen=true&non_stolen=&non_proximity=&serial=" target="_blank">
               or look for a match
              </a>
              using the
@@ -42,4 +42,3 @@ import { Page } from "../../src/page";
             </Page>
         )
     }
-    
