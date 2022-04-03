@@ -1,9 +1,7 @@
-import { Page } from "../../src/page";
+import {Pg} from "../../src/page";
 import React from 'react'
-import ReactMarkdown from 'react-markdown'
-import remarkGfm from 'remark-gfm'
 
-const markdown = `
+const md = `
 Thousands of stolen bikes are recovered by police but few are returned to their owners. The National Bike Registry helps authorities locate you when they find your bike.
 
 Register your bike online in these four easy steps:
@@ -20,10 +18,5 @@ Register your bike online in these four easy steps:
 using the [Bike Index](https://bikeindex.org/bikes/new?stolen=true) for free!
 `
 
-export default function Home() {
-    return (
-        <Page path={"/resources/national-bike-registry"}>
-            <ReactMarkdown children={markdown} remarkPlugins={[remarkGfm]} />
-        </Page>
-    )
-}
+const Home = Pg({ path: "/resources/national-bike-registry", md, })
+export default Home

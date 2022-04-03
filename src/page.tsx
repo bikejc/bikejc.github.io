@@ -3,6 +3,8 @@ import Head from "next/head";
 import Script from "next/script";
 import {Breadcrumb, lookup, Sitemap} from "./sitemap";
 import { dirname } from "path";
+import remarkGfm from "remark-gfm";
+import ReactMarkdown from "react-markdown";
 
 export function SmallMenu() {
     return (
@@ -686,15 +688,20 @@ export function Footer() {
     )
 }
 
-export function Page({ path, h1, banner, article, documentClasses, articleClasses, children, }: {
+export type Page = {
     path: string
     h1?: string
     banner?: string[] | string
     article?: boolean
     documentClasses?: string[]
     articleClasses?: string[]
-    children: ReactNode
-}) {
+    md?: string
+    children?: ReactNode
+}
+
+export const Pg = (page: Page) => () => <Page {...page} />
+
+export function Page({ path, h1, banner, article, documentClasses, articleClasses, md, children, }: Page) {
     if (!banner) {
         banner = [ "/files/lincoln-park-banner.jpg" ]
     } else if (typeof banner === "string") {
@@ -722,6 +729,17 @@ export function Page({ path, h1, banner, article, documentClasses, articleClasse
             title: sectionName,
             activePath: path,
             breadcrumbs: sectionMenuItems
+        }
+    }
+
+    if (!children) {
+        if (!md) {
+            throw Error("Pass either `children` or `md`")
+        }
+        children = <ReactMarkdown children={md} remarkPlugins={[remarkGfm]} />
+    } else {
+        if (md) {
+            throw Error("Pass either `children` or `md`")
         }
     }
 
