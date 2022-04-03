@@ -50,6 +50,7 @@ export const Sitemap: Sitemap = {
             "": "News",
             "articles": {
                 "": "Articles and Press Releases",
+                "citi-bike-jc-rebalancing": "Citi Bike JC Rebalancing",
                 "2016-ward-tour-press-release": "2016 Ward Tour Press Release",
                 "grand-street-vision-protected-bike-lane-petition": "Grand Street Vision - Protected Bike Lane Petition",
                 "job-posting-contract-grant-writer": "Job Posting: Contract Grant Writer",
