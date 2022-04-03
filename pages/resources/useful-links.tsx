@@ -12,7 +12,7 @@ function Link({ label, href, text, children }: {
     return (
         <div className={"useful-link"}>
             <p><strong>{label}</strong></p>
-            <p><Ext href={href} text={text} /></p>
+            <p><Ext href={href}>{text}</Ext></p>
             {children}
         </div>
     )

@@ -3,18 +3,16 @@ import { Ext } from "../../src/link"
 import Script from "next/script"
 
 export default function Home() {
+    const mc_u = "29e08864eb550bdd5c90dd362"
+    const mc_id = "8e5413c196"
     return (
         <Page path={"/support/volunteer"}>
             <div className="field field-name-body field-type-text-with-summary field-label-hidden field-wrapper body field">
-                <p>
-                    Volunteer with Bike JC and help make Jersey City a better place for bicyclists of all kinds and in every neighborhood.
-                </p>
-                <p>
-                    We&apos;d love to meet you!
-                </p>
+                <p>Volunteer with Bike JC and help make Jersey City a better place for bicyclists of all kinds and in every neighborhood.</p>
+                <p>{"We'd love to meet you!"}</p>
                 {/*Begin MailChimp Signup Form*/}
                 <div id="mc_embed_signup">
-                    <form action="https://bikejc.us1.list-manage.com/subscribe/post?u=29e08864eb550bdd5c90dd362&id=8e5413c196" className="validate" id="mc-embedded-subscribe-form" method="post" name="mc-embedded-subscribe-form" noValidate={true} target="_blank">
+                    <form action={`https://bikejc.us1.list-manage.com/subscribe/post?u=${mc_u}&id=${mc_id}`} className="validate" id="mc-embedded-subscribe-form" method="post" name="mc-embedded-subscribe-form" noValidate={true} target="_blank">
                         <div id="mc_embed_signup_scroll">
                             <h2>
                                 Subscribe to our mailing list
@@ -110,7 +108,7 @@ export default function Home() {
                             </div>
                             {/*real people should not fill this in and expect good things - do not remove this or risk form bot signups*/}
                             <div aria-hidden="true" style={{ "position": "absolute", "left": "-5000px" }}>
-                                <input name="b_29e08864eb550bdd5c90dd362_8e5413c196" tabIndex={-1} type="text"/>
+                                <input name={`b_${mc_u}_${mc_id}`} tabIndex={-1} type="text"/>
                             </div>
                             <div className="clear">
                                 <input className="button" id="mc-embedded-subscribe" name="subscribe" type="submit" value="Subscribe"/>
