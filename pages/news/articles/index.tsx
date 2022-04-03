@@ -7,13 +7,13 @@ export default function Home() {
                 <div className="view view-recent-articles view-id-recent_articles view-display-id-block_1 view-dom-id-74a1484d0b40e9a48313d7b61c352dfd">
                     <div className="view-content">
                         <div className="views-row views-row-1 views-row-odd views-row-first">
-                        <span className="views-field views-field-title">
-                            <span className="field-content">
-                                <a href="/news/articles/citi-bike-jc-rebalancing">
-                                    Citi Bike JC Rebalancing
-                                </a>
+                            <span className="views-field views-field-title">
+                                <span className="field-content">
+                                    <a href="/news/articles/citi-bike-jc-rebalancing">
+                                        Citi Bike JC Rebalancing
+                                    </a>
+                                </span>
                             </span>
-                        </span>
                             <div className="views-field views-field-body">
                                 <div className="field-content">
                                     <p>
@@ -31,24 +31,24 @@ export default function Home() {
                                 </div>
                             </div>
                             <div className="views-field views-field-view-node">
-                            <span className="views-label views-label-view-node">
-                                {"Read More: "}
-                            </span>
+                                <span className="views-label views-label-view-node">
+                                    {"Read More: "}
+                                </span>
                                 <span className="field-content">
-                                <a href="/news/articles/citi-bike-jc-rebalancing">
-                                    view
-                                </a>
-                            </span>
+                                    <a href="/news/articles/citi-bike-jc-rebalancing">
+                                        view
+                                    </a>
+                                </span>
                             </div>
                         </div>
                         <div className="views-row views-row-2 views-row-even">
-                        <span className="views-field views-field-title">
-                            <span className="field-content">
-                                <a href="/news/articles-and-press-releases/grand-street-vision-protected-bike-lane-petition">
-                                    Grand Street Vision - Protected Bike Lane Petition
-                                </a>
+                            <span className="views-field views-field-title">
+                                <span className="field-content">
+                                    <a href="/news/articles-and-press-releases/grand-street-vision-protected-bike-lane-petition">
+                                        Grand Street Vision - Protected Bike Lane Petition
+                                    </a>
+                                </span>
                             </span>
-                        </span>
                             <div className="views-field views-field-body">
                                 <div className="field-content">
                                     <p>
@@ -70,24 +70,24 @@ export default function Home() {
                                 </div>
                             </div>
                             <div className="views-field views-field-view-node">
-                            <span className="views-label views-label-view-node">
-                                {"Read More: "}
-                            </span>
+                                <span className="views-label views-label-view-node">
+                                    {"Read More: "}
+                                </span>
                                 <span className="field-content">
-                                <a href="/news/articles-and-press-releases/grand-street-vision-protected-bike-lane-petition">
-                                    view
-                                </a>
-                            </span>
+                                    <a href="/news/articles-and-press-releases/grand-street-vision-protected-bike-lane-petition">
+                                        view
+                                    </a>
+                                </span>
                             </div>
                         </div>
                         <div className="views-row views-row-3 views-row-odd">
-                        <span className="views-field views-field-title">
-                            <span className="field-content">
-                                <a href="/news/articles/2016-ward-tour-press-release">
-                                    2016 Ward Tour Press Release
-                                </a>
+                            <span className="views-field views-field-title">
+                                <span className="field-content">
+                                    <a href="/news/articles/2016-ward-tour-press-release">
+                                        2016 Ward Tour Press Release
+                                    </a>
+                                </span>
                             </span>
-                        </span>
                             <div className="views-field views-field-body">
                                 <div className="field-content">
                                     <p>
@@ -110,24 +110,24 @@ export default function Home() {
                                 </div>
                             </div>
                             <div className="views-field views-field-view-node">
-                            <span className="views-label views-label-view-node">
-                                {"Read More: "}
-                            </span>
+                                <span className="views-label views-label-view-node">
+                                    {"Read More: "}
+                                </span>
                                 <span className="field-content">
-                                <a href="/news/articles/2016-ward-tour-press-release">
-                                    view
-                                </a>
-                            </span>
+                                    <a href="/news/articles/2016-ward-tour-press-release">
+                                        view
+                                    </a>
+                                </span>
                             </div>
                         </div>
                         <div className="views-row views-row-4 views-row-even">
-                        <span className="views-field views-field-title">
-                            <span className="field-content">
-                                <a href="/news/articles/design-bike-jcs-7th-annual-ward-tour-poster">
-                                    Design Bike JC's 7th Annual Ward Tour Poster
-                                </a>
+                            <span className="views-field views-field-title">
+                                <span className="field-content">
+                                    <a href="/news/articles/design-bike-jcs-7th-annual-ward-tour-poster">
+                                        Design Bike JC's 7th Annual Ward Tour Poster
+                                    </a>
+                                </span>
                             </span>
-                        </span>
                             <div className="views-field views-field-body">
                                 <div className="field-content">
                                     <h5>
@@ -150,24 +150,24 @@ export default function Home() {
                                 </div>
                             </div>
                             <div className="views-field views-field-view-node">
-                            <span className="views-label views-label-view-node">
-                                {"Read More: "}
-                            </span>
+                                <span className="views-label views-label-view-node">
+                                    {"Read More: "}
+                                </span>
                                 <span className="field-content">
-                                <a href="/news/articles/design-bike-jcs-7th-annual-ward-tour-poster">
-                                    view
-                                </a>
-                            </span>
+                                    <a href="/news/articles/design-bike-jcs-7th-annual-ward-tour-poster">
+                                        view
+                                    </a>
+                                </span>
                             </div>
                         </div>
                         <div className="views-row views-row-5 views-row-odd views-row-last">
-                        <span className="views-field views-field-title">
-                            <span className="field-content">
-                                <a href="/news/articles/job-posting-contract-grant-writer">
-                                    Job Posting: Contract Grant Writer
-                                </a>
+                            <span className="views-field views-field-title">
+                                <span className="field-content">
+                                    <a href="/news/articles/job-posting-contract-grant-writer">
+                                        Job Posting: Contract Grant Writer
+                                    </a>
+                                </span>
                             </span>
-                        </span>
                             <div className="views-field views-field-body">
                                 <div className="field-content">
                                     <h4>
@@ -198,14 +198,14 @@ export default function Home() {
                                 </div>
                             </div>
                             <div className="views-field views-field-view-node">
-                            <span className="views-label views-label-view-node">
-                                {"Read More: "}
-                            </span>
+                                <span className="views-label views-label-view-node">
+                                    {"Read More: "}
+                                </span>
                                 <span className="field-content">
-                                <a href="/news/articles/job-posting-contract-grant-writer">
-                                    view
-                                </a>
-                            </span>
+                                    <a href="/news/articles/job-posting-contract-grant-writer">
+                                        view
+                                    </a>
+                                </span>
                             </div>
                         </div>
                     </div>
