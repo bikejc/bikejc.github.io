@@ -1,5 +1,6 @@
 import {Page} from "../../../src/page";
 import Markdown from "../../../src/md";
+import Link from "next/link";
 
 function Article({ title, href, content, }: {
     title: string
@@ -10,7 +11,7 @@ function Article({ title, href, content, }: {
         <div className="views-row views-row-1 views-row-odd views-row-first">
             <span className="views-field views-field-title">
                 <span className="field-content">
-                    <a href={href}>{title}</a>
+                    <Link href={href}>{title}</Link>
                 </span>
             </span>
             <div className="views-field views-field-body">
@@ -23,7 +24,7 @@ function Article({ title, href, content, }: {
                     {"Read More: "}
                 </span>
                 <span className="field-content">
-                    <a href={href}>view</a>
+                    <Link href={href}>view</Link>
                 </span>
             </div>
         </div>
@@ -114,24 +115,24 @@ Bike JC is run by a volunteer working executive board. **The Grant Writer is a p
                         <div className="item-list">
                             <ul className="pagination pager">
                                 <li className="current first">
-                                    <a href="/news/articles">
+                                    <Link href="/news/articles">
                                         1
-                                    </a>
+                                    </Link>
                                 </li>
                                 <li>
-                                    <a href="/news/articles?page=1" title="Go to page 2">
+                                    <Link href="/news/articles?page=1"><a title="Go to page 2">
                                         2
-                                    </a>
+                                    </a></Link>
                                 </li>
                                 <li className="arrow">
-                                    <a href="/news/articles?page=1" title="Go to next page">
+                                    <Link href="/news/articles?page=1"><a title="Go to next page">
                                         next ›
-                                    </a>
+                                    </a></Link>
                                 </li>
                                 <li className="arrow last">
-                                    <a href="/news/articles?page=1" title="Go to last page">
+                                    <Link href="/news/articles?page=1"><a title="Go to last page">
                                         last »
-                                    </a>
+                                    </a></Link>
                                 </li>
                             </ul>
                         </div>
