@@ -6,6 +6,7 @@ import { dirname } from "path";
 import remarkGfm from "remark-gfm";
 import ReactMarkdown from "react-markdown";
 import Link from "next/link";
+import Markdown from "./md";
 
 export function SmallMenu() {
     return (
@@ -737,18 +738,7 @@ export function Page({ path, h1, banner, article, documentClasses, articleClasse
         if (!md) {
             throw Error("Pass either `children` or `md`")
         }
-        children = <ReactMarkdown
-            children={md}
-            remarkPlugins={[remarkGfm]}
-            components={{
-                a: ({ href, children }: { href?: string, children: ReactNode, }) =>
-                    <Link href={href || "#"}>
-                        <a target={href?.startsWith("http") ? "_blank" : "_self"}>
-                            {children}
-                        </a>
-                    </Link>
-            }}
-        />
+        children = Markdown(md)
     } else {
         if (md) {
             throw Error("Pass either `children` or `md`")

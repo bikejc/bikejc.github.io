@@ -7121,9 +7121,6 @@ div.page .sidebar-second {
 #main-menu a.active {
   color: #195200; }
 
-.body ul, .body ol, .body dl {
-  list-style-position: inside; }
-
 .sidebar .item-list {
   padding-left: .5em;
   padding-right: .5em;
