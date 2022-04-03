@@ -1,0 +1,7 @@
+.useful-link {
+    margin-bottom: 1.25em;
+}
+
+.useful-link > p {
+    margin: 0
+}

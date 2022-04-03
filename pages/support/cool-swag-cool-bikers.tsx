@@ -8,7 +8,7 @@ export default function Home() {
                     Donate to BikeJC and Earn Cool Swag
                 </h2>
                 <p>
-                    We'll thank you for your donation by sending you something that lets you show off your support for bicycling in Jersey City.
+                    We&apos;ll thank you for your donation by sending you something that lets you show off your support for bicycling in Jersey City.
                 </p>
                 <div style={{ "backgroundColor": "#a59d46", "width": "100%", "height": "50px", "textAlign": "right", "paddingTop": "10px", "paddingBottom": "10px", "paddingRight": "20px" }}>
                     <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="paypal">
@@ -111,7 +111,7 @@ export default function Home() {
                     </p>
                     <p>
                         <strong>
-                            Wings T-Shirt - Women's Cut:
+                            Wings T-Shirt - Women&apos;s Cut:
                             <br/>
                             $20 Donation
                         </strong>
@@ -197,7 +197,7 @@ export default function Home() {
                     </p>
                     <p>
                         <strong>
-                            Green Retro T-Shirt - Women's Cut:
+                            Green Retro T-Shirt - Women&apos;s Cut:
                             <br/>
                             $20 Donation
                         </strong>
@@ -283,7 +283,7 @@ export default function Home() {
                     </p>
                     <p>
                         <strong>
-                            Black Retro T-Shirt - Women's Cut:
+                            Black Retro T-Shirt - Women&apos;s Cut:
                             <br/>
                             $20 Donation
                         </strong>
@@ -375,7 +375,7 @@ export default function Home() {
                     </p>
                     <p>
                         <strong>
-                            Ward Tour 10 T-Shirt - Women's Cut:
+                            Ward Tour 10 T-Shirt - Women&apos;s Cut:
                             <br/>
                             $15 Donation
                         </strong>
@@ -467,7 +467,7 @@ export default function Home() {
                     </p>
                     <p>
                         <strong>
-                            Ward Tour 9 T-Shirt - Women's Cut:
+                            Ward Tour 9 T-Shirt - Women&apos;s Cut:
                             <br/>
                             $15 Donation
                         </strong>
@@ -624,7 +624,7 @@ export default function Home() {
                     </p>
                     <p>
                         <strong>
-                            Ward Tour 7 - Women's Cut:
+                            Ward Tour 7 - Women&apos;s Cut:
                             <br/>
                             $10 Donation
                         </strong>

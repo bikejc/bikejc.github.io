@@ -51,6 +51,7 @@ export default function Document() {
                 <link rel="stylesheet" href="/files/normalize.css"></link>
                 <link rel="stylesheet" href="/files/custom.css"></link>
                 <link rel="stylesheet" href="/sites/all/libraries/nivo-slider/themes/light/light.css"></link>
+                <link rel="stylesheet" href="/files/classic-10_7.css"/>
                 <meta className="foundation-mq-small"></meta>
                 <meta className="foundation-mq-medium"></meta>
                 <meta className="foundation-mq-large"></meta>
@@ -64,7 +65,7 @@ export default function Document() {
                 <script type="text/javascript" dangerouslySetInnerHTML={{ __html: process.env.drupalSettingsJsFromFile || 'console.error("failed to load drupal-settings.js from env")' }}></script>
                 <script type="text/javascript" dangerouslySetInnerHTML={{ __html: process.env.foundationJsFromFile || 'console.error("failed to load foundation.min.js from env")' }}></script>
             </Head>
-            <body className="html front not-logged-in one-sidebar sidebar-second page-node page-node- page-node-45 node-type-home-page">
+            <body className="html front not-logged-in one-sidebar sidebar-second page-node page-node- node-type-home-page">
             <Main />
             <NextScript />
             </body>

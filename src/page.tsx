@@ -555,7 +555,7 @@ export function Aside({ sectionMenu }: { sectionMenu?: SectionMenu }) {
                 <h4>
                     Donate to Bike JC</h4>
                 <a className="button small radius"
-                   href="http://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=BMJXSWD8HGWXW">Make a
+                   href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=BMJXSWD8HGWXW">Make a
                     Paypal Donation</a>
             </section>
         </aside>
@@ -747,7 +747,7 @@ export function Page({ path, h1, banner, article, documentClasses, articleClasse
             <div className="skip-link">
                 <a href="#main-content" className="element-invisible element-focusable">Skip to main content</a>
             </div>
-            <div className={`page home ${(documentClasses || []).join(" ")}`} role="document">
+            <div className={`page ${(documentClasses || []).join(" ")}`} role="document">
                 <Header path={path} banners={banner} />
                 <Main
                     sectionMenu={sectionMenu}

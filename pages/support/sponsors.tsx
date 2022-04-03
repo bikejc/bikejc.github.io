@@ -6,6 +6,21 @@ type Sponsor = {
     alt: string
 }
 
+function Sponsor({ href, src, alt, }: Sponsor) {
+    return (
+        <li>
+            <div className="views-field views-field-field-sponsor-logo">
+                <div className="field-content">
+                    <a href={href} target="_blank" rel="noreferrer">
+                        <img alt={alt} height="400"
+                             src={src} typeof="foaf:Image" width="400"></img>
+                    </a>
+                </div>
+            </div>
+        </li>
+    )
+}
+
 function Sponsors({ title, sponsors }: {
     title: string
     sponsors: Sponsor[]
@@ -17,27 +32,12 @@ function Sponsors({ title, sponsors }: {
                 <div className="view-content">
                     <div className="item-list sponsors">
                         <ul>{
-                            sponsors.map(sponsor => <Sponsor {...sponsor} />)
+                            sponsors.map(sponsor => <Sponsor key={sponsor.alt} {...sponsor} />)
                         }</ul>
                     </div>
                 </div>
             </div>
         </section>
-    )
-}
-
-function Sponsor({ href, src, alt, }: Sponsor) {
-    return (
-        <li>
-            <div className="views-field views-field-field-sponsor-logo">
-                <div className="field-content">
-                    <a href={href} target="_blank">
-                        <img alt={alt} height="400"
-                             src={src} typeof="foaf:Image" width="400"></img>
-                    </a>
-                </div>
-            </div>
-        </li>
     )
 }
 

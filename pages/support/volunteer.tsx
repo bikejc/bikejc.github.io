@@ -1,4 +1,6 @@
-import { Page } from "../../src/page";
+import { Page } from "../../src/page"
+import { Ext } from "../../src/link"
+import Script from "next/script"
 
 export default function Home() {
     return (
@@ -8,10 +10,9 @@ export default function Home() {
                     Volunteer with Bike JC and help make Jersey City a better place for bicyclists of all kinds and in every neighborhood.
                 </p>
                 <p>
-                    We'd love to meet you!
+                    We&apos;d love to meet you!
                 </p>
                 {/*Begin MailChimp Signup Form*/}
-                <link href="/files/classic-10_7.css" rel="stylesheet" type="text/css"/>
                 <div id="mc_embed_signup">
                     <form action="https://bikejc.us1.list-manage.com/subscribe/post?u=29e08864eb550bdd5c90dd362&id=8e5413c196" className="validate" id="mc-embedded-subscribe-form" method="post" name="mc-embedded-subscribe-form" noValidate={true} target="_blank">
                         <div id="mc_embed_signup_scroll">
@@ -49,30 +50,22 @@ export default function Home() {
                                     <li>
                                         <input className="hidden-field" id="mce-group[8701]-8701-0" name="group[8701][1]" type="checkbox" value="1"/>
                                         <span className="custom checkbox" />
-                                        <label htmlFor="mce-group[8701]-8701-0">
-                                            Marshal
-                                        </label>
+                                        <label htmlFor="mce-group[8701]-8701-0">Marshal</label>
                                     </li>
                                     <li>
                                         <input className="hidden-field" id="mce-group[8701]-8701-1" name="group[8701][2]" type="checkbox" value="2"/>
                                         <span className="custom checkbox" />
-                                        <label htmlFor="mce-group[8701]-8701-1">
-                                            Outreach
-                                        </label>
+                                        <label htmlFor="mce-group[8701]-8701-1">Outreach</label>
                                     </li>
                                     <li>
                                         <input className="hidden-field" id="mce-group[8701]-8701-2" name="group[8701][4]" type="checkbox" value="4"/>
                                         <span className="custom checkbox" />
-                                        <label htmlFor="mce-group[8701]-8701-2">
-                                            Fundraising
-                                        </label>
+                                        <label htmlFor="mce-group[8701]-8701-2">Fundraising</label>
                                     </li>
                                     <li>
                                         <input className="hidden-field" id="mce-group[8701]-8701-3" name="group[8701][8]" type="checkbox" value="8"/>
                                         <span className="custom checkbox" />
-                                        <label htmlFor="mce-group[8701]-8701-3">
-                                            Bike Valet
-                                        </label>
+                                        <label htmlFor="mce-group[8701]-8701-3">Bike Valet</label>
                                     </li>
                                     <li>
                                         <input className="hidden-field" id="mce-group[8701]-8701-4" name="group[8701][16]" type="checkbox" value="16"/>
@@ -125,8 +118,8 @@ export default function Home() {
                         </div>
                     </form>
                 </div>
-                <script src="/files/mc-validate.js" type="text/javascript" />
-                <script src="/files/mc-init.js" type="text/javascript" />
+                <Script src="/files/mc-validate.js" type="text/javascript" />
+                <Script src="/files/mc-init.js" type="text/javascript" />
             </div>
         </Page>
     )
