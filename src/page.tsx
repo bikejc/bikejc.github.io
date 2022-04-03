@@ -741,9 +741,9 @@ export function Page({ path, h1, banner, article, documentClasses, articleClasse
             children={md}
             remarkPlugins={[remarkGfm]}
             components={{
-                a: ({ href, children }: { href: string, children: ReactNode, }) =>
-                    <Link href={href}>
-                        <a target={href.includes("http") ? "_blank" : "_self"}>
+                a: ({ href, children }: { href?: string, children: ReactNode, }) =>
+                    <Link href={href || "#"}>
+                        <a target={href?.startsWith("http") ? "_blank" : "_self"}>
                             {children}
                         </a>
                     </Link>
