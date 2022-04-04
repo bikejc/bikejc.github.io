@@ -2,26 +2,12 @@ import { Page } from "../../src/page";
 
 export default function Home() {
     return (
-        <Page path={"/resources/citi-bike-usage-jersey-city-2018"} banner="files/lincoln-park-banner_0.jpg">
+        <Page path={"/resources/citi-bike-usage-jersey-city-2018"} banner="/files/lincoln-park-banner_0.jpg">
             <p>
-                This report is a summary of Citi Bike usage in Jersey City for 2018. Starting
-                <a href="/resources/citibikejc-2017">
-                    last year
-                </a>
-                , Bike JC has run its own annual analysis of the bike share system in order to provide information to the public and promote discussion of biking and Citi Bike in our community.
+                This report is a summary of Citi Bike usage in Jersey City for 2018. Starting <a href="/resources/citibikejc-2017">last year</a>, Bike JC has run its own annual analysis of the bike share system in order to provide information to the public and promote discussion of biking and Citi Bike in our community.
             </p>
             <p>
-                Citi Bike in Jersey City is an extension of the system operating in New York City. It is managed by the private, for profit corporation
-                <a href="https://www.motivateco.com/where-we-do-it/new-york-ny/">
-                    Motivate
-                </a>
-                (acquired by Lyft)
-                <br/>
-                and
-                <a href="https://www.citibikenyc.com/system-data">
-                    data
-                </a>
-                about all bike trips is publicly available via their website. There is currently no official reporting by Motivate or the city government about usage of the bike share program.
+                Citi Bike in Jersey City is an extension of the system operating in New York City. It is managed by the private, for profit corporation <a href="https://www.motivateco.com/where-we-do-it/new-york-ny/">Motivate</a> (acquired by Lyft) and <a href="https://www.citibikenyc.com/system-data">data</a>about all bike trips is publicly available via their website. There is currently no official reporting by Motivate or the city government about usage of the bike share program.
             </p>
             <p>
                 In the following sections, we will provide statistics and data visualizations on details such as the number of trips, demographics of riders, length of trips, and frequency of station and route usage. When relevant, we will also compare these figures with 2017 metrics.
@@ -49,7 +35,7 @@ export default function Home() {
                 Biking follows a seasonal pattern and breaking down total number of trips by month will show if this increase is uniform or concentrated during certain periods. Both 2018 and 2017 data will be plotted for comparison.
             </p>
             <p>
-                <img alt="" src="files/total trips by month.png" style={{ "width": "400px", "height": "305px" }}/>
+                <img alt="" src="/files/total%20trips%20by%20month.png" style={{ "width": "400px", "height": "305px" }}/>
             </p>
             <p>
                 Visually, it is apparent the greatest number of trips occurred in May through October, peaking in August (with 44.5K trips). Not surprisingly, these months have the best weather for biking. Data on winter and early spring, still show an increase relative to last year, but smaller so.
@@ -70,7 +56,7 @@ export default function Home() {
                 We will create a table breaking down gender in rows and age buckets in the columns.
             </p>
             <p>
-                <img alt="" src="files/trips age gender.png"/>
+                <img alt="" src="/files/trips age gender.png"/>
             </p>
             <p>
                 This first thing we’d like to call out is this breakdown is very similar to the what we saw in 2017. The largest share of city bike trips are taken by men age 25 to 34 (35%) followed by men age 35 to 44 (23%).
@@ -88,7 +74,7 @@ export default function Home() {
                 We would expect that to still be the case. We can verify by plotting the average number of trips by day of the week and comparing the patterns. Both data from 2018 and 2017 will be plotted.
             </p>
             <p>
-                <img alt="" src="files/avg trips day of week.png"/>
+                <img alt="" src="/files/avg trips day of week.png"/>
                 <br/>
                 There is a similar shape in the data for both years, but the increase in trips for 2018 is apparent. Trips during the work week saw a 21% increase vs 2017, while weekend trips saw a 14% increase.
             </p>
@@ -99,7 +85,7 @@ export default function Home() {
                 This difference can be visualized by plotting average trips by hour and splitting the work week and weekend into different lines. To simplify the visualization, the chart will only have data for 2018.
             </p>
             <p>
-                <img alt="" src="files/avg trips time of day.png"/>
+                <img alt="" src="/files/avg trips time of day.png"/>
             </p>
             <p>
                 Work days have two very sharp peaks right at prime commuting times, 8 AM (159 average trips per hour) and 6 PM (125 average trips per hour). Weekend data shows a more gradual rise and fall with a peak around 1 PM (60 average trips per hour). The work week actually sees lower usage than weekends between the hours of 10 AM through 4 PM.
@@ -120,7 +106,7 @@ export default function Home() {
                 Below is a table showing the number of Citi Bike stations in each ward of Jersey City (as of December 2018).
             </p>
             <p>
-                <img alt="" src="files/stations currenlty active.png"/>
+                <img alt="" src="/files/stations currenlty active.png"/>
             </p>
             <p>
                 As noted earlier, no stations currently operate in Ward A. Of the 50 total stations 27 are in the more affluent, Downtown area (Downtown is primarily Ward E, but a portion sits in Ward F, where two of its stations are located). Another detail to note is that the total number of stations has not increased since 2017. Effectively they have just been moved between areas.
@@ -129,7 +115,7 @@ export default function Home() {
                 Which stations get the most and least use? Below we will show a table with the total number of trips that started or ended at each station in 2018.
             </p>
             <p>
-                <img alt="" src="files/total station use.png" style={{ "width": "693px", "height": "592px" }}/>
+                <img alt="" src="/files/total station use.png" style={{ "width": "693px", "height": "592px" }}/>
                 <br/>
                 Stations near a PATH train station all make up four of the top five stations, including Grove Street PATH, Exchange Place, Sip Ave, and Newport PATH. Amazingly, Grove Street PATH station makes up about a 25% of all trips city-wide. It served over twice as many trips as the number two station.
             </p>
@@ -140,7 +126,7 @@ export default function Home() {
                 How has station use changed since 2017? Below is a chart with similar content, but ranked by the change in number of trips year over year. To ensure an equivalent comparison, this only includes at stations that were around for all 24 months between January 2017 and December 2018.
             </p>
             <p>
-                <img alt="" src="files/growth in station use.png"/>
+                <img alt="" src="/files/growth in station use.png"/>
                 <br/>
             </p>
             <p>
@@ -165,7 +151,7 @@ export default function Home() {
                 The following chart will be a histogram representing the distribution of trip times. The height of each bar represents the number of trips that fall within the time range on the x-axis. An example to help you interpret the data, the height of the first bar can be read as the number of trips that took more than one minute, but less than two minutes.
             </p>
             <p>
-                <img alt="" src="files/distrubtion of trip times.png"/>
+                <img alt="" src="/files/distrubtion of trip times.png"/>
             </p>
             <p>
                 The distribution is concentrated on the left side of the chart, meaning most trips are shorter. The greatest proportion of trips lasts between 4 and 5 minutes and 42% of trips are 5 minutes or less. This is very similar to 2017. Longer trips do happen, but they are a small proportion. Only about 12% of trips are longer than 15 minutes.
@@ -177,7 +163,7 @@ export default function Home() {
                 The following table lists the 25 most common routes and the number of times each was traveled in 2018.
             </p>
             <p>
-                <img alt="" src="files/top 25 routes.png"/>
+                <img alt="" src="/files/top 25 routes.png"/>
             </p>
             <p>
                 The key takeaway from this table is that all of the top 25 routes either start or end at a PATH station.
@@ -195,7 +181,7 @@ export default function Home() {
                 Reorganizing this data to analyze growth provides another perspective. Below is a table that orders each route by the growth in trips in 2018 compared to 2017.
             </p>
             <p>
-                <img alt="" src="files/growth in route usage.png"/>
+                <img alt="" src="/files/growth in route usage.png"/>
                 <br/>
                 There is a slight skew towards stations that opened mid-2017. Their growth numbers are large because their total trip count for 2017 were low because they were only open for part of the year. Still, this table shows areas of growth for the system across the city.
             </p>
@@ -262,19 +248,19 @@ export default function Home() {
                 </a>
             </p>
             <p>
-                <img alt="" height="305" src="files/total trips by month(1).png" typeof="foaf:Image" width="400"/>
-                <img alt="" height="208" src="files/trips age gender(1).png" typeof="foaf:Image" width="400"/>
-                <img alt="" height="228" src="files/stations currenlty active(1).png" typeof="foaf:Image" width="400"/>
+                <img alt="" height="305" src="/files/total trips by month(1).png" typeof="foaf:Image" width="400"/>
+                <img alt="" height="208" src="/files/trips age gender(1).png" typeof="foaf:Image" width="400"/>
+                <img alt="" height="228" src="/files/stations currenlty active(1).png" typeof="foaf:Image" width="400"/>
             </p>
             <p>
-                <img alt="" height="397" src="files/avg trips day of week(1).png" typeof="foaf:Image" width="512"/>
-                <img alt="" height="424" src="files/avg trips time of day(1).png" typeof="foaf:Image" width="568"/>
-                <img alt="" height="393" src="files/distrubtion of trip times(1).png" typeof="foaf:Image" width="518"/>
-                <img alt="" height="563" src="files/growth in route usage(1).png" typeof="foaf:Image" width="594"/>
-                <img alt="" height="368" src="files/growth in station use(1).png" typeof="foaf:Image" width="700"/>
-                <img alt="" height="568" src="files/top 25 routes(1).png" typeof="foaf:Image" width="516"/>
-                <img alt="" height="592" src="files/total station use(1).png" typeof="foaf:Image" width="693"/>
-                <img alt="" height="395" src="files/total trips by month_0.png" typeof="foaf:Image" width="518"/>
+                <img alt="" height="397" src="/files/avg trips day of week(1).png" typeof="foaf:Image" width="512"/>
+                <img alt="" height="424" src="/files/avg trips time of day(1).png" typeof="foaf:Image" width="568"/>
+                <img alt="" height="393" src="/files/distrubtion of trip times(1).png" typeof="foaf:Image" width="518"/>
+                <img alt="" height="563" src="/files/growth in route usage(1).png" typeof="foaf:Image" width="594"/>
+                <img alt="" height="368" src="/files/growth in station use(1).png" typeof="foaf:Image" width="700"/>
+                <img alt="" height="568" src="/files/top 25 routes(1).png" typeof="foaf:Image" width="516"/>
+                <img alt="" height="592" src="/files/total station use(1).png" typeof="foaf:Image" width="693"/>
+                <img alt="" height="395" src="/files/total trips by month_0.png" typeof="foaf:Image" width="518"/>
             </p>
         </Page>
     )
