@@ -76,22 +76,11 @@ music, dining, and nightlife scene.
                 />
                 <BoardMember id={"patrick"} name={"Patrick Conlon"} title={"Advisor"} src={"/files/patrick-conlon-bio.JPG"}
                              content={`
-That's Patrick and his cargo bike. He bought it in Vermont and pedaled it all
-the way back to Jersey City. He can be seen around town delivering things
-from local businesses to residents in Jersey City, Hoboken and Bayonne.
-Sometimes he moves things from one business to another business. "I'm part
-of the non polluting local economic engine!" He tries to use his car as
-little as possible.
+That's Patrick and his cargo bike. He bought it in Vermont and pedaled it all the way back to Jersey City. "I used to do some delivery work with this pickup truck on 2 wheels but I found out how hard that work is and quickly developed a learned respect for those who do it for a living."
 
-He became a resident of the Heights area in 1991 and really loves the
-diversity of the neighborhood.
+He became a resident of the Heights area of Jersey City in 1991 and lived there until late 2021 when he relocated to Biddeford, Maine with his wife, their 6 cats and his bicycle collection. He rides his bike to a bike shop in Saco, ME where he is employed and is starting to get involved with promoting cycling culture in the Biddeford/Saco/Old Orchard Beach area.
 
-Patrick got involved with BikeJC 7 years ago as a Marshall for the Ward Tour
-and joined the board of trustees about 3 years ago. "I am honored to serve
-as BikeJC's new president and hope that I can do proud those that came
-before me so that the organization's mission of improved cycling and
-pedestrian safety is significantly advanced." He believes in people power
-and people-powered change... like urban cycling.
+Patrick got involved with BikeJC 10 years ago as a Marshall for the Ward Tour and joined the board of trustees about 7 years ago. "I was honored to serve as BikeJC's president and I think we did a good job of advancing the organization's mission. I am confident that the organization is now on strong footing with its new president, old stalwarts and enthusiastic new trustees!" 
 `}
                 />
                 <BoardMember id={"daniel"} name={"Daniel Morteh"} title={"Board Member"} src={"/files/DanielMorteh.jpg"}
