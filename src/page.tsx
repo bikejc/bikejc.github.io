@@ -747,7 +747,7 @@ export function Page({ path, h1, banner, article, documentClasses, articleClasse
 
     const title = `bikejc | ${name}`
     const wrapArticle = (children: ReactNode) => <>
-        <article about={path} className={`node node view-mode-full ${(articleClasses || []).join(" ")}`} typeof="sioc:Item foaf:Document">
+        <article about={path} className={`node node-page view-mode-full ${(articleClasses || []).join(" ")}`} typeof="sioc:Item foaf:Document">
             <div className="field field-name-body field-type-text-with-summary field-label-hidden field-wrapper body field">
                 {children}
             </div>
