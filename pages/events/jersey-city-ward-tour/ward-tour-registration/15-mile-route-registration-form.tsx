@@ -1,17 +1,9 @@
 import { Page } from "../../../../src/page";
 
-export default function Home() {
-    return (
-        <Page path={"/events/jersey-city-ward-tour/ward-tour-registration/15-mile-route-registration-form"}>
-            <p>
-                <strong>
-                    <a href="/events/jersey-city-ward-tour/ward-tour-registration">
-                        Please read the waiver first before registering.
-                    </a>
-                </strong>
-                <br/>
-                Online registration is closed, please come to City Hall at 9:00 AM before the ride to register in person.
-            </p>
-        </Page>
-    )
-}
+const md = `
+**Please read [the waiver](/events/jersey-city-ward-tour/ward-tour-registration) first before registering.**
+
+Online registration is closed, please come to City Hall at 9:00 AM before the ride to register in person.
+`
+
+export default function Home() { return <Page path={"/events/jersey-city-ward-tour/ward-tour-registration/15-mile-route-registration-form"} md={md} /> }

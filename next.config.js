@@ -3,6 +3,7 @@ const fs = require('fs')
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
+  trailingSlash: true,
   env: {
     jqueryJsFromFile: fs.readFileSync('./public/files/jquery.js').toString(),
     jqueryExtendJsFromFile: fs.readFileSync('./public/files/jquery-extend-3.4.0.js').toString(),

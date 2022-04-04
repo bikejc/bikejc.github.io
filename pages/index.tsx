@@ -2,6 +2,8 @@ import type { NextPage } from 'next'
 import {Page} from "../src/page";
 import React from "react";
 
+export async function getStaticProps(context: any) { return { props: {} } }
+
 const md = `
 #### Welcome to the official website of Bike JC, Jersey City’s advocacy group for bicyclists!
 
