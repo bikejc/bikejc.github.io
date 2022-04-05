@@ -43,7 +43,6 @@ export const Sitemap: Sitemap = {
                 "": "Bike JCast",
                 "bike-jcast-2017": "Bike JCast 2017",
             },
-            "neighborhood-cleanup": "Neighborhood Cleanup",
             "calendar": "Calendar",
         },
         "news": {
