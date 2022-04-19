@@ -1,7 +1,7 @@
 name: GitHub Pages deploy
 on:
   push:
-    branches: [main]
+    branches: [dev,main]
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -16,9 +16,30 @@ jobs:
         run: npm ci
       - name: Build
         run: npm run build && npm run export && touch ./out/.nojekyll
-      - name: Deploy
+      - name: Deploy GitHub Pages
+        if: github.ref == 'refs/heads/main'
         uses: JamesIves/github-pages-deploy-action@4.1.0
         with:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           BRANCH: gh-pages
           FOLDER: out
+      - name: Setup SSH configs
+        env:
+          SSH_PRIVKEY: ${{ secrets.SSH_PRIVKEY }}
+          SSH_CONFIG: ${{ secrets.SSH_CONFIG }}
+          SSH_KNOWN_HOSTS: ${{ secrets.SSH_KNOWN_HOSTS }}
+        run: |
+          mkdir -p ~/.ssh
+          echo "$SSH_KNOWN_HOSTS" > ~/.ssh/known_hosts
+          echo "$SSH_CONFIG" > ~/.ssh/config
+          echo "$SSH_PRIVKEY" > ~/.ssh/bikejc.org
+          chmod 600 ~/.ssh/bikejc.org
+          ls -l ~/.ssh
+      - name: Deploy FTP (bikejc.org)
+        if: github.ref == 'refs/heads/main'
+        run: |
+          rsync -avzh out/ bikejc.org:public_html/
+      - name: Deploy FTP (dev.bikejc.org)
+        if: github.ref == 'refs/heads/dev'
+        run: |
+          rsync -avzh out/ bikejc.org:dev_html/
