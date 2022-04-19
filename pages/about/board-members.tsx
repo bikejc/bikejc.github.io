@@ -132,7 +132,7 @@ He maintains a Citibike dashboard at [ctbk.dev](https://ctbk.dev/) and posts rid
                 />
                 <BoardMember id={"beatriz"} name={"Beatriz Bofill"} title={"Board Member"} src={"/files/beatriz-bio.png"}
                              content={`
-
+Beatriz has been cycling (for transportation!) since she was a kid, in many cities and countries, and is now based in the Heights and is excited for the many opportunities to improve the cycling experience that Bike JC is working on.
 `}
                 />
                     <p>
