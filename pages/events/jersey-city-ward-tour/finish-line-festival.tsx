@@ -1,15 +1,11 @@
 import { Page } from "../../../src/page";
 
 const md = `
-Once you've reached the finish line, celebrate from 1:00 pm - 5:00 pm with a huge after-party on **the Hudson River waterfront, including Lutze Biergarten,** when the ride ends.
+We're excited to partner with [the Jersey City Jazz Festival](https://riverviewjazz.org/jersey-city-jazz-festival) for this year's "Finish Line Festival!"
 
-This festival will be free and open to the public.
+At the end of [the Ward Tour route](./ward-tour-route) (at [107 Morgan St.](https://goo.gl/maps/YLfwHwet3ATYxVc79)), riders will find a bike valet and great food, drink, and entertainment options there!
 
-Band lineup for the Finish Line Festival TBA
-
-The festival is free and open to everyone, even if you're not riding in the Jersey City Ward Tour that will finish there! Bike around to it with Bike JC, or just come independently and enjoy it!
-
-More details coming soon!
+Live music and festivities are scheduled there from 12-6pm.
 `
 
 export default function Home() { return <Page path={"/events/jersey-city-ward-tour/finish-line-festival"} banner="/files/wardtourbanner1_3.jpg" md={md} /> }
