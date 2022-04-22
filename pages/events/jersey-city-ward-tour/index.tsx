@@ -44,7 +44,7 @@ Riders must be age 12 or older, and must wear helmets. (Younger children may be 
 
 All riders must also be able to maintain a pace of approximately 10 mph. This is a fairly relaxed pace for an adult who bikes even occasionally. We also take some short breaks to catch a breath and to allow for smooth traffic control, and our one long break in Lincoln Park roughly at the halfway point, after the only steep uphill on the course (so you can just walk your bike up that hill if you want).
 
-Please note that neither route on the Ward Tour is timed, and it is not a race. In fact, we will strictly limit the front  of the ride group to 10 mph.
+Please note that the Ward Tour is not timed, and **it is not a race.** In fact, we will strictly limit the front  of the ride group to 10 mph.
 
 But we must also emphasize: YOU MUST BE ABLE TO KEEP UP WITH THE GROUP, OR WE WILL HAVE TO ASK YOU TO CUT YOUR RIDE SHORT, as police re-open the streets to motor traffic behind us.
 
