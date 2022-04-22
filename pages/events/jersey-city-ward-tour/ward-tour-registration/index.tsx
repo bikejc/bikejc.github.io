@@ -1,5 +1,5 @@
 import { Page } from "../../../../src/page";
-import { bodyMd } from "../index"
+import { bodyMd, description } from "../index"
 
 const md = `
 ## [Registration is now open for the Jersey City Ward Tour 2022!](https://www.eventbrite.com/e/jersey-city-ward-tour-2022-tickets-324066169637)
@@ -15,4 +15,4 @@ const md = `
 ${bodyMd}
 `
 
-export default function Home() { return <Page path={"/events/jersey-city-ward-tour/ward-tour-registration"} banner="/files/wardtourbanner1_1.jpg" md={md} /> }
+export default function Home() { return <Page path={"/events/jersey-city-ward-tour/ward-tour-registration"} banner="/files/wardtourbanner1_1.jpg" md={md} description={description} /> }

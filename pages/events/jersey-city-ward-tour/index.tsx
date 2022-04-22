@@ -83,4 +83,6 @@ The Jersey City Ward Tour is presented by Bike JC in partnership with the City o
 [![bike jc ward tour poster](/files/DS-Bike-JC-Ward-Tour-Poster-4.11.png)](https://www.eventbrite.com/e/jersey-city-ward-tour-2022-tickets-324066169637)
 `
 
-export default function Home() { return <Page path={"/events/jersey-city-ward-tour"} md={md + bodyMd} /> }
+export const description = "The Jersey City Ward Tour is back on Sunday, June 5, 2022, at 11:00am. Free registration! 2,000 Bikes. 15 Miles. 6 Wards. 1 Great Day in #JerseyCity!"
+
+export default function Home() { return <Page path={"/events/jersey-city-ward-tour"} md={md + bodyMd} description={description} /> }

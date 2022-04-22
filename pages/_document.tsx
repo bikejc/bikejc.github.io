@@ -7,28 +7,6 @@ export default function Document() {
                 <meta content="text/html; charset=UTF-8" httpEquiv="Content-Type"></meta>
                 <link href="/misc/favicon.ico" rel="shortcut icon"></link>
                 <meta content="false" httpEquiv="ImageToolbar"></meta>
-                <meta
-                    content="Coming soon: step by step instructions on how to get a bike rack installed at your place of business for your bike-riding customers to use and appreciate! For now, please make use of the following form in your request to the city: Bike rack request form"
-                    name="description"></meta>
-                <meta content="Drupal 7 (https://www.drupal.org)" name="generator"></meta>
-                <link href="/resources/bike-racks-businesses" rel="canonical"></link>
-                <link href="/resources/bike-racks-businesses" rel="shortlink"></link>
-                <meta content="bikejc" property="og:site_name"></meta>
-                <meta content="article" property="og:type"></meta>
-                <meta content="/resources/bike-racks-businesses" property="og:url"></meta>
-                <meta content="Bike Racks for Businesses" property="og:title"></meta>
-                <meta
-                    content="Coming soon: step by step instructions on how to get a bike rack installed at your place of business for your bike-riding customers to use and appreciate! For now, please make use of the following form in your request to the city: Bike rack request form"
-                    property="og:description"></meta>
-                <meta content="2016-10-02T16:48:26-04:00" property="og:updated_time"></meta>
-                <meta content="summary" name="twitter:card"></meta>
-                <meta content="/resources/bike-racks-businesses" name="twitter:url"></meta>
-                <meta content="Bike Racks for Businesses" name="twitter:title"></meta>
-                <meta
-                    content="Coming soon: step by step instructions on how to get a bike rack installed at your place of business for your bike-riding customers to use and appreciate! For now, please make use of the following"
-                    name="twitter:description"></meta>
-                <meta content="2016-09-13T19:02:48-04:00" property="article:published_time"></meta>
-                <meta content="2016-10-02T16:48:26-04:00" property="article:modified_time"></meta>
                 <link href="/files/nivo-slider.css" rel="stylesheet"></link>
                 <link rel="stylesheet" href="/modules/system/system.base.css"></link>
                 <link rel="stylesheet" href="/modules/system/system.messages.css"></link>
