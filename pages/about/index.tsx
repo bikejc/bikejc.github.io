@@ -1,7 +1,4 @@
-import {NextPage} from "next";
 import {Page} from "../../src/page";
-
-export async function getStaticProps(context: any) { return { props: {} } }
 
 const md = `
 Bike JC is a citizen-based advocacy organization that aims to make Jersey City streets safe and

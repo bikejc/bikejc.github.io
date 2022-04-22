@@ -717,18 +717,37 @@ export function Page({ path, h1, description, banner, article, ctime, mtime, doc
 
     article = (article !== false) && !(article === undefined && root)
 
-    const { breadcrumbs, name, sitemap } = lookup(path)
+    const { breadcrumbs, name, redirect, sitemap } = lookup(path)
+
+    if (redirect) {
+        return <>
+            <meta httpEquiv="refresh" content={`url=${redirect}`} />
+            <Head><title>Redirecting</title></Head>
+            <div>
+                This page has moved. Click <a href={redirect}>here</a> to go to the new page.
+            </div>
+        </>
+    }
+
+    if (!(typeof name === 'string')) {
+        throw Error(`Sitemap error: name ${name} must be string, got:`, name)
+    }
 
     let sectionMenu: SectionMenu | undefined = undefined
     if (!root) {
         const sectionPath = (typeof sitemap === 'string') ? dirname(path) : path
         const { name: sectionName, sitemap: sectionMap } = lookup(sectionPath)
+        if (!(typeof sectionName === 'string')) {
+            throw Error(`Sitemap error: sectionPath ${sectionPath} must have string name, got:`, sectionName)
+        }
         const sectionMenuItems: Breadcrumb[] = []
         Object.entries(sectionMap).forEach(([ piece, map ]) => {
             if (piece == "") return
             const href = `${sectionPath}/${piece}`
             const text = (typeof map === 'string') ? map : (map[""] as any as string)
-            sectionMenuItems.push({ href, text, })
+            if (typeof text === "string") {
+                sectionMenuItems.push({href, text,})
+            }
         })
         if (sectionMenuItems.length > 1) {
             sectionMenu = {

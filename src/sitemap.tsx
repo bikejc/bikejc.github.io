@@ -28,6 +28,9 @@ export const Sitemap: Sitemap = {
             "": "Events",
             "jersey-city-ward-tour": {
                 "": "Jersey City Ward Tour",
+                "ward-tour-registration": {
+                        "": { redirect: "https://www.eventbrite.com/e/jersey-city-ward-tour-2022-tickets-324066169637", },
+                },
                 "volunteer": "Volunteer for the Ward Tour",
                 "ward-tour-route": "Ward Tour Route",
                 "finish-line-festival": "Finish Line Festival",
@@ -81,22 +84,40 @@ export function lookup(path: string) {
     const root = path == '/'
     const pieces = root ? [""] : path.split('/')
 
-    const { breadcrumbs, name, sitemap } =
+    const { breadcrumbs, name, redirect, sitemap } =
         pieces.reduce<{
             path: string,
             breadcrumbs: Breadcrumb[],
-            name: string,
+            name?: string,
+            redirect?: string,
             sitemap: Sitemap,
         }>(
             ({ path, breadcrumbs, name, sitemap, }, piece) => {
                 const sep = (path && path[path.length - 1] == '/') ? "" : "/"
                 const newPath = `${path}${sep}${piece}`
                 const newSitemap = (sitemap as any)[piece]
-                const newName: string = (typeof newSitemap === 'string') ? newSitemap : (newSitemap[""] as any as string)
+                let newName: string | undefined
+                let redirect: string | undefined
+                if (typeof newSitemap === 'string') {
+                    newName = newSitemap
+                } else {
+                    newName = newSitemap[""] as any
+                    if (newName === undefined) {
+                        throw Error("Sitemap error: no name at:", newSitemap)
+                    }
+                    else if (typeof newName !== "string") {
+                        redirect = (newName && newName["redirect"])
+                        newName = undefined
+                        if (!redirect) {
+                            throw Error("Sitemap entry should either be string (page title) or type { redirect: string }")
+                        }
+                    }
+                }
                 return {
                     path: newPath,
-                    breadcrumbs: breadcrumbs.concat([{ href: newPath, text: newName }]),
+                    breadcrumbs: newName ? breadcrumbs.concat([{ href: newPath, text: newName }]) : breadcrumbs,
                     name: newName,
+                    redirect,
                     sitemap: newSitemap,
                 }
             }, {
@@ -107,5 +128,5 @@ export function lookup(path: string) {
             }
         )
 
-    return { breadcrumbs, name, sitemap, }
+    return { breadcrumbs, name, redirect, sitemap, }
 }
