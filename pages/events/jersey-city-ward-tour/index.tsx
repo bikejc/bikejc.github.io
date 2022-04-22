@@ -3,32 +3,44 @@ import { Page } from "../../../src/page";
 const md = `
 **The Jersey City Ward Tour is back on Sunday, June 5, 2022, at 11:00am**
 
+### [FREE! REGISTER HERE.](https://www.eventbrite.com/e/jersey-city-ward-tour-2022-tickets-324066169637)
+
 **2,000 Bikes. 15 Miles. 6 Wards. 1 Great Day in #JerseyCity!**
 
-![bike jc ward tour poster](/files/DS-Bike-JC-Ward-Tour-Poster-4.11.png)
-
 ---
+`
 
-Bike JC’s Jersey City Ward Tour will roll Sunday, June 5, taking you (and probably over 2,000 of our closest friends) on a tour of our great city, and passing through all of its political wards.
+export const bodyMd = `
+The Jersey City Ward Tour will roll Sunday, June 5, taking you (and probably over 2,000 of our closest friends) on a tour of our great city, and passing through all of its political wards.
 
-### FREE!
+## FREE!
 $5 is a suggested donation to fund Bike JC's year-round work for better biking in JC. But it is JUST a suggestion. $0 is totally OK. So is $500, or $5 million. :-)
 
-### Route
+[REGISTER HERE.](https://www.eventbrite.com/e/324066169637)
+
+## Route
+
+Full route: https://ridewithgps.com/routes/38744234
 
 [![Screenshot of Ward Tour route](/files/wt11-route-screenshot.png)](https://ridewithgps.com/routes/38744234)
 
-Full route is here: https://ridewithgps.com/routes/38744234, and [additional route info here](./ward-tour-route)
+**Start:** City Hall ([280 Grove St., at Montgomery Street](https://goo.gl/maps/tMHCxVZU4Q3qBGvc8)).
 
-We all start at City Hall ([280 Grove St., at Montgomery Street](https://goo.gl/maps/tMHCxVZU4Q3qBGvc8)).
-
-We all end at [the Jersey City Jazz Festival](https://riverviewjazz.org/jersey-city-jazz-festival), at [107 Morgan St.](https://goo.gl/maps/YLfwHwet3ATYxVc79). Riders will find a bike valet and great food, drink, and entertainment options there!
+**End:** [Jersey City Jazz Festival](https://riverviewjazz.org/jersey-city-jazz-festival), at [107 Morgan St.](https://goo.gl/maps/YLfwHwet3ATYxVc79). Riders will find a bike valet and great food, drink, and entertainment options there!
 
 We’ll ride on streets (or sometimes on one side of a street) that are closed to motor-vehicle traffic by the Jersey City Police Department. Officers on bikes and in motor vehicles will escort us throughout the ride.
 
-### More info
+## Finish Line: [Jersey City Jazz Festival](https://riverviewjazz.org/jersey-city-jazz-festival)
 
-Riders on must be age 12 or older, and must wear helmets. (Younger children may be carried securely on an adult's bike in appropriate child seats, bakfiets buckets, trailers, tag-along attachments, etc.)
+This year, we're partnering with the Jersey City Jazz Festival for post-ride food, hydration, and entertainment needs!
+
+ALL RIDERS, OF ALL AGES, and even people who AREN'T riding, are welcome to join us at the end of the Tour, for this "Finish Line Festival."
+
+Local nonprofit groups and others will have tables outside the biergarten so you can get to know them if you'd like.
+
+## Ride info
+
+Riders must be age 12 or older, and must wear helmets. (Younger children may be carried securely on an adult's bike in appropriate child seats, bakfiets buckets, trailers, tag-along attachments, etc.)
 
 All riders must also be able to maintain a pace of approximately 10 mph. This is a fairly relaxed pace for an adult who bikes even occasionally. We also take some short breaks to catch a breath and to allow for smooth traffic control, and our one long break in Lincoln Park roughly at the halfway point, after the only steep uphill on the course (so you can just walk your bike up that hill if you want).
 
@@ -38,7 +50,7 @@ But we must also emphasize: YOU MUST BE ABLE TO KEEP UP WITH THE GROUP, OR WE WI
 
 Also note, if you can’t keep up, if your bike quits on you, or if you simply want to drop out along the way, we will TRY to help you, but ultimately YOU are responsible for getting yourself home if need be. We will have marshals and others with mechanical skills in the pack, and at least one van following the tour to pick up riders. But this is not always possible. If you need to go home, please ride according to all traffic laws. You may be able to catch a light rail or PATH train to shorten your trip home.
 
-We strongly recommend that you and everyone in your party do a least some bike riding in the weeks before the tour.
+We strongly recommend that you and everyone in your party do at least some bike riding in the weeks before the tour.
 
 We do NOT rent or otherwise provide the bikes!
 
@@ -50,30 +62,25 @@ Bike JC is a citizen-based advocacy organization that aims to make Jersey City s
 
 We hope to see you June 5! With protected bike lanes spreading through Downtown, Journal Square, and surrounding neighborhoods—and proposals for other parts of the city up for public hearings—this is shaping up to be another banner year for biking in Jersey City. Come celebrate the victories with us—and let everyone know we need the great work to continue!
 
-### Rain or Shine
+## Rain or Shine
 **PLEASE NOTE:** The Ward Tour &amp; Festival is officially a RAIN OR SHINE event. There is NO rain date.
 
 We will ride June 5 even if it’s raining, in any weather that’s not dangerous, or simply cancel till next year for any that is (e.g. lightning, hail, very high winds, plague of frogs …). There will be no refunds, because it’s free! But if you give us the suggested $5 donation (or $5 million or whatever), those are non-refundable. And thank you!!
 
-### Finish Line Festival: JazzFest!
-This year, we're partnering with [the Jersey City Jazz Festival](https://riverviewjazz.org/jersey-city-jazz-festival) for post-ride food, hydration, and entertainment needs!
+## More Info
+Bike JC is a citizen-based advocacy organization that aims to make Jersey City streets welcoming for bicyclists, by promoting bike-friendly policies, including bike lanes; and bicycle education.
 
-ALL RIDERS, OF ALL AGES, and even people who AREN'T riding, are welcome to join us at the end of the Tour, for our Finish Line Festival.
-
-For the kids, we'll have a face-painter working magic!
-
-Local nonprofit groups and others will have tables outside the biergarten so you can get to know them if you'd like.
+We hope to see you June 5! With protected bike lanes spreading through Downtown, Journal Square, and surrounding neighborhoods—and proposals for other parts of the city up for public hearings—this is shaping up to be another banner year for biking in Jersey City. Come celebrate the victories with us—and let everyone know we need the great work to continue!
 
 The Jersey City Ward Tour is presented by Bike JC in partnership with the City of Jersey City, Mayor Steven M. Fulop, the Jersey City Municipal Council, and the Office of Cultural Affairs, and through the generosity of our sponsors and the efforts of our volunteers.
 
-See you June 5!
+**See you June 5!**
 
-#JCWardTour2022
+**#JCWardTour2022**
 
-<!-- TODO: button -->
-[Registration Page](/events/jersey-city-ward-tour/ward-tour-registration)
+### [FREE! REGISTER HERE.](https://www.eventbrite.com/e/324066169637)
 
-Registration for the 2022 Jersey City Ward Tour is not yet open.
+[![bike jc ward tour poster](/files/DS-Bike-JC-Ward-Tour-Poster-4.11.png)](https://www.eventbrite.com/e/jersey-city-ward-tour-2022-tickets-324066169637)
 `
 
-export default function Home() { return <Page path={"/events/jersey-city-ward-tour"} md={md} /> }
+export default function Home() { return <Page path={"/events/jersey-city-ward-tour"} md={md + bodyMd} /> }

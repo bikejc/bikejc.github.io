@@ -727,10 +727,12 @@ export function Page({ path, h1, banner, article, documentClasses, articleClasse
             const text = (typeof map === 'string') ? map : (map[""] as any as string)
             sectionMenuItems.push({ href, text, })
         })
-        sectionMenu = {
-            title: sectionName,
-            activePath: path,
-            breadcrumbs: sectionMenuItems
+        if (sectionMenuItems.length > 1) {
+            sectionMenu = {
+                title: sectionName,
+                activePath: path,
+                breadcrumbs: sectionMenuItems
+            }
         }
     }
 
