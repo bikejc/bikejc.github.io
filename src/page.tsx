@@ -696,6 +696,8 @@ export type Page = {
     description?: string
     banner?: string[] | string
     article?: boolean
+    ctime?: string
+    mtime?: string
     documentClasses?: string[]
     articleClasses?: string[]
     md?: string
@@ -704,7 +706,7 @@ export type Page = {
 
 export const Pg = (page: Page) => () => <Page {...page} />
 
-export function Page({ path, h1, description, banner, article, documentClasses, articleClasses, md, children, }: Page) {
+export function Page({ path, h1, description, banner, article, ctime, mtime, documentClasses, articleClasses, md, children, }: Page) {
     if (!banner) {
         banner = [ "/files/lincoln-park-banner.jpg" ]
     } else if (typeof banner === "string") {
@@ -757,10 +759,6 @@ export function Page({ path, h1, description, banner, article, documentClasses, 
         </article>
     </>
 
-    // TODO
-    const ctime = "2016-09-13T19:02:48-04:00"
-    const mtime = "2016-10-02T16:48:26-04:00"
-
     // TODO: make required
     const descriptionTag = (name: string) => (description && <meta content={description} name={name}></meta>)
 
@@ -777,13 +775,13 @@ export function Page({ path, h1, description, banner, article, documentClasses, 
             <meta content={path} property="og:url"></meta>
             <meta content={name} property="og:title"></meta>
             {descriptionTag("og:description")}
-            <meta content={mtime} property="og:updated_time"></meta>
+            {mtime && <meta content={mtime} property="og:updated_time"></meta>}
             <meta content="summary" name="twitter:card"></meta>
             <meta content={path} name="twitter:url"></meta>
             <meta content={name} name="twitter:title"></meta>
             {descriptionTag("twitter:description")}
-            <meta content={ctime} property="article:published_time"></meta>
-            <meta content={mtime} property="article:modified_time"></meta>
+            {ctime && <meta content={ctime} property="article:published_time"></meta>}
+            {mtime && <meta content={mtime} property="article:modified_time"></meta>}
             <Script src="/files/drupal.js"></Script>
             <Script src="/files/foundation-init.js"></Script>
             <Head>
