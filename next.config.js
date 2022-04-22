@@ -14,6 +14,15 @@ const nextConfig = {
     drupalJsFromFile: fs.readFileSync('./public/files/drupal.js').toString(),
     foundationJsFromFile: fs.readFileSync('./public/files/foundation.min.js').toString(),
   },
+  redirects() {
+    return [
+      {
+        source: '/events/jersey-city-ward-tour/ward-tour-registration',
+        destination: 'https://www.eventbrite.com/e/jersey-city-ward-tour-2022-tickets-324066169637',
+        permanent: true,
+      },
+    ]
+  },
 }
 
 module.exports = nextConfig
