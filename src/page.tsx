@@ -721,8 +721,10 @@ export function Page({ path, h1, description, banner, article, ctime, mtime, doc
 
     if (redirect) {
         return <>
-            <meta httpEquiv="refresh" content={`url=${redirect}`} />
-            <Head><title>Redirecting</title></Head>
+            <Head>
+                <meta httpEquiv="refresh" content={`0,url=${redirect}`} />
+                <title>Redirecting</title>
+            </Head>
             <div>
                 This page has moved. Click <a href={redirect}>here</a> to go to the new page.
             </div>
