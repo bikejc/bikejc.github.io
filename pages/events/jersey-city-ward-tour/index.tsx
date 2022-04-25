@@ -26,17 +26,19 @@ Full route: https://ridewithgps.com/routes/38744234
 
 **Start:** City Hall ([280 Grove St., at Montgomery Street](https://goo.gl/maps/tMHCxVZU4Q3qBGvc8)).
 
-**End:** [Jersey City Jazz Festival](https://riverviewjazz.org/jersey-city-jazz-festival), at [107 Morgan St.](https://goo.gl/maps/YLfwHwet3ATYxVc79). Riders will find a bike valet and great food, drink, and entertainment options there!
+**End:** [Jersey City Jazz Festival](https://riverviewjazz.org/jersey-city-jazz-festival), at [107 Morgan St.](https://goo.gl/maps/YLfwHwet3ATYxVc79). Riders will find a bike parking area and great food, drink, and entertainment options there!
 
 We’ll ride on streets (or sometimes on one side of a street) that are closed to motor-vehicle traffic by the Jersey City Police Department. Officers on bikes and in motor vehicles will escort us throughout the ride.
 
 ## Finish Line: [Jersey City Jazz Festival](https://riverviewjazz.org/jersey-city-jazz-festival)
 
-This year, we're partnering with the Jersey City Jazz Festival for post-ride food, hydration, and entertainment needs!
+We're excited to partner with [the Jersey City Jazz Festival](https://riverviewjazz.org/jersey-city-jazz-festival) for this year's "Finish Line Festival!"
+
+At the end of [the Ward Tour route](./ward-tour-route) (at [107 Morgan St.](https://goo.gl/maps/YLfwHwet3ATYxVc79)), riders will find a bike parking area and great food, drink, and entertainment options there!
+
+Live music and festivities are scheduled there from 12-6pm.
 
 ALL RIDERS, OF ALL AGES, and even people who AREN'T riding, are welcome to join us at the end of the Tour, for this "Finish Line Festival."
-
-Local nonprofit groups and others will have tables outside the biergarten so you can get to know them if you'd like.
 
 ## Ride info
 
