@@ -16,7 +16,7 @@ The Jersey City Ward Tour will roll Sunday, June 5, taking you (and probably ove
 ## FREE!
 $5 is a suggested donation to fund Bike JC's year-round work for better biking in JC. But it is JUST a suggestion. $0 is totally OK. So is $500, or $5 million. :-)
 
-[REGISTER HERE.](https://www.eventbrite.com/e/324066169637)
+[REGISTER HERE.](https://www.eventbrite.com/e/jersey-city-ward-tour-2022-tickets-324066169637)
 
 ## Route
 
@@ -80,7 +80,7 @@ The Jersey City Ward Tour is presented by Bike JC in partnership with the City o
 
 **#JCWardTour2022**
 
-### [FREE! REGISTER HERE.](https://www.eventbrite.com/e/324066169637)
+### [FREE! REGISTER HERE.](https://www.eventbrite.com/e/jersey-city-ward-tour-2022-tickets-324066169637)
 
 [![bike jc ward tour poster](/files/DS-Bike-JC-Ward-Tour-Poster-4.11.png)](https://www.eventbrite.com/e/jersey-city-ward-tour-2022-tickets-324066169637)
 `

@@ -487,17 +487,13 @@ export function Aside({ sectionMenu }: { sectionMenu?: SectionMenu }) {
             }</section>
             <section className="block block-block block-block-13 block-even clearfix">
                 <h2 className="block-title">Ward Tour 2022</h2>
-                <p>
-                    <a href="/events/jersey-city-ward-tour">
-                        <strong>
-                            PLEASE NOTE: Following 2 years of cancellations due to COVID-19, we are currently hoping to
-                            bring back our Jersey City Ward Tour and other spring events for 2022, if public health and
-                            logistics considerations allow it. We will let you know here and through all our other channels,
-                            including social media and email to members. If held, the Ward Tour would be Sunday, June 5 (always
-                            the first Sunday in June).
-                        </strong>
-                    </a>
-                </p>
+                <a href="https://www.eventbrite.com/e/jersey-city-ward-tour-2022-tickets-324066169637">
+                    <p>
+                        <strong>The Jersey City Ward Tour is back! Sunday, June 5, roll out 11am from City Hall!</strong>
+                        {' '}<strong>2,000 Bikes. 15 Miles. 6 Wards, finishing at <a href="https://riverviewjazz.org/jersey-city-jazz-festival">the Jersey City Jazz Festival.</a></strong>
+                        {' '}<strong>REGISTER HERE</strong>
+                    </p>
+                </a>
             </section>
             <section className="block block-block block-block-14 block-odd clearfix">
                 <h2 className="block-title">Cool Swag!</h2>
