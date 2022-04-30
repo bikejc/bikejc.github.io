@@ -1,9 +1,9 @@
 import { Page } from "../../../src/page";
 
 const md = `
-**The Jersey City Ward Tour is back on Sunday, June 5, 2022, at 11:00am**
+#### The Jersey City Ward Tour is back on Sunday, June 5, 2022, at 11:00am.
 
-### [FREE! REGISTER HERE.](https://www.eventbrite.com/e/jersey-city-ward-tour-2022-tickets-324066169637)
+#### [FREE! REGISTER HERE.](https://www.eventbrite.com/e/jersey-city-ward-tour-2022-tickets-324066169637)
 
 **2,000 Bikes. 15 Miles. 6 Wards. 1 Great Day in Jersey City!**
 
@@ -11,12 +11,12 @@ const md = `
 `
 
 export const bodyMd = `
-The Jersey City Ward Tour will roll Sunday, June 5, taking you (and probably over 2,000 of our closest friends) on a tour of our great city, and passing through all of its wards.
+The Jersey City Ward Tour will roll Sunday, June 5, taking you (and 2,000 of our closest friends) on a tour of our great city, and passing through all of its wards.
 
 ## FREE!
 $5 is a suggested donation to fund Bike JC's year-round work for better biking in JC. But it is JUST a suggestion. $0 is totally OK. So is $500, or $5 million. :-)
 
-[REGISTER HERE.](https://www.eventbrite.com/e/jersey-city-ward-tour-2022-tickets-324066169637)
+#### [REGISTER HERE.](https://www.eventbrite.com/e/jersey-city-ward-tour-2022-tickets-324066169637)
 
 ## Route
 

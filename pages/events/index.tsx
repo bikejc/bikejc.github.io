@@ -1,7 +1,11 @@
 import { Page } from "../../src/page";
 
 const md = `
-[**PLEASE NOTE: Following 2 years of cancellations due to COVID-19, we are currently hoping to bring back our Jersey City Ward Tour and other spring events for 2022, if public health and logistics considerations allow it. We will let you know here and through all our other channels, including social media and email to members. If held, the Ward Tour would be Sunday, June 5 (always the first Sunday in June).**](/events/jersey-city-ward-tour)
+---
+
+#### The Jersey City Ward Tour is back! Sunday, June 5, roll out 11am from City Hall. **[REGISTER HERE](https://www.eventbrite.com/e/jersey-city-ward-tour-2022-tickets-324066169637)**.
+
+---
 
 Naturally, most of our events involve riding bikes!
 
