@@ -7,9 +7,15 @@ export default function Home() {
     const mc_id = "8e5413c196"
     return (
         <Page path={"/support/volunteer"}>
+            <div>
+                <h3><a href={"/events/jersey-city-ward-tour/volunteer"}>Register to volunteer for the 2022 Jersey City Ward Tour!</a></h3>
+            </div>
+            <hr/>
             <div className="field field-name-body field-type-text-with-summary field-label-hidden field-wrapper body field">
+
                 <p>Volunteer with Bike JC and help make Jersey City a better place for bicyclists of all kinds and in every neighborhood.</p>
                 <p>{"We'd love to meet you!"}</p>
+
                 {/*Begin MailChimp Signup Form*/}
                 <div id="mc_embed_signup">
                     <form action={`https://bikejc.us1.list-manage.com/subscribe/post?u=${mc_u}&id=${mc_id}`} className="validate" id="mc-embedded-subscribe-form" method="post" name="mc-embedded-subscribe-form" noValidate={true} target="_blank">
