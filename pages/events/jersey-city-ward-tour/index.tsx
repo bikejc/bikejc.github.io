@@ -5,13 +5,13 @@ const md = `
 
 ### [FREE! REGISTER HERE.](https://www.eventbrite.com/e/jersey-city-ward-tour-2022-tickets-324066169637)
 
-**2,000 Bikes. 15 Miles. 6 Wards. 1 Great Day in #JerseyCity!**
+**2,000 Bikes. 15 Miles. 6 Wards. 1 Great Day in Jersey City!**
 
 ---
 `
 
 export const bodyMd = `
-The Jersey City Ward Tour will roll Sunday, June 5, taking you (and probably over 2,000 of our closest friends) on a tour of our great city, and passing through all of its political wards.
+The Jersey City Ward Tour will roll Sunday, June 5, taking you (and probably over 2,000 of our closest friends) on a tour of our great city, and passing through all of its wards.
 
 ## FREE!
 $5 is a suggested donation to fund Bike JC's year-round work for better biking in JC. But it is JUST a suggestion. $0 is totally OK. So is $500, or $5 million. :-)
@@ -24,7 +24,7 @@ Full route: https://ridewithgps.com/routes/38744234
 
 [![Screenshot of Ward Tour route](/files/wt11-route-screenshot.png)](https://ridewithgps.com/routes/38744234)
 
-**Start:** City Hall ([280 Grove St., at Montgomery Street](https://goo.gl/maps/tMHCxVZU4Q3qBGvc8)).
+**Start:** City Hall - [280 Grove St., at Montgomery Street](https://goo.gl/maps/tMHCxVZU4Q3qBGvc8). Registration begins at 9am, roll out at 11am.
 
 **End:** [Jersey City Jazz Festival](https://riverviewjazz.org/jersey-city-jazz-festival), at [107 Morgan St.](https://goo.gl/maps/YLfwHwet3ATYxVc79). Riders will find a bike parking area and great food, drink, and entertainment options there!
 
@@ -60,10 +60,6 @@ The tour rolls out at 11 a.m. SHARP, but you will need to pick up an official to
 
 We encourage you to dress up yourself and your bike colorfully!
 
-Bike JC is a citizen-based advocacy organization that aims to make Jersey City streets welcoming for bicyclists, by promoting bike-friendly policies, including bike lanes; and bicycle education.
-
-We hope to see you June 5! With protected bike lanes spreading through Downtown, Journal Square, and surrounding neighborhoods—and proposals for other parts of the city up for public hearings—this is shaping up to be another banner year for biking in Jersey City. Come celebrate the victories with us—and let everyone know we need the great work to continue!
-
 ## Rain or Shine
 **PLEASE NOTE:** The Ward Tour &amp; Festival is officially a RAIN OR SHINE event. There is NO rain date.
 
@@ -85,6 +81,6 @@ The Jersey City Ward Tour is presented by Bike JC in partnership with the City o
 [![bike jc ward tour poster](/files/DS-Bike-JC-Ward-Tour-Poster-4.11.png)](https://www.eventbrite.com/e/jersey-city-ward-tour-2022-tickets-324066169637)
 `
 
-export const description = "The Jersey City Ward Tour is back on Sunday, June 5, 2022, at 11:00am. Free registration! 2,000 Bikes. 15 Miles. 6 Wards. 1 Great Day in #JerseyCity!"
+export const description = "The Jersey City Ward Tour is back on Sunday, June 5, 2022, at 11:00am. Free registration! 2,000 Bikes. 15 Miles. 6 Wards. 1 Great Day in Jersey City!"
 
 export default function Home() { return <Page path={"/events/jersey-city-ward-tour"} md={md + bodyMd} description={description} /> }

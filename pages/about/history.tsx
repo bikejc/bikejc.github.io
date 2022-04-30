@@ -17,7 +17,7 @@ Meanwhile, we’ve also taken some internal steps to become a more effective org
 But we also have fun!
 - Throughout our history, we’ve led informal bike rides in and around the city, often trying out interesting and scenic biking routes or visiting other community and environmentally friendly groups, and ending in social gatherings.
 - In 2014 we started an annual fall event: we offer bike tours in conjunction with the city’s biggest annual arts event, the Jersey City Art &amp; Studio Tour, leading art-lovers on two wheels around some this great citywide festival’s many venues.
-- And of course, every spring we still put on our largest and best-known event, the Jersey City Ward Tour and Festival. In 2014, its fifth year, the Ward Tour took more than 1,100 riders on a 15-mile bike tour through all six political wards of our city, and ended with an afternoon festival of music and food and fun.
+- And of course, every spring we still put on our largest and best-known event, the Jersey City Ward Tour and Festival. In 2014, its fifth year, the Ward Tour took more than 1,100 riders on a 15-mile bike tour through all six wards of our city, and ended with an afternoon festival of music and food and fun.
 
 All these measures have helped build a bike culture in Jersey City—but they’re just the beginning. We believe even more can, and should, and will be done to make Jersey City truly bike-friendly, from the redesign of streets to include protected bike lanes to better education and awareness of cycling and road rules among all road users.
 

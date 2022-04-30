@@ -72,7 +72,7 @@ FOR IMMEDIATE RELEASE — May 25, 2016
 
 JERSEY CITY—Bike around JC to Liberty! The Jersey City Ward Tour &amp; Festival returns June 5 for its seventh year, and celebrates the preservation of Liberty State Park with an expanded festival on the park’s beautiful waterfront.
 
-The signature event of local cycling advocacy group Bike JC, last year the Ward Tour took nearly 2,000 riders on a free 15-mile cruise through all six of Jersey City’s political wards, with a police escort. Early registration for the 2016 edition is on pace for an even bigger ride.
+The signature event of local cycling advocacy group Bike JC, last year the Ward Tour took nearly 2,000 riders on a free 15-mile cruise through all six of Jersey City’s wards, with a police escort. Early registration for the 2016 edition is on pace for an even bigger ride.
 
 But this year, the tour has a new start at historic City Hall, and...
 `}
