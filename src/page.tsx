@@ -511,52 +511,11 @@ export function Aside({ sectionMenu }: { sectionMenu?: SectionMenu }) {
                     </p>
                 </div>
             </section>
-            <section className="block block-views block-views-recent-articles-block block-even clearfix">
-                <h2 className="block-title">News</h2>
-                <div
-                    className="view view-recent-articles view-id-recent_articles view-display-id-block view-dom-id-acd3cb830a5b1917a9ac85220fb80447">
-                    <div className="view-content">
-                        <div className="item-list">
-                            <ul>
-                                <li className="views-row views-row-1 views-row-odd views-row-first views-row-last">
-                                    <article about="/news/articles/citi-bike-jc-rebalancing"
-                                             className="node node-article node-teaser" id="node-77"
-                                             typeof="sioc:Item foaf:Document">
-                                        <h2 className="node-title">
-                                            <a href="/news/articles/citi-bike-jc-rebalancing">Citi Bike JC Rebalancing</a>
-                                        </h2>
-                                        <span className="rdf-meta element-hidden"
-                                              property="dc:title"></span>
-                                        <span className="rdf-meta element-hidden" datatype="xsd:integer"
-                                              property="sioc:num_replies"></span>
-                                        <div
-                                            className="field field-name-body field-type-text-with-summary field-label-hidden field-wrapper body text-secondary">
-                                            <p>Bike JC is very sorry </p>
-                                        </div>
-                                        <ul className="links inline">
-                                            <li className="node-readmore first">
-                                                <a href="/news/articles/citi-bike-jc-rebalancing" rel="tag"
-                                                   title="Citi Bike JC Rebalancing">Read more<span className="element-invisible"> about Citi Bike JC Rebalancing</span>
-                                                </a>
-                                            </li>
-                                            <li className="comment_forbidden last">
-                              <span>
-                                <a href="/user/login?destination=/news/articles/citi-bike-jc-rebalancing%23comment-form">Log in</a> to post comments</span>
-                                            </li>
-                                        </ul>
-                                    </article>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </section>
             <section className="block block-block donate block-block-8 block-odd clearfix">
-                <h4>
-                    Donate to Bike JC</h4>
-                <a className="button small radius"
-                   href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=BMJXSWD8HGWXW">Make a
-                    Paypal Donation</a>
+                <h4>Donate to Bike JC</h4>
+                <a className="button small radius" href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=BMJXSWD8HGWXW">
+                    Make a Paypal Donation
+                </a>
             </section>
         </aside>
     )
