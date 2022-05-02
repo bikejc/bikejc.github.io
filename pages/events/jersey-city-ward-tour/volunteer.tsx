@@ -53,7 +53,7 @@ Setup workers will work in and around the finish-line / [Jazz Festival](https://
 #### Finish Festival Staff
 Staff work begins later in the day in or around the finish line / [Jazz Festival](https://riverviewjazz.org/jersey-city-jazz-festival) ([107 Morgan St.](https://goo.gl/maps/YLfwHwet3ATYxVc79)), and involves staffing the t-shirt sales tables, monitoring the bike parking area, directing crowd flow, etc. We also need a few people to do similar jobs at the start at City Hall before the ride. The start and finish sites are only 5 minutes' walk from each other, so you could work at both sites.
 
-All communication will be handled via email. Volunteers will be asked to sign a waiver form at event sites.
+All communication will be handled via email. Volunteers will be required to [reqister for the event itself](https://www.eventbrite.com/e/jersey-city-ward-tour-2022-tickets-324066169637) (including signing the waiver there). form at event sites.
 
 Thanks again for helping us make this an amazing annual event!
 
