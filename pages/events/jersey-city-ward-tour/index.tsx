@@ -72,6 +72,12 @@ We hope to see you June 5! With protected bike lanes spreading through Downtown,
 
 The Jersey City Ward Tour is presented by Bike JC in partnership with the City of Jersey City, Mayor Steven M. Fulop, the Jersey City Municipal Council, and the Office of Cultural Affairs, and through the generosity of our sponsors and the efforts of our volunteers.
 
+## Volunteer
+
+We need your help making the event running smoothly: beforehand, at the start, during the ride, and at the finish.
+
+[Sign up to volunteer here](https://forms.gle/oPshTHx44md5CBCH7), or [find more info here](https://bikejc.org/events/jersey-city-ward-tour/volunteer/).
+
 **See you June 5!**
 
 **#JCWardTour2022**
