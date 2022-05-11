@@ -1,5 +1,6 @@
 import { Html, Head, Main, NextScript } from 'next/document'
 
+
 export default function Document() {
     return (
         <Html>
@@ -42,6 +43,7 @@ export default function Document() {
                 <script type="text/javascript" dangerouslySetInnerHTML={{ __html: process.env.nivoJsFromFile || 'console.error("failed to load nivo_slider.js from env")' }}></script>
                 <script type="text/javascript" dangerouslySetInnerHTML={{ __html: process.env.drupalSettingsJsFromFile || 'console.error("failed to load drupal-settings.js from env")' }}></script>
                 <script type="text/javascript" dangerouslySetInnerHTML={{ __html: process.env.foundationJsFromFile || 'console.error("failed to load foundation.min.js from env")' }}></script>
+                <script async src="https://platform.twitter.com/widgets.js" charSet="utf-8"></script>
             </Head>
             <body className="html front not-logged-in one-sidebar sidebar-second page-node page-node- node-type-home-page">
             <Main />
