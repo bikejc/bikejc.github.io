@@ -4,16 +4,16 @@ type Sponsor = {
     href: string
     src: string
     alt: string
+    doubleWidth?: boolean
 }
 
-function Sponsor({ href, src, alt, }: Sponsor) {
+function Sponsor({ href, src, alt, doubleWidth }: Sponsor) {
     return (
-        <li>
+        <li style={doubleWidth ? { maxWidth: 560, maxHeight: 560, } : {}}>
             <div className="views-field views-field-field-sponsor-logo">
                 <div className="field-content">
                     <a href={href} target="_blank" rel="noreferrer">
-                        <img alt={alt} height="400"
-                             src={src} typeof="foaf:Image" width="400"></img>
+                        <img alt={alt} src={src} typeof="foaf:Image" />
                     </a>
                 </div>
             </div>
@@ -46,38 +46,33 @@ export function SponsorsList() {
         <Sponsors
             title="Carbon Fiber Sponsors"
             sponsors={[
-                { href: "https://www.grovestreetbicycles.com/", src: "/files/grove-street-bicycles-giant.png", alt: "Grove Street Bicycles", }
-                // { href: "https://www.citibikejc.com/", src: "/files/citibike-jc.png", alt: "Citibike Jersey City", },
+                { href: "https://www.grovestreetbicycles.com/", src: "/files/Grove_Logo_Final_50p.jpg", alt: "Grove Street Bicycles", doubleWidth: true, }
             ]}
         />
         <Sponsors
             title="Titanium Sponsors"
             sponsors={[
-                { href: "https://www.lyft.com/", src: "/files/lyft-logo.jpg", alt: "lyft logo", },
-                // { href: "https://www.grovestreetbicycles.com/", src: "/files/grove-street-bicycles-giant.png", alt: "Grove Street Bicycles", },
-                { href: "http://www.hudsontma.org/", src: "/files/hudson-tma.png", alt: "Hudson TMA", },
+                { href: "https://citibikenyc.com/homepage", src: "/files/Citi_Bike_logo_padded.png", alt: "Citi Bike logo", },
+                { href: "https://www.vaccaroandwhite.com/", src: "/files/vaccaro_280.png", alt: "Vaccaro & White logo", },
                 { href: "http://www.cityofjerseycity.com/", src: "/files/city-of-jersey-city.png", alt: "City of Jersey City", },
                 { href: "http://jerseycityculture.org", src: "/files/cultural-affairs.jpg", alt: "Jersey City Office of Cultural Affairs", },
-                // { href: "https://www.li.me/electric-scooter", src: "/files/lime-logo.jpg", alt: "Lime logo", },
-                // { href: "https://www.jump.com/", src: "/files/jump-logo.jpg", alt: "Jump logo", },
                 // { href: "", src: "", alt: "", },
             ]}
         />
+        {/*TODO: silverman, JCBC, JazzFest, */}
         {/*<Sponsors*/}
         {/*    title="Aluminum Sponsors"*/}
         {/*    sponsors={[*/}
-        {/*        { href: "http://www.rockitdocket.com", src: "/files/rockitdocket-black-and-white_0.gif", alt: "Rock-it Docket", },*/}
-        {/*        { href: "http://www.roadid.com", src: "/files/road-id.png", alt: "Road ID", },*/}
-        {/*        { href: "https://www.bird.co/", src: "/files/bird-logo.jpg", alt: "Bird Logo", },*/}
-        {/*        { href: "http://www.letsshareameal.org/", src: "/files/lets-share-a-meal-logo.jpg", alt: "Let's Share a Meal logo", },*/}
         {/*    ]}*/}
         {/*/>*/}
-        {/*<Sponsors*/}
-        {/*    title="Steel Sponsors"*/}
-        {/*    sponsors={[*/}
-        {/*        { href: "http://www.mysuezwater.com/", src: "/files/suez.png", alt: "Suez", },*/}
-        {/*    ]}*/}
-        {/*/>*/}
+        <Sponsors
+            title="Steel Sponsors"
+            sponsors={[
+                { href: "https://www.ooneepod.com/", src: "/files/oonee-square.png", alt: "Oonee Pod", },
+                { href: "http://www.hudsontma.org/", src: "/files/hudson-tma.png", alt: "Hudson TMA", },
+                { href: "https://www.roadid.com/", src: "/files/roadid-square.png", alt: "RoadID", },
+            ]}
+        />
     </>
 }
 
