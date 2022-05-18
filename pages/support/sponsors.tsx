@@ -71,6 +71,8 @@ export function SponsorsList() {
                 { href: "https://www.ooneepod.com/", src: "/files/oonee-square.png", alt: "Oonee Pod", },
                 { href: "http://www.hudsontma.org/", src: "/files/hudson-tma.png", alt: "Hudson TMA", },
                 { href: "https://www.roadid.com/", src: "/files/roadid-square.png", alt: "RoadID", },
+                { href: "https://silvermanbuilding.com/", src: "/files/silverman_square.png", alt: "Silverman", },
+                { href: "https://www.jcbicycleco.com/", src: "/files/JCBC_square_negated.png", alt: "Jersey City Bicycle Co", },
             ]}
         />
     </>
