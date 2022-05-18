@@ -26,7 +26,7 @@ const renderHeading = (props: ReactMarkdownProps) => {
     // console.log("heading:", props)
     const { node, children } = props
     const elems = node.children
-    const TagName = node.tagName
+    const TagName: React.FC<{}> = node.tagName as any
     if (elems.length == 0) {
         throw new Error(`No node.children found in header: ${props}, ${children}`)
     }
