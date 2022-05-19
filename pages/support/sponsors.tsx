@@ -28,9 +28,10 @@ function Sponsors({ title, sponsors, tier }: {
     sponsors: Sponsor[]
     tier: string
 }) {
+    const id = `${tier}-sponsors`
     return (
         <section className="block block-views block-views-sponsor-logos-all-block-3">
-            <h2 className="block-title">{title}</h2>
+            <a href={`#${id}`}><h2 id={id} className="block-title">{title}</h2></a>
             <div className="view view-sponsor-logos-all view-id-sponsor_logos_all view-display-id-block_3 sponsors">
                 <div className="view-content">
                     <div className={`item-list sponsors sponsors-${tier}`}>
@@ -47,14 +48,14 @@ function Sponsors({ title, sponsors, tier }: {
 export function SponsorsList() {
     return <>
         <Sponsors
-            title="Carbon Fiber Sponsors"
+            title={`"Carbon Fiber" Sponsors`}
             tier={"carbon"}
             sponsors={[
                 { href: "https://www.grovestreetbicycles.com/", src: "/files/Grove_Logo_Final_50p.jpg", alt: "Grove Street Bicycles", doubleWidth: true, }
             ]}
         />
         <Sponsors
-            title="Titanium Sponsors"
+            title={`"Titanium" Sponsors`}
             tier={"titanium"}
             sponsors={[
                 { href: "https://citibikenyc.com/homepage", src: "/files/Citi_Bike_logo_padded.png", alt: "Citi Bike logo", },
@@ -71,7 +72,7 @@ export function SponsorsList() {
         {/*    ]}*/}
         {/*/>*/}
         <Sponsors
-            title="Steel Sponsors"
+            title={`"Steel" Sponsors`}
             tier={"steel"}
             sponsors={[
                 { href: "https://www.ooneepod.com/", src: "/files/oonee-square.png", alt: "Oonee Pod", },
@@ -79,6 +80,9 @@ export function SponsorsList() {
                 { href: "https://www.roadid.com/", src: "/files/roadid-square.png", alt: "RoadID", },
                 { href: "https://silvermanbuilding.com/", src: "/files/silverman_square.png", alt: "Silverman", },
                 { href: "https://www.jcbicycleco.com/", src: "/files/JCBC_square_negated.png", alt: "Jersey City Bicycle Co", },
+                { href: "https://www.facebook.com/jerseycyclesllc/", src: "/files/JerseyCyclesLogo_square.jpg", alt: "Jersey Cycles", },
+                { href: "https://www.mysuezwater.com/", src: "/files/suez-vertical_square.png", alt: "Suez Water", },
+                { href: "https://davidsankey.net/", src: "/files/davidsankey_square.png", alt: "David Sankey", },
             ]}
         />
     </>
