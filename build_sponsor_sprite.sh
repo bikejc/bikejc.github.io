@@ -2,6 +2,9 @@
 
 set -e
 
+cd "$(dirname "${BASH_SOURCE[0]}")"
+cd public/files
+
 # Build sprite from "Titanium" sponsors
 montage \
     -background white \
@@ -21,6 +24,10 @@ montage \
     roadid-square.png \
     silverman_square.png \
     JCBC_square_negated.png \
+    JerseyCyclesLogo_square.jpg \
+    davidsankey_square.png \
+    suez-vertical_square.png \
+    riverview-jazz_bg_square.png \
     steels.png
 
 # Concatenate 3 sponsor levels

@@ -83,6 +83,7 @@ export function SponsorsList() {
                 { href: "https://www.facebook.com/jerseycyclesllc/", src: "/files/JerseyCyclesLogo_square.jpg", alt: "Jersey Cycles", },
                 { href: "https://www.mysuezwater.com/", src: "/files/suez-vertical_square.png", alt: "Suez Water", },
                 { href: "https://davidsankey.net/", src: "/files/davidsankey_square.png", alt: "David Sankey", },
+                { href: "https://riverviewjazz.org/jersey-city-jazz-festival", src: "/files/riverview-jazz_bg_square.png", alt: "Jersey City Jazz Festival", },
             ]}
         />
     </>
