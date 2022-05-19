@@ -7151,7 +7151,8 @@ div.center {
   max-width: 100%;
   overflow: hidden;
   white-space: nowrap;
-  text-overflow: ellipsis; }
+  text-overflow: ellipsis;
+}
 
 /* Board Members Page elements */
 .node-board-members .field-collection-view {
@@ -7287,31 +7288,53 @@ h2.block-title {
   padding-top: 2em;
   border-bottom: 1px solid #256f82; }
 
-.section-support .main .block-views, .section-events .main .block-views {
-  overflow: hidden; }
-.section-support .main h2.block-title, .section-events .main h2.block-title {
+.main .block-views {
+  overflow: hidden;
+}
+
+.main h2.block-title {
   background-color: transparent;
   color: #9b6f21;
   font-family: "Merriweather", "Georgia", Times New Roman, Serif;
   font-style: italic;
   font-size: 1.5em;
   padding-top: 2em;
-  padding-bottom: 2em;
-  border-top: 1px solid #e3bf7f; }
-.section-support .main .item-list.sponsors img, .section-events .main .item-list.sponsors img {
+  padding-bottom: 1em;
+  border-top: 1px solid #e3bf7f;
+}
+
+.main .item-list.sponsors img {
   max-width: 100%;
   height: auto;
   width: auto\9;
   /* ie8 */
   padding-right: 1em;
   padding-bottom: 1em;
-  border: none; }
-.section-support .main .item-list.sponsors li, .section-events .main .item-list.sponsors li {
+  border: none;
+}
+
+.sponsors-carbon li {
+  max-width: 560px;
+  max-height: 560px;
+}
+
+.sponsors-titanium li {
+  max-width: 280px;
+  max-height: 280px;
+}
+
+.sponsors-steel li {
+  max-width: 187px;
+  max-height: 187px;
+}
+
+.main .item-list.sponsors li {
   list-style-type: none;
   overflow: visible;
   float: left;
-  max-width: 280px;
-  max-height: 280px; }
+  /*max-width: 280px;*/
+  /*max-height: 280px; */
+}
 
 .upcoming-events {
   line-height: 1.5em;
