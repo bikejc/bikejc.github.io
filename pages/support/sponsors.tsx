@@ -59,8 +59,8 @@ export function SponsorsList() {
             sponsors={[
                 { href: "https://citibikenyc.com/homepage", src: "/files/Citi_Bike_logo_padded.png", alt: "Citi Bike logo", },
                 { href: "https://www.vaccaroandwhite.com/", src: "/files/vaccaro_280.png", alt: "Vaccaro & White logo", },
-                { href: "http://www.cityofjerseycity.com/", src: "/files/city-of-jersey-city.png", alt: "City of Jersey City", },
-                { href: "http://jerseycityculture.org", src: "/files/cultural-affairs.jpg", alt: "Jersey City Office of Cultural Affairs", },
+                { href: "https://www.cityofjerseycity.com/", src: "/files/city-of-jersey-city.png", alt: "City of Jersey City", },
+                { href: "https://jerseycityculture.org", src: "/files/cultural-affairs.jpg", alt: "Jersey City Office of Cultural Affairs", },
                 // { href: "", src: "", alt: "", },
             ]}
         />
@@ -75,7 +75,7 @@ export function SponsorsList() {
             tier={"steel"}
             sponsors={[
                 { href: "https://www.ooneepod.com/", src: "/files/oonee-square.png", alt: "Oonee Pod", },
-                { href: "http://www.hudsontma.org/", src: "/files/hudson-tma.png", alt: "Hudson TMA", },
+                { href: "https://www.hudsontma.org/", src: "/files/hudson-tma.png", alt: "Hudson TMA", },
                 { href: "https://www.roadid.com/", src: "/files/roadid-square.png", alt: "RoadID", },
                 { href: "https://silvermanbuilding.com/", src: "/files/silverman_square.png", alt: "Silverman", },
                 { href: "https://www.jcbicycleco.com/", src: "/files/JCBC_square_negated.png", alt: "Jersey City Bicycle Co", },
