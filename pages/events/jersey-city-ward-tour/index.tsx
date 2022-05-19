@@ -99,7 +99,7 @@ const psMd = `
 
 ### [FREE! REGISTER HERE.](https://www.eventbrite.com/e/jersey-city-ward-tour-2022-tickets-324066169637)
 
-[![bike jc ward tour poster](/files/DS-Bike-JC-Ward-Tour-Poster-4.11.png)](https://www.eventbrite.com/e/jersey-city-ward-tour-2022-tickets-324066169637)
+[![bike jc ward tour poster](/files/poster-rna.png)](https://www.eventbrite.com/e/jersey-city-ward-tour-2022-tickets-324066169637)
 `
 
 export const description = "The Jersey City Ward Tour is back on Sunday, June 5, 2022, at 11:00am. Free registration! 2,000 Bikes. 15 Miles. 6 Wards. 1 Great Day in Jersey City!"
