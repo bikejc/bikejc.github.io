@@ -7,6 +7,8 @@ type Sponsor = {
     doubleWidth?: boolean
 }
 
+const width = 560
+
 function Sponsor({ href, src, alt, doubleWidth }: Sponsor) {
     return (
         <li style={doubleWidth ? { maxWidth: 560, maxHeight: 560, } : {}}>
@@ -21,16 +23,17 @@ function Sponsor({ href, src, alt, doubleWidth }: Sponsor) {
     )
 }
 
-function Sponsors({ title, sponsors }: {
+function Sponsors({ title, sponsors, tier }: {
     title: string
     sponsors: Sponsor[]
+    tier: string
 }) {
     return (
         <section className="block block-views block-views-sponsor-logos-all-block-3">
             <h2 className="block-title">{title}</h2>
             <div className="view view-sponsor-logos-all view-id-sponsor_logos_all view-display-id-block_3 sponsors">
                 <div className="view-content">
-                    <div className="item-list sponsors">
+                    <div className={`item-list sponsors sponsors-${tier}`}>
                         <ul>{
                             sponsors.map(sponsor => <Sponsor key={sponsor.alt} {...sponsor} />)
                         }</ul>
@@ -45,12 +48,14 @@ export function SponsorsList() {
     return <>
         <Sponsors
             title="Carbon Fiber Sponsors"
+            tier={"carbon"}
             sponsors={[
                 { href: "https://www.grovestreetbicycles.com/", src: "/files/Grove_Logo_Final_50p.jpg", alt: "Grove Street Bicycles", doubleWidth: true, }
             ]}
         />
         <Sponsors
             title="Titanium Sponsors"
+            tier={"titanium"}
             sponsors={[
                 { href: "https://citibikenyc.com/homepage", src: "/files/Citi_Bike_logo_padded.png", alt: "Citi Bike logo", },
                 { href: "https://www.vaccaroandwhite.com/", src: "/files/vaccaro_280.png", alt: "Vaccaro & White logo", },
@@ -59,7 +64,7 @@ export function SponsorsList() {
                 // { href: "", src: "", alt: "", },
             ]}
         />
-        {/*TODO: silverman, JCBC, JazzFest, */}
+        {/*TODO: JazzFest, */}
         {/*<Sponsors*/}
         {/*    title="Aluminum Sponsors"*/}
         {/*    sponsors={[*/}
@@ -67,6 +72,7 @@ export function SponsorsList() {
         {/*/>*/}
         <Sponsors
             title="Steel Sponsors"
+            tier={"steel"}
             sponsors={[
                 { href: "https://www.ooneepod.com/", src: "/files/oonee-square.png", alt: "Oonee Pod", },
                 { href: "http://www.hudsontma.org/", src: "/files/hudson-tma.png", alt: "Hudson TMA", },
@@ -82,7 +88,7 @@ export default function Home() {
     return (
         <Page path={"/support/sponsors"} documentClasses={["section-support"]}>
             <div className="field field-name-body field-type-text-with-summary field-label-hidden field-wrapper body field">
-                <h3>We are grateful for our 2019 Bike JC  Ward Tour sponsors, they are instrumental to the work we do.</h3>
+                <h3>We are grateful for our 2022 Bike JC Ward Tour sponsors, they are instrumental to the work we do.</h3>
                 <p>To find out ways your business can partner with Bike JC and help support our mission, please contact us.</p>
             </div>
             <SponsorsList />
