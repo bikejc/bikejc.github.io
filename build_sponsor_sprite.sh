@@ -29,7 +29,7 @@ montage \
     davidsankey_square.png \
     suez-vertical_square.png \
     riverview-jazz_bg_square.png \
-    "LSM Logo_25p.jpg" \
+    lets-share-a-meal_25p.jpg \
     steels.png
 
 # Concatenate 3 sponsor levels

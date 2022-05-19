@@ -83,7 +83,7 @@ export function SponsorsList() {
                 { href: "https://www.mysuezwater.com/", src: "/files/suez-vertical_square.png", alt: "Suez Water", },
                 { href: "https://davidsankey.net/", src: "/files/davidsankey_square.png", alt: "David Sankey", },
                 { href: "https://riverviewjazz.org/jersey-city-jazz-festival", src: "/files/riverview-jazz_bg_square.png", alt: "Jersey City Jazz Festival", },
-                { href: "https://letsshareameal.org/", src: "/files/LSM Logo_25p.jpg", alt: "Let's Share A Meal", },
+                { href: "https://letsshareameal.org/", src: "/files/lets-share-a-meal_25p.jpg", alt: "Let's Share A Meal", },
             ]}
         />
     </>
