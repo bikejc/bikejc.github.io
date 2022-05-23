@@ -85,7 +85,7 @@ We need your help making the event running smoothly: beforehand, at the start, d
 
 ## Sponsors <a id="sponsors"></a>
 
-### We are grateful for our 2019 Bike JC Ward Tour sponsors, they are instrumental to the work we do.
+### We are grateful for our 2022 Bike JC Ward Tour sponsors, they are instrumental to the work we do.
 
 To find out ways your business can partner with Bike JC and help support our mission, please [contact us](mailto:info@bikejc.org).
 `
