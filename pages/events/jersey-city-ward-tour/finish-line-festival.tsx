@@ -10,4 +10,4 @@ Live music and festivities are scheduled there from 12-6pm.
 ALL RIDERS, OF ALL AGES, and even people who AREN'T riding, are welcome to join us at the end of the Tour, for this "Finish Line Festival."
 `
 
-export default function Home() { return <Page path={"/events/jersey-city-ward-tour/finish-line-festival"} banner="/files/wardtourbanner1_3.jpg" md={md} /> }
+export default function Home() { return <Page path={"/events/jersey-city-ward-tour/finish-line-festival"} banner="/files/BikeJcHomeSlide2.jpg" md={md} /> }

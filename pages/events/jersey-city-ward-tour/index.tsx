@@ -108,6 +108,7 @@ export default function Home() {
     return (
         <Page
             path={"/events/jersey-city-ward-tour"}
+            banner="/files/BikeJcHomeSlide2.jpg"
             description={description}
         >
             {Markdown(md + bodyMd)}
