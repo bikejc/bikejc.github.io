@@ -7,13 +7,13 @@ const md = `
 
 #### [FREE! REGISTER HERE.](https://www.eventbrite.com/e/jersey-city-ward-tour-2022-tickets-324066169637)
 
-**2,000 Bikes. 15 Miles. 6 Wards. 1 Great Day in Jersey City!**
+**2,500 Bikes. 15 Miles. 6 Wards. 1 Great Day in Jersey City!**
 
 ---
 `
 
 export const bodyMd = `
-The Jersey City Ward Tour will roll Sunday, June 5, taking you (and 2,000 of our closest friends) on a tour of our great city, and passing through all of its wards.
+The Jersey City Ward Tour will roll Sunday, June 5, taking you (and 2,500 of our closest friends) on a tour of our great city, and passing through all of its wards.
 
 ## FREE!
 $5 is a suggested donation to fund Bike JC's year-round work for better biking in JC. But it is JUST a suggestion. $0 is totally OK. So is $500, or $5 million. :-)
@@ -102,7 +102,7 @@ const psMd = `
 [![bike jc ward tour poster](/files/poster-rna.png)](https://www.eventbrite.com/e/jersey-city-ward-tour-2022-tickets-324066169637)
 `
 
-export const description = "The Jersey City Ward Tour is back on Sunday, June 5, 2022, at 11:00am. Free registration! 2,000 Bikes. 15 Miles. 6 Wards. 1 Great Day in Jersey City!"
+export const description = "The Jersey City Ward Tour is back on Sunday, June 5, 2022, at 11:00am. Free registration! 2,500 Bikes. 15 Miles. 6 Wards. 1 Great Day in Jersey City!"
 
 export default function Home() {
     return (

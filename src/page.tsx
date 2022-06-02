@@ -490,7 +490,7 @@ export function Aside({ sectionMenu }: { sectionMenu?: SectionMenu }) {
                 <a href="https://www.eventbrite.com/e/jersey-city-ward-tour-2022-tickets-324066169637">
                     <p>
                         <strong>The Jersey City Ward Tour is back! Sunday, June 5, roll out 11am from City Hall!</strong>
-                        {' '}<strong>2,000 Bikes. 15 Miles. 6 Wards, finishing at the Jersey City Jazz Festival.</strong>
+                        {' '}<strong>2,500 Bikes. 15 Miles. 6 Wards, finishing at the Jersey City Jazz Festival.</strong>
                         {' '}<strong>REGISTER HERE</strong>
                     </p>
                 </a>
