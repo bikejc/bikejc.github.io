@@ -42,6 +42,21 @@ Live music and festivities are scheduled there from 12-6pm.
 
 ALL RIDERS, OF ALL AGES, and even people who AREN'T riding, are welcome to join us at the end of the Tour, for this "Finish Line Festival."
 
+## Bib Pickup: Friday-Saturday, June 3-4 <a id="bib-pickup"></a>
+Riders are encouraged to pick up their bib at one of the following locations+times:
+
+#### Friday, June 3, 6-9pm: Groove on Grove
+We'll have a table near the stage, come enjoy some music and grab your bib!
+
+#### Saturday, June 4, 12-2pm at a bike shop near you
+- [**Grove St. Bicycles**](https://goo.gl/maps/nZacvaZqSCC3FDBK7) (also our [Carbon Fiber sponsor](#sponsors), and offering $40 bike rentals!)
+- [**Jersey City Bicycle Co.**](https://goo.gl/maps/9QHQSKo5EjCLiSCa7)
+- [**Jersey Cycles**](https://goo.gl/maps/DQxzoMyabzwuLQyZ7)
+- [**The Bike Hub**](https://g.page/bikehubcyclery)
+
+#### Saturday, June 4, 12-8pm: [Jersey City Jazz Festival](https://riverviewjazz.org/jersey-city-jazz-festival)
+Bike valet and bib pickup services on offer at [107 Morgan St.](https://goo.gl/maps/YLfwHwet3ATYxVc79). Stop by, enjoy some jazz, and get checked in for the Tour.
+
 ## Ride info <a id="ride-info"></a>
 
 Riders must be age 12 or older, and must wear helmets. (Younger children may be carried securely on an adult's bike in appropriate child seats, bakfiets buckets, trailers, tag-along attachments, etc.)
@@ -81,7 +96,7 @@ The Jersey City Ward Tour is presented by Bike JC in partnership with the City o
 
 We need your help making the event running smoothly: beforehand, at the start, during the ride, and at the finish.
 
-[Sign up to volunteer here](https://forms.gle/oPshTHx44md5CBCH7), or [find more info here](https://bikejc.org/events/jersey-city-ward-tour/volunteer/).
+[Sign up to volunteer here](https://forms.gle/tB5YE4eZ453MwK9i7), or [find more info here](/events/jersey-city-ward-tour/volunteer/).
 
 ## Sponsors <a id="sponsors"></a>
 
