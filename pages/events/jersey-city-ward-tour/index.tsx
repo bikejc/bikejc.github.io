@@ -49,13 +49,15 @@ Riders are encouraged to pick up their bib at one of the following locations+tim
 We'll have a table near the stage, come enjoy some music and grab your bib!
 
 #### Saturday, June 4, 12-2pm at a bike shop near you
-- [**Grove St. Bicycles**](https://goo.gl/maps/nZacvaZqSCC3FDBK7) (also our [Carbon Fiber sponsor](#sponsors), and offering $40 bike rentals!)
-- [**Jersey City Bicycle Co.**](https://goo.gl/maps/9QHQSKo5EjCLiSCa7)
-- [**Jersey Cycles**](https://goo.gl/maps/DQxzoMyabzwuLQyZ7)
-- [**The Bike Hub**](https://g.page/bikehubcyclery)
+- [**Grove St. Bicycles**](https://goo.gl/maps/nZacvaZqSCC3FDBK7) - 172 Christopher Columbus Dr (also our [Carbon Fiber sponsor 🤩🤩](#sponsors), and offering $40 bike rentals!)
+- [**Jersey Cycles**](https://goo.gl/maps/DQxzoMyabzwuLQyZ7) - 510 Central Ave (Steel sponsor! 🙏🙏)
+- [**Jersey City Bicycle Co.**](https://goo.gl/maps/9QHQSKo5EjCLiSCa7) - 161 Erie St. (Steel sponsor! 🙏🙏)
+- [**The Bike Hub**](https://g.page/bikehubcyclery) - 191 Monticello Ave 🙏🙏
 
 #### Saturday, June 4, 12-8pm: [Jersey City Jazz Festival](https://riverviewjazz.org/jersey-city-jazz-festival)
-Bike valet and bib pickup services on offer at [107 Morgan St.](https://goo.gl/maps/YLfwHwet3ATYxVc79). Stop by, enjoy some jazz, and get checked in for the Tour.
+Bike valet and bib pickup services on offer at [107 Morgan St.](https://goo.gl/maps/YLfwHwet3ATYxVc79).
+
+Stop by, enjoy some jazz, and get checked in for the Tour.
 
 ## Ride info <a id="ride-info"></a>
 
