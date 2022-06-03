@@ -15,6 +15,13 @@ const md = `
 export const bodyMd = `
 The Jersey City Ward Tour will roll Sunday, June 5, taking you (and 2,500 of our closest friends) on a tour of our great city, and passing through all of its wards.
 
+### Quick links
+- [**BIB PICKUP!**](#bib-pickup) Friday and Saturday before the event
+- [**CITI BIKE promo code**](#citibike)
+- [**GETTING THERE** by PATH, light rail, or ferry (and bike!)](/events/jersey-city-ward-tour/ward-tour-faqs#public-transit)
+- [**FAQs**](/events/jersey-city-ward-tour/ward-tour-faqs)
+- [**FREE REGISTRATAION**](https://www.eventbrite.com/e/jersey-city-ward-tour-2022-tickets-324066169637)
+
 ## FREE!
 $5 is a suggested donation to fund Bike JC's year-round work for better biking in JC. But it is JUST a suggestion. $0 is totally OK. So is $500, or $5 million. :-)
 
@@ -26,11 +33,13 @@ Full route: https://ridewithgps.com/routes/38744234
 
 [![Screenshot of Ward Tour route](/files/wt11-route-screenshot.png)](https://ridewithgps.com/routes/38744234)
 
-**Start:** City Hall - [280 Grove St., at Montgomery Street](https://goo.gl/maps/tMHCxVZU4Q3qBGvc8). Registration begins at 9am, roll out at 11am.
-
-**End:** [Jersey City Jazz Festival](https://riverviewjazz.org/jersey-city-jazz-festival), at [107 Morgan St.](https://goo.gl/maps/YLfwHwet3ATYxVc79). Riders will find a bike parking area and great food, drink, and entertainment options there!
-
 We’ll ride on streets (or sometimes on one side of a street) that are closed to motor-vehicle traffic by the Jersey City Police Department. Officers on bikes and in motor vehicles will escort us throughout the ride.
+
+### Start: City Hall - [280 Grove St., at Montgomery Street](https://goo.gl/maps/tMHCxVZU4Q3qBGvc8) <a id="start"></a>
+Registration begins at 9am, roll out at 11am.
+
+### End: [Jersey City Jazz Festival](https://riverviewjazz.org/jersey-city-jazz-festival) <a id="end"></a>
+[107 Morgan St.](https://goo.gl/maps/YLfwHwet3ATYxVc79): riders will find a bike parking area and great food, drink, and entertainment options there!
 
 ## Finish Line: Jersey City Jazz Festival  <a id="finish-line"></a>
 
@@ -58,6 +67,17 @@ We'll have a table near the stage, come enjoy some music and grab your bib!
 Bike valet and bib pickup services on offer at [107 Morgan St.](https://goo.gl/maps/YLfwHwet3ATYxVc79).
 
 Stop by, enjoy some jazz, and get checked in for the Tour.
+
+---
+
+### [**Citi Bike**](https://citibikenyc.com/) is offering members 3-hour rentals on Ward Tour day! <a id="citibike"></a>
+- Open the Lyft app
+- Tap on the Menu (top-left corner)
+- Tap on Rewards
+- Add Promo Code "JERSEYTOUR22"
+- Ride, friends, ride!
+
+---
 
 ## Ride info <a id="ride-info"></a>
 
