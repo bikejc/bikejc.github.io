@@ -7,6 +7,7 @@ import remarkGfm from "remark-gfm";
 import ReactMarkdown from "react-markdown";
 import Link from "next/link";
 import Markdown from "./md";
+import {action, mc_id, mc_u} from "./mc";
 
 export function SmallMenu() {
     return (
@@ -565,17 +566,17 @@ export function Triptych() {
             <div className="triptych-first large-4 columns">
                 <section className="block block-block promo-box first-box block-block-2">
                     <h4>Subscribe to Our Mailing List + Monthly Newsletter</h4>
+                    {/*Begin Mailchimp Signup Form*/}
                     <div id="mc_embed_signup">
-                        <form
-                            action="https://bikejc.us1.list-manage.com/subscribe/post?u=29e08864eb550bdd5c90dd362&id=9fce58455b"
-                            className="validate" id="mc-embedded-subscribe-form" method="post" name="mc-embedded-subscribe-form"
-                            target="_blank">
-                            <input className="email" id="mce-EMAIL" name="EMAIL" placeholder="email address" type="email" />
-                            <div style={{ position: "absolute", left: "-5000px" }}>
-                                <input name="b_29e08864eb550bdd5c90dd362_9fce58455b" tabIndex={-1} type="text" />
+                        <form action={action} method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" className="validate" target="_blank" noValidate={true}>
+                            <input type="email" placeholder="email address" name="EMAIL" className="email" id="mce-EMAIL" />
+                            <div hidden={true}><input type="hidden" name="tags" value="4204057" /> {/* free wheeler */} </div>
+                            {/*real people should not fill this in and expect good things - do not remove this or risk form bot signups*/}
+                            <div style={{ position: "absolute", left: "-5000px", }} aria-hidden="true">
+                                <input type="text" name={`b_${mc_u}_${mc_id}`} tabIndex={-1} />
                             </div>
                             <div className="clear">
-                                <input className="button" id="mc-embedded-subscribe" name="subscribe" type="submit" value="Subscribe" />
+                                <input type="submit" value="Subscribe" readOnly={true} name="subscribe" id="mc-embedded-subscribe" className="button" />
                             </div>
                         </form>
                     </div>
