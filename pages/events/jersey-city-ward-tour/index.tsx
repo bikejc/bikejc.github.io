@@ -20,7 +20,7 @@ The Jersey City Ward Tour will roll Sunday, June 5, taking you (and 2,500 of our
 - [**CITI BIKE promo code**](#citibike)
 - [**GETTING THERE** by PATH, light rail, or ferry (and bike!)](/events/jersey-city-ward-tour/ward-tour-faqs#public-transit)
 - [**FAQs**](/events/jersey-city-ward-tour/ward-tour-faqs)
-- [**FREE REGISTRATAION**](https://www.eventbrite.com/e/jersey-city-ward-tour-2022-tickets-324066169637)
+- [**FREE REGISTRATION**](https://www.eventbrite.com/e/jersey-city-ward-tour-2022-tickets-324066169637)
 
 ## FREE!
 $5 is a suggested donation to fund Bike JC's year-round work for better biking in JC. But it is JUST a suggestion. $0 is totally OK. So is $500, or $5 million. :-)
