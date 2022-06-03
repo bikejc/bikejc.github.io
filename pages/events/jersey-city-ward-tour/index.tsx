@@ -54,7 +54,7 @@ ALL RIDERS, OF ALL AGES, and even people who AREN'T riding, are welcome to join 
 ## Bib Pickup: Friday-Saturday, June 3-4 <a id="bib-pickup"></a>
 Riders are encouraged to pick up their bib at one of the following locations+times:
 
-#### Friday, June 3, 6-9pm: [Groove on Grove](https://www.facebook.com/grooveongrove/) (Grove St PATH Plaza)
+#### Friday, June 3, 5-11pm: [Groove on Grove](https://www.facebook.com/events/741873313502889) (Grove St PATH Plaza)
 We'll have a table near the stage, come enjoy some music and grab your bib!
 
 #### Saturday, June 4, 12-2pm at a bike shop near you
