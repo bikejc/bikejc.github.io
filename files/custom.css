@@ -7399,3 +7399,7 @@ h2.block-title {
     color: #0a4959; }
 
 /*# sourceMappingURL=custom.css.map */
+
+#mc_embed_signup .mc-field-group.input-group li > label {
+  margin-left: 0.5em;
+}
