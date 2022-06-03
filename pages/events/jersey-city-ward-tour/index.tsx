@@ -93,7 +93,7 @@ Also note, if you can’t keep up, if your bike quits on you, or if you simply w
 
 We strongly recommend that you and everyone in your party do at least some bike riding in the weeks before the tour.
 
-We do NOT rent or otherwise provide the bikes!
+We do NOT rent or otherwise provide the bikes, but [Citi Bike is offering a promo](#citibike) for longer rentals for use in the Ward Tour!
 
 The tour rolls out at 11 a.m. SHARP, but you will need to pick up an official tour bib before the start, 9:00–10:30 a.m.
 
