@@ -45,11 +45,11 @@ ALL RIDERS, OF ALL AGES, and even people who AREN'T riding, are welcome to join 
 ## Bib Pickup: Friday-Saturday, June 3-4 <a id="bib-pickup"></a>
 Riders are encouraged to pick up their bib at one of the following locations+times:
 
-#### Friday, June 3, 6-9pm: Groove on Grove
+#### Friday, June 3, 6-9pm: [Groove on Grove](https://www.facebook.com/grooveongrove/) (Grove St PATH Plaza)
 We'll have a table near the stage, come enjoy some music and grab your bib!
 
 #### Saturday, June 4, 12-2pm at a bike shop near you
-- [**Grove St. Bicycles**](https://goo.gl/maps/nZacvaZqSCC3FDBK7) - 172 Christopher Columbus Dr (also our [Carbon Fiber sponsor 🤩🤩](#sponsors), and offering $40 bike rentals!)
+- [**Grove St. Bicycles**](https://goo.gl/maps/nZacvaZqSCC3FDBK7) - 172 Christopher Columbus Dr (also our [Carbon Fiber sponsor 🤩🤩](#sponsors))
 - [**Jersey Cycles**](https://goo.gl/maps/DQxzoMyabzwuLQyZ7) - 510 Central Ave (Steel sponsor! 🙏🙏)
 - [**Jersey City Bicycle Co.**](https://goo.gl/maps/9QHQSKo5EjCLiSCa7) - 161 Erie St. (Steel sponsor! 🙏🙏)
 - [**The Bike Hub**](https://g.page/bikehubcyclery) - 191 Monticello Ave 🙏🙏

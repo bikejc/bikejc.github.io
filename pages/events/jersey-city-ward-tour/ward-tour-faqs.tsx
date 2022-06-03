@@ -71,8 +71,8 @@ In the event you feel unwell or sustain an injury, Jersey City Medical Center wi
 ### What if I don't have a bike to ride? <a id="rentals"></a>
 
 Some local bike rental options:
-- [**Grove Street Bicycles** offers bike rentals](https://www.grovestreetbicycles.com/about/rentals-pg110.htm)
 - [**Citi Bike**](https://citibikenyc.com/) is offering members 3-hour rentals on Ward Tour day (promo code will be posted here soon, and circulated at the Ward Tour start)
+- ~[**Grove Street Bicycles** offers bike rentals](https://www.grovestreetbicycles.com/about/rentals-pg110.htm)~ ([sold out!](https://www.instagram.com/p/CeT9pe7jhBG/))
 - [**Zoomo**](https://www.ridezoomo.com/us/plans) offers e-bike rentals in Journal Square
 
 ### Is there same-day registration? <a id="day-of-registration"></a>
