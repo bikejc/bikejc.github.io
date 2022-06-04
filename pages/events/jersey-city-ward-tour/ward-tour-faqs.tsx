@@ -48,6 +48,18 @@ It's free! We strive to encourage as many people as possible to join the ride an
 
 Some suggestions: sunglasses, a water bottle, a hat if you'd like to keep the sun/rain off your head, a snack, a light-weight lock if you have one (we will have a supervised bike parking area at the finish line), and a small amount of cash for refreshments from the vendors at the finish. If you plan on purchasing alcohol at the festival please remember to bring a valid ID.
 
+### The A B C Quick Check <a id="abcs"></a>
+Before riding, do an ABC quick check ([c/o The League of American Bicyclists](https://www.pedbikeinfo.org/bicyclesaferjourney/abcquickcheck.pdf)):
+
+#### **A** is for **Air**
+Check the air pressure, spin the wheels and make sure the tires are not worn out.
+
+#### **B** is for **Brakes**
+Check to make sure coaster brakes will stop the bike by spinning the back wheel and applying the brake. If the bike has hand brakes check to see that the levers don’t hit the handlebars when squeezed. Lift one tire up at a time and spin it; squeeze the levers to see if the tire stops. The brake pads should be clean, straight and contact the rims properly. 
+
+#### **C** is for **Cranks, Chain, and Cogs**
+Grab the crank arms and try to wiggle side to side. There should be no movement. Spin the pedals and cranks to see if the chain drives the rear wheel. The chain should look like metal not rust or black gunk. If the bike has gears check to make sure the gear levers and derailleurs (gear-changing mechanism) work to shift the chain between gears. 
+
 ### Is there a place for me to store a bag or backpack while I ride? <a id="baggage"></a>
 
 Due to the large number of participants, we can't provide this service this year. Please consider packing lightly so that you can carry whatever you bring with you on the ride.
