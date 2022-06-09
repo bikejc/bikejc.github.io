@@ -441,15 +441,7 @@ export default function Home() {
                                     Select Size
                                     <br/>
                                     <select name="os0">
-                                        <option value="Small">
-                                            Small
-                                        </option>
-                                        <option value="XL">
-                                            XL
-                                        </option>
-                                        <option value="XXL">
-                                            XXL
-                                        </option>
+                                        <option value="Small">Small</option>
                                     </select>
                                 </td>
                             </tr>
@@ -460,47 +452,6 @@ export default function Home() {
                             <img alt="" height="1" src="/files/pixel.gif" width="1"/>
                         </p>
                     </form>
-                </div>
-                <div style={{ "float": "left", "textAlign": "center", "border": "1px solid #cccccc", "marginRight": "4px", "marginBottom": "8px" }}>
-                    <p>
-                        <img alt="" src="/files/WardTour9Womens.jpg" style={{ "width": "280px", "height": "350px" }}/>
-                    </p>
-                    <p>
-                        <strong>
-                            Ward Tour 9 T-Shirt - Women&apos;s Cut:
-                            <br/>
-                            $15 Donation
-                        </strong>
-                    </p>
-                    <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="paypal">
-                        <input name="cmd" type="hidden" value="_s-xclick"/>
-                        <input name="hosted_button_id" type="hidden" value="6YTFHWMWHX4NJ"/>
-                        <table style={{ "width": "90%", "margin": "auto" }}>
-                            <tbody>
-                            <tr>
-                                <td>
-                                    <input name="on0" type="hidden" value="Size"/>
-                                    Select Size
-                                    <br/>
-                                    <select name="os0">
-                                        <option value="Small">
-                                            Small
-                                        </option>
-                                        <option value="Large">
-                                            Large
-                                        </option>
-                                    </select>
-                                </td>
-                            </tr>
-                            </tbody>
-                        </table>
-                        <p>
-                            <input alt="PayPal - The safer, easier way to pay online!" name="submit" src="/files/btn_cart_LG.gif" type="image"/>
-                            <img alt="" height="1" src="/files/pixel.gif" width="1"/>
-                        </p>
-                    </form>
-                </div>
-                <div style={{ "clear": "both" }}>
                 </div>
                 <div style={{ "float": "left", "textAlign": "center", "border": "1px solid #cccccc", "marginRight": "4px", "marginBottom": "8px" }}>
                     <p>
@@ -520,19 +471,10 @@ export default function Home() {
                             <tbody>
                             <tr>
                                 <td>
-                                    <input name="on0" type="hidden" value="Size"/>
-                                    Select Size
-                                    <br/>
+                                    <input name="on0" type="hidden" value="Size"/>Select Size<br/>
                                     <select name="os0">
-                                        <option value="Small">
-                                            Small
-                                        </option>
-                                        <option value="Medium">
-                                            Medium
-                                        </option>
-                                        <option value="Large">
-                                            Large
-                                        </option>
+                                        <option value="Medium">Medium</option>
+                                        <option value="Large/XL">Large/XL</option>
                                     </select>
                                 </td>
                             </tr>
@@ -543,6 +485,8 @@ export default function Home() {
                             <img alt="" height="1" src="/files/pixel.gif" width="1"/>
                         </p>
                     </form>
+                </div>
+                <div style={{ "clear": "both" }}>
                 </div>
                 <div style={{ "float": "left", "textAlign": "center", "border": "1px solid #cccccc", "marginRight": "4px", "marginBottom": "8px" }}>
                     <p>
@@ -566,83 +510,7 @@ export default function Home() {
                                     Select Size
                                     <br/>
                                     <select name="os0">
-                                        <option value="Large">
-                                            Large
-                                        </option>
-                                    </select>
-                                </td>
-                            </tr>
-                            </tbody>
-                        </table>
-                        <p>
-                            <input alt="PayPal - The safer, easier way to pay online!" name="submit" src="/files/btn_cart_LG.gif" type="image"/>
-                            <img alt="" height="1" src="/files/pixel.gif" width="1"/>
-                        </p>
-                    </form>
-                </div>
-                <div style={{ "clear": "both" }}>
-                </div>
-                <div style={{ "float": "left", "textAlign": "center", "border": "1px solid #cccccc", "marginRight": "4px", "marginBottom": "8px" }}>
-                    <p>
-                        <img alt="" src="/files/WardTour7Mens.jpg" style={{ "width": "280px", "height": "350px" }}/>
-                    </p>
-                    <p>
-                        <strong>
-                            Ward Tour 7 - Standard Cut:
-                            <br/>
-                            $10 Donation
-                        </strong>
-                    </p>
-                    <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="paypal">
-                        <input name="cmd" type="hidden" value="_s-xclick"/>
-                        <input name="hosted_button_id" type="hidden" value="LCQGTMTX4YQK2"/>
-                        <table style={{ "width": "90%", "margin": "auto" }}>
-                            <tbody>
-                            <tr>
-                                <td>
-                                    <input name="on0" type="hidden" value="Size"/>
-                                    Select Size
-                                    <br/>
-                                    <select name="os0">
-                                        <option value="Small">
-                                            Small
-                                        </option>
-                                    </select>
-                                </td>
-                            </tr>
-                            </tbody>
-                        </table>
-                        <p>
-                            <input alt="PayPal - The safer, easier way to pay online!" name="submit" src="/files/btn_cart_LG.gif" type="image"/>
-                            <img alt="" height="1" src="/files/pixel.gif" width="1"/>
-                        </p>
-                    </form>
-                </div>
-                <div style={{ "float": "left", "textAlign": "center", "border": "1px solid #cccccc", "marginRight": "4px", "marginBottom": "8px", "width": "314px" }}>
-                    <p>
-                        <img alt="" src="/files/WardTour7Womens.jpg" style={{ "width": "280px", "height": "350px" }}/>
-                    </p>
-                    <p>
-                        <strong>
-                            Ward Tour 7 - Women&apos;s Cut:
-                            <br/>
-                            $10 Donation
-                        </strong>
-                    </p>
-                    <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="paypal">
-                        <input name="cmd" type="hidden" value="_s-xclick"/>
-                        <input name="hosted_button_id" type="hidden" value="87JE6SSR7JUQ2"/>
-                        <table style={{ "width": "90%", "margin": "auto" }}>
-                            <tbody>
-                            <tr>
-                                <td>
-                                    <input name="on0" type="hidden" value="Size"/>
-                                    Select Size
-                                    <br/>
-                                    <select name="os0">
-                                        <option value="Small">
-                                            Small
-                                        </option>
+                                        <option value="Large">Large</option>
                                     </select>
                                 </td>
                             </tr>
