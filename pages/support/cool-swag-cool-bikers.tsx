@@ -171,15 +171,10 @@ export default function Home() {
                                     Select Size
                                     <br/>
                                     <select name="os0">
-                                        <option value="Small">
-                                            Small
-                                        </option>
-                                        <option value="Large">
-                                            Large
-                                        </option>
-                                        <option value="XXL">
-                                            XXL
-                                        </option>
+                                        <option value="Small">Small</option>
+                                        <option value="Medium">Medium</option>
+                                        <option value="XL">XL</option>
+                                        <option value="XXL">XXL</option>
                                     </select>
                                 </td>
                             </tr>
@@ -213,15 +208,7 @@ export default function Home() {
                                     Select Size
                                     <br/>
                                     <select name="os0">
-                                        <option value="Small">
-                                            Small
-                                        </option>
-                                        <option value="Medium">
-                                            Medium
-                                        </option>
-                                        <option value="Large">
-                                            Large
-                                        </option>
+                                        <option value="Large">Large</option>
                                     </select>
                                 </td>
                             </tr>
@@ -257,15 +244,9 @@ export default function Home() {
                                     Select Size
                                     <br/>
                                     <select name="os0">
-                                        <option value="Medium">
-                                            Medium
-                                        </option>
-                                        <option value="XL">
-                                            XL
-                                        </option>
-                                        <option value="XXL">
-                                            XXL
-                                        </option>
+                                        <option value="Small">Small</option>
+                                        <option value="Medium">Medium</option>
+                                        <option value="XXL">XXL</option>
                                     </select>
                                 </td>
                             </tr>
@@ -299,12 +280,9 @@ export default function Home() {
                                     Select Size
                                     <br/>
                                     <select name="os0">
-                                        <option value="Small">
-                                            Small
-                                        </option>
-                                        <option value="Large">
-                                            Large
-                                        </option>
+                                        <option value="Small">Small</option>
+                                        <option value="Medium">Medium</option>
+                                        <option value="Large">Large</option>
                                     </select>
                                 </td>
                             </tr>
