@@ -6,7 +6,7 @@ export default function Document() {
         <Html>
             <Head>
                 <meta content="text/html; charset=UTF-8" httpEquiv="Content-Type"></meta>
-                <link href="/misc/favicon.ico" rel="shortcut icon"></link>
+                <link href="/favicon.ico" rel="shortcut icon"></link>
                 <meta content="false" httpEquiv="ImageToolbar"></meta>
                 <link href="/files/nivo-slider.css" rel="stylesheet"></link>
                 <link rel="stylesheet" href="/modules/system/system.base.css"></link>
