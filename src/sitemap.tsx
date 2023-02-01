@@ -27,29 +27,13 @@ export const Sitemap: Sitemap = {
         "events": {
             "": "Events",
             "jersey-city-ward-tour": {
-                "": "Jersey City Ward Tour",
-                "ward-tour-registration": {
-                        "": { redirect: "../..", },
-                },
-                "volunteer": { "": "Volunteer for the Ward Tour",  redirect: "..", },
-                "ward-tour-route": { "": "Ward Tour Route",  redirect: "..", },
-                "finish-line-festival": { "": "Finish Line Festival",  redirect: "..", },
-                "ward-tour-sponsors": { "": "Ward Tour Sponsors", redirect: "..", },
-                "ward-tour-faqs": { "": "Ward Tour FAQs",  redirect: "..", },
+                "": "Jersey City Ward Tour", "redirect": "../ward-tour",
             },
             "bike-jcast": {
                 "": "Bike JCast",
                 "bike-jcast-2017": "Bike JCast 2017",
             },
             "calendar": "Calendar",
-            "ward-tour-2022": {
-                "": "2022 Jersey City Ward Tour",
-                "volunteer": "Volunteer for the Ward Tour",
-                "ward-tour-route":  "Ward Tour Route",
-                "finish-line-festival":  "Finish Line Festival",
-                "ward-tour-sponsors":  "Ward Tour Sponsors",
-                "ward-tour-faqs":  "Ward Tour FAQs",
-            }
         },
         "news": {
             "": "News",
@@ -85,6 +69,18 @@ export const Sitemap: Sitemap = {
             "useful-links": "Useful Links",
         },
         "contact-us": "Contact",
+        "ward-tour": {
+            "": "Jersey City Ward Tour",
+            "2022": {
+                "": "2022 Jersey City Ward Tour",
+                "registration": { "": { redirect: "https://www.eventbrite.com/e/jersey-city-ward-tour-2022-tickets-324066169637" }, }, //"Register for the 2022 Jersey City Ward Tour", },
+                "volunteer": "Volunteer for the Ward Tour",
+                "route": "Ward Tour Route",
+                "finish-line-festival": "Finish Line Festival",
+                "sponsors": "Ward Tour Sponsors",
+                "faqs": "Ward Tour FAQs",
+            }
+        }
     }
 }
 
@@ -110,7 +106,7 @@ export function lookup(path: string) {
                     newName = newSitemap
                 } else {
                     if (newSitemap === undefined) {
-                        throw Error(`Sitemap error: no object at: ${JSON.stringify(newSitemap)}`)
+                        throw Error(`Sitemap error: no object at: ${JSON.stringify(newSitemap)}, path ${path}`)
                     }
                     newName = newSitemap[""] as any
                     if (newName === undefined) {

@@ -4,7 +4,7 @@ import Markdown from "../../../src/md";
 
 export default function Home() {
     return (
-        <Page path={"/events/ward-tour-2022/sponsors"} documentClasses={["section-support"]}>
+        <Page path={"/ward-tour/2022/sponsors"} documentClasses={["section-support"]}>
             {Markdown(`
 ### We'd like to thank our 2022 Ward Tour Sponsors.
 This event would not be possible without their support.            

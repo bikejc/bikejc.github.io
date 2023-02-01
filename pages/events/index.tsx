@@ -3,7 +3,7 @@ import {Page, Triptych} from "../../src/page";
 const md = `
 ---
 
-#### The Jersey City Ward Tour is back! **Sunday, June 4, 2023**. Registration coming soon.
+#### The Jersey City Ward Tour is back! **Sunday, June 4, 2023**. Free registration coming soon, [subscribe for updates](#subscribe) or [register to volunteer here](/support/volunteer).
 
 ---
 

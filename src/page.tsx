@@ -308,6 +308,7 @@ export function BigMenu({ path }: { path: string }) {
             const text = (typeof map === 'string') ? map : ((map as any)[""] as any as string)
             const topLevelPath = `/${name}`
             const n = topLevelPath.length
+            if (name === 'ward-tour') return null
             return (
                 <MenuListItem
                     key={name}
@@ -492,7 +493,7 @@ export function Aside({ sectionMenu }: { sectionMenu?: SectionMenu }) {
                 <p>
                     <strong>The Jersey City Ward Tour is back! Sunday, June 4, roll out 11am from City Hall!</strong>
                     {' '}<strong>2,500 Bikes. 15 Miles. 6 Wards, finishing at the Jersey City Jazz Festival.</strong>
-                    {' '}<strong>Registration coming soon.</strong>
+                    {' '}<strong>Free registration coming soon, <a href={"#subscribe"}>subscribe for updates</a></strong>.
                 </p>
             </section>
             <section className="block block-block block-block-14 block-odd clearfix">
@@ -675,7 +676,7 @@ export function Page({ path, h1, description, banner, article, ctime, mtime, doc
 
     const res = lookup(path)
     const { breadcrumbs, name, redirect, sitemap } = res
-    console.log("res:", res)
+    // console.log("res:", res)
 
     if (redirect) {
         return <>
@@ -700,17 +701,18 @@ export function Page({ path, h1, description, banner, article, ctime, mtime, doc
         if (!(typeof sectionName === 'string')) {
             throw Error(`Sitemap error: sectionPath ${sectionPath} must have string name, got:`, sectionName)
         }
-        console.log("sectionMap:", sectionMap)
+        // console.log("sectionMap:", sectionMap)
         const sectionMenuItems: Breadcrumb[] = []
         Object.entries(sectionMap).forEach(([ piece, map ]) => {
             if (piece == "") return
             const href = `${sectionPath}/${piece}`
             const text = (typeof map === 'string') ? map : (map[""] as any as string)
+            // console.log(`piece ${piece} text ${text}`)
             if (typeof text === "string") {
                 sectionMenuItems.push({href, text,})
             }
         })
-        if (sectionMenuItems.length > 1) {
+        if (sectionMenuItems.length) {
             sectionMenu = {
                 title: sectionName,
                 activePath: path,
@@ -718,7 +720,7 @@ export function Page({ path, h1, description, banner, article, ctime, mtime, doc
             }
         }
     }
-    console.log("sectionMenu:", sectionMenu)
+    // console.log("sectionMenu:", sectionMenu)
 
     if (!children) {
         if (!md && md != "") {

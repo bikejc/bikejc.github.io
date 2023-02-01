@@ -7,7 +7,7 @@ const md = `
 
 ---
 
-#### The Jersey City Ward Tour is back! **Sunday, June 4, 2023**. Free registration coming soon.
+#### The Jersey City Ward Tour is back! **Sunday, June 4, 2023**. Free registration coming soon, [subscribe for updates](#subscribe).
 
 ---
 
@@ -74,6 +74,7 @@ const Home: NextPage = () => {
               "/files/WardTourSticker_website.jpg",
           ]}
           md={md}
+          preFooter={<Triptych />}
       />
   )
 }

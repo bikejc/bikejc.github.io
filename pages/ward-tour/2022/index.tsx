@@ -46,7 +46,7 @@ Registration begins at 9am, roll out at 11am.
 
 We're excited to partner with [the Jersey City Jazz Festival](https://riverviewjazz.org/jersey-city-jazz-festival) for this year's "Finish Line Festival!"
 
-At the end of [the Ward Tour route](/events/ward-tour-route) (at [107 Morgan St.](https://goo.gl/maps/YLfwHwet3ATYxVc79)), riders will find a bike parking area and great food, drink, and entertainment options there!
+At the end of [the Ward Tour route](/ward-tour/2022/route) (at [107 Morgan St.](https://goo.gl/maps/YLfwHwet3ATYxVc79)), riders will find a bike parking area and great food, drink, and entertainment options there!
 
 Live music and festivities are scheduled there from 12-6pm.
 
@@ -145,7 +145,7 @@ export const description = "The Jersey City Ward Tour is back on Sunday, June 5,
 export default function Home() {
     return (
         <Page
-            path={"/events/ward-tour-2022"}
+            path={"/ward-tour/2022"}
             banner="/files/BikeJcHomeSlide2.jpg"
             description={description}
         >
