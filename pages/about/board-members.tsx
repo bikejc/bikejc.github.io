@@ -135,29 +135,14 @@ He maintains a Citibike dashboard at [ctbk.dev](https://ctbk.dev/) and posts rid
 Beatriz has been cycling (for transportation!) since she was a kid, in many cities and countries, and is now based in the Heights and is excited for the many opportunities to improve the cycling experience that Bike JC is working on.
 `}
                 />
-                    <p>
-                    </p>
                 <BoardMember id={"tom"} name={"Tom Keane"} title={"Board Member"} src={"/files/tom-bio.png"}
-                             content={`
-
-`}
+                             content={``}
                 />
-                    <p>
-                    </p>
-                <BoardMember id={"damian"} name={"Damian Wieczorek"} title={"Treasurer"} src={"/files/damian-wieczorek-bio.jpg"}
-                             content={`
-Damian is the co-founder and Treasurer of the organization and currently resides in the Lafayette section of Jersey city.
-`}
+                <BoardMember id={"emanuelle"} name={"Emmanuelle Morgen"} title={"Board Member"} src={"/img/emmanuelle-bio.jpeg"}
+                             content={``}
                 />
-                <BoardMember id={"alex"} name={"Alexandra Nagy"} title={"Board Member"} src={"/files/alexandra-nagy.jpg"}
-                             content={`
-Alexandra Nagy is a licensed social worker who manages a volunteer program
-for seniors in Hudson County.
-
-She has been involved with Bike JC for
-3 years as a volunteer. She recently became a board member last year and
-helps with different aspects of Bike JC.
-`}
+                <BoardMember id={"tyler"} name={"Tyler Newcomb"} title={"Board Member"} src={"/img/tyler-bio.png"}
+                             content={``}
                 />
             </div>
         </Page>
