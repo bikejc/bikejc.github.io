@@ -14,7 +14,7 @@ const Home: NextPage = () => {
               "/files/BikeJcHomeSlide1.jpg",
               "/files/BikeJcHomeSlide2.jpg",
               "/files/BikeJcHomeSlide5.jpg",
-              "/files/WardTourSticker_website.jpg",
+              "/img/ward-tour-forever-sticker-resized.jpg",
           ]}
           preFooter={<Triptych />}
       >
