@@ -1,29 +1,31 @@
 name: GitHub Pages deploy
 on:
   push:
-    branches: [dev,main]
+    branches: [dev,main,ghp]
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
-        uses: actions/checkout@v2.3.1
-      - name: Install node
-        uses: actions/setup-node@v1
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
         with:
-          node-version: '14.x'
-      - name: Install dependencies
-        run: npm ci
-      - name: Build
-        run: npm run build && npm run export && touch ./out/.nojekyll
+          node-version: 16
+          cache: 'npm'
+      - run: echo "node_modules/.bin:$PATH" >> $GITHUB_PATH
+      - run: npm ci
+      - run: next build
+      - run: next export
+      - run: touch ./out/.nojekyll
+        if: github.ref_name == 'ghp'
       - name: Deploy GitHub Pages
-        if: github.ref == 'refs/heads/main'
+        if: github.ref_name == 'ghp'
         uses: JamesIves/github-pages-deploy-action@4.1.0
         with:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           BRANCH: gh-pages
           FOLDER: out
       - name: Setup SSH configs
+        if: github.ref_name == 'dev' || github.ref_name == 'main'
         env:
           SSH_PRIVKEY: ${{ secrets.SSH_PRIVKEY }}
           SSH_CONFIG: ${{ secrets.SSH_CONFIG }}
@@ -36,10 +38,8 @@ jobs:
           chmod 600 ~/.ssh/bikejc.org
           ls -l ~/.ssh
       - name: Deploy FTP (bikejc.org)
-        if: github.ref == 'refs/heads/main'
-        run: |
-          rsync -avzh --delete out/ bikejc.org:public_html/
+        if: github.ref_name == 'main'
+        run: rsync -avzh --delete out/ bikejc.org:public_html/
       - name: Deploy FTP (dev.bikejc.org)
-        if: github.ref == 'refs/heads/dev'
-        run: |
-          rsync -avzh --delete out/ bikejc.org:dev_html/
+        if: github.ref_name == 'dev'
+        run: rsync -avzh --delete out/ bikejc.org:dev_html/
