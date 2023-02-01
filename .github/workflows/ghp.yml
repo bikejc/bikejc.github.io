@@ -39,9 +39,9 @@ jobs:
           echo "$SSH_PRIVKEY" > ~/.ssh/bikejc.org
           chmod 600 ~/.ssh/bikejc.org
           ls -l ~/.ssh
-      - name: Deploy FTP (bikejc.org)
-        if: github.ref_name == 'main'
-        run: rsync -avzh --delete out/ bikejc.org:public_html/
       - name: Deploy FTP (dev.bikejc.org)
         if: github.ref_name == 'dev'
-        run: rsync -avzh --delete out/ bikejc.org:dev_html/
+        run: npm run deploy-dev
+      - name: Deploy FTP (bikejc.org)
+        if: github.ref_name == 'main'
+        run: npm run deploy-main

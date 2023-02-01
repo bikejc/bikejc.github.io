@@ -9,7 +9,13 @@
     "start": "next start",
     "lint": "next lint",
     "write-redirects": "write-redirects.js",
-    "wr": "write-redirects.js"
+    "wr": "write-redirects.js",
+    "deploy-dev": "rsync -avzh --delete out/ bikejc.org:dev_html/",
+    "dd": "rsync -avzh --delete out/ bikejc.org:dev_html/",
+    "ddn": "rsync -avzhn --delete out/ bikejc.org:dev_html/",
+    "deploy-main": "rsync -avzh --delete out/ bikejc.org:public_html/",
+    "dm": "rsync -avzh --delete out/ bikejc.org:public_html/",
+    "dmn": "rsync -avzhn --delete out/ bikejc.org:public_html/"
   },
   "dependencies": {
     "next": "12.1.0",
