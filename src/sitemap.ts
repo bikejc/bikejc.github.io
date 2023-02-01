@@ -26,8 +26,8 @@ export const Sitemap: Sitemap = {
                 "": "Jersey City Ward Tour", "redirect": "../ward-tour",
             },
             "bike-jcast": {
-                "": "Bike JCast",
-                "bike-jcast-2017": "Bike JCast 2017",
+                "": "Bike JCAST",
+                "bike-jcast-2017": "Bike JCAST 2017",
             },
             "calendar": "Calendar",
         },

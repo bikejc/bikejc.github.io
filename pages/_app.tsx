@@ -1,7 +1,6 @@
 import type { AppProps } from 'next/app'
 
 import "../styles/system.base.css"
-import "../styles/system.messages.css"
 import "../styles/system.theme.css"
 import "../styles/book.css"
 import "../styles/comment.css"

@@ -2,48 +2,30 @@ import type { NextPage } from 'next'
 import {Page} from "../src/page";
 import Triptych from "../src/triptych"
 import React from "react";
+import MD from "../src/md";
+import {schedule2023Blurb, wtBlurb} from "../src/blurbs";
 
-const md = `
+const Home: NextPage = () => {
+  return (
+      <Page
+          path={"/"}
+          h1={"Welcome to Bike JC"}
+          banner={[
+              "/files/BikeJcHomeSlide1.jpg",
+              "/files/BikeJcHomeSlide2.jpg",
+              "/files/BikeJcHomeSlide5.jpg",
+              "/files/WardTourSticker_website.jpg",
+          ]}
+          preFooter={<Triptych />}
+      >
+          {MD(`
 #### Welcome to the official website of Bike JC, Jersey City’s advocacy group for bicyclists!
 
 ---
-
-#### The Jersey City Ward Tour is back! **Sunday, June 4, 2023**. Free registration coming soon, [subscribe for updates](#subscribe), or [sign up to volunteer](/support/volunteer).
-
----
-
-#### Join our monthly Light-UP Rides! Usually 15-20 miles, start and finish at Grove St PATH.
-
-<blockquote class="twitter-tweet">
-<p lang="en" dir="ltr">SAVE THE BIKE DATES!!🚲✨🎉<br>
-Bike JC 2023 scheduled Light-Up Rides (and Ward Tour). Light-Ups start at sunset, 2nd Friday each month:
-<br> 
-<br>
-•March 10<br>
-•April 14<br>
-•May 12<br>
-•JC WARD TOUR: Sunday, June 4, 11 a.m.<br>
-•June 23<br>
-•July 14<br>
-•August 11<br>
-•September 8<br>
-•October 13<br>
-•November 10
-</p>&mdash; 🚲Bike JC🗽 (@bikejc) <a href="https://twitter.com/bikejc/status/1620594685185245185?ref_src=twsrc%5Etfw">February 1, 2023</a></blockquote>
-
-Roll-out times:
-- March 10, 6:30pm
-- April 14, 7pm
-- May 12, 7:30pm
-- June 23, 7:30pm
-- July 14, 8pm
-- August 11, 7:30pm
-- September 8, 7pm
-- October 13, 6:30pm
-- November 10, 6pm
-
----
-
+`)}
+          {wtBlurb}
+          {schedule2023Blurb}
+          {MD(`
 Bike JC is a citizen-based non-profit advocacy organization that aims to make Jersey City streets
 safe and welcoming for bicyclists, by promoting bicycle lane creation, additional bicycle rack
 placement, education, and group rides.
@@ -61,22 +43,8 @@ calming measure, helping pedestrians navigate streets safely as well. Bicycling 
 easy on the environment, and transforms the average commute into a great workout.
 
 ![](/files/light-up-ride-city-hall.jpg)
-`
-
-const Home: NextPage = () => {
-  return (
-      <Page
-          path={"/"}
-          h1={"Welcome to Bike JC"}
-          banner={[
-              "/files/BikeJcHomeSlide1.jpg",
-              "/files/BikeJcHomeSlide2.jpg",
-              "/files/BikeJcHomeSlide5.jpg",
-              "/files/WardTourSticker_website.jpg",
-          ]}
-          md={md}
-          preFooter={<Triptych />}
-      />
+`)}
+      </Page>
   )
 }
 

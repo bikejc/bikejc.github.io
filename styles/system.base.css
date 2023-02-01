@@ -29,16 +29,6 @@
   white-space: pre;
   zoom: 1; /* IE7 */
 }
-/* Animated throbber */
-html.js input.form-autocomplete {
-  background-image: url(../../misc/throbber-inactive.png);
-  background-position: 100% center; /* LTR */
-  background-repeat: no-repeat;
-}
-html.js input.throbbing {
-  background-image: url(../../misc/throbber-active.gif);
-  background-position: 100% center; /* LTR */
-}
 
 /**
  * Collapsible fieldsets.
@@ -74,62 +64,13 @@ fieldset.collapsible .fieldset-legend {
   -webkit-box-sizing: border-box;
   box-sizing: border-box;
 }
-.resizable-textarea .grippie {
-  background: #eee url(../../misc/grippie.png) no-repeat center 2px;
-  border: 1px solid #ddd;
-  border-top-width: 0;
-  cursor: s-resize;
-  height: 9px;
-  overflow: hidden;
-}
 
-/**
- * TableDrag behavior.
- *
- * @see tabledrag.js
- */
-body.drag {
-  cursor: move;
-}
-.draggable a.tabledrag-handle {
-  cursor: move;
-  float: left; /* LTR */
-  height: 1.7em;
-  margin-left: -1em; /* LTR */
-  overflow: hidden;
-  text-decoration: none;
-}
-a.tabledrag-handle:hover {
-  text-decoration: none;
-}
-a.tabledrag-handle .handle {
-  background: url(../../misc/draggable.png) no-repeat 6px 9px;
-  height: 13px;
-  margin: -0.4em 0.5em; /* LTR */
-  padding: 0.42em 0.5em; /* LTR */
-  width: 13px;
-}
-a.tabledrag-handle-hover .handle {
-  background-position: 6px -11px;
-}
 div.indentation {
   float: left; /* LTR */
   height: 1.7em;
   margin: -0.4em 0.2em -0.4em -0.4em; /* LTR */
   padding: 0.42em 0 0.42em 0.6em; /* LTR */
   width: 20px;
-}
-div.tree-child {
-  background: url(../../misc/tree.png) no-repeat 11px center; /* LTR */
-}
-div.tree-child-last {
-  background: url(../../misc/tree-bottom.png) no-repeat 11px center; /* LTR */
-}
-div.tree-child-horizontal {
-  background: url(../../misc/tree.png) no-repeat -11px center;
-}
-.tabledrag-toggle-weight-wrapper {
-  text-align: right; /* LTR */
 }
 
 /**
@@ -159,26 +100,6 @@ table.sticky-header {
 }
 .progress .percentage {
   float: right; /* LTR */
-}
-/* Throbber */
-.ajax-progress {
-  display: inline-block;
-}
-.ajax-progress .throbber {
-  background: transparent url(../../misc/throbber-active.gif) no-repeat 0px center;
-  float: left; /* LTR */
-  height: 15px;
-  margin: 2px;
-  width: 15px;
-}
-.ajax-progress .message {
-  padding-left: 20px;
-}
-tr .ajax-progress .throbber {
-  margin: 0 2px;
-}
-.ajax-progress-bar {
-  width: 16em;
 }
 
 /**
@@ -268,4 +189,3 @@ html.js .js-hide {
 *:first-child + html .clearfix {
   min-height: 1%;
 }
-

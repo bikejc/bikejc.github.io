@@ -28,15 +28,15 @@ export default function Triptych() {
                     <h4>Follow Bike JC on Twitter</h4>
                     <p>Making Jersey City bike-friendly since 2009</p>
                     <p>Tweeting bike community news since 2010</p>
-                    <p><a href="https://twitter.com/bikejc" target="_blank">Tweet @bikejc!</a></p>
+                    <p><a href="https://twitter.com/bikejc" target="_blank">Tweet @bikejc!H</a></p>
                 </section>
             </div>
             <div className="triptych-last large-4 columns">
                 <section className="block block-block promo-box third-box block-block-4">
-                    <h4>We're Now on Instagram</h4>
+                    <h4>Follow us on Instagram</h4>
                     <p>Check out our official instagram account</p>
                     <p>Show us your photos of biking in JC at #bikejc!</p>
-                    <p><a href="https://instagram.com/bikejcgram/" target="_blank">@bikejcgram/</a></p>
+                    <p><a href="https://instagram.com/bikejcgram/" target="_blank">@bikejcgram</a></p>
                 </section>
             </div>
         </section>
