@@ -29,19 +29,27 @@ export const Sitemap: Sitemap = {
             "jersey-city-ward-tour": {
                 "": "Jersey City Ward Tour",
                 "ward-tour-registration": {
-                        "": { redirect: "https://www.eventbrite.com/e/jersey-city-ward-tour-2022-tickets-324066169637", },
+                        "": { redirect: "../..", },
                 },
-                "volunteer": "Volunteer for the Ward Tour",
-                "ward-tour-route": "Ward Tour Route",
-                "finish-line-festival": "Finish Line Festival",
-                "ward-tour-sponsors": "Ward Tour Sponsors",
-                "ward-tour-faqs": "Ward Tour FAQs",
+                "volunteer": { "": "Volunteer for the Ward Tour",  redirect: "..", },
+                "ward-tour-route": { "": "Ward Tour Route",  redirect: "..", },
+                "finish-line-festival": { "": "Finish Line Festival",  redirect: "..", },
+                "ward-tour-sponsors": { "": "Ward Tour Sponsors", redirect: "..", },
+                "ward-tour-faqs": { "": "Ward Tour FAQs",  redirect: "..", },
             },
             "bike-jcast": {
                 "": "Bike JCast",
                 "bike-jcast-2017": "Bike JCast 2017",
             },
             "calendar": "Calendar",
+            "ward-tour-2022": {
+                "": "2022 Jersey City Ward Tour",
+                "volunteer": "Volunteer for the Ward Tour",
+                "ward-tour-route":  "Ward Tour Route",
+                "finish-line-festival":  "Finish Line Festival",
+                "ward-tour-sponsors":  "Ward Tour Sponsors",
+                "ward-tour-faqs":  "Ward Tour FAQs",
+            }
         },
         "news": {
             "": "News",
@@ -101,9 +109,12 @@ export function lookup(path: string) {
                 if (typeof newSitemap === 'string') {
                     newName = newSitemap
                 } else {
+                    if (newSitemap === undefined) {
+                        throw Error(`Sitemap error: no object at: ${JSON.stringify(newSitemap)}`)
+                    }
                     newName = newSitemap[""] as any
                     if (newName === undefined) {
-                        throw Error("Sitemap error: no name at:", newSitemap)
+                        throw Error(`Sitemap error: no name at: ${JSON.stringify(newSitemap)}`)
                     }
                     else if (typeof newName !== "string") {
                         redirect = (newName && newName["redirect"])

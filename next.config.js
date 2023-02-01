@@ -1,5 +1,14 @@
 const fs = require('fs')
 
+const redirects = {
+  // "/events/jersey-city-ward-tour": "/ward-tour",
+  "/events/jersey-city-ward-tour/volunteer":  "/ward-tour-2022/volunteer",
+  "/events/jersey-city-ward-tour/ward-tour-route":  "/ward-tour-2022/ward-tour-route",
+  "/events/jersey-city-ward-tour/finish-line-festival":  "/ward-tour-2022/finish-line-festival",
+  "/events/jersey-city-ward-tour/ward-tour-sponsors":  "/ward-tour-2022/ward-tour-sponsors",
+  "/events/jersey-city-ward-tour/ward-tour-faqs":  "/ward-tour-2022/ward-tour-faqs",
+}
+
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
@@ -13,6 +22,15 @@ const nextConfig = {
     drupalSettingsJsFromFile: fs.readFileSync('./public/files/drupal-settings.js').toString(),
     drupalJsFromFile: fs.readFileSync('./public/files/drupal.js').toString(),
     foundationJsFromFile: fs.readFileSync('./public/files/foundation.min.js').toString(),
+  },
+  async redirects() {
+    return [
+      {
+        source: '/about',
+        destination: '/',
+        permanent: true,
+      },
+    ]
   },
 }
 

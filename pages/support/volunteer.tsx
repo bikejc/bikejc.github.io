@@ -1,4 +1,4 @@
-import { Page } from "../../src/page"
+import {Page, Triptych} from "../../src/page"
 
 import Script from "next/script"
 import {action, mc_id, mc_u} from "../../src/mc";
@@ -6,11 +6,7 @@ import React from "react";
 
 export default function Home() {
     return (
-        <Page path={"/support/volunteer"}>
-            <div>
-                <h3><a href={"/events/jersey-city-ward-tour/volunteer"}>Register to volunteer for the 2022 Jersey City Ward Tour!</a></h3>
-            </div>
-            <hr/>
+        <Page path={"/support/volunteer"} preFooter={<Triptych />}>
             <div className="field field-name-body field-type-text-with-summary field-label-hidden field-wrapper body field">
 
                 <p>Volunteer with Bike JC and help make Jersey City a better place for bicyclists of all kinds and in every neighborhood.</p>

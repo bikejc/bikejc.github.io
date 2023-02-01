@@ -467,6 +467,7 @@ export function SectionMenu({ title, activePath, breadcrumbs }: SectionMenu) {
 }
 
 export function Aside({ sectionMenu }: { sectionMenu?: SectionMenu }) {
+    // console.log("sectionMenu:", sectionMenu)
     return (
         <aside className="large-4 sidebar-second columns sidebar columns" role="complementary">
             <section className="block block-block social-media block-block-6 block-odd clearfix">
@@ -487,14 +488,12 @@ export function Aside({ sectionMenu }: { sectionMenu?: SectionMenu }) {
                     : null
             }</section>
             <section className="block block-block block-block-13 block-even clearfix">
-                <h2 className="block-title">Ward Tour 2022</h2>
-                <a href="https://www.eventbrite.com/e/jersey-city-ward-tour-2022-tickets-324066169637">
-                    <p>
-                        <strong>The Jersey City Ward Tour is back! Sunday, June 5, roll out 11am from City Hall!</strong>
-                        {' '}<strong>2,500 Bikes. 15 Miles. 6 Wards, finishing at the Jersey City Jazz Festival.</strong>
-                        {' '}<strong>REGISTER HERE</strong>
-                    </p>
-                </a>
+                <h2 className="block-title">Ward Tour 2023</h2>
+                <p>
+                    <strong>The Jersey City Ward Tour is back! Sunday, June 4, roll out 11am from City Hall!</strong>
+                    {' '}<strong>2,500 Bikes. 15 Miles. 6 Wards, finishing at the Jersey City Jazz Festival.</strong>
+                    {' '}<strong>Registration coming soon.</strong>
+                </p>
             </section>
             <section className="block block-block block-block-14 block-odd clearfix">
                 <h2 className="block-title">Cool Swag!</h2>
@@ -507,7 +506,7 @@ export function Aside({ sectionMenu }: { sectionMenu?: SectionMenu }) {
                 </p>
                 <div className="center">
                     <p>
-                        <strong>Support BikeJC's important work through a tax deductible donation and receive cool
+                        <strong>Support Bike JC's important work through a tax deductible donation and receive cool
                             swag!</strong>
                     </p>
                 </div>
@@ -565,7 +564,7 @@ export function Triptych() {
         <section className="l-triptych row">
             <div className="triptych-first large-4 columns">
                 <section className="block block-block promo-box first-box block-block-2">
-                    <h4>Subscribe to Our Mailing List + Monthly Newsletter</h4>
+                    <h4 id={"subscribe"}>Subscribe to Our Mailing List + Monthly Newsletter</h4>
                     {/*Begin Mailchimp Signup Form*/}
                     <div id="mc_embed_signup">
                         <form action={action} method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" className="validate" target="_blank" noValidate={true}>
@@ -657,12 +656,13 @@ export type Page = {
     documentClasses?: string[]
     articleClasses?: string[]
     md?: string
+    preFooter?: ReactNode
     children?: ReactNode
 }
 
 export const Pg = (page: Page) => () => <Page {...page} />
 
-export function Page({ path, h1, description, banner, article, ctime, mtime, documentClasses, articleClasses, md, children, }: Page) {
+export function Page({ path, h1, description, banner, article, ctime, mtime, documentClasses, articleClasses, md, preFooter, children, }: Page) {
     if (!banner) {
         banner = [ "/files/lincoln-park-banner.jpg" ]
     } else if (typeof banner === "string") {
@@ -673,7 +673,9 @@ export function Page({ path, h1, description, banner, article, ctime, mtime, doc
 
     article = (article !== false) && !(article === undefined && root)
 
-    const { breadcrumbs, name, redirect, sitemap } = lookup(path)
+    const res = lookup(path)
+    const { breadcrumbs, name, redirect, sitemap } = res
+    console.log("res:", res)
 
     if (redirect) {
         return <>
@@ -698,6 +700,7 @@ export function Page({ path, h1, description, banner, article, ctime, mtime, doc
         if (!(typeof sectionName === 'string')) {
             throw Error(`Sitemap error: sectionPath ${sectionPath} must have string name, got:`, sectionName)
         }
+        console.log("sectionMap:", sectionMap)
         const sectionMenuItems: Breadcrumb[] = []
         Object.entries(sectionMap).forEach(([ piece, map ]) => {
             if (piece == "") return
@@ -715,9 +718,10 @@ export function Page({ path, h1, description, banner, article, ctime, mtime, doc
             }
         }
     }
+    console.log("sectionMenu:", sectionMenu)
 
     if (!children) {
-        if (!md) {
+        if (!md && md != "") {
             throw Error("Pass either `children` or `md`")
         }
         children = Markdown(md)
@@ -780,7 +784,7 @@ export function Page({ path, h1, description, banner, article, ctime, mtime, doc
                         article ? wrapArticle(children) : children
                     }
                 </Main>
-                {root && <Triptych/>}
+                {preFooter}
                 <Footer />
             </div>
         </>

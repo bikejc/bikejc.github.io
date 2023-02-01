@@ -1,9 +1,9 @@
-import { Page } from "../../src/page";
+import {Page, Triptych} from "../../src/page";
 import Link from "next/link"
 
 export default function Home() {
     return (
-        <Page path={"/support/donate"}>
+        <Page path={"/support/donate"} preFooter={<Triptych />}>
             <div className="field field-name-body field-type-text-with-summary field-label-hidden field-wrapper body field">
                 <p>You can donate to Bike JC and support our mission in a few different ways.</p>
                 <p>Sign up to volunteer your time <Link href="/support/volunteer">here</Link>.</p>

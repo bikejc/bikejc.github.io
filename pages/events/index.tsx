@@ -1,16 +1,41 @@
-import { Page } from "../../src/page";
+import {Page, Triptych} from "../../src/page";
 
 const md = `
 ---
 
-#### The Jersey City Ward Tour is back! Sunday, June 5, roll out 11am from City Hall. **[REGISTER HERE](https://www.eventbrite.com/e/jersey-city-ward-tour-2022-tickets-324066169637)**.
+#### The Jersey City Ward Tour is back! **Sunday, June 4, 2023**. Registration coming soon.
 
 ---
 
 #### Join our monthly Light-UP Rides! Usually 15-20 miles, start and finish at Grove St PATH.
 
-Full schedule:
-<blockquote class="twitter-tweet"><p lang="en" dir="ltr">2022 Jersey City Light-Up Rides ✨🚲<br>2nd Friday of each month, April–October, sunset. Meet times:⁰April 8, 7 <br>May 13, 7:30<br>June 24, 7:30*<br>July 8, 8<br>Aug. 12, 7:30<br>Sept. 9, 7<br>Oct. 14, 6:30<br> <br>*Special Light Up the Loop Ride w/ferries to/from Manhattan! (Not a 2nd Friday.) 1/2</p>&mdash; 🚲Bike JC🗽 (@bikejc) <a href="https://twitter.com/bikejc/status/1518381269419188227?ref_src=twsrc%5Etfw">April 25, 2022</a></blockquote>
+<blockquote class="twitter-tweet">
+<p lang="en" dir="ltr">SAVE THE BIKE DATES!!🚲✨🎉<br>
+Bike JC 2023 scheduled Light-Up Rides (and Ward Tour). Light-Ups start at sunset, 2nd Friday each month:
+<br> 
+<br>
+•March 10<br>
+•April 14<br>
+•May 12<br>
+•JC WARD TOUR: Sunday, June 4, 11 a.m.<br>
+•June 23<br>
+•July 14<br>
+•August 11<br>
+•September 8<br>
+•October 13<br>
+•November 10
+</p>&mdash; 🚲Bike JC🗽 (@bikejc) <a href="https://twitter.com/bikejc/status/1620594685185245185?ref_src=twsrc%5Etfw">February 1, 2023</a></blockquote>
+
+Roll-out times:
+- March 10, 6:30pm
+- April 14, 7pm
+- May 12, 7:30pm
+- June 23, 7:30pm
+- July 14, 8pm
+- August 11, 7:30pm
+- September 8, 7pm
+- October 13, 6:30pm
+- November 10, 6pm
 
 ---
 
@@ -23,4 +48,11 @@ We also put on various smaller, informal rides that take us on two wheels to hav
 Join us!
 `
 
-export default function Home() { return <Page path={"/events"} banner="/files/bike-tour-back-banner.jpg" md={md} /> }
+export default function Home() { return (
+    <Page
+        path={"/events"}
+        banner="/files/bike-tour-back-banner.jpg"
+        md={md}
+        preFooter={<Triptych />}
+    />
+) }
