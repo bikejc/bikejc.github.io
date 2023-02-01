@@ -38,8 +38,8 @@ jobs:
       - name: Deploy FTP (bikejc.org)
         if: github.ref == 'refs/heads/main'
         run: |
-          rsync -avzh out/ bikejc.org:public_html/
+          rsync -avzh --delete out/ bikejc.org:public_html/
       - name: Deploy FTP (dev.bikejc.org)
         if: github.ref == 'refs/heads/dev'
         run: |
-          rsync -avzh out/ bikejc.org:dev_html/
+          rsync -avzh --delete out/ bikejc.org:dev_html/
