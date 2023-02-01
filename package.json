@@ -5,9 +5,11 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "export": "next build && next export",
+    "export": "next build && next export && npm run write-redirects",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "write-redirects": "write-redirects.js",
+    "wr": "write-redirects.js"
   },
   "dependencies": {
     "next": "12.1.0",

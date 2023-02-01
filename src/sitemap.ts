@@ -23,7 +23,7 @@ export const Sitemap: Sitemap = {
         "events": {
             "": "Events",
             "jersey-city-ward-tour": {
-                "": "Jersey City Ward Tour", "redirect": "../ward-tour",
+                "": "Jersey City Ward Tour",
             },
             "bike-jcast": {
                 "": "Bike JCAST",
@@ -69,7 +69,7 @@ export const Sitemap: Sitemap = {
             "": "Jersey City Ward Tour",
             "2022": {
                 "": "2022 Jersey City Ward Tour",
-                "registration": { "": { redirect: "https://www.eventbrite.com/e/jersey-city-ward-tour-2022-tickets-324066169637" }, },
+                "registration": { "": { name: "Registration (closed)", redirect: "https://www.eventbrite.com/e/jersey-city-ward-tour-2022-tickets-324066169637" }, },
                 "volunteer": "Volunteer for the Ward Tour",
                 "route": "Ward Tour Route",
                 "finish-line-festival": "Finish Line Festival",

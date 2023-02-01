@@ -1,4 +1,7 @@
 const fs = require('fs')
+const { entries } = Object
+
+const redirects = JSON.parse(fs.readFileSync("redirects.json").toString())
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
@@ -14,6 +17,11 @@ const nextConfig = {
     drupalJsFromFile: fs.readFileSync('./public/files/drupal.js').toString(),
     foundationJsFromFile: fs.readFileSync('./public/files/foundation.min.js').toString(),
   },
+  async redirects() {
+    return entries(redirects).map(([ source, destination ]) => ({
+      source, destination, permanent: false
+    }))
+  }
 }
 
 module.exports = nextConfig
