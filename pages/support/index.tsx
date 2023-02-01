@@ -1,6 +1,7 @@
-import {Page, Triptych} from "../../src/page";
+import {Page} from "../../src/page";
+import Triptych from "../../src/triptych"
 
-    export default function Home() {
+export default function Home() {
         return (
             <Page path={"/support"} preFooter={<Triptych />}>
                 <div className="field field-name-body field-type-text-with-summary field-label-hidden field-wrapper body field">

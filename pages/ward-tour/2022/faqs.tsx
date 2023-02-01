@@ -1,7 +1,7 @@
 import { Page } from "../../../src/page";
 
 const md = `
-## [2022 WARD TOUR REGISTRATION IS OPEN!](https://www.eventbrite.com/e/jersey-city-ward-tour-2022-tickets-324066169637)
+## [2022 Ward Tour registration is closed.](https://www.eventbrite.com/e/jersey-city-ward-tour-2022-tickets-324066169637)
 
 ## Frequently Asked Questions
 

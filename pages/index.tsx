@@ -1,5 +1,6 @@
 import type { NextPage } from 'next'
-import {Page, Triptych} from "../src/page";
+import {Page} from "../src/page";
+import Triptych from "../src/triptych"
 import React from "react";
 
 const md = `
@@ -7,7 +8,7 @@ const md = `
 
 ---
 
-#### The Jersey City Ward Tour is back! **Sunday, June 4, 2023**. Free registration coming soon, [subscribe for updates](#subscribe).
+#### The Jersey City Ward Tour is back! **Sunday, June 4, 2023**. Free registration coming soon, [subscribe for updates](#subscribe), or [sign up to volunteer](/support/volunteer).
 
 ---
 

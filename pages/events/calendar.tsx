@@ -1,4 +1,5 @@
-import {Page, Triptych} from "../../src/page";
+import {Page} from "../../src/page";
+import Triptych from "../../src/triptych"
 
 const md = `
 ---

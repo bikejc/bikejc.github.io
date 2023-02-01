@@ -1,10 +1,6 @@
+import {Breadcrumb} from "./breadcrumbs";
 
 export type Sitemap = { [k: string]: Sitemap } | string
-
-export type Breadcrumb = {
-    href: string
-    text: string
-}
 
 export const Sitemap: Sitemap = {
     "": {
@@ -73,7 +69,7 @@ export const Sitemap: Sitemap = {
             "": "Jersey City Ward Tour",
             "2022": {
                 "": "2022 Jersey City Ward Tour",
-                "registration": { "": { redirect: "https://www.eventbrite.com/e/jersey-city-ward-tour-2022-tickets-324066169637" }, }, //"Register for the 2022 Jersey City Ward Tour", },
+                "registration": { "": { redirect: "https://www.eventbrite.com/e/jersey-city-ward-tour-2022-tickets-324066169637" }, },
                 "volunteer": "Volunteer for the Ward Tour",
                 "route": "Ward Tour Route",
                 "finish-line-festival": "Finish Line Festival",

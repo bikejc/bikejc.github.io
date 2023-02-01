@@ -1,4 +1,5 @@
-import {Page, Triptych} from "../../src/page"
+import {Page} from "../../src/page";
+import Triptych from "../../src/triptych"
 
 import Script from "next/script"
 import {action, mc_id, mc_u} from "../../src/mc";

@@ -1,6 +1,5 @@
 import { Html, Head, Main, NextScript } from 'next/document'
 
-
 export default function Document() {
     return (
         <Html>
@@ -8,29 +7,6 @@ export default function Document() {
                 <meta content="text/html; charset=UTF-8" httpEquiv="Content-Type"></meta>
                 <link href="/favicon.ico" rel="shortcut icon"></link>
                 <meta content="false" httpEquiv="ImageToolbar"></meta>
-                <link href="/files/nivo-slider.css" rel="stylesheet"></link>
-                <link rel="stylesheet" href="/modules/system/system.base.css"></link>
-                <link rel="stylesheet" href="/modules/system/system.messages.css"></link>
-                <link rel="stylesheet" href="/modules/system/system.theme.css"></link>
-                <link rel="stylesheet" href="/modules/book/book.css"></link>
-                <link rel="stylesheet" href="/files/calendar_multiday.css"></link>
-                <link rel="stylesheet" href="/modules/comment/comment.css"></link>
-                <link rel="stylesheet" href="/files/date.css"></link>
-                <link rel="stylesheet" href="/files/date_repeat_field.css"></link>
-                <link rel="stylesheet" href="/modules/field/theme/field.css"></link>
-                <link rel="stylesheet" href="/modules/node/node.css"></link>
-                <link rel="stylesheet" href="/modules/search/search.css"></link>
-                <link rel="stylesheet" href="/modules/user/user.css"></link>
-                <link rel="stylesheet" href="/files/views.css"></link>
-                <link rel="stylesheet" href="/files/ckeditor.css"></link>
-                <link rel="stylesheet" href="/files/ctools.css"></link>
-                <link rel="stylesheet" href="/files/css"></link>
-                <link rel="stylesheet" href="/files/css(1)"></link>
-                <link rel="stylesheet" href="/files/css(2)"></link>
-                <link rel="stylesheet" href="/files/normalize.css"></link>
-                <link rel="stylesheet" href="/files/custom.css"></link>
-                <link rel="stylesheet" href="/sites/all/libraries/nivo-slider/themes/light/light.css"></link>
-                <link rel="stylesheet" href="/files/classic-10_7.css"/>
                 <meta className="foundation-mq-small"></meta>
                 <meta className="foundation-mq-medium"></meta>
                 <meta className="foundation-mq-large"></meta>
