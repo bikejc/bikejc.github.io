@@ -75,6 +75,9 @@ She bicycles up and down both sides of the Hudson and to the beautiful bird sanc
 
 She has been an avid cyclist since bartering with her junior high school to get out of gym in exchange for riding to school and back every day.
 `} />
+                <Trustee id={"tyler"} name={"Tyler Newcomb"} content={`
+Tyler is an Emergency Medical Technician who sold his car in 2021 in search of cheaper and more enjoyable mobility by bike. After responding to a string of traffic fatalities in Jersey City in 2021, he realized that these crashes were needless and preventable, and became involved in safe streets advocacy. Tyler has spoken on the intersection of safe streets with emergency vehicle access, and is a strong advocate for complete streets infrastructure that prevents crashes and enables better mobility.
+                `} />
                 <Trustee id={"patrick"} name={"Patrick Conlon"} title={"Advisor"} content={`
 That's Patrick and his cargo bike. He bought it in Vermont and pedaled it all the way back to Jersey City. "I used to do some delivery work with this pickup truck on 2 wheels but I found out how hard that work is and quickly developed a learned respect for those who do it for a living."
 
@@ -84,7 +87,6 @@ Patrick got involved with BikeJC 10 years ago as a Marshall for the Ward Tour an
 `} />
                 <Trustee id={"tom"} name={"Tom Keane"} content={``} />
                 <Trustee id={"emmanuelle"} name={"Emmanuelle Morgen"} content={``} />
-                <Trustee id={"tyler"} name={"Tyler Newcomb"} content={``} />
             </div>
         </Page>
     )
