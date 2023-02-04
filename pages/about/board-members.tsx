@@ -80,7 +80,7 @@ Emmanuelle is a literary agent by day and a safe streets advocate by night. She 
 
 Emmanuelle has lived in Hudson County since 2009. Before moving to Jersey City’s West Side, she lived in Hoboken and served on the board of [Bike Hoboken](http://bikehoboken.org/) and the [Fund for a Better Waterfront](https://betterwaterfront.org/). She is one of the founders of [Hudson County Complete Streets](https://hudcostreets.org/), a coalition of groups and individuals advocating for transportation equity and safe streets county-wide. She is particularly interested in the cross section of transportation systems and sustainability (the transportation sector represents 40% of carbon emissions, with the highest concentration of emissions in overburdened communities).
 
-In 2021, Emmanuelle met her partner on a bicycle. For their first date, they rode around Liberty State Park and have been exploring all that the county has to offer every since.
+In 2021, Emmanuelle met her partner on a bicycle. For their first date, they rode around Liberty State Park and have been exploring all that the county has to offer ever since.
 `} />
                 <Trustee id={"tyler"} name={"Tyler Newcomb"} content={`
 Tyler is an Emergency Medical Technician who sold his car in 2021 in search of cheaper and more enjoyable mobility by bike. After responding to a string of traffic fatalities in Jersey City in 2021, he realized that these crashes were needless and preventable, and became involved in safe streets advocacy. Tyler has spoken on the intersection of safe streets with emergency vehicle access, and is a strong advocate for complete streets infrastructure that prevents crashes and enables better mobility.
