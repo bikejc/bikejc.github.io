@@ -57,7 +57,7 @@ Beatriz has been cycling (for transportation!) since she was a kid, in many citi
                 <Trustee id={"ryan"} name={"Ryan Williams"} title={"Secretary"} content={`
 Ryan is a computer programmer and long-time bike-share user who bought an e-bike during the pandemic and [is obsessed with their potential to revolutionize urban transportation](https://ebikes.neighbor-ryan.org/).
 
-He maintains a Citibike dashboard at [ctbk.dev](https://ctbk.dev/), and other transit/data related projects at [neighbor-ryan.org](https://neighbor-ryan.org/).
+He maintains a Citibike dashboard at [ctbk.dev](https://ctbk.dev/), other transit/data related projects at [neighbor-ryan.org](https://neighbor-ryan.org/), and also advocates for pedestrian and transit improvements around the county with [Hudson County Complete Streets](https://hudcostreets.org/).
 `} />
                 <Trustee id={"daniel"} name={"Daniel Morteh"} content={`
 Born and raised in Jersey City, Daniel Morteh has been a cycling enthusiast for 12 years. He bought his first bike at age 24 just to get to work on time and it started a deep passion for cycling. Now at 36 years old Daniel has evolved from a city commuter to endurance cyclist participating in as many Century (100 mile) bike rides as possible.
@@ -75,6 +75,13 @@ She bicycles up and down both sides of the Hudson and to the beautiful bird sanc
 
 She has been an avid cyclist since bartering with her junior high school to get out of gym in exchange for riding to school and back every day.
 `} />
+                <Trustee id={"emmanuelle"} name={"Emmanuelle Morgen"} content={`
+Emmanuelle is a literary agent by day and a safe streets advocate by night. She came to bike advocacy when, on one of many trips north-south through Hudson County, she realized that most bike lanes end at municipal boundaries even though the roadways continue.
+
+Emmanuelle has lived in Hudson County since 2009. Before moving to Jersey City’s West Side, she lived in Hoboken and served on the board of [Bike Hoboken](http://bikehoboken.org/) and the [Fund for a Better Waterfront](https://betterwaterfront.org/). She is one of the founders of [Hudson County Complete Streets](https://hudcostreets.org/), a coalition of groups and individuals advocating for transportation equity and safe streets county-wide. She is particularly interested in the cross section of transportation systems and sustainability (the transportation sector represents 40% of carbon emissions, with the highest concentration of emissions in overburdened communities).
+
+In 2021, Emmanuelle met her partner on a bicycle. For their first date, they rode around Liberty State Park and have been exploring all that the county has to offer every since.
+`} />
                 <Trustee id={"tyler"} name={"Tyler Newcomb"} content={`
 Tyler is an Emergency Medical Technician who sold his car in 2021 in search of cheaper and more enjoyable mobility by bike. After responding to a string of traffic fatalities in Jersey City in 2021, he realized that these crashes were needless and preventable, and became involved in safe streets advocacy. Tyler has spoken on the intersection of safe streets with emergency vehicle access, and is a strong advocate for complete streets infrastructure that prevents crashes and enables better mobility.
                 `} />
@@ -86,7 +93,6 @@ He became a resident of the Heights area of Jersey City in 1991 and lived there 
 Patrick got involved with BikeJC 10 years ago as a Marshall for the Ward Tour and joined the board of trustees about 7 years ago. "I was honored to serve as BikeJC's president and I think we did a good job of advancing the organization's mission. I am confident that the organization is now on strong footing with its new president, old stalwarts and enthusiastic new trustees!" 
 `} />
                 <Trustee id={"tom"} name={"Tom Keane"} content={``} />
-                <Trustee id={"emmanuelle"} name={"Emmanuelle Morgen"} content={``} />
             </div>
         </Page>
     )
