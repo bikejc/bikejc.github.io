@@ -87,12 +87,21 @@ export function Page({ path, h1, description, banner, article, ctime, mtime, doc
         const sectionMenuItems: Breadcrumb[] = []
         Object.entries(section.sitemap).forEach(([ piece, map ]) => {
             if (piece == "") return
-            const href = map.redirect || `${sectionPath}/${piece}`
-            const target = map.target || (map.redirect?.startsWith("http") && "_blank")
-            const text = (typeof map === 'string') ? map : ((map[""] || map.name) as any as string)
-            // console.log(`piece ${piece} text ${text}`)
-            if (typeof text === "string") {
-                sectionMenuItems.push({href, text, target})
+            let breadcrumb: Breadcrumb | null = null
+            if (typeof map === 'string') {
+                breadcrumb = { text: map, href: `${sectionPath}/${piece}` }
+            } else if ('text' in map) {
+                breadcrumb = map as Breadcrumb
+                if (breadcrumb.href.startsWith("http")) {
+                    breadcrumb.target = "_blank"
+                }
+            } else {
+                if ("" in map) {
+                    breadcrumb = { text: map[""] as string, href: `${sectionPath}/${piece}` }
+                }
+            }
+            if (breadcrumb) {
+                sectionMenuItems.push(breadcrumb)
             }
         })
         if (sectionMenuItems.length) {

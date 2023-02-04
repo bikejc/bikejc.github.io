@@ -58,8 +58,8 @@ export const Sitemap: Sitemap = {
         "resources": {
             "": "Resources",
             // "citi-bike-usage-jersey-city-2018": "Citi Bike Usage 2018",
-            "ctbk.dev": { name: "Citi Bike Dashboard", redirect: "https://ctbk.dev/?r=jh", },
-            "bike-maps": { name: "Bike Maps", redirect: "https://bikejc.github.io/maps", },
+            "ctbk.dev": { text: "Citi Bike Dashboard", href: "https://ctbk.dev/?r=jh", },
+            "bike-maps": { text: "Bike Maps", href: "https://bikejc.github.io/maps", },
             "rules-road": "Rules of the Road",
             "national-bike-registry": "National Bike Registry",
             // "speed-hump-requests": "Speed Hump Requests",
@@ -71,7 +71,7 @@ export const Sitemap: Sitemap = {
             "": "Jersey City Ward Tour",
             "2022": {
                 "": "2022 Jersey City Ward Tour",
-                "registration": { name: "Registration (closed)", redirect: "https://www.eventbrite.com/e/jersey-city-ward-tour-2022-tickets-324066169637" },
+                "registration": { text: "Registration (closed)", href: "https://www.eventbrite.com/e/jersey-city-ward-tour-2022-tickets-324066169637" },
                 "volunteer": "Volunteer for the Ward Tour",
                 "route": "Ward Tour Route",
                 "finish-line-festival": "Finish Line Festival",
