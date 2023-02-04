@@ -1,12 +1,13 @@
 import React from "react";
 import {Breadcrumb} from "./breadcrumbs";
 
-export function MenuListItem({ idx, n, active, text, href, }: {
+export function MenuListItem({ idx, n, active, text, href, target, }: {
     idx: number
     n: number
     active: boolean
     text: string
     href: string
+    target?: string
 }) {
     let classes = []
     let linkClasses = []
@@ -25,7 +26,7 @@ export function MenuListItem({ idx, n, active, text, href, }: {
     }
     return (
         <li key={text} className={classes.join(" ")}>
-            <a href={href} className={linkClasses.join(" ")}>{text}</a>
+            <a href={href} target={target} className={linkClasses.join(" ")}>{text}</a>
         </li>
     )
 }
@@ -43,12 +44,12 @@ export function SectionMenu({ title, activePath, breadcrumbs }: SectionMenu) {
             <h2 className="block-title">{title}</h2>
             <div className="menu-block-wrapper menu-block-1 menu-name-main-menu parent-mlid-0 menu-level-2">
                 <ul className="menu">{
-                    breadcrumbs.map(({ href, text }, idx) =>
+                    breadcrumbs.map(({ href, text, target, }, idx) =>
                         <MenuListItem
                             key={text}
                             idx={idx} n={numBreadcrumbs}
                             active={!!activePath && href == activePath}
-                            text={text} href={href}
+                            text={text} href={href} target={target}
                         />
                     )
                 }</ul>

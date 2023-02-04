@@ -3,6 +3,7 @@ import React from "react";
 export type Breadcrumb = {
     href: string
     text: string
+    target?: string
 }
 
 export function Breadcrumbs({ breadcrumbs }: { breadcrumbs: Breadcrumb[] }) {

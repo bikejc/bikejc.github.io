@@ -78,24 +78,26 @@ export function Page({ path, h1, description, banner, article, ctime, mtime, doc
     let sectionMenu: SectionMenu | undefined = undefined
     if (!root) {
         const sectionPath = (typeof sitemap === 'string') ? dirname(path) : path
-        const { name: sectionName, sitemap: sectionMap } = lookup(sectionPath)
-        if (!(typeof sectionName === 'string')) {
-            throw Error(`Sitemap error: sectionPath ${sectionPath} must have string name, got:`, sectionName)
+        const section = lookup(sectionPath)
+        // console.log("section:", section)
+        if (!(typeof section.name === 'string')) {
+            throw Error(`Sitemap error: sectionPath ${sectionPath} must have string name, got:`, section.name)
         }
         // console.log("sectionMap:", sectionMap)
         const sectionMenuItems: Breadcrumb[] = []
-        Object.entries(sectionMap).forEach(([ piece, map ]) => {
+        Object.entries(section.sitemap).forEach(([ piece, map ]) => {
             if (piece == "") return
-            const href = `${sectionPath}/${piece}`
-            const text = (typeof map === 'string') ? map : (map[""] as any as string)
+            const href = map.redirect || `${sectionPath}/${piece}`
+            const target = map.target || (map.redirect?.startsWith("http") && "_blank")
+            const text = (typeof map === 'string') ? map : ((map[""] || map.name) as any as string)
             // console.log(`piece ${piece} text ${text}`)
             if (typeof text === "string") {
-                sectionMenuItems.push({href, text,})
+                sectionMenuItems.push({href, text, target})
             }
         })
         if (sectionMenuItems.length) {
             sectionMenu = {
-                title: sectionName,
+                title: section.name,
                 activePath: path,
                 breadcrumbs: sectionMenuItems
             }

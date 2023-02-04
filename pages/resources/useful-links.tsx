@@ -22,20 +22,20 @@ export default function Home() {
     return (
         <Page path={"/resources/useful-links"}>
             <h4>Websites for some of our friends in biking, bike advocacy, government, and related fields:</h4>
-            <Link label="Jersey City government" href="https://cityofjerseycity.com/" />
-            <Link label="New Jersey Bike &amp; Walk Coalition" href="https://newjerseybikewalk.org/" />
-            <Link label="New Jersey Bicycle &amp; Pedestrian Resource Center" href="https://njbikeped.org/" />
-            <Link label="Bicycle Touring Club of North Jersey" href="https://btcnj.com/" />
-            <Link label="Hudson County Transportation Management Association" href="https://hudsontma.org/" />
-            <Link label="The League of American Bicyclists" href="https://www.bikeleague.org/" />
-            <Link label="Bike&amp;Walk Montclair" href="https://bikewalkmontclair.org/" />
-            <Link label="Bike And Walk Morristown" href="https://bikewalktown.org/" />
-            <Link label="Bike New York" href="https://bikenewyork.org/" />
-            <Link label="Boys &amp; Girls Club of Newark Bike Exchange" href="https://bike.bgcn.org/" />
-            <Link label="East Coast Greenway" href="https://greenway.org/" />
-            <Link label="Passaic Pedal" href="https://www.facebook.com/pages/Passaic-Pedal/858036867546238" text="facebook.com/passaicpedal" />
-            <Link label="Five Borough Bicycle Club" href="https://www.5bbc.org/" />
-            <Link label="Transportation Alternatives" href="https://www.transalt.org/" />
+            <Link label={"Jersey City government"} href="https://cityofjerseycity.com/" />
+            <Link label={"New Jersey Bike & Walk Coalition"} href="https://njbwc.org/" />
+            <Link label={"New Jersey Bicycle & Pedestrian Resource Center"} href="https://njbikeped.org/" />
+            <Link label={"Bicycle Touring Club of North Jersey"} href="https://btcnj.com/" />
+            <Link label={"Hudson County Transportation Management Association"} href="https://hudsontma.org/" />
+            <Link label={"The League of American Bicyclists"} href="https://www.bikeleague.org/" />
+            <Link label={"Bike&Walk Montclair"} href="https://bikewalkmontclair.org/" />
+            <Link label={"Bike And Walk Morristown"} href="http://bikewalktown.org/" />
+            <Link label={"Bike New York"} href="https://bikenewyork.org/" />
+            <Link label={"Boys & Girls Club of Newark Bike Exchange"} href="https://bike.bgcn.org/" />
+            <Link label={"East Coast Greenway"} href="https://greenway.org/" />
+            <Link label={"Passaic Pedal"} href="https://www.facebook.com/pages/Passaic-Pedal/858036867546238" text="facebook.com/passaicpedal" />
+            <Link label={"Five Borough Bicycle Club"} href="https://www.5bbc.org/" />
+            <Link label={"Transportation Alternatives"} href="https://www.transalt.org/" />
 
             <h4>Bike Shops in Jersey City:</h4>
             <Link label="Grove Street Bicycles" href="https://grovestreetbicycles.com/">

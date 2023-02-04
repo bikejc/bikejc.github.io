@@ -1,6 +1,7 @@
 import {Breadcrumb} from "./breadcrumbs";
 
-export type Sitemap = { [k: string]: Sitemap } | string
+type Entry = Breadcrumb | string
+type Sitemap = { [k: string]: Sitemap | Entry }
 
 export const Sitemap: Sitemap = {
     "": {
@@ -56,20 +57,21 @@ export const Sitemap: Sitemap = {
         },
         "resources": {
             "": "Resources",
-            "citi-bike-usage-jersey-city-2018": "Citi Bike Usage 2018",
+            // "citi-bike-usage-jersey-city-2018": "Citi Bike Usage 2018",
+            "ctbk.dev": { name: "Citi Bike Dashboard", redirect: "https://ctbk.dev/?r=jh", },
+            "bike-maps": { name: "Bike Maps", redirect: "https://bikejc.github.io/maps", },
             "rules-road": "Rules of the Road",
-            "bike-maps": "Bike Maps",
             "national-bike-registry": "National Bike Registry",
-            "speed-hump-requests": "Speed Hump Requests",
-            "bike-racks-businesses": "Bike Racks for Businesses",
+            // "speed-hump-requests": "Speed Hump Requests",
+            // "bike-racks-businesses": "Bike Racks for Businesses",
             "useful-links": "Useful Links",
         },
-        "contact-us": "Contact",
+        "contact-us": { "": "Contact" },
         "ward-tour": {
             "": "Jersey City Ward Tour",
             "2022": {
                 "": "2022 Jersey City Ward Tour",
-                "registration": { "": { name: "Registration (closed)", redirect: "https://www.eventbrite.com/e/jersey-city-ward-tour-2022-tickets-324066169637" }, },
+                "registration": { name: "Registration (closed)", redirect: "https://www.eventbrite.com/e/jersey-city-ward-tour-2022-tickets-324066169637" },
                 "volunteer": "Volunteer for the Ward Tour",
                 "route": "Ward Tour Route",
                 "finish-line-festival": "Finish Line Festival",
