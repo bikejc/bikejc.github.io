@@ -4,6 +4,7 @@ import Triptych from "../../src/triptych"
 import Script from "next/script"
 import {action, mc_id, mc_u} from "../../src/mc";
 import React from "react";
+const {entries} = Object;
 
 export default function Home() {
     return (
@@ -33,33 +34,27 @@ export default function Home() {
                                 <input type="text" name="LNAME" id="mce-LNAME" />
                             </div>
                             <div className="mc-field-group input-group">
-                                <strong>Roles </strong>
-                                <ul>
-                                    <li>
-                                        <input type="checkbox" value="1" name="group[383869][1]" id="mce-group[383869]-383869-0" />
-                                        <label htmlFor="mce-group[383869]-383869-0">Marshal</label>
-                                    </li>
-                                    <li>
-                                        <input type="checkbox" value="2" name="group[383869][2]" id="mce-group[383869]-383869-1" />
-                                        <label htmlFor="mce-group[383869]-383869-1">Outreach</label>
-                                    </li>
-                                    <li>
-                                        <input type="checkbox" value="4" name="group[383869][4]" id="mce-group[383869]-383869-2" />
-                                        <label htmlFor="mce-group[383869]-383869-2">Fundraising</label>
-                                    </li>
-                                    <li>
-                                        <input type="checkbox" value="8" name="group[383869][8]" id="mce-group[383869]-383869-3" />
-                                        <label htmlFor="mce-group[383869]-383869-3">Bike Valet</label>
-                                    </li>
-                                    <li>
-                                        <input type="checkbox" value="16" name="group[383869][16]" id="mce-group[383869]-383869-4" />
-                                        <label htmlFor="mce-group[383869]-383869-4">Survey Canvassing</label>
-                                    </li>
-                                    <li>
-                                        <input type="checkbox" value="32" name="group[383869][32]" id="mce-group[383869]-383869-5" />
-                                        <label htmlFor="mce-group[383869]-383869-5">Other</label>
-                                    </li>
-                                </ul>
+                                <strong>Roles</strong>
+                                <ul>{
+                                    entries({
+                                        'Ward Tour': 64,
+                                        'Marshal': 1,
+                                        'Outreach': 2,
+                                        'Fundraising': 4,
+                                        'Bike Valet': 8,
+                                        'Survey Canvassing': 16,
+                                        'Other': 32,
+                                    }).map(([ name, flag ], idx) => {
+                                        const groupId = 383869
+                                        const group = `group[${groupId}]`
+                                        idx -= 1  // Ward Tour" was prepended later, keep others stable (though I don't think it matters)
+                                        const id = `mce-${group}-${groupId}-${idx}`
+                                        return <li key={flag}>
+                                            <input type="checkbox" value={flag} name={`${group}[${flag}]`} id={id}/>
+                                            <label htmlFor={id}>{name}</label>
+                                        </li>
+                                    })
+                                }</ul>
                             </div>
                             <div hidden={true}><input type="hidden" name="tags" value="4424169" /> {/* www-volunteer-signup */} </div>
                             <div id="mce-responses" className="clear">
