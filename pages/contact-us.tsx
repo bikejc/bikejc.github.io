@@ -1,9 +1,8 @@
 import {Page} from "../src/page";
-import Triptych from "../src/triptych"
 
 export default function Home() {
     return (
-        <Page path={"/contact-us"} preFooter={<Triptych />}>
+        <Page path={"/contact-us"}>
             <form acceptCharset="UTF-8" action="/contact-us" className="webform-client-form webform-client-form-10" id="webform-client-form-10" method="post">
                 <div>
                     <div className="form-item webform-component webform-component-textfield webform-component--name">

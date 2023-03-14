@@ -1,4 +1,4 @@
-import {Sitemap} from "./sitemap";
+import {Children, Sitemap} from "./sitemap";
 import {MenuListItem} from "./sectionMenu";
 import React from "react";
 
@@ -294,14 +294,19 @@ export function SmallMenu() {
 }
 
 export function BigMenu({ path }: { path: string }) {
+    const topLevelItems: Children = Sitemap.children || {}
     const topLevelMap = (Sitemap as any)[""] as any as { [k: string]: string }
-    const numTopLevels = Object.keys(topLevelMap).length
-    const menuListItems = Object.entries(topLevelMap).map(
-        ([ name, map ], idx) => {
-            const text = (typeof map === 'string') ? map : ((map as any)[""] as any as string)
+    const numTopLevels = Object.keys(Sitemap).length
+    const menuListItems = Object.entries(topLevelItems).map(
+        ([ name, child ], idx) => {
+            if (typeof child === 'object' && 'text' in child) {
+                throw new Error(`Unrecognized top-level child: ${child}`)
+            }
+            child = (typeof child === 'string') ? { title: child } : child
+            const text = child.title
             const topLevelPath = `/${name}`
             const n = topLevelPath.length
-            if (name === 'ward-tour') return null
+            if (child.header === false) return null
             return (
                 <MenuListItem
                     key={name}

@@ -36,13 +36,17 @@ Full route: https://ridewithgps.com/routes/38744234
 
 We’ll ride on streets (or sometimes on one side of a street) that are closed to motor-vehicle traffic by the Jersey City Police Department. Officers on bikes and in motor vehicles will escort us throughout the ride.
 
-### Start: City Hall - [280 Grove St., at Montgomery Street](https://goo.gl/maps/tMHCxVZU4Q3qBGvc8) <a id="start"></a>
+### Start: City Hall <a id="start"></a>
+[280 Grove St., at Montgomery Street](https://goo.gl/maps/tMHCxVZU4Q3qBGvc8)
+
 Registration begins at 9am, roll out at 11am.
 
-### End: [Jersey City Jazz Festival](https://riverviewjazz.org/jersey-city-jazz-festival) <a id="end"></a>
-[107 Morgan St.](https://goo.gl/maps/YLfwHwet3ATYxVc79): riders will find a bike parking area and great food, drink, and entertainment options there!
+### End: Jersey City Jazz Festival <a id="end"></a>
+[Jersey City Jazz Festival](https://riverviewjazz.org/jersey-city-jazz-festival), [107 Morgan St.](https://goo.gl/maps/YLfwHwet3ATYxVc79).
 
-## Finish Line: Jersey City Jazz Festival  <a id="finish-line"></a>
+Riders will find a bike parking area and great food, drink, and entertainment options there!
+
+## Finish Line: Jersey City Jazz Festival <a id="finish-line"></a>
 
 We're excited to partner with [the Jersey City Jazz Festival](https://riverviewjazz.org/jersey-city-jazz-festival) for this year's "Finish Line Festival!"
 
@@ -71,7 +75,8 @@ Stop by, enjoy some jazz, and get checked in for the Tour.
 
 ---
 
-### [**Citi Bike**](https://citibikenyc.com/) is offering members 3-hour rentals on Ward Tour day! <a id="citibike"></a>
+### Citi Bike <a id="citibike"></a>
+[**Citi Bike**](https://citibikenyc.com/) is offering members 3-hour rentals on Ward Tour day!
 - Open the Lyft app
 - Tap on the Menu (top-left corner)
 - Tap on Rewards

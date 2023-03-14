@@ -1,14 +1,14 @@
 import {Page} from "../../src/page";
-import Triptych from "../../src/triptych"
 
 import Script from "next/script"
 import {action, mc_id, mc_u} from "../../src/mc";
 import React from "react";
+
 const {entries} = Object;
 
 export default function Home() {
     return (
-        <Page path={"/support/volunteer"} preFooter={<Triptych />}>
+        <Page path={"/support/volunteer"}>
             <div className="field field-name-body field-type-text-with-summary field-label-hidden field-wrapper body field">
 
                 <p>Volunteer with Bike JC and help make Jersey City a better place for bicyclists of all kinds and in every neighborhood.</p>

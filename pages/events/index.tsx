@@ -1,16 +1,13 @@
 import {Page} from "../../src/page";
-import Triptych from "../../src/triptych"
-import {schedule2023Blurb, wtBlurb} from "../../src/blurbs";
+import {upcomingEventsBlurb} from "../../src/blurbs";
 import MD from "../../src/md";
 
 export default function Home() { return (
     <Page
         path={"/events"}
         banner="/files/bike-tour-back-banner.jpg"
-        preFooter={<Triptych />}
     >
-        {wtBlurb}
-        {schedule2023Blurb}
+        {upcomingEventsBlurb}
         {MD(`
 Naturally, most of our events involve riding bikes!
 

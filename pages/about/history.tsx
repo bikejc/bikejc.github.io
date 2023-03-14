@@ -24,4 +24,4 @@ All these measures have helped build a bike culture in Jersey City—but they’
 With your help, we’ll get there! Please consider volunteering, or just participating, in one of our events; donating to Bike JC or helping us secure more substantial funding; and letting our government, business and community leaders know that you support better biking in Jersey City just as much as we do. And whatever else you do … please bike in JC! Get out and ride, for any reason, or for no reason. The more we do it, and the more of us who do it, the better it gets for all of us.
 `
 
-export default function Home() { return <Page path={"/about/founding"} md={md} /> }
+export default function Home() { return <Page path={"/about/history"} md={md} /> }

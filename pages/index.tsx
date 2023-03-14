@@ -1,9 +1,8 @@
-import type { NextPage } from 'next'
+import type {NextPage} from 'next'
 import {Page} from "../src/page";
-import Triptych from "../src/triptych"
 import React from "react";
 import MD from "../src/md";
-import {schedule2023Blurb, wtBlurb} from "../src/blurbs";
+import {upcomingEventsBlurb} from "../src/blurbs";
 
 const Home: NextPage = () => {
   return (
@@ -16,15 +15,13 @@ const Home: NextPage = () => {
               "/files/BikeJcHomeSlide5.jpg",
               "/img/ward-tour-forever-sticker-resized.jpg",
           ]}
-          preFooter={<Triptych />}
       >
           {MD(`
-#### Welcome to the official website of Bike JC, Jersey City’s advocacy group for bicyclists!
+Welcome to the official website of Bike JC, Jersey City’s advocacy group for bicyclists!
 
 ---
 `)}
-          {wtBlurb}
-          {schedule2023Blurb}
+          {upcomingEventsBlurb}
           {MD(`
 Bike JC is a citizen-based non-profit advocacy organization that aims to make Jersey City streets
 safe and welcoming for bicyclists, by promoting bicycle lane creation, additional bicycle rack

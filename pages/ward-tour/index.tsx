@@ -1,6 +1,4 @@
 import {Page} from "../../src/page";
-import Triptych from "../../src/triptych"
-import Markdown from "../../src/md";
 
 const md = `
 #### The Jersey City Ward Tour is back on Sunday, June 4, 2023, at 11:00am.
@@ -28,9 +26,7 @@ export default function Home() {
             path={"/ward-tour"}
             banner="/files/BikeJcHomeSlide2.jpg"
             description={description}
-            preFooter={<Triptych/>}
-        >
-            {Markdown(md + bodyMd)}
-        </Page>
+            md={md + bodyMd}
+        />
     )
 }
