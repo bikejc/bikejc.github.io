@@ -24,6 +24,7 @@ export const Sitemap: Sitemap = {
         "projects": {
             title: "Projects",
             children: {
+                "bike-bus": { text: "Bike Bus", href: "/bike-bus" },
                 "bike-lanes": "Bike Lanes",
                 "bike-share": "Bike Share",
                 "bike-racks": "Bike Racks",
