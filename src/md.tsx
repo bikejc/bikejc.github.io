@@ -26,7 +26,7 @@ const renderHeading = (props: ReactMarkdownProps) => {
     // console.log("heading:", props)
     const { node, children } = props
     const elems = node.children
-    const TagName: React.FC<{}> = node.tagName as any
+    const TagName = node.tagName as keyof JSX.IntrinsicElements
     if (elems.length == 0) {
         throw new Error(`No node.children found in header: ${props}, ${children}`)
     }
@@ -45,15 +45,12 @@ const renderHeading = (props: ReactMarkdownProps) => {
 
 export default function Markdown(content: string) {
     return <ReactMarkdown
-        children={content}
         remarkPlugins={[remarkGfm]}
         rehypePlugins={[rehypeRaw]}
         components={{
             a: ({ href, children }: { href?: string, children: ReactNode, }) =>
-                <Link href={href || "#"}>
-                    <a target={href?.startsWith("http") ? "_blank" : "_self"}>
-                        {children}
-                    </a>
+                <Link href={href || "#"} target={href?.startsWith("http") ? "_blank" : "_self"}>
+                    {children}
                 </Link>,
             h1: renderHeading,
             h2: renderHeading,
@@ -62,5 +59,7 @@ export default function Markdown(content: string) {
             h5: renderHeading,
             h6: renderHeading,
         }}
-    />
+    >
+        {content}
+    </ReactMarkdown>
 }

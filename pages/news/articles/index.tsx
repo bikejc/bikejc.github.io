@@ -40,40 +40,8 @@ export default function Home() {
                         <Article
                             title="Ward Tour 2022 registration now open!"
                             href="https://www.eventbrite.com/e/jersey-city-ward-tour-2022-tickets-324066169637"
-                            content={`
-The Jersey City Ward Tour is back! Sunday, June 5, roll out 11am from City Hall.
-`}
+                            content={`The Jersey City Ward Tour is back! Sunday, June 5, roll out 11am from City Hall.`}
                         />
-                    </div>
-                    {/* TODO: implement pagination */}
-                    <h2 className="element-invisible">
-                        Pages
-                    </h2>
-                    <div className="pagination-centered">
-                        <div className="item-list">
-                            <ul className="pagination pager">
-                                <li className="current first">
-                                    <Link href="/news/articles">
-                                        1
-                                    </Link>
-                                </li>
-                                <li>
-                                    <Link href="/news/articles?page=1"><a title="Go to page 2">
-                                        2
-                                    </a></Link>
-                                </li>
-                                <li className="arrow">
-                                    <Link href="/news/articles?page=1"><a title="Go to next page">
-                                        next ›
-                                    </a></Link>
-                                </li>
-                                <li className="arrow last">
-                                    <Link href="/news/articles?page=1"><a title="Go to last page">
-                                        last »
-                                    </a></Link>
-                                </li>
-                            </ul>
-                        </div>
                     </div>
                 </div>
             </section>

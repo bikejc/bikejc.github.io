@@ -9,6 +9,7 @@ import Header from "./header";
 import Footer from "./footer";
 import {Breadcrumb, Breadcrumbs} from "./breadcrumbs";
 import Triptych from "./triptych";
+import {Img} from "./img";
 
 export function Main({ breadcrumbs, sectionMenu, children }: {
     sectionMenu?: SectionMenu
@@ -31,7 +32,7 @@ export type Page = {
     path: string
     h1?: string
     description?: string
-    banner?: string[] | string
+    banner?: Img[] | Img
     article?: boolean
     ctime?: string
     mtime?: string
@@ -42,12 +43,10 @@ export type Page = {
     children?: ReactNode
 }
 
-export const Pg = (page: Page) => () => <Page {...page} />
-
 export function Page({ path, h1, description, banner, article, ctime, mtime, documentClasses, articleClasses, md, preFooter=<Triptych/>, children, }: Page) {
     if (!banner) {
-        banner = [ "/files/lincoln-park-banner.jpg" ]
-    } else if (typeof banner === "string") {
+        banner = [{ src: "/files/lincoln-park-banner.jpg", alt: "Ward Tour participants in Lincoln Park" } ]
+    } else if ('src' in banner) {
         banner = [ banner ]
     }
 
@@ -70,17 +69,21 @@ export function Page({ path, h1, description, banner, article, ctime, mtime, doc
     //     </>
     // }
 
-    const { sitemap, breadcrumbs, siblings } = res
+    const { sitemap, breadcrumbs, parent } = res
     // console.log("res:", res)
 
     let sectionMenu: SectionMenu | undefined = undefined
     if (!root) {
         // console.log("sectionMap:", sectionMap)
         const sectionMenuItems: Breadcrumb[] = []
-        let children = sitemap?.children, menuPath = path
+        let children = sitemap?.children, menuPath = path, title = sitemap.title
         if (!children) {
-            children = siblings
+            children = parent?.children
             menuPath = path.substring(0, path.lastIndexOf('/'))
+            if (!parent) {
+                throw new Error(`No parent or children: ${path}`)
+            }
+            title = parent.title
         }
         if (children) {
             Object.entries(children).forEach(([piece, child]) => {
@@ -100,7 +103,7 @@ export function Page({ path, h1, description, banner, article, ctime, mtime, doc
             })
             if (sectionMenuItems.length) {
                 sectionMenu = {
-                    title: sitemap.title,
+                    title,
                     activePath: path,
                     breadcrumbs: sectionMenuItems
                 }
@@ -122,7 +125,7 @@ export function Page({ path, h1, description, banner, article, ctime, mtime, doc
 
     const title = sitemap.title
     const wrapArticle = (children: ReactNode) => <>
-        <article about={path} className={`node node-page view-mode-full ${(articleClasses || []).join(" ")}`} typeof="sioc:Item foaf:Document">
+        <article className={`node node-page view-mode-full ${(articleClasses || []).join(" ")}`}>
             <div className="field field-name-body field-type-text-with-summary field-label-hidden field-wrapper body field">
                 {children}
             </div>
@@ -157,21 +160,13 @@ export function Page({ path, h1, description, banner, article, ctime, mtime, doc
             <Head>
                 <title>{title}</title>
                 <meta charSet="utf-8"/>
-                <link rel="icon" href="/misc/favicon.ico" type="image/x-icon"/>
+                <link rel="icon" href="/favicon.ico" type="image/x-icon"/>
             </Head>
-            <div className="skip-link">
-                <a href="#main-content" className="element-invisible element-focusable">Skip to main content</a>
-            </div>
             <div className={`page ${(documentClasses || []).join(" ")}`} role="document">
                 <Header path={path} banners={banner} />
-                <Main
-                    sectionMenu={sectionMenu}
-                    breadcrumbs={root ? [] : breadcrumbs}
-                >
+                <Main sectionMenu={sectionMenu} breadcrumbs={root ? [] : breadcrumbs} >
                     <h1 className="title" id="page-title">{h1 || title}</h1>
-                    {
-                        article ? wrapArticle(children) : children
-                    }
+                    {article ? wrapArticle(children) : children}
                 </Main>
                 {preFooter}
                 <Footer />

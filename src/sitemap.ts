@@ -112,7 +112,7 @@ export const Sitemap: Sitemap = {
     }
 }
 
-export type SitePath = { sitemap: Sitemap, breadcrumbs: Breadcrumb[], siblings?: Children }
+export type SitePath = { sitemap: Sitemap, breadcrumbs: Breadcrumb[], parent?: Sitemap }
 
 export function lookup(path: string): SitePath {
     const root = path == '/' || path == ''
@@ -124,13 +124,14 @@ export function lookup(path: string): SitePath {
     let sitemap: Sitemap = Sitemap
     let href = ""
     const breadcrumbs: Breadcrumb[] = [{ text: "Home", href: "/" }]
-    let siblings: Children | undefined
+    let parent: Sitemap | undefined
     for (const name of pieces) {
         href = `${href}/${name}`
         if (!(typeof sitemap === 'object' && 'title' in sitemap)) {
             throw new Error(`No child ${name} found for ${href}`)
         }
-        siblings = sitemap.children
+        parent = sitemap
+        const siblings = parent.children
         let child: Child | undefined = siblings && siblings[name]
         if (!child) {
             throw new Error(`No child ${name} found for ${href}`)
@@ -144,5 +145,5 @@ export function lookup(path: string): SitePath {
         breadcrumbs.push({ text: sitemap.title, href })
     }
 
-    return { sitemap, breadcrumbs, siblings }
+    return { sitemap, breadcrumbs, parent }
 }

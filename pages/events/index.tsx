@@ -1,11 +1,12 @@
 import {Page} from "../../src/page";
 import {upcomingEventsBlurb} from "../../src/blurbs";
 import MD from "../../src/md";
+import {helmets} from "../../src/img";
 
 export default function Home() { return (
     <Page
         path={"/events"}
-        banner="/files/bike-tour-back-banner.jpg"
+        banner={helmets}
     >
         {upcomingEventsBlurb}
         {MD(`

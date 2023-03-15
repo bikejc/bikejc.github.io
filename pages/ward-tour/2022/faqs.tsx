@@ -1,4 +1,5 @@
 import { Page } from "../../../src/page";
+import {triptych} from "../../../src/img";
 
 const md = `
 ## [2022 Ward Tour registration is closed.](https://www.eventbrite.com/e/jersey-city-ward-tour-2022-tickets-324066169637)
@@ -118,4 +119,4 @@ Since the tour is free, and run by a volunteer staff, we ask everyone to please 
 No! The Ward Tour is officially rain-or-shine. It will still be held the event of rain, unless there are safety issues such as lightning storms, very high winds, hail, etc. If the weather is severe enough that the tour absolutely must be canceled we will alert riders via email and on social media asap.
 `
 
-export default function Home() { return <Page path={"/ward-tour/2022/faqs"} banner="/files/wardtourbanner1_5.jpg" md={md} /> }
+export default function Home() { return <Page path={"/ward-tour/2022/faqs"} banner={triptych} md={md} /> }

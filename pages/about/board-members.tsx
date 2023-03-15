@@ -14,9 +14,7 @@ const Trustee = ({ name, title = "Trustee", src, id, width, height, content }: {
     src = src || `/img/${id}-bio.png`
     return (
         <div id={id} className="field-collection-view clearfix view-mode-full">
-            <div about="/field-collection/field-board-members-bio/5"
-                 className="entity entity-field-collection-item field-collection-item-field-board-members-bio clearfix"
-            >
+            <div className="entity entity-field-collection-item field-collection-item-field-board-members-bio clearfix">
                 <div className="content">
                     <div className="field field-name-field-bio-position-title field-type-text field-label-hidden field-wrapper">
                         {title}
@@ -25,7 +23,7 @@ const Trustee = ({ name, title = "Trustee", src, id, width, height, content }: {
                         {name}
                     </div>
                     <div className="field field-name-field-bio-member-photo field-type-image field-label-hidden field-wrapper">
-                        <img alt={`${name} bio pic`} width={width || 200} height={height || 113} src={src} typeof="foaf:Image" />
+                        <img alt={`${name} bio pic`} width={width || 200} height={height || 113} src={src} />
                     </div>
                     <div className="field field-name-field-bio-member-about field-type-text-long field-label-hidden field-wrapper">
                         {Markdown(content)}
@@ -40,7 +38,7 @@ const Home: NextPage = () => {
     return (
         <Page
             path={"/about/board-members"}
-            banner={"/files/bike-gathering-page-header.jpg"}
+            banner={{ src: "/files/bike-gathering-page-header.jpg", alt: "Ward Tour participants resting in Lincoln Park "}}
             articleClasses={["node-board-members"]}
         >
             <h4>Meet our Bike JC Board Members</h4>

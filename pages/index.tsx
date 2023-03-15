@@ -3,6 +3,7 @@ import {Page} from "../src/page";
 import React from "react";
 import MD from "../src/md";
 import {upcomingEventsBlurb} from "../src/blurbs";
+import {reservoir} from "../src/img";
 
 const Home: NextPage = () => {
   return (
@@ -10,10 +11,10 @@ const Home: NextPage = () => {
           path={"/"}
           h1={"Welcome to Bike JC"}
           banner={[
-              "/files/BikeJcHomeSlide1.jpg",
-              "/files/BikeJcHomeSlide2.jpg",
-              "/files/BikeJcHomeSlide5.jpg",
-              "/img/ward-tour-forever-sticker-resized.jpg",
+              { src: "/files/BikeJcHomeSlide1.jpg", alt: "Ward Tour participants" },
+              reservoir,
+              { src: "/files/BikeJcHomeSlide5.jpg", alt: "Ward Tour participants and Let's Share a Meal volunteers in Liberty State Park" },
+              { src: "/img/ward-tour-forever-sticker-resized.jpg", alt: "Jersey City Ward Tour – first Sunday in June every year" },
           ]}
       >
           {MD(`

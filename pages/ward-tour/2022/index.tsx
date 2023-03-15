@@ -1,6 +1,7 @@
 import { Page } from "../../../src/page";
 import Markdown from "../../../src/md";
 import {SponsorsList} from "../../support/sponsors";
+import {reservoir} from "../../../src/img";
 
 const md = `
 #### The Jersey City Ward Tour is back on Sunday, June 5, 2022, at 11:00am.
@@ -151,7 +152,7 @@ export default function Home() {
     return (
         <Page
             path={"/ward-tour/2022"}
-            banner="/files/BikeJcHomeSlide2.jpg"
+            banner={reservoir}
             description={description}
         >
             {Markdown(md + bodyMd)}

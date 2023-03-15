@@ -1,4 +1,5 @@
 import { Page } from "../../../src/page";
+import {reservoir} from "../../../src/img";
 
 const md = `
 We're excited to partner with [the Jersey City Jazz Festival](https://riverviewjazz.org/jersey-city-jazz-festival) for this year's "Finish Line Festival!"
@@ -10,4 +11,4 @@ Live music and festivities are scheduled there from 12-6pm.
 ALL RIDERS, OF ALL AGES, and even people who AREN'T riding, are welcome to join us at the end of the Tour, for this "Finish Line Festival."
 `
 
-export default function Home() { return <Page path={"/ward-tour/2022/finish-line-festival"} banner="/files/BikeJcHomeSlide2.jpg" md={md} /> }
+export default function Home() { return <Page path={"/ward-tour/2022/finish-line-festival"} banner={reservoir} md={md} /> }

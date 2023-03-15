@@ -1,4 +1,5 @@
 import { Page } from "../../../src/page";
+import {triptych} from "../../../src/img";
 
 const md = `
 #### WE NEED YOUR HELP TO RUN THE JERSEY CITY WARD TOUR! [SIGN UP TO VOLUNTEER HERE](https://forms.gle/tB5YE4eZ453MwK9i7).
@@ -68,4 +69,4 @@ Thanks again for helping us make this an amazing annual event!
 #### [SIGN UP TO VOLUNTEER HERE](https://forms.gle/tB5YE4eZ453MwK9i7).
 `
 
-export default function Home() { return <Page path={"/ward-tour/2022/volunteer"} banner="/files/wardtourbanner1_2.jpg" md={md} /> }
+export default function Home() { return <Page path={"/ward-tour/2022/volunteer"} banner={triptych} md={md} /> }

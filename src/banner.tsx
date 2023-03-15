@@ -1,6 +1,7 @@
 import React from "react";
+import {Img} from "./img";
 
-export default function Banner({ src }: { src: string }) {
+export default function Banner({ src, alt }: Img) {
     return (
         <section className="l-header-region row">
             <div className="large-12 columns">
@@ -10,7 +11,7 @@ export default function Banner({ src }: { src: string }) {
                             <div className="views-row views-row-1 views-row-odd views-row-first views-row-last">
                                 <div className="views-field views-field-field-page-header-image">
                                     <div className="field-content">
-                                        <img alt="" height="200" src={src} typeof="foaf:Image" width="1000"/>
+                                        <img alt={alt} height="200" src={src} width="1000"/>
                                     </div>
                                 </div>
                             </div>

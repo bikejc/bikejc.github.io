@@ -1,3 +1,8 @@
+const {
+  createVanillaExtractPlugin
+} = require('@vanilla-extract/next-plugin');
+const withVanillaExtract = createVanillaExtractPlugin();
+
 const fs = require('fs')
 const { entries } = Object
 
@@ -24,4 +29,4 @@ const nextConfig = {
   }
 }
 
-module.exports = nextConfig
+module.exports = withVanillaExtract(nextConfig)

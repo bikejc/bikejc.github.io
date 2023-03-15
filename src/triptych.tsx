@@ -1,5 +1,6 @@
 import {action, mc_id, mc_u} from "./mc";
 import React from "react";
+import A from "next-utils/a";
 
 export default function Triptych() {
     return (
@@ -28,7 +29,7 @@ export default function Triptych() {
                     <h4>Follow Bike JC on Twitter</h4>
                     <p>Making Jersey City bike-friendly since 2009</p>
                     <p>Tweeting bike community news since 2010</p>
-                    <p><a href="https://twitter.com/bikejc" target="_blank">Tweet @bikejc!H</a></p>
+                    <p><A href="https://twitter.com/bikejc">Tweet @bikejc!H</A></p>
                 </section>
             </div>
             <div className="triptych-last large-4 columns">
@@ -36,7 +37,7 @@ export default function Triptych() {
                     <h4>Follow us on Instagram</h4>
                     <p>Check out our official instagram account</p>
                     <p>Show us your photos of biking in JC at #bikejc!</p>
-                    <p><a href="https://instagram.com/bikejcgram/" target="_blank">@bikejcgram</a></p>
+                    <p><A href="https://instagram.com/bikejcgram/">@bikejcgram</A></p>
                 </section>
             </div>
         </section>

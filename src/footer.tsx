@@ -1,4 +1,6 @@
 import React from "react";
+import Link from "next/link";
+import A from "next-utils/a";
 
 export default function Footer() {
     return (
@@ -8,32 +10,32 @@ export default function Footer() {
                     <div className="menu-block-wrapper menu-block-2 menu-name-menu-footer-main parent-mlid-0 menu-level-1">
                         <ul className="menu">
                             <li className="first leaf">
-                                <a href="/about">about</a>
+                                <Link href="/about">about</Link>
                             </li>
                             <li className="leaf">
-                                <a href="/projects">projects</a>
+                                <Link href="/projects">projects</Link>
                             </li>
                             <li className="leaf">
-                                <a href="/events">events</a>
+                                <Link href="/events">events</Link>
                             </li>
                             <li className="leaf">
-                                <a href="/news">news</a>
+                                <Link href="/news">news</Link>
                             </li>
                             <li className="leaf">
-                                <a href="/support">support</a>
+                                <Link href="/support">support</Link>
                             </li>
                             <li className="leaf">
-                                <a href="/resources">resources</a>
+                                <Link href="/resources">resources</Link>
                             </li>
                             <li className="last leaf">
-                                <a href="/contact-us">contact</a>
+                                <Link href="/contact-us">contact</Link>
                             </li>
                         </ul>
                     </div>
                 </section>
                 <section className="block block-block site-info block-block-7">
                     <div className="site-credits">
-                        site by <a href="http://www.designsprawl.com/" target="blank">design sprawl</a>
+                        site by <A href="https://designsprawl.com/">design sprawl</A>
                     </div>
                 </section>
             </div>

@@ -1,4 +1,5 @@
 import {Page} from "../../src/page";
+import {reservoir} from "../../src/img";
 
 const md = `
 #### The Jersey City Ward Tour is back on Sunday, June 4, 2023, at 11:00am.
@@ -24,7 +25,7 @@ export default function Home() {
     return (
         <Page
             path={"/ward-tour"}
-            banner="/files/BikeJcHomeSlide2.jpg"
+            banner={reservoir}
             description={description}
             md={md + bodyMd}
         />

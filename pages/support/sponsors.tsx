@@ -15,7 +15,7 @@ function Sponsor({ href, src, alt, doubleWidth }: Sponsor) {
             <div className="views-field views-field-field-sponsor-logo">
                 <div className="field-content">
                     <a href={href} target="_blank" rel="noreferrer">
-                        <img alt={alt} src={src} typeof="foaf:Image" />
+                        <img alt={alt} src={src} />
                     </a>
                 </div>
             </div>

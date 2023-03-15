@@ -1,5 +1,7 @@
 import React from "react";
 import {SectionMenu} from "./sectionMenu";
+import A from "next-utils/a";
+import Link from "next/link";
 
 export function Aside({ sectionMenu }: { sectionMenu?: SectionMenu }) {
     // console.log("sectionMenu:", sectionMenu)
@@ -8,13 +10,13 @@ export function Aside({ sectionMenu }: { sectionMenu?: SectionMenu }) {
             <section className="block block-block social-media block-block-6 block-odd clearfix">
                 <h2 className="block-title">Follow Us</h2>
                 <div>
-                    <a className="twitter" href="http://www.twitter.com/bikejc" target="_blank"></a>
+                    <A className="twitter" href="https://www.twitter.com/bikejc" />
                 </div>
                 <div>
-                    <a className="facebook" href="https://www.facebook.com/bikeJC" target="_blank"></a>
+                    <A className="facebook" href="https://www.facebook.com/bikeJC" />
                 </div>
                 <div>
-                    <a className="instagram" href="http://www.instagram.com/bikejcgram" target="_blank"></a>
+                    <A className="instagram" href="https://www.instagram.com/bikejcgram" />
                 </div>
             </section>
             <section className="block block-menu-block block-menu-block-1 block-even clearfix">{
@@ -34,15 +36,14 @@ export function Aside({ sectionMenu }: { sectionMenu?: SectionMenu }) {
                 <h2 className="block-title">Cool Swag!</h2>
                 <p></p>
                 <p>
-                    <a href="/support/cool-swag-cool-bikers">
-                        <img src="/files/Retro Banner.jpg"></img>
-                    </a>
+                    <Link href="/support/cool-swag-cool-bikers">
+                        <img src="/files/Retro Banner.jpg"  alt={"Support Bike JC's important work through a tax deductible donation and receive cool swag!"} />
+                    </Link>
                     <br></br>
                 </p>
                 <div className="center">
                     <p>
-                        <strong>Support Bike JC's important work through a tax deductible donation and receive cool
-                            swag!</strong>
+                        <strong>{`Support Bike JC's important work through a tax deductible donation and receive cool swag!`}</strong>
                     </p>
                 </div>
             </section>

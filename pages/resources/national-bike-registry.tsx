@@ -1,4 +1,4 @@
-import {Pg} from "../../src/page";
+import {Page} from "../../src/page";
 import React from 'react'
 
 const md = `
@@ -18,5 +18,4 @@ Register your bike online in these four easy steps:
 using the [Bike Index](https://bikeindex.org/bikes/new?stolen=true) for free!
 `
 
-const Home = Pg({ path: "/resources/national-bike-registry", md, })
-export default Home
+export default function Home() { return <Page path={"/resources/national-bike-registry"} md={md} /> }
