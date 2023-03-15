@@ -15,11 +15,15 @@ export default function Home() { return (
 
 #### Bike Bus Inspiration
 
-##### NBC News Segment
+##### "Oregon School’s Unique Way Of Getting Students To Class: A ‘Bike Bus’"
 `)}
-<YouTubeEmbed video={"zNOb377piC8"} alt={"BikePortland – Bike Bus for Earth Day"} />
+        <YouTubeEmbed video={"zNOb377piC8"} alt={"BikePortland – Bike Bus for Earth Day"} />
         {MD(`
-##### Another video from Portland's Bike Bus:
+##### "Kid Wheel Power: Barcelona Bici Bus is Magic"
+`)}
+        <YouTubeEmbed video={"5iwYkkqXTh0"} alt={"BikePortland – Bike Bus for Earth Day"} />
+        {MD(`
+##### "Bike Bus for Earth Day"
 `)}
         <YouTubeEmbed video={"XNRnKXd9sHE"} alt={"BikePortland – Bike Bus for Earth Day"} />
         {MD(`
