@@ -29,7 +29,7 @@ export default function Triptych() {
                     <h4>Follow Bike JC on Twitter</h4>
                     <p>Making Jersey City bike-friendly since 2009</p>
                     <p>Tweeting bike community news since 2010</p>
-                    <p><A href="https://twitter.com/bikejc">Tweet @bikejc!H</A></p>
+                    <p><A href="https://twitter.com/bikejc">Tweet @bikejc!</A></p>
                 </section>
             </div>
             <div className="triptych-last large-4 columns">

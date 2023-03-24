@@ -21,7 +21,7 @@ bike ride.
 
 We believe a bike-friendly city is safer for everyone. Studies have shown that the mere presence
 of more bicyclists (and pedestrians) encourages motorists to drive with more caution and
-decreases accidents. Bicycle lanes not only tend to increase the number of cyclists but can act
+decreases traffic crashes. Bicycle lanes not only tend to increase the number of cyclists but can act
 as a traffic calming measure, helping pedestrians navigate streets safely as well. Bicycling is
 also economical and easy on the environment, and it transforms the average commute into a great
 workout.
