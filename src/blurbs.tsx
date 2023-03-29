@@ -6,7 +6,7 @@ export const schedule2023Tweet = <TweetEmbed tweetId='1620594685185245185' />
 
 export const wtBlurb = MD(`
 #### The Jersey City Ward Tour is back! **Sunday, June 4, 2023**
-Free registration coming soon! [Subscribe for updates](#subscribe), or [sign up to volunteer](/support/volunteer).
+Registration coming soon! [Subscribe for updates](#subscribe), or [sign up to volunteer](/support/volunteer).
 
 ---
 `)
@@ -17,12 +17,14 @@ export const upcomingEventsBlurb = <>
 
 Join our monthly Light-Up Rides! Usually the 2nd Friday of each month, 15-20 miles, start and finish at Grove St PATH.
 
-Next ride is [this Friday, March 17, rolling out from Grove St at 7:30](https://twitter.com/bikejc/status/1634020038834372612) (we recommend meeting at Grove St around 7)
+**Next ride is Friday, April 14, rolling out from Grove St at 7:30 (we recommend meeting at Grove St around 7).**
 
 ---
 
 #### [Sign up](https://bit.ly/jc-bike-bus) for the Jersey City Bike Bus
-"Bike buses" are the new best way to get to school. [Sign up here](https://bit.ly/jc-bike-bus) and Bike JC will help coordinate one in your area! [More info here](/bike-bus).
+"Bike buses" are the new best way to get to school.
+
+[**Sign up here**](https://bit.ly/jc-bike-bus) and Bike JC will help coordinate one in your area! [More info here](/bike-bus).
 
 ---
 `)}
