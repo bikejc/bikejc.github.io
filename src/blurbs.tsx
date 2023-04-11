@@ -31,16 +31,16 @@ Join our monthly Light-Up Rides! Usually the 2nd Friday of each month, 15-20 mil
     <h4 id={"2023-schedule"}>2023 Schedule</h4>
     {schedule2023Tweet}
     {MD(`
-Roll-out times:
-- March 17, 7:30pm (postponed from March 10)
-- April 14, 7:30pm
-- May 12, 7:30pm
-- June 23, 7:30pm
-- July 14, 8pm
-- August 11, 7:30pm
-- September 8, 7pm
-- October 13, 6:30pm
-- November 10, 6pm
+Meet times:
+- ~March 17, 7:30pm (postponed from March 10)~
+- April 14, 7pm (roll at 7:30pm)
+- May 12, 7:30pm (roll at 8pm)
+- June 23, 7:30pm (roll at 8pm)
+- July 14, 8pm (roll at 8:30pm)
+- August 11, 7:30pm (roll at 8pm)
+- September 8, 7pm (roll at 7:30pm)
+- October 13, 6:30pm (roll at 7pm)
+- November 10, 6pm (roll at 6:30pm)
 
 ---
 `)}
