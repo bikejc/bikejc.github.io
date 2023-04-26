@@ -87,7 +87,7 @@ export const Sitemap: Sitemap = {
                 "useful-links": "Useful Links",
             }
         },
-        "bike-bus": { title: "Bike Bus", header: false, children: {} },
+        "bike-bus": { title: "Bike Bus", header: false, children: {}, },
         "contact-us": { title: "Contact", children: {} },
         "ward-tour": {
             title: "Jersey City Ward Tour",

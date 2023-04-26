@@ -5,5 +5,6 @@
     "/events/jersey-city-ward-tour/finish-line-festival":  "/ward-tour/2022/finish-line-festival",
     "/events/jersey-city-ward-tour/ward-tour-sponsors":  "/ward-tour/2022/ward-tour-sponsors",
     "/events/jersey-city-ward-tour/ward-tour-faqs":  "/ward-tour/2022/ward-tour-faqs",
-    "/ward-tour/register": "/ward-tour"
+    "/ward-tour/register": "/ward-tour",
+    "/bike-bus/signup": "https://forms.gle/cj7oJQXXw9vNSFHg7"
 }
