@@ -21,10 +21,10 @@ Join our monthly Light-Up Rides! Usually the 2nd Friday of each month, 15-20 mil
 
 ---
 
-#### [Sign up](https://bit.ly/jc-bike-bus) for the Jersey City Bike Bus
+#### [Sign up](/bike-bus/signup) for the Jersey City Bike Bus
 "Bike buses" are the new best way to get to school.
 
-[**Sign up here**](https://bit.ly/jc-bike-bus) and Bike JC will help coordinate one in your area! [More info here](/bike-bus).
+[**Sign up here**](/bike-bus/signup) and Bike JC will help coordinate one in your area! [More info here](/bike-bus).
 
 ---
 `)}

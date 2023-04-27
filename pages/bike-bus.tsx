@@ -10,10 +10,10 @@ export default function Home() { return (
         banner={helmets}
     >
         {MD(`
-#### [Sign up](https://bit.ly/jc-bike-bus) for the Jersey City Bike Bus
+#### [Sign up](/bike-bus/signup) for the Jersey City Bike Bus
 "Bike buses" are the new best way to get to school: a group ride picks up kids near their homes, and everyone rides to school together. Being in a group improves safety, and there are dedicated "marshals" assisting with intersections and making sure no one is left behind.
 
-[**Sign up here**](https://bit.ly/jc-bike-bus) and Bike JC will help coordinate one in your area!
+[**Sign up here**](/bike-bus/signup) and Bike JC will help coordinate one in your area!
 
 #### Bike Bus Inspiration
 
@@ -55,7 +55,7 @@ export default function Home() { return (
 
     {MD(`
 ### Join us!
-[Sign up here](https://bit.ly/jc-bike-bus).
+[Sign up here](/bike-bus/signup).
 `)}
     </Page>
 ) }
