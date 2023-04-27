@@ -6,5 +6,9 @@
     "/events/jersey-city-ward-tour/ward-tour-sponsors":  "/ward-tour/2022/ward-tour-sponsors",
     "/events/jersey-city-ward-tour/ward-tour-faqs":  "/ward-tour/2022/ward-tour-faqs",
     "/ward-tour/register": "/ward-tour",
-    "/bike-bus/signup": "https://forms.gle/cj7oJQXXw9vNSFHg7"
+    "/bikebus": "/bike-bus",
+    "/bikebus/signup": "https://forms.gle/cj7oJQXXw9vNSFHg7",
+    "/bikebus/sign-up": "https://forms.gle/cj7oJQXXw9vNSFHg7",
+    "/bike-bus/signup": "https://forms.gle/cj7oJQXXw9vNSFHg7",
+    "/bike-bus/sign-up": "https://forms.gle/cj7oJQXXw9vNSFHg7"
 }
