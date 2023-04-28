@@ -1,6 +1,7 @@
 import TweetEmbed from "react-tweet-embed";
 import MD from "./md";
 import React from "react";
+import {bikeBusMapEmbedMD} from "../pages/bike-bus";
 
 export const schedule2023Tweet = <TweetEmbed tweetId='1620594685185245185' />
 
@@ -11,6 +12,16 @@ Registration coming soon! [Subscribe for updates](#subscribe), or [sign up to vo
 ---
 `)
 export const upcomingEventsBlurb = <>
+    {MD(`
+#### [Sign up](/bike-bus/signup) for the Jersey City Bike Bus
+"Bike buses" are the new best way to get to school. We're planning a pilot for next Wednesday, May 3, for [National Bike, Walk, & Roll to School Day](https://www.walkbiketoschool.org/).
+
+${bikeBusMapEmbedMD()}
+
+[**Sign up here**](/bike-bus/signup) and Bike JC will help coordinate one in your area! [More info here](/bike-bus).
+
+---
+`)}
     {wtBlurb}
     {MD(`
 #### Monthly Light-Up Rides
@@ -21,12 +32,6 @@ Join our monthly Light-Up Rides! Usually the 2nd Friday of each month, 15-20 mil
 
 ---
 
-#### [Sign up](/bike-bus/signup) for the Jersey City Bike Bus
-"Bike buses" are the new best way to get to school.
-
-[**Sign up here**](/bike-bus/signup) and Bike JC will help coordinate one in your area! [More info here](/bike-bus).
-
----
 `)}
     <h4 id={"2023-schedule"}>2023 Schedule</h4>
     {schedule2023Tweet}

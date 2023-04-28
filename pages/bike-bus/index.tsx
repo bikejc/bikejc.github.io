@@ -4,6 +4,8 @@ import MD from "../../src/md";
 import YouTubeEmbed from "next-utils/youtube";
 import {helmets} from "../../src/img";
 
+export const bikeBusMapEmbedMD = (aspectRatio = '4/3') => `<iframe src="https://www.google.com/maps/d/u/0/embed?mid=1s2vaoPnDKwx4QRi4t5TDSRwyMEUDqM8&ehbc=2E312F" width="100%" style="aspect-ratio: ${aspectRatio};"></iframe>`
+
 export default function Home() { return (
     <Page
         path={"/bike-bus"}
@@ -14,6 +16,15 @@ export default function Home() { return (
 "Bike buses" are the new best way to get to school: a group ride picks up kids near their homes, and everyone rides to school together. Being in a group improves safety, and there are dedicated "marshals" assisting with intersections and making sure no one is left behind.
 
 [**Sign up here**](/bike-bus/signup) and Bike JC will help coordinate one in your area!
+
+#### Tentative Pilot: Wednesday May 3
+Coinciding with National Bike, Walk, & Roll to School Day](https://www.walkbiketoschool.org/), we are hoping to run several routes, covering most schools we've received signups from.
+
+${bikeBusMapEmbedMD()}
+
+The more signups we get from each school, the easier it is to plan a route there, ensure there will be sufficient bike racks, etc. Please get your friends and school networks to sign up! [bikejc.org/bike-bus/signup](/bike-bus/signup).
+
+---
 
 #### Bike Bus Inspiration
 
