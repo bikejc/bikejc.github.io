@@ -17,7 +17,7 @@ export default function Home() { return (
 
 [**Sign up here**](/bike-bus/signup) and Bike JC will help coordinate one in your area!
 
-#### Tentative Pilot: Wednesday May 3
+#### Bike Bus Pilot: Wednesday May 3
 Coinciding with [National Bike, Walk, & Roll to School Day](https://www.walkbiketoschool.org/), we are hoping to run several routes, covering most schools we've received signups from.
 
 ${bikeBusMapEmbedMD()}
