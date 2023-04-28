@@ -1,8 +1,8 @@
 import TweetEmbed from "react-tweet-embed";
-import {Page} from "../src/page";
-import MD from "../src/md";
+import {Page} from "../../src/page";
+import MD from "../../src/md";
 import YouTubeEmbed from "next-utils/youtube";
-import {helmets} from "../src/img";
+import {helmets} from "../../src/img";
 
 export default function Home() { return (
     <Page

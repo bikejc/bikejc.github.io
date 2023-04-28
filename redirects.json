@@ -7,8 +7,10 @@
     "/events/jersey-city-ward-tour/ward-tour-faqs":  "/ward-tour/2022/ward-tour-faqs",
     "/ward-tour/register": "/ward-tour",
     "/bikebus": "/bike-bus",
+    "/bikebus/map": "https://www.google.com/maps/d/u/0/viewer?mid=1s2vaoPnDKwx4QRi4t5TDSRwyMEUDqM8&ll=40.72975912377215%2C-74.04989185204101&z=14",
     "/bikebus/signup": "https://docs.google.com/forms/d/e/1FAIpQLSfyv5XbLCMLbhG54FG-EnPdlEEs-2ZoklFhmpMg2mCwKTO2mg/viewform",
     "/bikebus/sign-up": "https://docs.google.com/forms/d/e/1FAIpQLSfyv5XbLCMLbhG54FG-EnPdlEEs-2ZoklFhmpMg2mCwKTO2mg/viewform",
+    "/bike-bus/map": "https://www.google.com/maps/d/u/0/viewer?mid=1s2vaoPnDKwx4QRi4t5TDSRwyMEUDqM8&ll=40.72975912377215%2C-74.04989185204101&z=14",
     "/bike-bus/signup": "https://docs.google.com/forms/d/e/1FAIpQLSfyv5XbLCMLbhG54FG-EnPdlEEs-2ZoklFhmpMg2mCwKTO2mg/viewform",
     "/bike-bus/sign-up": "https://docs.google.com/forms/d/e/1FAIpQLSfyv5XbLCMLbhG54FG-EnPdlEEs-2ZoklFhmpMg2mCwKTO2mg/viewform",
     "/sponsor": "/ward-tour-2023-sponsor-packet.pdf"
