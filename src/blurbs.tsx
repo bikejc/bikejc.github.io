@@ -18,7 +18,7 @@ export const upcomingEventsBlurb = <>
 
 ${bikeBusMapEmbedMD()}
 
-[**Sign up here**](/bike-bus/signup) and Bike JC will help coordinate one in your area! [More info here](/bike-bus).
+[**Sign up here**](/bike-bus/signup) and Bike JC will help coordinate one in your area! [**More info here**](/bike-bus).
 
 ---
 `)}

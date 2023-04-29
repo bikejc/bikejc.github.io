@@ -7,17 +7,14 @@ import {helmets} from "../../src/img";
 export const bikeBusMapEmbedMD = (aspectRatio = '4/3') => `<iframe src="https://www.google.com/maps/d/u/0/embed?mid=1s2vaoPnDKwx4QRi4t5TDSRwyMEUDqM8&ehbc=2E312F" width="100%" style="aspect-ratio: ${aspectRatio};"></iframe>`
 
 export default function Home() { return (
-    <Page
-        path={"/bike-bus"}
-        banner={helmets}
-    >
+    <Page path={"/bike-bus"} banner={helmets}>
         {MD(`
 #### [Sign up](/bike-bus/signup) for the Jersey City Bike Bus
 "Bike buses" are the new best way to get to school: a group ride picks up kids near their homes, and everyone rides to school together. Being in a group improves safety, and there are dedicated "marshals" assisting with intersections and making sure no one is left behind.
 
 [**Sign up here**](/bike-bus/signup) and Bike JC will help coordinate one in your area!
 
-#### Bike Bus Pilot: Wednesday May 3
+#### Bike Bus Pilot: Wednesday May 3 <a id="pilot"></a>
 Coinciding with [National Bike, Walk, & Roll to School Day](https://www.walkbiketoschool.org/), we are hoping to run several routes, covering most schools we've received signups from.
 
 ${bikeBusMapEmbedMD()}
@@ -26,7 +23,15 @@ The more signups we get from each school, the easier it is to plan a route there
 
 ---
 
-#### Bike Bus Inspiration
+#### School Signup Standings <a id="standings"></a>
+
+<iframe src="https://docs.google.com/spreadsheets/d/e/2PACX-1vR7OykHYT-mz7qF40nn18ivkbKrM8Q6UC1ys8vTadmcEloaN1X5u74kOZ441t-HBF6m6hoh0X6OA3Vk/pubhtml?gid=601478093&amp;single=true&amp;widget=true&amp;headers=false" width="100%" style="aspect-ratio: 4/3"></iframe>
+
+##### [**Get your school to sign up**](/bike-bus/signup), so that we can plan Bike Bus routes there!
+
+[**bikejc.org/bike-bus/signup**](https://bikejc.org/bike-bus/signup)
+
+#### Bike Bus Inspiration <a id="inspiration"></a>
 
 ##### "Oregon School’s Unique Way Of Getting Students To Class: A ‘Bike Bus’"
 `)}
