@@ -105,7 +105,7 @@ export function Page({ path, h1, description, banner, article, ctime, mtime, doc
                 sectionMenu = {
                     title,
                     activePath: path,
-                    breadcrumbs: sectionMenuItems
+                    breadcrumbs: sectionMenuItems,
                 }
             }
         }
