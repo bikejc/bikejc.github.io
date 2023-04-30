@@ -17,8 +17,6 @@ export default function Home() { return (
 #### Bike Bus Pilot: Wednesday May 3 <a id="pilot"></a>
 Coinciding with [National Bike, Walk, & Roll to School Day](https://www.walkbiketoschool.org/), we are hoping to run several routes, covering most schools we've received signups from.
 
-${bikeBusMapEmbedMD()}
-
 The more signups we get from each school, the easier it is to plan a route there, ensure there will be sufficient bike racks, etc. Please get your friends and school networks to sign up! [bikejc.org/bike-bus/signup](/bike-bus/signup).
 
 ---
