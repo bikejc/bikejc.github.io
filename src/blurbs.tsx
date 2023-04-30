@@ -16,8 +16,6 @@ export const upcomingEventsBlurb = <>
 #### [Sign up](/bike-bus/signup) for the Jersey City Bike Bus
 "Bike buses" are the new best way to get to school. We're planning a pilot for next Wednesday, May 3, for [National Bike, Walk, & Roll to School Day](https://www.walkbiketoschool.org/).
 
-${bikeBusMapEmbedMD()}
-
 [**Sign up here**](/bike-bus/signup) and Bike JC will help coordinate one in your area! [**More info here**](/bike-bus).
 
 ---
