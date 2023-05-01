@@ -2,7 +2,7 @@ import {Fragment, ReactNode, useCallback, useEffect, useMemo, useState} from 're
 import L, {LatLngExpression, LeafletEventHandlerFnMap, svg} from 'leaflet';
 import 'leaflet/dist/leaflet.css';
 
-// import styles from './Map.module.css';
+import css from './map.module.css';
 
 import iconRetinaUrl from 'leaflet/dist/images/marker-icon-2x.png';
 import iconUrl from 'leaflet/dist/images/marker-icon.png';
@@ -89,29 +89,27 @@ const Layers = ({ center, zoom, signups }: { center: LatLngExpression, zoom: num
                 const selected = schoolName == selectedSchool
                 const notSelected = selectedSchool && !selected
                 console.log(`school ${schoolName}, ${selected}`)
-                const lineFade = 0.4
                 const circleFade = 0.4
-                const lineOpacity = selected ? 1 : lineFade
-                //const color = latColor(school.lat)
+                const lineOpacity = selected ? 1 : (notSelected ? 0.2 : 0.3)
+                // const color = latColor(school.lat)
                 const color = idxColor(schoolsByLat[schoolName])
                 console.log(`school ${schoolName}: lat ${school.lat}, color ${color}`)
                 const lineColor = color
-                //const lineColor = selected ? "yellow" : "yellow"
                 const signupOpacity = notSelected ? circleFade : 1
                 const signupColor = color
-                //const signupColor = selected ? "lightblue" : "lightblue"
                 const schoolOpacity = notSelected ? circleFade : 1
                 const schoolColor = color
-                //const schoolColor = "orange" // selected ? "lightblue" : "lightblue"
                 return signups.map((ll, idx) =>
                     <Fragment key={`${selectedSchool}-${schoolName}-${idx}`}>
                         <Polyline
                             positions={[ ll, school ]}
-                            color={lineColor}
+                            color={lineColor} fillColor={lineColor}
+                            weight={5}
+                            fill
                             opacity={lineOpacity} fillOpacity={lineOpacity}
                         />
                         <Circle
-                            center={ll} radius={25}
+                            center={ll} radius={30}
                             color={signupColor} fillColor={signupColor}
                             opacity={signupOpacity} fillOpacity={signupOpacity}
                             eventHandlers={eventHandlers(schoolName)}
@@ -119,30 +117,18 @@ const Layers = ({ center, zoom, signups }: { center: LatLngExpression, zoom: num
                             <Tooltip sticky={true}>{schoolName}</Tooltip>
                         </Circle>
                         <Circle
-                            //key={`${selectedSchool}-${schoolName}-${idx}`}
-                            center={school} radius={35}
+                            // key={`${selectedSchool}-${schoolName}-${idx}`}
+                            center={school} radius={40}
                             color={schoolColor} fillColor={"schoolColor"}
                             opacity={schoolOpacity} fillOpacity={schoolOpacity}
                             eventHandlers={eventHandlers(schoolName)}
                         >
-                            <Tooltip sticky={true}>{schoolName}</Tooltip>
+                            <Tooltip className={css.tooltip} sticky={true} permanent={selected}>{schoolName}</Tooltip>
                         </Circle>
                     </Fragment>
                 )
             })
         }
-        {/*{*/}
-        {/*    o2a<string, School, ReactNode>(signups, (schoolName, { school }, idx) =>*/}
-        {/*        <Circle*/}
-        {/*            key={`${selectedSchool}-${schoolName}-${idx}`}*/}
-        {/*            center={school} radius={35}*/}
-        {/*            color={"orange"} fillColor={"orange"}*/}
-        {/*            eventHandlers={eventHandlers(schoolName)}*/}
-        {/*        >*/}
-        {/*            <Tooltip sticky={true}>{schoolName}</Tooltip>*/}
-        {/*        </Circle>*/}
-        {/*    )*/}
-        {/*}*/}
     </>
 }
 

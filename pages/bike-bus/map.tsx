@@ -17,6 +17,5 @@ export function getStaticProps() {
 export default function Page(props: Props) {
     return <main>
         <Map className={css.map} {...JC} signups={props} />
-        <div>yay</div>
     </main>
 }
