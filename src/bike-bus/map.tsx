@@ -284,36 +284,40 @@ const Layers = ({ signups }: { signups: Props }) => {
                 const signupColor = color
                 const schoolOpacity = notSelected ? iconFade : 1
                 const schoolColor = color
-                // console.log(`school ${schoolName}, opacity ${signupOpacity} ${schoolOpacity}`)
-                return signups.map((ll, idx) =>
-                    <Fragment key={`${selectedSchool}-${schoolName}-${idx}`}>
-                        {/* Home to School */}
-                        <Polyline
-                            positions={[ ll, school ]}
-                            color={lineColor} fillColor={lineColor}
-                            weight={5}
-                            opacity={lineOpacity} fillOpacity={lineOpacity}
-                        />
-                        {/* Home */}
-                        <Marker
-                            position={ll}
-                            icon={houseIcon({ size: houseSize * selectedFactor, bg: schoolColor, fg: "black", opacity: signupOpacity })}
-                            // opacity={signupOpacity}
-                            eventHandlers={eventHandlers(schoolName)}
-                        >
-                            <Tooltip sticky={true}>{schoolName}</Tooltip>
-                        </Marker>
-                        {/* School */}
-                        <Marker
-                            position={school}
-                            icon={schoolIcon({ size: schoolSize * selectedFactor, bg: signupColor, fg: "black", opacity: schoolOpacity })}
-                            // opacity={schoolOpacity}
-                            eventHandlers={eventHandlers(schoolName)}
-                        >
-                            <Tooltip className={css.tooltip} permanent={selected}>{schoolName}</Tooltip>
-                        </Marker>
-                    </Fragment>
-                )
+                const tooltipOpacity = 0.8
+                return <Fragment key={`${selectedSchool}-${schoolName}-${idx}`}>
+                    {/* School */}
+                    <Marker
+                        position={school}
+                        icon={schoolIcon({ size: schoolSize * selectedFactor, bg: signupColor, fg: "black", opacity: schoolOpacity })}
+                        // opacity={schoolOpacity}
+                        eventHandlers={eventHandlers(schoolName)}
+                    >
+                        <Tooltip className={css.tooltip} permanent={selected} opacity={tooltipOpacity}>{schoolName}</Tooltip>
+                    </Marker>
+                    {
+                        signups.map((ll, idx) =>
+                            <Fragment key={`${selectedSchool}-${schoolName}-${idx}`}>
+                                {/* Home to School */}
+                                <Polyline
+                                    positions={[ ll, school ]}
+                                    color={lineColor} fillColor={lineColor}
+                                    weight={5}
+                                    opacity={lineOpacity} fillOpacity={lineOpacity}
+                                />
+                                {/* Home */}
+                                <Marker
+                                    position={ll}
+                                    icon={houseIcon({ size: houseSize * selectedFactor, bg: schoolColor, fg: "black", opacity: signupOpacity })}
+                                    // opacity={signupOpacity}
+                                    eventHandlers={eventHandlers(schoolName)}
+                                >
+                                    <Tooltip className={css.tooltip} opacity={tooltipOpacity}>{schoolName}</Tooltip>
+                                </Marker>
+                            </Fragment>
+                        )
+                    }
+                </Fragment>
             })
         }
         {newRoutePoints && <Polyline positions={newRoutePoints} weight={10} color={"red"} fillColor={"red"} />}
