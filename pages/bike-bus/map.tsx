@@ -1,9 +1,9 @@
 import dynamic from "next/dynamic";
 
-const Map = dynamic(() => import('../../src/map'), { ssr: false });
+const Map = dynamic(() => import('../../src/bike-bus/map'), { ssr: false });
 
 import css from './map.module.css'
-import {JC, Schools, Signups, Props} from "../../src/map-utils";
+import {JC, Schools, Signups, Props} from "../../src/bike-bus/map-utils";
 import {loadSync} from "next-utils/load";
 import {mapValues} from "next-utils/objs";
 
