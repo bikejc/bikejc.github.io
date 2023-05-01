@@ -178,6 +178,7 @@ const Layers = ({ signups }: { signups: Props }) => {
     const [ newRoutes, setNewRoutes ] = useState<LL[][]>([])
     // console.log("num routes:", newRoutes.length)
     const [ newRoutePoints, setNewRoutePoints ] = useState<LL[] | null>(null)
+    const [ editable, setEditable ] = useState(false)
     const [ nextPoint, setNextPoint ] = useState<LL | null>(null)
     const [ zoom, setZoom ] = useState<number | null>(null)
     const map: L.Map = useMapEvents({
@@ -191,6 +192,7 @@ const Layers = ({ signups }: { signups: Props }) => {
             // const { lat, lng } = e.latlng
             console.log(`map click: latlng:`, JSON.stringify(e.latlng), "newRoutePoints:", newRoutePoints, "nextPoint:", nextPoint, "e:", e)
             if (selectedSchool) return
+            if (!editable) return
             if (!newRoutePoints) {
                 setNewRoutePoints([ e.latlng ])
             } else {
@@ -212,6 +214,7 @@ const Layers = ({ signups }: { signups: Props }) => {
             click: (e: LeafletMouseEvent) => {
                 if (nextPoint) {
                     console.log("found nextPoint", nextPoint, "aborting click")
+                    if (!editable)
                     if (!newRoutePoints) {
                         setNewRoutePoints([ e.latlng ])
                     } else {
