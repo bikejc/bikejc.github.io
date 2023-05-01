@@ -1,44 +1,44 @@
 {
-  "name": "next",
-  "version": "0.1.0",
-  "private": true,
-  "scripts": {
-    "dev": "next dev",
-    "build": "next build",
-    "export": "next build && next export && npm run write-redirects",
-    "start": "next start",
-    "lint": "next lint",
-    "write-redirects": "write-redirects.js",
-    "wr": "write-redirects.js",
-    "deploy-dev": "rsync -avzh --delete out/ bikejc.org:dev_html/",
-    "dd": "rsync -avzh --delete out/ bikejc.org:dev_html/",
-    "ddn": "rsync -avzhn --delete out/ bikejc.org:dev_html/",
-    "deploy-main": "rsync -avzh --delete out/ bikejc.org:public_html/",
-    "dm": "rsync -avzh --delete out/ bikejc.org:public_html/",
-    "dmn": "rsync -avzhn --delete out/ bikejc.org:public_html/"
-  },
-  "dependencies": {
-    "leaflet": "^1.9.3",
-    "next": "13.2.4",
-    "next-sitemap": "^3.1.49",
-    "next-utils": "https://gitpkg.now.sh/runsascoded/next-utils/dist?1207fd8",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
-    "react-leaflet": "^4.2.1",
-    "react-markdown": "^8.0.2",
-    "react-tweet-embed": "^2.0.0",
-    "rehype-raw": "^6.1.1",
-    "remark-gfm": "^3.0.1"
-  },
-  "devDependencies": {
-    "@types/leaflet": "^1.9.3",
-    "@types/node": "17.0.21",
-    "@types/react": "^18.0.25",
-    "@types/react-dom": "^18.0.9",
-    "@types/react-leaflet": "^3.0.0",
-    "@vanilla-extract/next-plugin": "^2.1.1",
-    "eslint": "8.11.0",
-    "eslint-config-next": "12.1.0",
-    "typescript": "4.6.2"
-  }
+    "name": "next",
+    "version": "0.1.0",
+    "private": true,
+    "scripts": {
+        "dev": "next dev",
+        "build": "next build",
+        "export": "next build && next export && npm run write-redirects",
+        "start": "next start",
+        "lint": "next lint",
+        "write-redirects": "write-redirects.js",
+        "wr": "write-redirects.js",
+        "deploy-dev": "rsync -avzh --delete out/ bikejc.org:dev_html/",
+        "dd": "rsync -avzh --delete out/ bikejc.org:dev_html/",
+        "ddn": "rsync -avzhn --delete out/ bikejc.org:dev_html/",
+        "deploy-main": "rsync -avzh --delete out/ bikejc.org:public_html/",
+        "dm": "rsync -avzh --delete out/ bikejc.org:public_html/",
+        "dmn": "rsync -avzhn --delete out/ bikejc.org:public_html/"
+    },
+    "dependencies": {
+        "leaflet": "^1.9.3",
+        "next": "13.2.4",
+        "next-sitemap": "^3.1.49",
+        "next-utils": "https://gitpkg.now.sh/runsascoded/next-utils/dist?8308f2d",
+        "react": "^18.2.0",
+        "react-dom": "^18.2.0",
+        "react-leaflet": "^4.2.1",
+        "react-markdown": "^8.0.2",
+        "react-tweet-embed": "^2.0.0",
+        "rehype-raw": "^6.1.1",
+        "remark-gfm": "^3.0.1"
+    },
+    "devDependencies": {
+        "@types/leaflet": "^1.9.3",
+        "@types/node": "17.0.21",
+        "@types/react": "^18.0.25",
+        "@types/react-dom": "^18.0.9",
+        "@types/react-leaflet": "^3.0.0",
+        "@vanilla-extract/next-plugin": "^2.1.1",
+        "eslint": "8.11.0",
+        "eslint-config-next": "12.1.0",
+        "typescript": "4.6.2"
+    }
 }

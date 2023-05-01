@@ -1,14 +1,15 @@
-import {Fragment, ReactNode, useCallback, useEffect, useMemo, useState} from 'react';
-import L, {LatLngExpression, LeafletEvent, LeafletEventHandlerFnMap, LeafletMouseEvent, svg} from 'leaflet';
+import {Dispatch, Fragment, ReactNode, useCallback, useMemo, useState} from 'react';
+import L, {LeafletMouseEvent} from 'leaflet';
 import 'leaflet/dist/leaflet.css';
 
 import css from './map.module.css';
 
-import {Circle, MapContainer, Marker, Polygon, Polyline, TileLayer, Tooltip, useMapEvents,} from 'react-leaflet'
+import {Circle, MapContainer, Marker, Polyline, TileLayer, Tooltip, useMapEvents,} from 'react-leaflet'
 import {MapContainerProps} from "react-leaflet/lib/MapContainer";
-import {JC, LL, Props, School} from "./map-utils";
+import {Props, School} from "./map-utils";
 import {entries, fromEntries, o2a} from "next-utils/objs";
-import {setRequestMeta} from "next/dist/server/request-meta";
+import {LL, ParsedParam} from "next-utils/params";
+import {ParsedParams} from "./params";
 
 export const MAPS = {
     openstreetmap: {
@@ -27,35 +28,112 @@ type Stop = {
 }
 type RoutePoint = LL & {
     stop?: Stop
+    name?: string
 }
 
 type Route = {
     color: string
     positions: RoutePoint[]
 }
+const ps5ps3 = [
+    { lat: 40.72686036833718, lng: -74.04423594474794, stop: { name: "Hamilton Park", time: "8:15am", }},
+    { lat: 40.727360399481135, lng: -74.05020117759706, },
+    { lat: 40.724534970891085, lng: -74.05065715312959, },
+    { lat: 40.724644737982274, lng: -74.05206799507143, },
+    { lat: 40.72494558019309, lng: -74.05242204666139, stop: { name: "PS 5", time: "8:25am", }},
+    { lat: 40.724429269076595, lng: -74.05327498912813, },
+    { lat: 40.72386823355885, lng: -74.05153691768648, },
+    { lat: 40.72379505466438, lng: -74.05076444149019, },
+    { lat: 40.72240870596347, lng: -74.05096828937532, stop: { name: "Brunswick & 1st", time: "8:30am", }},
+    { lat: 40.721892375167045, lng: -74.0513062477112, },
+    { lat: 40.72187204710097, lng: -74.0506410598755, },
+    { lat: 40.72110364165123, lng: -74.04821097850801, },
+    { lat: 40.71777784806193, lng: -74.05000269412996, stop: { name: "PS 3 / MS 4", time: "8:35am", }},
+]
+
+const summitHopkins = { lat: 40.73832355261124, lng: -74.05869841575624, name: "Summit & Hopkins", }
+
 const routes: { [k: string]: Route } = {
-    // red: {
-    //     color: "red",
-    //     positions: [
-    //         { lat: 40.74250183922047 , lng: -74.05369877815248, stop: { name: "Pershing Field", time: "7:30am", }, },
-    //         { lat: 40.74282698670428 , lng: -74.05463218688966, },
-    //         { lat: 40.74101426921151 , lng: -74.05582308769227, },
-    //         { lat: 40.73827477728785 , lng: -74.05871987342836, },
-    //         { lat: 40.7359822967486  , lng: -74.0588700771332 , },
-    //         { lat: 40.73490919360775 , lng: -74.0592133998871 , },
-    //         { lat: 40.73257594750422 , lng: -74.05958890914918, },
-    //         { lat: 40.73043774421105 , lng: -74.06129479408266, },
-    //         { lat: 40.73080360135806 , lng: -74.06440615653993, },
-    //         { lat: 40.728510863374794, lng: -74.06690597534181, },
-    //         { lat: 40.72718559227259 , lng: -74.0671741962433 , },
-    //         { lat: 40.725356186961825, lng: -74.068021774292  , stop: { name: "McGinley Square", time: "8:00am", }, },
-    //         { lat: 40.724429269076595, lng: -74.06975984573366, },
-    //         { lat: 40.72337224169876 , lng: -74.07050013542177, },
-    //         { lat: 40.720908489648345, lng: -74.07275319099428, },
-    //         { lat: 40.72212818027965 , lng: -74.07572507858278, },
-    //         { lat: 40.722437165024765, lng: -74.07618641853334, stop: { name: "LCCS", time: "8:15am", }, },
-    //     ]
-    // }
+    red: {
+        color: "red",
+        positions: [
+            { lat: 40.74250183922047 , lng: -74.05369877815248, stop: { name: "Pershing Field", time: "7:30am", }, },
+            { lat: 40.74282698670428 , lng: -74.05463218688966, },
+            { lat: 40.74101426921151 , lng: -74.05582308769227, },
+            { lat: 40.73827477728785 , lng: -74.05871987342836, },
+            { lat: 40.7359822967486  , lng: -74.0588700771332 , },
+            { lat: 40.73490919360775 , lng: -74.0592133998871 , },
+            { lat: 40.73257594750422 , lng: -74.05958890914918, },
+            { lat: 40.73043774421105 , lng: -74.06129479408266, },
+            { lat: 40.73080360135806 , lng: -74.06440615653993, },
+            { lat: 40.728510863374794, lng: -74.06690597534181, },
+            { lat: 40.72718559227259 , lng: -74.0671741962433 , },
+            { lat: 40.725356186961825, lng: -74.068021774292  , stop: { name: "McGinley Square", time: "8:00am", }, },
+            { lat: 40.724429269076595, lng: -74.06975984573366, },
+            { lat: 40.72337224169876 , lng: -74.07050013542177, },
+            { lat: 40.720908489648345, lng: -74.07275319099428, },
+            { lat: 40.72212818027965 , lng: -74.07572507858278, },
+            { lat: 40.722437165024765, lng: -74.07618641853334, stop: { name: "LCCS", time: "8:15am", }, },
+        ]
+    },
+    orange: {
+      color: "orange",
+      positions: [
+          { lat: 40.71805839207992, lng: -74.04714345932008, stop: { name: "Van Vorst Park", time: "7:55am", }},
+          { lat: 40.71838365902651, lng: -74.0469664335251, },
+          { lat: 40.717509500503695, lng: -74.04412329196931, stop: { name: "City Hall", time: "8:00am", }},
+          { lat: 40.71958306715651, lng: -74.04291093349458, },
+          { lat: 40.7202498474144, lng: -74.04505133628847, },
+          { lat: 40.72088816128179, lng: -74.04472947120668, stop: { name: "Newark Ave Plaza", time: "8:05am", }},
+          { lat: 40.720790585035964, lng: -74.04443979263307, },
+          { lat: 40.72755959783345, lng: -74.04340445995332, stop: { name: "PS 37", time: "8:10am", }},
+          { lat: 40.72761244627582, lng: -74.04411256313325, },
+          ...ps5ps3,
+      ]
+    },
+    blue: {
+        color: "hsl(219, 100%, 57%)",
+        positions: [
+            { lat: 40.724087769759464, lng: -74.07970547676088, stop: { name: "Lincoln Park", time: "7:30am", } },
+            { lat: 40.723689351674786, lng: -74.07892227172853, },
+            { lat: 40.72670588641108, lng: -74.07657265663148, },
+            { lat: 40.72835638528008, lng: -74.07544612884523, },
+            { lat: 40.73240521896697, lng: -74.07253861427309, },
+            { lat: 40.734388894945276, lng: -74.07137453556062, },
+            { lat: 40.73479537862304, lng: -74.07276928424837, },
+            { lat: 40.73614488662359, lng: -74.07209873199464, stop: { name: "TECCS", time: "7:45am", }},
+            { lat: 40.73572621688966, lng: -74.07055377960206, },
+            { lat: 40.734884804698865, lng: -74.06713664531709, },
+            { lat: 40.73580751218978, lng: -74.06672894954683, },
+            { lat: 40.736242440357856, lng: -74.06817734241487, },
+            { lat: 40.73783986240655, lng: -74.06729757785799, stop: { name: "Canco Park", time: "7:50am", }},
+            { lat: 40.7374254, lng: -74.0659547, name: "Tonnele & Dey", },
+            { lat: 40.73809593412948, lng: -74.06563997268678, name: "Tonnele & St Pauls", },
+            { lat: 40.73773011708069, lng: -74.06462073326112, name: "St Pauls & Liberty", },
+            { lat: 40.73754314314559, lng: -74.0627431869507, stop: { name: "PS 31 / Golden Door", time: "7:55am", }},
+            { lat: 40.7375077, lng: -74.0610113, },
+            { lat: 40.73733991001137, lng: -74.05920267105104, },
+            { lat: 40.73693344188031, lng: -74.05880570411684, },
+            summitHopkins,
+            { lat: 40.7393884715907, lng: -74.05757188796998, stop: { name: "PS 26", time: "8:00am", }},
+            { lat: 40.73963640829574, lng: -74.05796885490419, },
+            { lat: 40.73972989238724, lng: -74.05943870544435, stop: { name: "MS 7", time: "8:05am", }},
+            { lat: 40.7397786666437, lng: -74.06021654605867, },
+            { lat: 40.73884382050208, lng: -74.0604203939438, },
+            summitHopkins,
+            { lat: 40.736730206883486, lng: -74.05567288398744, stop: { name: 'PS 6', time: '', }},
+            { lat: 40.73408809542487, lng: -74.0506410598755, name: "Palisade & Hopkins", },
+            { lat: 40.73192555073219, lng: -74.05261516571046, name: "Palisade & 139", },
+            { lat: 40.73147026920899, lng: -74.05188560485841, name: "Hoboken Ave & 139", },
+            { lat: 40.73261659709138, lng: -74.05028700828554, },
+            { lat: 40.734023057511926, lng: -74.04897809028627, },
+            { lat: 40.73509617494571, lng: -74.0482807159424, },
+            { lat: 40.73570589304912, lng: -74.04555559158327, stop: { name: 'Hoboken Ave & NJ Transit Path', time: '', }},
+            { lat: 40.728575906675815, lng: -74.0466606616974, name: "Coles & 9th", },
+            { lat: 40.72833199396919, lng: -74.04402136802675, name: "9th & McWilliams", },
+            ...ps5ps3,
+        ]
+    }
 }
 
 type Point = [ number, number ]
@@ -156,43 +234,41 @@ const { max, min, round } = Math
 
 function getMetersPerPixel(map: L.Map) {
     const centerLatLng = map.getCenter(); // get map center
-    const pointC = map.latLngToContainerPoint(centerLatLng); // convert to containerpoint (pixels)
-    const pointX: L.PointExpression = [pointC.x + 1, pointC.y]; // add one pixel to x
-    // const pointY: L.PointExpression = [pointC.x, pointC.y + 1]; // add one pixel to y
+    const pointC = map.latLngToContainerPoint(centerLatLng)  // convert to containerpoint (pixels)
+    const pointX: L.PointExpression = [pointC.x + 1, pointC.y]  // add one pixel to x
+    const pointY: L.PointExpression = [pointC.x, pointC.y + 1]  // add one pixel to y
 
     // convert containerpoints to latlng's
-    const latLngC = map.containerPointToLatLng(pointC);
-    const latLngX = map.containerPointToLatLng(pointX);
-    // const latLngY = map.containerPointToLatLng(pointY);
+    const latLngC = map.containerPointToLatLng(pointC)
+    const latLngX = map.containerPointToLatLng(pointX)
+    const latLngY = map.containerPointToLatLng(pointY)
 
-    const distanceX = latLngC.distanceTo(latLngX); // calculate distance between c and x (latitude)
-    // const distanceY = latLngC.distanceTo(latLngY); // calculate distance between c and y (longitude)
+    const distanceX = latLngC.distanceTo(latLngX)  // calculate distance between c and x (latitude)
+    const distanceY = latLngC.distanceTo(latLngY)  // calculate distance between c and y (longitude)
 
-    // const zoom = map.getZoom()
-    //console.log("distanceX:", distanceX, "distanceY:", distanceY, "center:", centerLatLng, "zoom:", zoom)
-    return distanceX
+    return (distanceX + distanceY) / 2
 }
 
-const Layers = ({ signups }: { signups: Props }) => {
+const Layers = ({ signups, setLL, zoom, setZoom, drawMode }: { signups: Props, setLL: Dispatch<LL>, zoom: number, setZoom: Dispatch<number>, drawMode: boolean }) => {
     const { url, attribution } = MAPS['alidade_smooth_dark']
     const [ newRoutes, setNewRoutes ] = useState<LL[][]>([])
     // console.log("num routes:", newRoutes.length)
     const [ newRoutePoints, setNewRoutePoints ] = useState<LL[] | null>(null)
-    const [ editable, setEditable ] = useState(false)
     const [ nextPoint, setNextPoint ] = useState<LL | null>(null)
-    const [ zoom, setZoom ] = useState<number | null>(null)
+    // const [ zoom, setZoom ] = useState<number | null>(null)
     const map: L.Map = useMapEvents({
         zoom: () => {
             console.log("map zoom:", map.getZoom())
             setZoom(map.getZoom())
         },
+        moveend: () => setLL(map.getCenter()),
         dragend: e => console.log("map dragend:", map.getCenter(), e),
         click: (e: LeafletMouseEvent) => {
             setSelectedSchool(null)
             // const { lat, lng } = e.latlng
             console.log(`map click: latlng:`, JSON.stringify(e.latlng), "newRoutePoints:", newRoutePoints, "nextPoint:", nextPoint, "e:", e)
             if (selectedSchool) return
-            if (!editable) return
+            if (!drawMode) return
             if (!newRoutePoints) {
                 setNewRoutePoints([ e.latlng ])
             } else {
@@ -200,7 +276,7 @@ const Layers = ({ signups }: { signups: Props }) => {
             }
         },
         mousemove: (e: LeafletMouseEvent) => {
-            console.log("mousemove, nextPoint?", !!nextPoint, "newRoutePoints?", !!newRoutePoints)
+            // console.log("mousemove, nextPoint?", !!nextPoint, "newRoutePoints?", !!newRoutePoints)
             if (!newRoutePoints) return
             // const { lat, lng } = e.target
             setNextPoint(e.latlng)
@@ -214,10 +290,12 @@ const Layers = ({ signups }: { signups: Props }) => {
             click: (e: LeafletMouseEvent) => {
                 if (nextPoint) {
                     console.log("found nextPoint", nextPoint, "aborting click")
-                    if (!editable)
+                    if (!drawMode) return
                     if (!newRoutePoints) {
+                        console.log("starting new route")
                         setNewRoutePoints([ e.latlng ])
                     } else {
+                        console.log("adding to existing route")
                         setNewRoutePoints(newRoutePoints.concat([e.latlng]))
                     }
                     return
@@ -266,6 +344,9 @@ const Layers = ({ signups }: { signups: Props }) => {
     const zoomAdjustment = zoom ? max(0, zoom - 14) * 2 : 0
     const schoolSize = 24 + zoomAdjustment
     const houseSize = 20 + zoomAdjustment
+    const stopRadius = 10 * mPerPx + zoomAdjustment
+    const routePointRadius = 6 * mPerPx // + zoomAdjustment
+    const minRoutePointZoom = 15
     return <>
         <TileLayer url={url} attribution={attribution}/>
         {
@@ -352,7 +433,7 @@ const Layers = ({ signups }: { signups: Props }) => {
         {newRoutes.map((route, rIdx) => route.map((point, pIdx) =>
             <Circle
                 key={`newRoute-${rIdx}[${pIdx}]`}
-                center={point} radius={50}
+                center={point} radius={stopRadius}
                 weight={3}
                 color={"black"} fillColor={"white"}
                 fillOpacity={0.8}
@@ -368,28 +449,42 @@ const Layers = ({ signups }: { signups: Props }) => {
             />
         )}
         {/* Route stops */}
-        {entries(routes).map(([ name, { color, positions } ], idx) =>
-            positions.map(point => {
+        {entries(routes).map(([ routeName, { color, positions } ], idx) =>
+            positions.map((point, stopIdx) => {
                 const stop = point.stop
-                if (!stop) return
-                return <Circle
-                    key={`route-${name}-stop-${stop.name}`}
-                    center={point} radius={50}
-                    weight={3}
-                    color={"black"} fillColor={"white"}
-                    fillOpacity={0.8}
-                >
-                    <Tooltip className={css.tooltip}>{stop.name}: {stop.time}</Tooltip>
-                </Circle>
+                if (stop) {
+                    return <Circle
+                        key={`route-${routeName}-stop-${stop.name}=${stopIdx}`}
+                        center={point} radius={stopRadius}
+                        weight={3}
+                        color={"black"} fillColor={"white"}
+                        fillOpacity={0.8}
+                    >
+                        <Tooltip className={css.tooltip}>{stop.name}: {stop.time}</Tooltip>
+                    </Circle>
+                }
+                const name = point.name
+                if (name && zoom >= minRoutePointZoom) {
+                    return <Circle
+                        key={`route-${name}-point-${name}=${stopIdx}`}
+                        center={point} radius={routePointRadius}
+                        weight={3}
+                        color={"black"} fillColor={"white"}
+                        fillOpacity={0.8}
+                    >
+                        <Tooltip className={css.tooltip}>{name}</Tooltip>
+                    </Circle>
+                }
             })
         )}
     </>
 }
 
-const Map = ({ signups, ...props }: MapContainerProps & { signups: Props }) => {
+const Map = ({ signups, params, ...props }: MapContainerProps & { signups: Props, params: ParsedParams, }) => {
+    const { ll: [ center, setLL ], z: [ zoom, setZoom ], draw: [ drawMode, ] } = params
     return (
-        <MapContainer {...props}>
-            <Layers signups={signups} />
+        <MapContainer center={center} zoom={zoom} {...props}>
+            <Layers signups={signups} setLL={setLL} zoom={zoom} setZoom={setZoom} drawMode={drawMode} />
         </MapContainer>
     )
 }
