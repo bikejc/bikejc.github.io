@@ -34,38 +34,157 @@ type Route = {
     positions: RoutePoint[]
 }
 const routes: { [k: string]: Route } = {
-    red: {
-        color: "red",
-        positions: [
-            { lat: 40.74250183922047 , lng: -74.05369877815248, stop: { name: "Pershing Field", time: "7:30am", }, },
-            { lat: 40.74282698670428 , lng: -74.05463218688966, },
-            { lat: 40.74101426921151 , lng: -74.05582308769227, },
-            { lat: 40.73827477728785 , lng: -74.05871987342836, },
-            { lat: 40.7359822967486  , lng: -74.0588700771332 , },
-            { lat: 40.73490919360775 , lng: -74.0592133998871 , },
-            { lat: 40.73257594750422 , lng: -74.05958890914918, },
-            { lat: 40.73043774421105 , lng: -74.06129479408266, },
-            { lat: 40.73080360135806 , lng: -74.06440615653993, },
-            { lat: 40.728510863374794, lng: -74.06690597534181, },
-            { lat: 40.72718559227259 , lng: -74.0671741962433 , },
-            { lat: 40.725356186961825, lng: -74.068021774292  , stop: { name: "McGinley Square", time: "8:00am", }, },
-            { lat: 40.724429269076595, lng: -74.06975984573366, },
-            { lat: 40.72337224169876 , lng: -74.07050013542177, },
-            { lat: 40.720908489648345, lng: -74.07275319099428, },
-            { lat: 40.72212818027965 , lng: -74.07572507858278, },
-            { lat: 40.722437165024765, lng: -74.07618641853334, stop: { name: "LCCS", time: "8:15am", }, },
-        ]
-    }
+    // red: {
+    //     color: "red",
+    //     positions: [
+    //         { lat: 40.74250183922047 , lng: -74.05369877815248, stop: { name: "Pershing Field", time: "7:30am", }, },
+    //         { lat: 40.74282698670428 , lng: -74.05463218688966, },
+    //         { lat: 40.74101426921151 , lng: -74.05582308769227, },
+    //         { lat: 40.73827477728785 , lng: -74.05871987342836, },
+    //         { lat: 40.7359822967486  , lng: -74.0588700771332 , },
+    //         { lat: 40.73490919360775 , lng: -74.0592133998871 , },
+    //         { lat: 40.73257594750422 , lng: -74.05958890914918, },
+    //         { lat: 40.73043774421105 , lng: -74.06129479408266, },
+    //         { lat: 40.73080360135806 , lng: -74.06440615653993, },
+    //         { lat: 40.728510863374794, lng: -74.06690597534181, },
+    //         { lat: 40.72718559227259 , lng: -74.0671741962433 , },
+    //         { lat: 40.725356186961825, lng: -74.068021774292  , stop: { name: "McGinley Square", time: "8:00am", }, },
+    //         { lat: 40.724429269076595, lng: -74.06975984573366, },
+    //         { lat: 40.72337224169876 , lng: -74.07050013542177, },
+    //         { lat: 40.720908489648345, lng: -74.07275319099428, },
+    //         { lat: 40.72212818027965 , lng: -74.07572507858278, },
+    //         { lat: 40.722437165024765, lng: -74.07618641853334, stop: { name: "LCCS", time: "8:15am", }, },
+    //     ]
+    // }
+}
+
+type Point = [ number, number ]
+type Points = Point[]
+const path = (points: Points) => `M${points.map(([ x, y ]) => `${x} ${y}`).join(" L")} Z`
+
+const schoolPath = () => {
+    const g = 8
+    const l = 50 + g/2
+    const h = 40
+    const r = 10
+    const R = 20
+    const H = h + r
+    const ypad = (100 - H) / 2
+    const rightPoints: Points = [
+        [ l, 100 - ypad ],
+        [ l, 100 - ypad - h ],
+        [ l + R, 100 - ypad - h - r ],
+        [ l + R, 100 - ypad - r ],
+    ]
+    const leftPoints: Points = rightPoints.map(([ x, y ]) => [ 100 - x, y ])
+    const rightPath = path(rightPoints)
+    const leftPath = path(leftPoints)
+    // console.log("paths:", leftPath, rightPath)
+    return `${rightPath} ${leftPath}`
+}
+
+type Icon = { size: number, bg: string, fg: string, opacity: number }
+
+const schoolIcon = ({ size, bg, fg, opacity }: Icon) =>
+    L.divIcon({
+        html: `
+<svg
+  width="${size}"
+  height="${size}"
+  viewBox="0 0 100 100"
+  version="1.1"
+  preserveAspectRatio="none"
+  xmlns="http://www.w3.org/2000/svg"
+>
+  <!-- <circle r="45" cx="50" cy="50" fill="${bg}" stroke="white" stroke-width="5"></circle> -->
+  <path d="M5 5 H95 V95 H5 Z" fill="${bg}" stroke-width="5" stroke="white" fill-opacity="${opacity}" opacity="${opacity}"></path>
+  <path style="stroke: transparent; width: 0" stroke-width="0" d="${schoolPath()}" fill="${fg}" fill-opacity="${opacity}" opacity="${opacity}"></path>
+</svg>`,
+        className: "",
+        iconSize: [size, size],
+        iconAnchor: [size / 2, size / 2],
+    });
+
+const housePath = () => {
+    const w = 15  // pillar width
+    const g = 12  // gap width
+    const h = 12  // roof overhang
+    const m = 50 - g/2 - w - h
+    const M = 100 - m
+    const s = m+h  // left pillar outer x coord
+    const S = 100 - s  // right pillar outer x coord
+    const v = 22  // top/bottom margin
+    const V = 100 - v
+    const mid = 100 / 2
+    const rightHalfPoints: Points = [
+        [mid+g/2, mid], // inner right
+        [mid+g/2, V], // lower right
+        [S, V],   // lower right
+        [S, mid],
+        [M, mid],
+    ]
+    const leftHalfPoints: Points = rightHalfPoints.map(([ x, y ]) => [ 100-x, y ])
+    leftHalfPoints.reverse()
+    return path([
+        [mid, mid],
+        ...rightHalfPoints,
+        [mid, v], // top
+        ...leftHalfPoints
+    ])
+}
+
+const houseIcon = ({ size, bg, fg, opacity }: Icon) =>
+    L.divIcon({
+        html: `
+<svg
+  width="${size}"
+  height="${size}"
+  viewBox="0 0 100 100"
+  version="1.1"
+  preserveAspectRatio="none"
+  xmlns="http://www.w3.org/2000/svg"
+>
+  <circle r="45" cx="50" cy="50" fill="${bg}" stroke="white" stroke-width="5" opacity="${opacity}"></circle>
+  <path style="stroke: transparent; width: 0" stroke-width="0" d="${housePath()}" fill="${fg}" fill-opacity="${opacity}" opacity="${opacity}"></path>
+</svg>`,
+        className: "",
+        iconSize: [size, size],
+        iconAnchor: [size / 2, size /2],
+    });
+
+const { max, min, round } = Math
+
+function getMetersPerPixel(map: L.Map) {
+    const centerLatLng = map.getCenter(); // get map center
+    const pointC = map.latLngToContainerPoint(centerLatLng); // convert to containerpoint (pixels)
+    const pointX: L.PointExpression = [pointC.x + 1, pointC.y]; // add one pixel to x
+    // const pointY: L.PointExpression = [pointC.x, pointC.y + 1]; // add one pixel to y
+
+    // convert containerpoints to latlng's
+    const latLngC = map.containerPointToLatLng(pointC);
+    const latLngX = map.containerPointToLatLng(pointX);
+    // const latLngY = map.containerPointToLatLng(pointY);
+
+    const distanceX = latLngC.distanceTo(latLngX); // calculate distance between c and x (latitude)
+    // const distanceY = latLngC.distanceTo(latLngY); // calculate distance between c and y (longitude)
+
+    // const zoom = map.getZoom()
+    //console.log("distanceX:", distanceX, "distanceY:", distanceY, "center:", centerLatLng, "zoom:", zoom)
+    return distanceX
 }
 
 const Layers = ({ signups }: { signups: Props }) => {
     const { url, attribution } = MAPS['alidade_smooth_dark']
     const [ newRoutes, setNewRoutes ] = useState<LL[][]>([])
-    console.log("num routes:", newRoutes.length)
+    // console.log("num routes:", newRoutes.length)
     const [ newRoutePoints, setNewRoutePoints ] = useState<LL[] | null>(null)
     const [ nextPoint, setNextPoint ] = useState<LL | null>(null)
+    const [ zoom, setZoom ] = useState<number | null>(null)
     const map: L.Map = useMapEvents({
-        zoom: () => console.log("map zoom:", map.getZoom()),
+        zoom: () => {
+            console.log("map zoom:", map.getZoom())
+            setZoom(map.getZoom())
+        },
         dragend: e => console.log("map dragend:", map.getCenter(), e),
         click: (e: LeafletMouseEvent) => {
             setSelectedSchool(null)
@@ -85,29 +204,38 @@ const Layers = ({ signups }: { signups: Props }) => {
             setNextPoint(e.latlng)
         },
     })
+    const mPerPx = useMemo(() => getMetersPerPixel(map), [ map, zoom, ])
     const [ selectedSchool, setSelectedSchool ] = useState<string | null>(null)
     // console.log("render, selectedSchool:", selectedSchool)
     const eventHandlers = useCallback(
         (schoolName: string) => ({
             click: (e: LeafletMouseEvent) => {
-                if (nextPoint) return
+                if (nextPoint) {
+                    console.log("found nextPoint", nextPoint, "aborting click")
+                    if (!newRoutePoints) {
+                        setNewRoutePoints([ e.latlng ])
+                    } else {
+                        setNewRoutePoints(newRoutePoints.concat([e.latlng]))
+                    }
+                    return
+                }
                 L.DomEvent.stopPropagation(e)
                 if (schoolName == selectedSchool) return
                 console.log("click:", schoolName)
                 setSelectedSchool(schoolName)
             },
             mouseover: () => {
-                if (nextPoint) return
+                if (nextPoint || newRoutePoints) return
                 if (schoolName == selectedSchool) return
-                console.log("over:", schoolName)
+                console.log("over:", schoolName, !!nextPoint, !!newRoutePoints)
                 setSelectedSchool(schoolName)
             },
         }),
-        [selectedSchool, setSelectedSchool]
+        [selectedSchool, setSelectedSchool, nextPoint, newRoutePoints]
     )
     const numSchools = entries(signups).length
-    const minLat = Math.min(...o2a(signups, (name, { school }) => school.lat))
-    const maxLat = Math.max(...o2a(signups, (name, { school }) => school.lat))
+    const minLat = min(...o2a(signups, (name, { school }) => school.lat))
+    const maxLat = max(...o2a(signups, (name, { school }) => school.lat))
     const latRange = maxLat - minLat
     const minHue = 0
     const maxHue = 282
@@ -129,26 +257,31 @@ const Layers = ({ signups }: { signups: Props }) => {
         return `hsl(${hue},${sat},${lum})`
     }
     function latColor(lat: number) {
-        const hue =  minHue + Math.round((lat - minLat) / latRange * hueRange)
+        const hue =  minHue + round((lat - minLat) / latRange * hueRange)
         return `hsl(${hue},${sat},${lum})`
     }
+    const zoomAdjustment = zoom ? max(0, zoom - 14) * 2 : 0
+    const schoolSize = 24 + zoomAdjustment
+    const houseSize = 20 + zoomAdjustment
     return <>
         <TileLayer url={url} attribution={attribution}/>
         {
             o2a<string, School, ReactNode>(signups, (schoolName, { school, signups }, idx) => {
                 const selected = schoolName == selectedSchool
+                const selectedFactor = selected ? 1.3 : 1
                 const notSelected = selectedSchool && !selected
                 // console.log(`school ${schoolName}, ${selected}`)
-                const circleFade = 0.7
+                const iconFade = 0.4
                 const lineOpacity = selected ? 1 : (notSelected ? 0.2 : 0.3)
                 // const color = latColor(school.lat)
                 const color = idxColor(schoolsByLat[schoolName])
                 // console.log(`school ${schoolName}: lat ${school.lat}, color ${color}`)
                 const lineColor = color
-                const signupOpacity = notSelected ? circleFade : 1
+                const signupOpacity = notSelected ? iconFade : 1
                 const signupColor = color
-                const schoolOpacity = notSelected ? circleFade : 1
+                const schoolOpacity = notSelected ? iconFade : 1
                 const schoolColor = color
+                // console.log(`school ${schoolName}, opacity ${signupOpacity} ${schoolOpacity}`)
                 return signups.map((ll, idx) =>
                     <Fragment key={`${selectedSchool}-${schoolName}-${idx}`}>
                         {/* Home to School */}
@@ -156,29 +289,26 @@ const Layers = ({ signups }: { signups: Props }) => {
                             positions={[ ll, school ]}
                             color={lineColor} fillColor={lineColor}
                             weight={5}
-                            fill
                             opacity={lineOpacity} fillOpacity={lineOpacity}
                         />
                         {/* Home */}
-                        {/*<Marker></Marker>*/}
-                        <Circle
-                            center={ll} radius={30}
-                            color={signupColor} fillColor={signupColor}
-                            opacity={signupOpacity} fillOpacity={signupOpacity}
+                        <Marker
+                            position={ll}
+                            icon={houseIcon({ size: houseSize * selectedFactor, bg: schoolColor, fg: "black", opacity: signupOpacity })}
+                            // opacity={signupOpacity}
                             eventHandlers={eventHandlers(schoolName)}
                         >
                             <Tooltip sticky={true}>{schoolName}</Tooltip>
-                        </Circle>
+                        </Marker>
                         {/* School */}
-                        <Circle
-                            // key={`${selectedSchool}-${schoolName}-${idx}`}
-                            center={school} radius={40}
-                            color={schoolColor} fillColor={schoolColor}
-                            opacity={schoolOpacity} fillOpacity={schoolOpacity}
+                        <Marker
+                            position={school}
+                            icon={schoolIcon({ size: schoolSize * selectedFactor, bg: signupColor, fg: "black", opacity: schoolOpacity })}
+                            // opacity={schoolOpacity}
                             eventHandlers={eventHandlers(schoolName)}
                         >
                             <Tooltip className={css.tooltip} permanent={selected}>{schoolName}</Tooltip>
-                        </Circle>
+                        </Marker>
                     </Fragment>
                 )
             })
@@ -215,8 +345,10 @@ const Layers = ({ signups }: { signups: Props }) => {
         {newRoutes.map((route, rIdx) => route.map((point, pIdx) =>
             <Circle
                 key={`newRoute-${rIdx}[${pIdx}]`}
-                center={point} radius={25}
-                color={"grey"} fillColor={"white"}
+                center={point} radius={50}
+                weight={3}
+                color={"black"} fillColor={"white"}
+                fillOpacity={0.8}
             />
         ))}
         {/* Route lines */}
@@ -230,12 +362,12 @@ const Layers = ({ signups }: { signups: Props }) => {
         )}
         {/* Route stops */}
         {entries(routes).map(([ name, { color, positions } ], idx) =>
-            positions.map(p => {
-                const stop = p.stop
+            positions.map(point => {
+                const stop = point.stop
                 if (!stop) return
                 return <Circle
                     key={`route-${name}-stop-${stop.name}`}
-                    center={p} radius={50}
+                    center={point} radius={50}
                     weight={3}
                     color={"black"} fillColor={"white"}
                     fillOpacity={0.8}
