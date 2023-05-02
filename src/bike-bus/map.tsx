@@ -62,10 +62,8 @@ const westSideToTeccs = [
 const greenBlueToNJT = [
     lincolnPark,
     belmontWestSide,
-    { lat: 40.72670588641108, lng: -74.07657265663148, name: "3", },
-    { lat: 40.72835638528008, lng: -74.07544612884523, },
+    { lat: 40.72670588641108, lng: -74.07657265663148, },
     ...westSideToTeccs,
-    // { lat: 40.73240521896697, lng: -74.07253861427309, name: "5" },
     { lat: 40.73572621688966, lng: -74.07055377960206, },
     { lat: 40.734884804698865, lng: -74.06713664531709, name: "Broadway & Tonnele", },
     { lat: 40.73580751218978, lng: -74.06672894954683, name: "Newark & Tonnele", },
@@ -542,6 +540,7 @@ const Layers = ({ signups, setLL, zoom, setZoom, showHomes, hideSchools, drawMod
             const exy = map.latLngToContainerPoint(end)
             const diff = { x: exy.x - sxy.x, y: exy.y - sxy.y }
             const M = sqrt(diff.x*diff.x + diff.y*diff.y)
+            if (!M) return [ start, end ]
             const d = { x: -diff.y * offset / M, y: diff.x * offset / M }
             return [
                 map.containerPointToLatLng(L.point([ sxy.x + d.x, sxy.y + d.y ])),
