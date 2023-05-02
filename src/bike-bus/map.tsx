@@ -42,16 +42,30 @@ const summitHopkins = { lat: 40.73832355261124, lng: -74.05869841575624, name: "
 const ps26 = { lat: 40.7393884715907, lng: -74.05757188796998, stop: { name: "PS 26", time: "Red @ 7:35am, Green/Blue @ 8:00am", }}
 const lincolnPark = { lat: 40.724087769759464, lng: -74.07970547676088, stop: { name: "Lincoln Park", time: "7:30am (blue/green), 8:20am (red)", } }
 const belmontWestSide = { lat: 40.723689351674786, lng: -74.07892227172853, name: "Belmont & West Side", }
+const mcginleySquare = { lat: 40.725356186961825, lng: -74.068021774292  , stop: { name: "McGinley Square", time: "8:00am", }, }
+const montgomeryWestSide = { lat: 40.72830569177484, lng: -74.07541921625074, name: "Montgomery & West Side"}
+
+const pershingField = { lat: 40.74250183922047 , lng: -74.05369877815248, stop: { name: "Pershing Field", time: "7:30am", }, }
+const summitSanford = { lat: 40.74282698670428 , lng: -74.05463218688966, name: "Summit & Sanford", }
+const summitCarlton = { lat: 40.74254654709375, lng: -74.05484139919282, name: "Summit & Carlton" }
+
+const ps3ms4 = { lat: 40.71777784806193, lng: -74.05000269412996, stop: { name: "PS 3 / MS 4", time: "Orange 7:50am, Green/Orange 8:35am", }}
+const groveSt = { lat: 40.71958306715651, lng: -74.04291093349458, stop: { name: "Grove St Plaza", time: "Orange 8:02am, Pink 7:55am" } }
+
+const westSideToTeccs = [
+    montgomeryWestSide,
+    { lat: 40.734388894945276, lng: -74.07137453556062, name: "West Side & Pavonia", },
+    { lat: 40.73479537862304, lng: -74.07276928424837, },
+    { lat: 40.73614488662359, lng: -74.07209873199464, stop: { name: "TECCS", time: "7:45am (blue/green), 8:15am (yellow)", }},
+]
 
 const greenBlueToNJT = [
     lincolnPark,
     belmontWestSide,
-    { lat: 40.72670588641108, lng: -74.07657265663148, name: "", },
+    { lat: 40.72670588641108, lng: -74.07657265663148, name: "3", },
     { lat: 40.72835638528008, lng: -74.07544612884523, },
-    { lat: 40.73240521896697, lng: -74.07253861427309, },
-    { lat: 40.734388894945276, lng: -74.07137453556062, name: "West Side & Pavonia", },
-    { lat: 40.73479537862304, lng: -74.07276928424837, },
-    { lat: 40.73614488662359, lng: -74.07209873199464, stop: { name: "TECCS", time: "7:45am", }},
+    ...westSideToTeccs,
+    // { lat: 40.73240521896697, lng: -74.07253861427309, name: "5" },
     { lat: 40.73572621688966, lng: -74.07055377960206, },
     { lat: 40.734884804698865, lng: -74.06713664531709, name: "Broadway & Tonnele", },
     { lat: 40.73580751218978, lng: -74.06672894954683, name: "Newark & Tonnele", },
@@ -81,8 +95,6 @@ const greenBlueToNJT = [
     { lat: 40.73570589304912, lng: -74.04555559158327, stop: { name: 'Hoboken Ave & NJ Transit Path', time: '8:10am', }},
 ]
 
-const ps3ms4 = { lat: 40.71777784806193, lng: -74.05000269412996, stop: { name: "PS 3 / MS 4", time: "Orange 7:50am, Green/Orange 8:35am", }}
-const groveSt = { lat: 40.71958306715651, lng: -74.04291093349458, stop: { name: "Grove St Plaza", time: "Orange 8:02am, Pink 7:55am" } }
 const hpPs5Ps3 = [
     { lat: 40.72761244627582, lng: -74.04411256313325, name: "McWilliams & Pavonia", },
     { lat: 40.72686036833718, lng: -74.04423594474794, stop: { name: "Hamilton Park", time: "8:15am", }},
@@ -99,10 +111,6 @@ const hpPs5Ps3 = [
     { lat: 40.72110364165123, lng: -74.04821097850801, name: "Christopher Columbus & Varick" },
     ps3ms4,
 ]
-
-const pershingField = { lat: 40.74250183922047 , lng: -74.05369877815248, stop: { name: "Pershing Field", time: "7:30am", }, }
-const summitSanford = { lat: 40.74282698670428 , lng: -74.05463218688966, name: "Summit & Sanford", }
-const summitCarlton = { lat: 40.74254654709375, lng: -74.05484139919282, name: "Summit & Carlton" }
 
 const routes: { [k: string]: Route } = {
     red: {
@@ -122,7 +130,7 @@ const routes: { [k: string]: Route } = {
             { lat: 40.73080360135806 , lng: -74.06440615653993, name: "Sip & Bergen", },
             { lat: 40.728510863374794, lng: -74.06690597534181, name: "Bergen & Vroom"},
             { lat: 40.72718559227259 , lng: -74.0671741962433 , },
-            { lat: 40.725356186961825, lng: -74.068021774292  , stop: { name: "McGinley Square", time: "8:00am", }, },
+            mcginleySquare,
             { lat: 40.724429269076595, lng: -74.06975984573366, },
             { lat: 40.72337224169876 , lng: -74.07050013542177, },
             { lat: 40.720908489648345, lng: -74.07275319099428, name: "Belmont & Bergen", },
@@ -177,6 +185,16 @@ const routes: { [k: string]: Route } = {
             { start: "McWilliams & Pavonia", end: "PS 3 / MS 4", offset: -5, },
         ]
     },
+    yellow: {
+        color: "yellow",
+        positions: [
+            mcginleySquare,
+            ...westSideToTeccs,
+        ],
+        offsets: [
+            { start: montgomeryWestSide.name, end: "TECCS", offset: 10, },
+        ]
+    },
     green: {
         color: "hsl(119, 100%, 61%)",
         positions: [
@@ -187,7 +205,9 @@ const routes: { [k: string]: Route } = {
         ],
         offsets: [
             //{ start: "Lincoln Park", end: belmontWestSide.name, offset: 5, },
-            { start: belmontWestSide.name, end: "Summit & 139", offset: 5, },
+            { start: belmontWestSide.name, end: montgomeryWestSide.name, offset: 5, },
+            { start: montgomeryWestSide.name, end: "TECCS", offset: 0, },
+            { start: "TECCS", end: "Summit & 139", offset: 5, },
             { start: "Summit & 139", end: ps26.stop.name, offset: 0, },
             { start: ps26.stop.name, end: 'Hoboken Ave & NJ Transit Path', offset: 5, },
             { start: "McWilliams & Pavonia", end: "PS 3 / MS 4", offset: 5, },
@@ -215,7 +235,9 @@ const routes: { [k: string]: Route } = {
         ],
         offsets: [
             { start: "Lincoln Park", end: belmontWestSide.name, offset: -10, },
-            { start: belmontWestSide.name, end: "Summit & 139", offset: -5, },
+            { start: belmontWestSide.name, end: montgomeryWestSide.name, offset: -5, },
+            { start: montgomeryWestSide.name, end: "TECCS", offset: -10, },
+            { start: "TECCS", end: "Summit & 139", offset: -5, },
             { start: "Summit & 139", end: ps26.stop.name, offset: -10, },
             { start: ps26.stop.name, end: 'Hoboken Ave & NJ Transit Path', offset: -5, },
 
@@ -698,12 +720,14 @@ const Layers = ({ signups, setLL, zoom, setZoom, showHomes, hideSchools, drawMod
         })}
         {/* Route stops */}
         {entries(routes).map(([ routeName, { color, positions } ], idx) => {
+            // console.log(`${routeName}:`)
             const isSelectedRoute = routeName == selectedRoute
             const isDeselectedRoute = selectedRoute && !isSelectedRoute
             const routeStopOpacity = isDeselectedRoute ? 0.4 : 0.8
             return positions.map((point, stopIdx) => {
                 const stop = point.stop
                 if (stop) {
+                    // console.log(`  ${stop.time}: ${stop.name}`)
                     return <Stop
                         key={`route-${routeName}-stop-${stop.name}=${stopIdx}-${routeStopOpacity}-${isSelectedRoute}`}
                         center={point} radius={stopRadius}
