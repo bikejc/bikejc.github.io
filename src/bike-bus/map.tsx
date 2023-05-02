@@ -39,7 +39,7 @@ type Route = {
 
 const summit139 = { lat: 40.73693344188031, lng: -74.05880570411684, name: "Summit & 139", }
 const summitHopkins = { lat: 40.73832355261124, lng: -74.05869841575624, name: "Summit & Hopkins", }
-const ps26 = { lat: 40.7393884715907, lng: -74.05757188796998, stop: { name: "PS 26", time: "8:00am", }}
+const ps26 = { lat: 40.7393884715907, lng: -74.05757188796998, stop: { name: "PS 26", time: "Red @ 7:35am, Green/Blue @ 8:00am", }}
 const lincolnPark = { lat: 40.724087769759464, lng: -74.07970547676088, stop: { name: "Lincoln Park", time: "7:30am (blue/green), 8:20am (red)", } }
 const belmontWestSide = { lat: 40.723689351674786, lng: -74.07892227172853, name: "Belmont & West Side", }
 
@@ -329,20 +329,20 @@ function getMetersPerPixel(map: L.Map) {
     return (distanceX + distanceY) / 2
 }
 
-const Stop = ({ center, radius, stop }: { center: LL, radius: number, stop: Stop }) => <Circle
+const Stop = ({ center, radius, stop, opacity, isSelectedRoute }: { center: LL, radius: number, stop: Stop, opacity: number, isSelectedRoute: boolean }) => <Circle
     center={center} radius={radius}
     weight={3}
     color={"black"} fillColor={"white"}
-    fillOpacity={0.8}
+    opacity={opacity} fillOpacity={opacity}
 >
-    <Tooltip className={css.tooltip}>{stop.name}: {stop.time}</Tooltip>
+    <Tooltip className={css.tooltip} permanent={isSelectedRoute}>{stop.name}: {stop.time}</Tooltip>
 </Circle>
 
-const RoutePoint = ({ name, center, radius, }: { center: LL, radius: number, name: string, }) => <Circle
+const RoutePoint = ({ name, center, opacity, radius, }: { center: LL, radius: number, name: string, opacity: number }) => <Circle
     center={center} radius={radius}
     weight={3}
     color={"black"} fillColor={"white"}
-    fillOpacity={0.8}
+    opacity={opacity} fillOpacity={opacity}
 >
     <Tooltip className={css.tooltip}>{name}</Tooltip>
 </Circle>
@@ -361,6 +361,7 @@ const Layers = ({ signups, setLL, zoom, setZoom, showHomes, hideSchools, drawMod
     // console.log("num routes:", newRoutes.length)
     const [ newRoutePoints, setNewRoutePoints ] = useState<LL[] | null>(null)
     const [ nextPoint, setNextPoint ] = useState<LL | null>(null)
+    const [ selectedRoute, setSelectedRoute ] = useState<string | null>(null)
     // const [ zoom, setZoom ] = useState<number | null>(null)
     const map: L.Map = useMapEvents({
         zoom: () => {
@@ -371,9 +372,10 @@ const Layers = ({ signups, setLL, zoom, setZoom, showHomes, hideSchools, drawMod
         dragend: e => console.log("map dragend:", map.getCenter(), e),
         click: (e: LeafletMouseEvent) => {
             setSelectedSchool(null)
+            setSelectedRoute(null)
             // const { lat, lng } = e.latlng
             console.log(`map click: latlng:`, JSON.stringify(e.latlng), "newRoutePoints:", newRoutePoints, "nextPoint:", nextPoint, "e:", e)
-            if (selectedSchool) return
+            if (selectedSchool || selectedRoute) return
             if (!drawMode) return
             if (!newRoutePoints) {
                 setNewRoutePoints([ e.latlng ])
@@ -574,6 +576,10 @@ const Layers = ({ signups, setLL, zoom, setZoom, showHomes, hideSchools, drawMod
         ))}
         {/* Route lines */}
         {entries(routes).map(([ name, { color, positions, offsets } ], routeIdx) => {
+            const isSelectedRoute = name == selectedRoute
+            const isDeselectedRoute = selectedRoute && !isSelectedRoute
+            const routeLineOpacity = isDeselectedRoute ? 0.5 : 1
+            // console.log(`route ${name}`, isSelectedRoute, isDeselectedRoute, routeLineOpacity)
             const offsetIdxs = offsets?.map((segment, idx) => {
                 const { start, end } = segment
                 const startIdx = positions.findIndex(p => p.name == start || p.stop?.name == start)
@@ -598,13 +604,28 @@ const Layers = ({ signups, setLL, zoom, setZoom, showHomes, hideSchools, drawMod
             // console.log("segments:", segments)
             return ([] as ReactNode[]).concat(...segments.map(({ startIdx, lastIdx, offset }, segmentIdx) => {
                 const points = positions.slice(startIdx, lastIdx + 1)
+                const eventHandlers = {
+                    click: (e: LeafletMouseEvent) => {
+                        console.log("selected route:", name)
+                        setSelectedRoute(name)
+                        L.DomEvent.stopPropagation(e)
+                    },
+                    mouseover: (e: LeafletMouseEvent) => {
+                        console.log("selected route:", name)
+                        setSelectedRoute(name)
+                        L.DomEvent.stopPropagation(e)
+                    }
+                }
                 if (!offset) {
                     // console.log(`range line: ${startIdx}-${lastIdx}`)
                     return [<Polyline
-                        key={`route${routeIdx}-segment${segmentIdx}`}
+                        key={`route${routeIdx}-segment${segmentIdx}-${routeLineOpacity}`}
                         positions={points}
                         weight={10}
                         color={color} fillColor={color}
+                        opacity={routeLineOpacity}
+                        fillOpacity={routeLineOpacity}
+                        eventHandlers={eventHandlers}
                     />]
                 } else {
                     return points.map((cur, idx) => {
@@ -612,36 +633,45 @@ const Layers = ({ signups, setLL, zoom, setZoom, showHomes, hideSchools, drawMod
                         // console.log(`offset line: ${idx}-${idx+1}`)
                         const nxt = points[idx + 1]
                         return <Polyline
-                            key={`route${routeIdx}-segment${segmentIdx}-point${idx}`}
+                            key={`route${routeIdx}-segment${segmentIdx}-point${idx}-${routeLineOpacity}`}
                             positions={offsetLine(cur, nxt, offset)}
                             weight={10}
                             color={color} fillColor={color}
+                            opacity={routeLineOpacity}
+                            fillOpacity={routeLineOpacity}
+                            eventHandlers={eventHandlers}
                         />
                     })
                 }
             }))
         })}
         {/* Route stops */}
-        {entries(routes).map(([ routeName, { color, positions } ], idx) =>
-            positions.map((point, stopIdx) => {
+        {entries(routes).map(([ routeName, { color, positions } ], idx) => {
+            const isSelectedRoute = routeName == selectedRoute
+            const isDeselectedRoute = selectedRoute && !isSelectedRoute
+            const routeStopOpacity = isDeselectedRoute ? 0.4 : 0.8
+            return positions.map((point, stopIdx) => {
                 const stop = point.stop
                 if (stop) {
                     return <Stop
-                        key={`route-${routeName}-stop-${stop.name}=${stopIdx}`}
+                        key={`route-${routeName}-stop-${stop.name}=${stopIdx}-${routeStopOpacity}-${isSelectedRoute}`}
                         center={point} radius={stopRadius}
                         stop={stop}
+                        opacity={routeStopOpacity}
+                        isSelectedRoute={isSelectedRoute}
                     />
                 }
                 const name = point.name
                 if (name && zoom >= minRoutePointZoom) {
                     return <RoutePoint
-                        key={`route-${name}-point-${name}=${stopIdx}`}
+                        key={`route-${name}-point-${name}=${stopIdx}[${routeStopOpacity}`}
                         center={point} radius={routePointRadius}
+                        opacity={routeStopOpacity}
                         name={name}
                     />
                 }
             })
-        )}
+        })}
     </>
 }
 
