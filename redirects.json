@@ -7,6 +7,8 @@
     "/events/jersey-city-ward-tour/ward-tour-faqs":  "/ward-tour/2022/ward-tour-faqs",
     "/ward-tour/register": "/ward-tour",
     "/bikebus": "/bike-bus",
+    "/bikebus/waiver": "https://na4.documents.adobe.com/public/esignWidget?wid=CBFCIBAA3AAABLblqZhAUd1L_fhbKbJq9pNIqBzMoOOKeUjNM8yFpq7m_fUxfuJ0J9CFVHFUb7Hs1Z46WkaE*",
+    "/bike-bus/waiver": "https://na4.documents.adobe.com/public/esignWidget?wid=CBFCIBAA3AAABLblqZhAUd1L_fhbKbJq9pNIqBzMoOOKeUjNM8yFpq7m_fUxfuJ0J9CFVHFUb7Hs1Z46WkaE*",
     "/bikebus/map": "/bike-bus/map",
     "/bikebus/signup": "https://docs.google.com/forms/d/e/1FAIpQLSfyv5XbLCMLbhG54FG-EnPdlEEs-2ZoklFhmpMg2mCwKTO2mg/viewform",
     "/bikebus/sign-up": "https://docs.google.com/forms/d/e/1FAIpQLSfyv5XbLCMLbhG54FG-EnPdlEEs-2ZoklFhmpMg2mCwKTO2mg/viewform",
