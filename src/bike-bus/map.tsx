@@ -100,12 +100,17 @@ const hpPs5Ps3 = [
     ps3ms4,
 ]
 
+const pershingField = { lat: 40.74250183922047 , lng: -74.05369877815248, stop: { name: "Pershing Field", time: "7:30am", }, }
+const summitSanford = { lat: 40.74282698670428 , lng: -74.05463218688966, name: "Summit & Sanford", }
+const summitCarlton = { lat: 40.74254654709375, lng: -74.05484139919282, name: "Summit & Carlton" }
+
 const routes: { [k: string]: Route } = {
     red: {
         color: "red",
         positions: [
-            { lat: 40.74250183922047 , lng: -74.05369877815248, stop: { name: "Pershing Field", time: "7:30am", }, },
-            { lat: 40.74282698670428 , lng: -74.05463218688966, name: "Summit & Sanford", },
+            pershingField,
+            summitSanford,
+            summitCarlton,
             { lat: 40.74101426921151 , lng: -74.05582308769227, },
             { lat: 40.73827477728785 , lng: -74.05871987342836, },
             ps26,
@@ -131,6 +136,7 @@ const routes: { [k: string]: Route } = {
             { lat: 40.71894880656658, lng: -74.08470511436464, stop: { name: "PS 33", time: "8:25am", }, },
         ],
         offsets: [
+            { start: pershingField.stop.name, end: summitCarlton.name, offset: -5 },
             { start: ps26.stop.name, end: "Summit & 139", offset: -10, },
             { start: belmontWestSide.name, end: "Lincoln Park", offset: -10, },
         ]
@@ -235,6 +241,29 @@ const routes: { [k: string]: Route } = {
             { lat: 40.71529762488199, lng: -74.0376913547516, name: "Morris & Washington" },
             { lat: 40.71533828502335, lng: -74.0380883216858, stop: { name: "PS16 Annex", time: "8:20am" }}
         ],
+    },
+    purple: {
+        color: "hsl(275, 100%, 67%)",
+        positions: [
+            pershingField,
+            summitSanford,
+            summitCarlton,
+            { lat: 40.74474126028802, lng: -74.06049013137819, name: "Liberty & Carlton" },
+            { lat: 40.74607837411974, lng: -74.05956208705904, name: "Manhattan & Liberty" },
+            { lat: 40.74641163234856, lng: -74.06042575836183, name: "Manhattan & Terrace" },
+            { lat: 40.75003672372753, lng: -74.05793130397798, name: "Terrace & Lincoln" },
+            { lat: 40.749406817326424, lng: -74.05626833438875, name: "Lincoln & Columbia" },
+            { lat: 40.75136966727671, lng: -74.05494332313539, },
+            { lat: 40.7514428158444, lng: -74.05473947525026, },
+            { lat: 40.75527487548953, lng: -74.05223429203035, name: "North & Columbia" },
+            { lat: 40.75492947089871, lng: -74.05132770538331, name: "North & Nelson" },
+            // { lat: 40.75252794872285, lng: -74.04791081116464, },
+            // { lat: 40.75406812615908, lng: -74.05181782402161, },
+            { lat: 40.75353941255337, lng: -74.05219714565821, stop: { name: "Jersey City Global Charter School", time: "7:50am" } },
+        ],
+        offsets: [
+            { start: pershingField.stop.name, end: summitCarlton.name, offset: 5 },
+        ]
     }
 }
 
