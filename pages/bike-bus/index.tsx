@@ -21,6 +21,12 @@ The more signups we get from each school, the easier it is to plan a route there
 
 ---
 
+#### Route Map <a id="map"></a>
+
+<iframe src="https://bikejc.org/bike-bus/map" width="100%" style="aspect-ratio: 4/3"></iframe>
+
+[View full screen here](/bike-bus/map)
+
 #### School Signup Standings <a id="standings"></a>
 
 <iframe src="https://docs.google.com/spreadsheets/d/e/2PACX-1vR7OykHYT-mz7qF40nn18ivkbKrM8Q6UC1ys8vTadmcEloaN1X5u74kOZ441t-HBF6m6hoh0X6OA3Vk/pubhtml?gid=601478093&amp;single=true&amp;widget=true&amp;headers=false" width="100%" style="aspect-ratio: 4/3"></iframe>
@@ -28,6 +34,43 @@ The more signups we get from each school, the easier it is to plan a route there
 ##### [**Get your school to sign up**](/bike-bus/signup), so that we can plan Bike Bus routes there!
 
 [**bikejc.org/bike-bus/signup**](https://bikejc.org/bike-bus/signup)
+
+#### Waiver <a id="waiver"></a>
+[**Parents must sign the waiver for their children who will join**](/bike-bus/waiver).
+
+#### FAQs <a id="faq"></a>
+
+##### What do I need to bring?
+A lock and helmet are required.
+
+##### Where will we lock up our bikes?
+The city is providing temporary bike racks at schools that were mentioned as not having any (at sign up)
+
+You do need to being your own lock though!
+
+##### Does the Bike Bus go home from school as well?
+No, this is ride **TO** school only.
+
+##### Will the roads be closed?
+No. There will be volunteer marshals – with hi-viz vests and radios – at the front and back of each group, to keep everyone safe.
+
+The routes have been chosen to make the most out of the city's bike lane network. Children up to 12 are allowed to be on the sidewalk, so that's also an option at certain spots (please be mindful of pedestrians!).
+
+##### Are scooters allowed?
+Yes! Though parents should accompany kids, help them onto the sidewalk in places, if necessary, etc.
+
+##### Do I need to ride the whole route?
+If where you need to be is outside the route, you can of course peel off the group with your child but please let us know in advance or let one of the marshals know.
+
+Students whose parents signed them up, and are joining alone, need to go the route with Bike JC. Parents also need to sign [the waiver](/bike-bus/waiver).
+
+##### Will we be on time for school?
+That's the plan, and we have calculated extra time for traffic and/or construction. Hopefully, there won't be unforeseen circumstances out of our control.
+
+You can click around [the map](./map) to see timelines for each route.
+
+##### Biking to school, in this weather?
+Yes, biking is fun in most kinds of weather. Kids especially don't think twice about it if dressed for the occasion. Luckily there is no rain in the forecast, and we will have music on the ride to help you forget it's not yet summer.
 
 #### Bike Bus Inspiration <a id="inspiration"></a>
 

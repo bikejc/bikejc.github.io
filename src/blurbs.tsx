@@ -18,6 +18,10 @@ export const upcomingEventsBlurb = <>
 
 [**Sign up here**](/bike-bus/signup) and Bike JC will help coordinate one in your area! [**More info here**](/bike-bus).
 
+<iframe src="https://bikejc.org/bike-bus/map?S" width="100%" style="aspect-ratio: 4/3"></iframe>
+
+[View full screen here](/bike-bus/map)
+
 ---
 `)}
     {wtBlurb}
