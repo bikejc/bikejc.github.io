@@ -65,18 +65,18 @@ const greenBlueToNJT = [
     summitHopkins,
     ps26,
     { lat: 40.73963640829574, lng: -74.05796885490419, },
-    { lat: 40.73972989238724, lng: -74.05943870544435, stop: { name: "MS 7", time: "8:05am", }},
+    { lat: 40.73972989238724, lng: -74.05943870544435, stop: { name: "MS 7", time: "8:02am", }},
     { lat: 40.7397786666437, lng: -74.06021654605867, name: "Collard & Laidlaw" },
     { lat: 40.73884382050208, lng: -74.0604203939438, name: "Collard & Hopkins" },
     summitHopkins,
-    { lat: 40.736730206883486, lng: -74.05567288398744, stop: { name: 'PS 6', time: '', }},
+    { lat: 40.736730206883486, lng: -74.05567288398744, stop: { name: 'PS 6', time: '8:05am', }},
     { lat: 40.73408809542487, lng: -74.0506410598755, name: "Palisade & Hopkins", },
     { lat: 40.73192555073219, lng: -74.05261516571046, name: "Palisade & 139", },
     { lat: 40.73147026920899, lng: -74.05188560485841, name: "Hoboken Ave & 139", },
     { lat: 40.73261659709138, lng: -74.05028700828554, },
     { lat: 40.734023057511926, lng: -74.04897809028627, },
     { lat: 40.73509617494571, lng: -74.0482807159424, },
-    { lat: 40.73570589304912, lng: -74.04555559158327, stop: { name: 'Hoboken Ave & NJ Transit Path', time: '', }},
+    { lat: 40.73570589304912, lng: -74.04555559158327, stop: { name: 'Hoboken Ave & NJ Transit Path', time: '8:10am', }},
 ]
 
 const hpPs5Ps3 = [
