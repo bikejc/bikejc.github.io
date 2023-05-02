@@ -81,6 +81,7 @@ const greenBlueToNJT = [
     { lat: 40.73570589304912, lng: -74.04555559158327, stop: { name: 'Hoboken Ave & NJ Transit Path', time: '8:10am', }},
 ]
 
+const ps3ms4 = { lat: 40.71777784806193, lng: -74.05000269412996, stop: { name: "PS 3 / MS 4", time: "Orange 7:50am, Green/Orange 8:35am", }}
 const hpPs5Ps3 = [
     { lat: 40.72761244627582, lng: -74.04411256313325, name: "McWilliams & Pavonia", },
     { lat: 40.72686036833718, lng: -74.04423594474794, stop: { name: "Hamilton Park", time: "8:15am", }},
@@ -95,7 +96,7 @@ const hpPs5Ps3 = [
     { lat: 40.721892375167045, lng: -74.0513062477112, },
     { lat: 40.72187204710097, lng: -74.0506410598755, },
     { lat: 40.72110364165123, lng: -74.04821097850801, name: "Christopher Columbus & Varick" },
-    { lat: 40.71777784806193, lng: -74.05000269412996, stop: { name: "PS 3 / MS 4", time: "8:35am", }},
+    ps3ms4,
 ]
 
 const routes: { [k: string]: Route } = {
@@ -142,13 +143,18 @@ const routes: { [k: string]: Route } = {
             // { lat: 40.71437869906487, lng: -74.06406283378602, },
             // { lat: 40.714362434776895, lng: -74.06273245811464, },
             { lat: 40.711447223789335, lng: -74.06264366353011, stop: { name: "The Grind Coffeeshop", time: "7:35am", }},
-            { lat: 40.71230980019795, lng: -74.06139190212933, },
-            { lat: 40.71335637790267, lng: -74.06274228715561, },
+            {"lat":40.7125268,"lng":-74.0639396},
+            // { lat: 40.71230980019795, lng: -74.06139190212933, },
+            // { lat: 40.71335637790267, lng: -74.06274228715561, },
             { lat: 40.71384197546361, lng: -74.06211018562318, stop: { name: "Lafayette Park / PS 22", time: "7:40am", }},
             { lat: 40.71509432380268, lng: -74.0603291988373, },
             { lat: 40.71402901599767, lng: -74.05900955200197, name: "Johnston & Pacific" },
             { lat: 40.71720049288451, lng: -74.05455708503725, name: "Pacific & Grand" },
-            { lat: 40.71658247334316, lng: -74.04892444610597, name: "Grand & Jersey", },
+            // { lat: 40.71658247334316, lng: -74.04892444610597, name: "Grand & Jersey", },
+            { lat: 40.716972802142045, lng: -74.05228257179262, name: "Grand & Monmouth" },
+            { lat: 40.71824948660363, lng: -74.0515422821045, name: "Bright & Monmouth" },
+            ps3ms4,
+            { lat: 40.717371260430305, lng: -74.04851675033571, },
             { lat: 40.718282013276436, lng: -74.04795885086061, },
             { lat: 40.71805839207992, lng: -74.04714345932008, stop: { name: "Van Vorst Park", time: "7:55am", }},
             { lat: 40.71838365902651, lng: -74.0469664335251, },
@@ -571,9 +577,10 @@ const Layers = ({ signups, setLL, zoom, setZoom, showHomes, hideSchools, drawMod
             const offsetIdxs = offsets?.map((segment, idx) => {
                 const { start, end } = segment
                 const startIdx = positions.findIndex(p => p.name == start || p.stop?.name == start)
-                const endIdx = positions.findIndex(p => p.name == end || p.stop?.name == end)
                 if (startIdx < 0) throw new Error(`Didn't find start ${start} (offset ${idx}) in route ${name}`)
+                let endIdx = positions.slice(startIdx).findIndex(p => p.name == end || p.stop?.name == end)
                 if (endIdx < 0) throw new Error(`Didn't find end ${end} (offset ${idx}) in route ${name}`)
+                endIdx += startIdx
                 return { segment, startIdx, endIdx }
             }) || []
             let idx = 0
