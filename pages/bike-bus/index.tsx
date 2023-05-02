@@ -23,9 +23,9 @@ The more signups we get from each school, the easier it is to plan a route there
 
 #### Route Map <a id="map"></a>
 
-<iframe src="https://bikejc.org/bike-bus/map" width="100%" style="aspect-ratio: 4/3"></iframe>
+<iframe src="https://bikejc.org/bike-bus/map?S" width="100%" style="aspect-ratio: 4/3"></iframe>
 
-[View full screen here](/bike-bus/map)
+[View full screen here](/bike-bus/map?S)
 
 #### School Signup Standings <a id="standings"></a>
 
