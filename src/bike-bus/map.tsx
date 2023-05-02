@@ -543,7 +543,7 @@ const Layers = ({ signups, setLL, zoom, setZoom, showHomes, hideSchools, drawMod
                 color={"grey"} fillColor={"white"}
                 eventHandlers={{
                     click: e => {
-                        console.log("Closing route:", JSON.stringify(newRoutePoints))
+                        console.log(`Closing route:\n${newRoutePoints.map(({ lat, lng }) => `{ lat: ${lat}, lng: ${lng}, },`).join('\n')}`)
                         L.DomEvent.stopPropagation(e)
                         setNewRoutes(newRoutes.concat([newRoutePoints]))
                         setNewRoutePoints(null)
