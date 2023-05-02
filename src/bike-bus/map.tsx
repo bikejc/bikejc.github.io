@@ -40,10 +40,12 @@ type Route = {
 const summit139 = { lat: 40.73693344188031, lng: -74.05880570411684, name: "Summit & 139", }
 const summitHopkins = { lat: 40.73832355261124, lng: -74.05869841575624, name: "Summit & Hopkins", }
 const ps26 = { lat: 40.7393884715907, lng: -74.05757188796998, stop: { name: "PS 26", time: "8:00am", }}
+const lincolnPark = (time: string) => ({ lat: 40.724087769759464, lng: -74.07970547676088, stop: { name: "Lincoln Park", time, } })
+const belmontWestSide = { lat: 40.723689351674786, lng: -74.07892227172853, name: "Belmont & West Side", }
 
 const greenBlueToNJT = [
-    { lat: 40.724087769759464, lng: -74.07970547676088, stop: { name: "Lincoln Park", time: "7:30am", } },
-    { lat: 40.723689351674786, lng: -74.07892227172853, name: "Belmont & West Side", },
+    lincolnPark("7:30am"),
+    belmontWestSide,
     { lat: 40.72670588641108, lng: -74.07657265663148, name: "", },
     { lat: 40.72835638528008, lng: -74.07544612884523, },
     { lat: 40.73240521896697, lng: -74.07253861427309, },
@@ -96,7 +98,6 @@ const hpPs5Ps3 = [
     { lat: 40.71777784806193, lng: -74.05000269412996, stop: { name: "PS 3 / MS 4", time: "8:35am", }},
 ]
 
-const blue = "hsl(219, 100%, 57%)"
 const routes: { [k: string]: Route } = {
     red: {
         color: "red",
@@ -120,9 +121,16 @@ const routes: { [k: string]: Route } = {
             { lat: 40.720908489648345, lng: -74.07275319099428, name: "Belmont & Bergen", },
             { lat: 40.72212818027965 , lng: -74.07572507858278, },
             { lat: 40.722437165024765, lng: -74.07618641853334, stop: { name: "LCCS", time: "8:15am", }, },
+            belmontWestSide,
+            lincolnPark("8:20am"),
+            { lat: 40.723656827644206, lng: -74.08154010772706, },
+            { lat: 40.722551001148226, lng: -74.08548831939699, },
+            { lat: 40.72036368727873, lng: -74.08735513687135, },
+            { lat: 40.71894880656658, lng: -74.08470511436464, stop: { name: "PS 33", time: "8:25am", }, },
         ],
         offsets: [
             { start: ps26.stop.name, end: "Summit & 139", offset: -10, },
+            { start: belmontWestSide.name, end: "Lincoln Park", offset: -10, },
         ]
     },
     orange: {
@@ -151,7 +159,8 @@ const routes: { [k: string]: Route } = {
             ...hpPs5Ps3,
         ],
         offsets: [
-            { start: "Lincoln Park", end: "Summit & 139", offset: 5, },
+            //{ start: "Lincoln Park", end: belmontWestSide.name, offset: 5, },
+            { start: belmontWestSide.name, end: "Summit & 139", offset: 5, },
             { start: "Summit & 139", end: ps26.stop.name, offset: 0, },
             { start: ps26.stop.name, end: 'Hoboken Ave & NJ Transit Path', offset: 5, },
             { start: "McWilliams & Pavonia", end: "PS 3 / MS 4", offset: 5, },
@@ -161,9 +170,25 @@ const routes: { [k: string]: Route } = {
         color: "hsl(223, 100%, 61%)",
         positions: [
             ...greenBlueToNJT,
+            { lat: 40.73563272717176, lng: -74.04402136802675, },
+            { lat: 40.7362749582375, lng: -74.04395699501039, },
+            { lat: 40.73639690014456, lng: -74.04331326484682, },
+            { lat: 40.73773824637029, lng: -74.04402136802675, name: "NJT path at Observer", },
+            { lat: 40.73838045710997, lng: -74.04369950294496, },
+            { lat: 40.74141258356825, lng: -74.04275536537172, },
+            { lat: 40.74130690856319, lng: -74.04225111007692, name: "2nd St HBLR", },
+            { lat: 40.740843562328465, lng: -74.04240131378175, },
+            { lat: 40.74068911286629, lng: -74.04157519340517, },
+            { lat: 40.739420987932526, lng: -74.04192924499513, },
+            { lat: 40.73827477728785, lng: -74.03542757034303, name: "1st & Clinton", },
+            { lat: 40.7430114, lng: -74.0339956, stop: { name: "Mustard Seed School", time: "8:20am", } },
+            { lat: 40.74201411501444, lng: -74.0283787250519, },
+            { lat: 40.74090046467149, lng: -74.02767062187196, },
+            { lat: 40.7406034, lng: -74.0276482, stop: { name: "Stevens Cooperative", time: "8:25am", } },
         ],
         offsets: [
-            { start: "Lincoln Park", end: "Summit & 139", offset: -5, },
+            { start: "Lincoln Park", end: belmontWestSide.name, offset: -10, },
+            { start: belmontWestSide.name, end: "Summit & 139", offset: -5, },
             { start: "Summit & 139", end: ps26.stop.name, offset: -10, },
             { start: ps26.stop.name, end: 'Hoboken Ave & NJ Transit Path', offset: -5, },
 
@@ -407,7 +432,7 @@ const Layers = ({ signups, setLL, zoom, setZoom, showHomes, hideSchools, drawMod
     const houseSize = 20 + zoomAdjustment
     const stopRadius = 10 * mPerPx + zoomAdjustment
     const routePointRadius = 6 * mPerPx // + zoomAdjustment
-    const minRoutePointZoom = 15
+    const minRoutePointZoom = 13
 
     const adjustXY = useCallback(
         (p: LL, dx: number, dy: number) => {

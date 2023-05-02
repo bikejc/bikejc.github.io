@@ -1,9 +1,9 @@
 import dynamic from "next/dynamic";
 import css from './map.module.css'
-import {JC, Props, Schools, Signups} from "../../src/bike-bus/map-utils";
+import {Props, Schools, Signups} from "../../src/bike-bus/map-utils";
 import {loadSync} from "next-utils/load";
 import {mapValues} from "next-utils/objs";
-import {boolParam, floatParam, LL, llParam, Param, ParsedParam, parseQueryParams} from "next-utils/params";
+import {boolParam, floatParam, llParam, parseQueryParams} from "next-utils/params";
 import {Params, ParsedParams} from "../../src/bike-bus/params";
 
 const Map = dynamic(() => import('../../src/bike-bus/map'), { ssr: false });
@@ -17,14 +17,14 @@ export function getStaticProps() {
 
 export default function Page(props: Props) {
     const params: Params = {
-        ll: llParam({ init: JC.center, places: 3, }),
-        z: floatParam(14, false),
+        ll: llParam({ init: { lat: 40.721, lng: -74.057 }, places: 3, }),
+        z: floatParam(13, false),
         h: boolParam,
         S: boolParam,
         draw: boolParam
     }
     const parsedParams: ParsedParams = parseQueryParams({ params })
     return <main>
-        <Map className={css.map} params={parsedParams} signups={props} />
+        <Map className={css.map} params={parsedParams} signups={props} zoomDelta={0.5} zoomSnap={0.5} />
     </main>
 }
