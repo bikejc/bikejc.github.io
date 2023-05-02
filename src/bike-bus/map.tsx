@@ -40,11 +40,11 @@ type Route = {
 const summit139 = { lat: 40.73693344188031, lng: -74.05880570411684, name: "Summit & 139", }
 const summitHopkins = { lat: 40.73832355261124, lng: -74.05869841575624, name: "Summit & Hopkins", }
 const ps26 = { lat: 40.7393884715907, lng: -74.05757188796998, stop: { name: "PS 26", time: "8:00am", }}
-const lincolnPark = (time: string) => ({ lat: 40.724087769759464, lng: -74.07970547676088, stop: { name: "Lincoln Park", time, } })
+const lincolnPark = { lat: 40.724087769759464, lng: -74.07970547676088, stop: { name: "Lincoln Park", time: "7:30am (blue/green), 8:20am (red)", } }
 const belmontWestSide = { lat: 40.723689351674786, lng: -74.07892227172853, name: "Belmont & West Side", }
 
 const greenBlueToNJT = [
-    lincolnPark("7:30am"),
+    lincolnPark,
     belmontWestSide,
     { lat: 40.72670588641108, lng: -74.07657265663148, name: "", },
     { lat: 40.72835638528008, lng: -74.07544612884523, },
@@ -122,7 +122,7 @@ const routes: { [k: string]: Route } = {
             { lat: 40.72212818027965 , lng: -74.07572507858278, },
             { lat: 40.722437165024765, lng: -74.07618641853334, stop: { name: "LCCS", time: "8:15am", }, },
             belmontWestSide,
-            lincolnPark("8:20am"),
+            lincolnPark,
             { lat: 40.723656827644206, lng: -74.08154010772706, },
             { lat: 40.722551001148226, lng: -74.08548831939699, },
             { lat: 40.72036368727873, lng: -74.08735513687135, },
