@@ -8,7 +8,7 @@ import {Circle, MapContainer, Marker, Polyline, TileLayer, Tooltip, useMapEvents
 import {MapContainerProps} from "react-leaflet/lib/MapContainer";
 import {Props, School} from "./map-utils";
 import {entries, fromEntries, o2a} from "next-utils/objs";
-import {LL, ParsedParam} from "next-utils/params";
+import {LL} from "next-utils/params";
 import {ParsedParams} from "./params";
 
 export const MAPS = {
@@ -30,12 +30,57 @@ type RoutePoint = LL & {
     stop?: Stop
     name?: string
 }
-
+type SegmentOffset = { start: string, end: string, offset: number }
 type Route = {
     color: string
     positions: RoutePoint[]
+    offsets?: SegmentOffset[]
 }
-const ps5ps3 = [
+
+const summit139 = { lat: 40.73693344188031, lng: -74.05880570411684, name: "Summit & 139", }
+const summitHopkins = { lat: 40.73832355261124, lng: -74.05869841575624, name: "Summit & Hopkins", }
+const ps26 = { lat: 40.7393884715907, lng: -74.05757188796998, stop: { name: "PS 26", time: "8:00am", }}
+
+const greenBlueToNJT = [
+    { lat: 40.724087769759464, lng: -74.07970547676088, stop: { name: "Lincoln Park", time: "7:30am", } },
+    { lat: 40.723689351674786, lng: -74.07892227172853, name: "Belmont & West Side", },
+    { lat: 40.72670588641108, lng: -74.07657265663148, name: "", },
+    { lat: 40.72835638528008, lng: -74.07544612884523, },
+    { lat: 40.73240521896697, lng: -74.07253861427309, },
+    { lat: 40.734388894945276, lng: -74.07137453556062, name: "West Side & Pavonia", },
+    { lat: 40.73479537862304, lng: -74.07276928424837, },
+    { lat: 40.73614488662359, lng: -74.07209873199464, stop: { name: "TECCS", time: "7:45am", }},
+    { lat: 40.73572621688966, lng: -74.07055377960206, },
+    { lat: 40.734884804698865, lng: -74.06713664531709, name: "Broadway & Tonnele", },
+    { lat: 40.73580751218978, lng: -74.06672894954683, name: "Newark & Tonnele", },
+    { lat: 40.736242440357856, lng: -74.06817734241487, name: "Newark & Senate", },
+    { lat: 40.73783986240655, lng: -74.06729757785799, stop: { name: "Canco Park", time: "7:50am", }},
+    { lat: 40.7374254, lng: -74.0659547, name: "Tonnele & Dey", },
+    { lat: 40.73809593412948, lng: -74.06563997268678, name: "Tonnele & St Pauls", },
+    { lat: 40.73773011708069, lng: -74.06462073326112, name: "St Pauls & Liberty", },
+    { lat: 40.73754314314559, lng: -74.0627431869507, stop: { name: "PS 31 / Golden Door", time: "7:55am", }},
+    { lat: 40.7375077, lng: -74.0610113, },
+    { lat: 40.73733991001137, lng: -74.05920267105104, },
+    summit139,
+    summitHopkins,
+    ps26,
+    { lat: 40.73963640829574, lng: -74.05796885490419, },
+    { lat: 40.73972989238724, lng: -74.05943870544435, stop: { name: "MS 7", time: "8:05am", }},
+    { lat: 40.7397786666437, lng: -74.06021654605867, },
+    { lat: 40.73884382050208, lng: -74.0604203939438, },
+    summitHopkins,
+    { lat: 40.736730206883486, lng: -74.05567288398744, stop: { name: 'PS 6', time: '', }},
+    { lat: 40.73408809542487, lng: -74.0506410598755, name: "Palisade & Hopkins", },
+    { lat: 40.73192555073219, lng: -74.05261516571046, name: "Palisade & 139", },
+    { lat: 40.73147026920899, lng: -74.05188560485841, name: "Hoboken Ave & 139", },
+    { lat: 40.73261659709138, lng: -74.05028700828554, },
+    { lat: 40.734023057511926, lng: -74.04897809028627, },
+    { lat: 40.73509617494571, lng: -74.0482807159424, },
+    { lat: 40.73570589304912, lng: -74.04555559158327, stop: { name: 'Hoboken Ave & NJ Transit Path', time: '', }},
+]
+
+const hpPs5Ps3 = [
+    { lat: 40.72761244627582, lng: -74.04411256313325, name: "McWilliams & Pavonia", },
     { lat: 40.72686036833718, lng: -74.04423594474794, stop: { name: "Hamilton Park", time: "8:15am", }},
     { lat: 40.727360399481135, lng: -74.05020117759706, },
     { lat: 40.724534970891085, lng: -74.05065715312959, },
@@ -51,90 +96,82 @@ const ps5ps3 = [
     { lat: 40.71777784806193, lng: -74.05000269412996, stop: { name: "PS 3 / MS 4", time: "8:35am", }},
 ]
 
-const summitHopkins = { lat: 40.73832355261124, lng: -74.05869841575624, name: "Summit & Hopkins", }
-
+const blue = "hsl(219, 100%, 57%)"
 const routes: { [k: string]: Route } = {
     red: {
         color: "red",
         positions: [
             { lat: 40.74250183922047 , lng: -74.05369877815248, stop: { name: "Pershing Field", time: "7:30am", }, },
-            { lat: 40.74282698670428 , lng: -74.05463218688966, },
+            { lat: 40.74282698670428 , lng: -74.05463218688966, name: "Summit & Sanford", },
             { lat: 40.74101426921151 , lng: -74.05582308769227, },
             { lat: 40.73827477728785 , lng: -74.05871987342836, },
-            { lat: 40.7359822967486  , lng: -74.0588700771332 , },
-            { lat: 40.73490919360775 , lng: -74.0592133998871 , },
-            { lat: 40.73257594750422 , lng: -74.05958890914918, },
-            { lat: 40.73043774421105 , lng: -74.06129479408266, },
-            { lat: 40.73080360135806 , lng: -74.06440615653993, },
-            { lat: 40.728510863374794, lng: -74.06690597534181, },
+            ps26,
+            summitHopkins,
+            summit139,
+            { lat: 40.73490919360775 , lng: -74.0592133998871 , name: "Summit & Newark", },
+            { lat: 40.73257594750422 , lng: -74.05958890914918, name: "Summit & Pavonia", },
+            { lat: 40.73043774421105 , lng: -74.06129479408266, name: "Summit & Sip", },
+            { lat: 40.73080360135806 , lng: -74.06440615653993, name: "Sip & Bergen", },
+            { lat: 40.728510863374794, lng: -74.06690597534181, name: "Bergen & Vroom"},
             { lat: 40.72718559227259 , lng: -74.0671741962433 , },
             { lat: 40.725356186961825, lng: -74.068021774292  , stop: { name: "McGinley Square", time: "8:00am", }, },
             { lat: 40.724429269076595, lng: -74.06975984573366, },
             { lat: 40.72337224169876 , lng: -74.07050013542177, },
-            { lat: 40.720908489648345, lng: -74.07275319099428, },
+            { lat: 40.720908489648345, lng: -74.07275319099428, name: "Belmont & Bergen", },
             { lat: 40.72212818027965 , lng: -74.07572507858278, },
             { lat: 40.722437165024765, lng: -74.07618641853334, stop: { name: "LCCS", time: "8:15am", }, },
+        ],
+        offsets: [
+            { start: ps26.stop.name, end: "Summit & 139", offset: -10, },
         ]
     },
     orange: {
-      color: "orange",
-      positions: [
-          { lat: 40.71805839207992, lng: -74.04714345932008, stop: { name: "Van Vorst Park", time: "7:55am", }},
-          { lat: 40.71838365902651, lng: -74.0469664335251, },
-          { lat: 40.717509500503695, lng: -74.04412329196931, stop: { name: "City Hall", time: "8:00am", }},
-          { lat: 40.71958306715651, lng: -74.04291093349458, },
-          { lat: 40.7202498474144, lng: -74.04505133628847, },
-          { lat: 40.72088816128179, lng: -74.04472947120668, stop: { name: "Newark Ave Plaza", time: "8:05am", }},
-          { lat: 40.720790585035964, lng: -74.04443979263307, },
-          { lat: 40.72755959783345, lng: -74.04340445995332, stop: { name: "PS 37", time: "8:10am", }},
-          { lat: 40.72761244627582, lng: -74.04411256313325, },
-          ...ps5ps3,
-      ]
-    },
-    blue: {
-        color: "hsl(219, 100%, 57%)",
+        color: "hsl(27, 100%, 53%)",
         positions: [
-            { lat: 40.724087769759464, lng: -74.07970547676088, stop: { name: "Lincoln Park", time: "7:30am", } },
-            { lat: 40.723689351674786, lng: -74.07892227172853, },
-            { lat: 40.72670588641108, lng: -74.07657265663148, },
-            { lat: 40.72835638528008, lng: -74.07544612884523, },
-            { lat: 40.73240521896697, lng: -74.07253861427309, },
-            { lat: 40.734388894945276, lng: -74.07137453556062, },
-            { lat: 40.73479537862304, lng: -74.07276928424837, },
-            { lat: 40.73614488662359, lng: -74.07209873199464, stop: { name: "TECCS", time: "7:45am", }},
-            { lat: 40.73572621688966, lng: -74.07055377960206, },
-            { lat: 40.734884804698865, lng: -74.06713664531709, },
-            { lat: 40.73580751218978, lng: -74.06672894954683, },
-            { lat: 40.736242440357856, lng: -74.06817734241487, },
-            { lat: 40.73783986240655, lng: -74.06729757785799, stop: { name: "Canco Park", time: "7:50am", }},
-            { lat: 40.7374254, lng: -74.0659547, name: "Tonnele & Dey", },
-            { lat: 40.73809593412948, lng: -74.06563997268678, name: "Tonnele & St Pauls", },
-            { lat: 40.73773011708069, lng: -74.06462073326112, name: "St Pauls & Liberty", },
-            { lat: 40.73754314314559, lng: -74.0627431869507, stop: { name: "PS 31 / Golden Door", time: "7:55am", }},
-            { lat: 40.7375077, lng: -74.0610113, },
-            { lat: 40.73733991001137, lng: -74.05920267105104, },
-            { lat: 40.73693344188031, lng: -74.05880570411684, },
-            summitHopkins,
-            { lat: 40.7393884715907, lng: -74.05757188796998, stop: { name: "PS 26", time: "8:00am", }},
-            { lat: 40.73963640829574, lng: -74.05796885490419, },
-            { lat: 40.73972989238724, lng: -74.05943870544435, stop: { name: "MS 7", time: "8:05am", }},
-            { lat: 40.7397786666437, lng: -74.06021654605867, },
-            { lat: 40.73884382050208, lng: -74.0604203939438, },
-            summitHopkins,
-            { lat: 40.736730206883486, lng: -74.05567288398744, stop: { name: 'PS 6', time: '', }},
-            { lat: 40.73408809542487, lng: -74.0506410598755, name: "Palisade & Hopkins", },
-            { lat: 40.73192555073219, lng: -74.05261516571046, name: "Palisade & 139", },
-            { lat: 40.73147026920899, lng: -74.05188560485841, name: "Hoboken Ave & 139", },
-            { lat: 40.73261659709138, lng: -74.05028700828554, },
-            { lat: 40.734023057511926, lng: -74.04897809028627, },
-            { lat: 40.73509617494571, lng: -74.0482807159424, },
-            { lat: 40.73570589304912, lng: -74.04555559158327, stop: { name: 'Hoboken Ave & NJ Transit Path', time: '', }},
+            { lat: 40.71805839207992, lng: -74.04714345932008, stop: { name: "Van Vorst Park", time: "7:55am", }},
+            { lat: 40.71838365902651, lng: -74.0469664335251, },
+            { lat: 40.717509500503695, lng: -74.04412329196931, stop: { name: "City Hall", time: "8:00am", }},
+            { lat: 40.71958306715651, lng: -74.04291093349458, name: "Grove St Plaza", },
+            { lat: 40.7202498474144, lng: -74.04505133628847, },
+            { lat: 40.72088816128179, lng: -74.04472947120668, stop: { name: "Newark Ave Plaza", time: "8:05am", }},
+            { lat: 40.720790585035964, lng: -74.04443979263307, },
+            { lat: 40.72755959783345, lng: -74.04340445995332, stop: { name: "PS 37", time: "8:10am", }},
+            ...hpPs5Ps3,
+        ],
+        offsets: [
+            { start: "McWilliams & Pavonia", end: "PS 3 / MS 4", offset: -5, },
+        ]
+    },
+    green: {
+        color: "hsl(119, 100%, 61%)",
+        positions: [
+            ...greenBlueToNJT,
             { lat: 40.728575906675815, lng: -74.0466606616974, name: "Coles & 9th", },
             { lat: 40.72833199396919, lng: -74.04402136802675, name: "9th & McWilliams", },
-            ...ps5ps3,
+            ...hpPs5Ps3,
+        ],
+        offsets: [
+            { start: "Lincoln Park", end: "Summit & 139", offset: 5, },
+            { start: "Summit & 139", end: ps26.stop.name, offset: 0, },
+            { start: ps26.stop.name, end: 'Hoboken Ave & NJ Transit Path', offset: 5, },
+            { start: "McWilliams & Pavonia", end: "PS 3 / MS 4", offset: 5, },
+        ]
+    },
+    blue: {
+        color: "hsl(223, 100%, 61%)",
+        positions: [
+            ...greenBlueToNJT,
+        ],
+        offsets: [
+            { start: "Lincoln Park", end: "Summit & 139", offset: -5, },
+            { start: "Summit & 139", end: ps26.stop.name, offset: -10, },
+            { start: ps26.stop.name, end: 'Hoboken Ave & NJ Transit Path', offset: -5, },
+
         ]
     }
 }
+
+const testDualRoute = [{"lat":40.720331161623065,"lng":-74.06257152557374},{"lat":40.71768026725682,"lng":-74.06478166580202}]
 
 type Point = [ number, number ]
 type Points = Point[]
@@ -230,7 +267,7 @@ const houseIcon = ({ size, bg, fg, opacity }: Icon) =>
         iconAnchor: [size / 2, size /2],
     });
 
-const { max, min, round } = Math
+const { max, min, round, sqrt } = Math
 
 function getMetersPerPixel(map: L.Map) {
     const centerLatLng = map.getCenter(); // get map center
@@ -249,7 +286,33 @@ function getMetersPerPixel(map: L.Map) {
     return (distanceX + distanceY) / 2
 }
 
-const Layers = ({ signups, setLL, zoom, setZoom, drawMode }: { signups: Props, setLL: Dispatch<LL>, zoom: number, setZoom: Dispatch<number>, drawMode: boolean }) => {
+const Stop = ({ center, radius, stop }: { center: LL, radius: number, stop: Stop }) => <Circle
+    center={center} radius={radius}
+    weight={3}
+    color={"black"} fillColor={"white"}
+    fillOpacity={0.8}
+>
+    <Tooltip className={css.tooltip}>{stop.name}: {stop.time}</Tooltip>
+</Circle>
+
+const RoutePoint = ({ name, center, radius, }: { center: LL, radius: number, name: string, }) => <Circle
+    center={center} radius={radius}
+    weight={3}
+    color={"black"} fillColor={"white"}
+    fillOpacity={0.8}
+>
+    <Tooltip className={css.tooltip}>{name}</Tooltip>
+</Circle>
+
+const Layers = ({ signups, setLL, zoom, setZoom, showHomes, hideSchools, drawMode }: {
+    signups: Props
+    setLL: Dispatch<LL>
+    zoom: number
+    setZoom: Dispatch<number>
+    showHomes: boolean
+    hideSchools: boolean
+    drawMode: boolean
+}) => {
     const { url, attribution } = MAPS['alidade_smooth_dark']
     const [ newRoutes, setNewRoutes ] = useState<LL[][]>([])
     // console.log("num routes:", newRoutes.length)
@@ -347,8 +410,32 @@ const Layers = ({ signups, setLL, zoom, setZoom, drawMode }: { signups: Props, s
     const stopRadius = 10 * mPerPx + zoomAdjustment
     const routePointRadius = 6 * mPerPx // + zoomAdjustment
     const minRoutePointZoom = 15
+
+    const adjustXY = useCallback(
+        (p: LL, dx: number, dy: number) => {
+            const { x, y } = map.latLngToContainerPoint(p)
+            return map.containerPointToLatLng(L.point([ x + dx, y + dy ]))
+        },
+        [ map ],
+    )
+    const offsetLine = useCallback(
+        (start: LL, end: LL, offset: number) => {
+            const sxy = map.latLngToContainerPoint(start)
+            const exy = map.latLngToContainerPoint(end)
+            const diff = { x: exy.x - sxy.x, y: exy.y - sxy.y }
+            const M = sqrt(diff.x*diff.x + diff.y*diff.y)
+            const d = { x: -diff.y * offset / M, y: diff.x * offset / M }
+            return [
+                map.containerPointToLatLng(L.point([ sxy.x + d.x, sxy.y + d.y ])),
+                map.containerPointToLatLng(L.point([ exy.x + d.x, exy.y + d.y ])),
+            ]
+        },
+        [ map ],
+    )
     return <>
         <TileLayer url={url} attribution={attribution}/>
+        <RoutePoint key={"rp0"} center={testDualRoute[0]} radius={routePointRadius} name={"rp0"} />
+        <RoutePoint key={"rp1"} center={testDualRoute[1]} radius={routePointRadius} name={"rp1"} />
         {
             o2a<string, School, ReactNode>(signups, (schoolName, { school, signups }, idx) => {
                 const selected = schoolName == selectedSchool
@@ -368,15 +455,20 @@ const Layers = ({ signups, setLL, zoom, setZoom, drawMode }: { signups: Props, s
                 const tooltipOpacity = 0.8
                 return <Fragment key={`${selectedSchool}-${schoolName}-${idx}`}>
                     {/* School */}
-                    <Marker
-                        position={school}
-                        icon={schoolIcon({ size: schoolSize * selectedFactor, bg: signupColor, fg: "black", opacity: schoolOpacity })}
-                        // opacity={schoolOpacity}
-                        eventHandlers={eventHandlers(schoolName)}
-                    >
-                        <Tooltip className={css.tooltip} permanent={selected} opacity={tooltipOpacity}>{schoolName}</Tooltip>
-                    </Marker>
                     {
+                        !hideSchools &&
+                        <Marker
+                            position={school}
+                            icon={schoolIcon({ size: schoolSize * selectedFactor, bg: signupColor, fg: "black", opacity: schoolOpacity })}
+                            // opacity={schoolOpacity}
+                            eventHandlers={eventHandlers(schoolName)}
+                        >
+                            <Tooltip className={css.tooltip} permanent={selected} opacity={tooltipOpacity}>{schoolName}</Tooltip>
+                        </Marker>
+                    }
+                    {
+                        // Homes
+                        showHomes &&
                         signups.map((ll, idx) =>
                             <Fragment key={`${selectedSchool}-${schoolName}-${idx}`}>
                                 {/* Home to School */}
@@ -440,40 +532,71 @@ const Layers = ({ signups, setLL, zoom, setZoom, drawMode }: { signups: Props, s
             />
         ))}
         {/* Route lines */}
-        {entries(routes).map(([ name, { color, positions } ], idx) =>
-            <Polyline
-                key={`route-${idx}`}
-                positions={positions}
-                weight={10}
-                color={color} fillColor={color}
-            />
-        )}
+        {entries(routes).map(([ name, { color, positions, offsets } ], routeIdx) => {
+            const offsetIdxs = offsets?.map((segment, idx) => {
+                const { start, end } = segment
+                const startIdx = positions.findIndex(p => p.name == start || p.stop?.name == start)
+                const endIdx = positions.findIndex(p => p.name == end || p.stop?.name == end)
+                if (startIdx < 0) throw new Error(`Didn't find start ${start} (offset ${idx}) in route ${name}`)
+                if (endIdx < 0) throw new Error(`Didn't find end ${end} (offset ${idx}) in route ${name}`)
+                return { segment, startIdx, endIdx }
+            }) || []
+            let idx = 0
+            const segments = [] as { startIdx: number, lastIdx: number, offset?: number }[]
+            for (let { segment: { offset }, startIdx, endIdx } of offsetIdxs) {
+                if (startIdx) {
+                    segments.push({startIdx: idx, lastIdx: startIdx})
+                }
+                segments.push({ startIdx, lastIdx: endIdx, offset })
+                idx = endIdx
+            }
+            if (idx + 1 < positions.length) {
+                segments.push({startIdx: idx, lastIdx: positions.length - 1})
+            }
+            // console.log("segments:", segments)
+            return ([] as ReactNode[]).concat(...segments.map(({ startIdx, lastIdx, offset }, segmentIdx) => {
+                const points = positions.slice(startIdx, lastIdx + 1)
+                if (!offset) {
+                    // console.log(`range line: ${startIdx}-${lastIdx}`)
+                    return [<Polyline
+                        key={`route${routeIdx}-segment${segmentIdx}`}
+                        positions={points}
+                        weight={10}
+                        color={color} fillColor={color}
+                    />]
+                } else {
+                    return points.map((cur, idx) => {
+                        if (idx + 1 >= points.length) return
+                        // console.log(`offset line: ${idx}-${idx+1}`)
+                        const nxt = points[idx + 1]
+                        return <Polyline
+                            key={`route${routeIdx}-segment${segmentIdx}-point${idx}`}
+                            positions={offsetLine(cur, nxt, offset)}
+                            weight={10}
+                            color={color} fillColor={color}
+                        />
+                    })
+                }
+            }))
+        })}
         {/* Route stops */}
         {entries(routes).map(([ routeName, { color, positions } ], idx) =>
             positions.map((point, stopIdx) => {
                 const stop = point.stop
                 if (stop) {
-                    return <Circle
+                    return <Stop
                         key={`route-${routeName}-stop-${stop.name}=${stopIdx}`}
                         center={point} radius={stopRadius}
-                        weight={3}
-                        color={"black"} fillColor={"white"}
-                        fillOpacity={0.8}
-                    >
-                        <Tooltip className={css.tooltip}>{stop.name}: {stop.time}</Tooltip>
-                    </Circle>
+                        stop={stop}
+                    />
                 }
                 const name = point.name
                 if (name && zoom >= minRoutePointZoom) {
-                    return <Circle
+                    return <RoutePoint
                         key={`route-${name}-point-${name}=${stopIdx}`}
                         center={point} radius={routePointRadius}
-                        weight={3}
-                        color={"black"} fillColor={"white"}
-                        fillOpacity={0.8}
-                    >
-                        <Tooltip className={css.tooltip}>{name}</Tooltip>
-                    </Circle>
+                        name={name}
+                    />
                 }
             })
         )}
@@ -481,10 +604,10 @@ const Layers = ({ signups, setLL, zoom, setZoom, drawMode }: { signups: Props, s
 }
 
 const Map = ({ signups, params, ...props }: MapContainerProps & { signups: Props, params: ParsedParams, }) => {
-    const { ll: [ center, setLL ], z: [ zoom, setZoom ], draw: [ drawMode, ] } = params
+    const { ll: [ center, setLL ], z: [ zoom, setZoom ], draw: [ drawMode, ], h: [ showHomes ], S: [ hideSchools] } = params
     return (
         <MapContainer center={center} zoom={zoom} {...props}>
-            <Layers signups={signups} setLL={setLL} zoom={zoom} setZoom={setZoom} drawMode={drawMode} />
+            <Layers signups={signups} setLL={setLL} zoom={zoom} setZoom={setZoom} showHomes={showHomes} hideSchools={hideSchools} drawMode={drawMode} />
         </MapContainer>
     )
 }

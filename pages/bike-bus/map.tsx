@@ -19,10 +19,11 @@ export default function Page(props: Props) {
     const params: Params = {
         ll: llParam({ init: JC.center, places: 3, }),
         z: floatParam(14, false),
+        h: boolParam,
+        S: boolParam,
         draw: boolParam
     }
     const parsedParams: ParsedParams = parseQueryParams({ params })
-    //console.log("render: center", center, "zoom", zoom)
     return <main>
         <Map className={css.map} params={parsedParams} signups={props} />
     </main>
