@@ -171,8 +171,6 @@ const routes: { [k: string]: Route } = {
     }
 }
 
-const testDualRoute = [{"lat":40.720331161623065,"lng":-74.06257152557374},{"lat":40.71768026725682,"lng":-74.06478166580202}]
-
 type Point = [ number, number ]
 type Points = Point[]
 const path = (points: Points) => `M${points.map(([ x, y ]) => `${x} ${y}`).join(" L")} Z`
@@ -434,8 +432,6 @@ const Layers = ({ signups, setLL, zoom, setZoom, showHomes, hideSchools, drawMod
     )
     return <>
         <TileLayer url={url} attribution={attribution}/>
-        <RoutePoint key={"rp0"} center={testDualRoute[0]} radius={routePointRadius} name={"rp0"} />
-        <RoutePoint key={"rp1"} center={testDualRoute[1]} radius={routePointRadius} name={"rp1"} />
         {
             o2a<string, School, ReactNode>(signups, (schoolName, { school, signups }, idx) => {
                 const selected = schoolName == selectedSchool
