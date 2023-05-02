@@ -82,7 +82,7 @@ const greenBlueToNJT = [
 ]
 
 const ps3ms4 = { lat: 40.71777784806193, lng: -74.05000269412996, stop: { name: "PS 3 / MS 4", time: "Orange 7:50am, Green/Orange 8:35am", }}
-const groveSt = { lat: 40.71958306715651, lng: -74.04291093349458, stop: { name: "Grove St Plaza", time: "Orange 8:02am, Pink 8:10am" } }
+const groveSt = { lat: 40.71958306715651, lng: -74.04291093349458, stop: { name: "Grove St Plaza", time: "Orange 8:02am, Pink 7:55am" } }
 const hpPs5Ps3 = [
     { lat: 40.72761244627582, lng: -74.04411256313325, name: "McWilliams & Pavonia", },
     { lat: 40.72686036833718, lng: -74.04423594474794, stop: { name: "Hamilton Park", time: "8:15am", }},
@@ -224,7 +224,7 @@ const routes: { [k: string]: Route } = {
     pink: {
         color: "pink",
         positions: [
-            { lat: 40.713442633573116, lng: -74.03457386242185, stop: { name: "Bluestone Lane Coffee", time: "7:55am" }},
+            { lat: 40.713442633573116, lng: -74.03457386242185, stop: { name: "Bluestone Lane Coffee", time: "7:45am" }},
             { lat: 40.71365539708247, lng: -74.036295982652, name: "Greene & Morris" },
             { lat: 40.72015227023285, lng: -74.035062789917, name: "Greene & Bay" },
             { lat: 40.72185171902871, lng: -74.03636097908021, name: "Washington & 2nd" },
@@ -237,9 +237,9 @@ const routes: { [k: string]: Route } = {
             { lat: 40.71554158535769, lng: -74.03934359550477, name: "Grand & Warren" },
             { lat: 40.7158767, lng: -74.0426636, name: "Grand & Marin" },
             { lat: 40.7145527, lng: -74.0429482, name: "Marin & Morris" },
-            { lat: 40.71389076869709, lng: -74.03798103332521, name: "?" },
-            { lat: 40.71529762488199, lng: -74.0376913547516, name: "Morris & Washington" },
-            { lat: 40.71533828502335, lng: -74.0380883216858, stop: { name: "PS16 Annex", time: "8:20am" }}
+            { lat: 40.71390296699984, lng: -74.03803467750551, name: "Washington & Morris" },
+            { lat: 40.714586068388364, lng: -74.03790056705476, stop: { name: "PS16 main building", time: "8:05am" }},
+            { lat: 40.71769246486529, lng: -74.03719782829286, stop: { name: "PS16 annex", time: "8:10am" }}
         ],
     },
     purple: {
