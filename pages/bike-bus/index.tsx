@@ -27,6 +27,85 @@ The more signups we get from each school, the easier it is to plan a route there
 
 [View full screen here](/bike-bus/map?S)
 
+#### Route schedules <a id="times"></a>
+<details><summary><strong>🔴 Red</strong></summary>
+
+- 7:30am: Pershing Field
+- 7:35am: PS 26
+- 8:00am: McGinley Square
+- 8:15am: LCCS
+- 8:20am: Lincoln Park
+- 8:25am: PS 33
+</details>
+
+<details><summary><strong>🟠 Orange</strong></summary>
+
+- 7:35am: The Grind Coffeeshop
+- 7:40am: Lafayette Park / PS 22
+- 7:50am: PS 3 / MS 4
+- 7:55am: Van Vorst Park
+- 8:00am: City Hall
+- 8:02am: Grove St Plaza
+- 8:05am: Newark Ave Plaza
+- 8:10am: PS 37
+- 8:15am: Hamilton Park
+- 8:25am: PS 5
+- 8:30am: Brunswick & 1st
+- 8:35am: PS 3 / MS 4
+</details>
+
+<details><summary><strong>🟡 Yellow</strong></summary>
+
+- 8:00am: McGinley Square
+- 8:15am: TECCS
+</details>
+
+<details><summary><strong>🟢 Green</strong></summary>
+
+- 7:30am: Lincoln Park
+- 7:45am: TECCS
+- 7:50am: Canco Park
+- 7:53am: PS 31 / Golden Door
+- 7:56am: PS 26
+- 7:58am: MS 7
+- 8:00am: PS 6
+- 8:05am: Hoboken Ave & NJ Transit Path
+- 8:10am: Hamilton Park
+- 8:25am: PS 5
+- 8:30am: Brunswick & 1st
+- 8:35am: PS 3 / MS 4
+</details>
+
+<details><summary><strong>🔵 Blue</strong></summary>
+
+- 7:30am: Lincoln Park
+- 7:45am: TECCS
+- 7:50am: Canco Park
+- 7:53am: PS 31 / Golden Door
+- 7:56am: PS 26
+- 7:58am: MS 7
+- 8:00am: PS 6
+- 8:05am: Hoboken Ave & NJ Transit Path
+- 8:20am: Mustard Seed School
+- 8:25am: Stevens Cooperative
+</details>
+
+<details><summary><strong>💖 Pink</strong></summary>
+
+- 7:45am: Bluestone Lane Coffee
+- 7:55am: Grove St Plaza
+- 8:05am: PS16 main building
+- 8:10am: PS16 annex
+</details>
+
+<details><summary><strong>🟣 Purple</strong></summary>
+
+- 7:30am: Pershing Field
+- 7:50am: Jersey City Global Charter School
+</details>
+
+(click to expand)
+
 #### School Signup Standings <a id="standings"></a>
 
 <iframe src="https://docs.google.com/spreadsheets/d/e/2PACX-1vR7OykHYT-mz7qF40nn18ivkbKrM8Q6UC1ys8vTadmcEloaN1X5u74kOZ441t-HBF6m6hoh0X6OA3Vk/pubhtml?gid=601478093&amp;single=true&amp;widget=true&amp;headers=false" width="100%" style="aspect-ratio: 4/3"></iframe>
