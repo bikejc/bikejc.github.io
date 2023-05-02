@@ -39,7 +39,7 @@ type Route = {
 
 const summit139 = { lat: 40.73693344188031, lng: -74.05880570411684, name: "Summit & 139", }
 const summitHopkins = { lat: 40.73832355261124, lng: -74.05869841575624, name: "Summit & Hopkins", }
-const ps26 = { lat: 40.7393884715907, lng: -74.05757188796998, stop: { name: "PS 26", time: "Red @ 7:35am, Green/Blue @ 8:00am", }}
+const ps26 = { lat: 40.7393884715907, lng: -74.05757188796998, stop: { name: "PS 26", time: "Red @ 7:35am, Green/Blue @ 7:56am", }}
 const lincolnPark = { lat: 40.724087769759464, lng: -74.07970547676088, stop: { name: "Lincoln Park", time: "7:30am (blue/green), 8:20am (red)", } }
 const belmontWestSide = { lat: 40.723689351674786, lng: -74.07892227172853, name: "Belmont & West Side", }
 const mcginleySquare = { lat: 40.725356186961825, lng: -74.068021774292  , stop: { name: "McGinley Square", time: "8:00am", }, }
@@ -74,25 +74,25 @@ const greenBlueToNJT = [
     { lat: 40.7374254, lng: -74.0659547, name: "Tonnele & Dey", },
     { lat: 40.73809593412948, lng: -74.06563997268678, name: "Tonnele & St Pauls", },
     { lat: 40.73773011708069, lng: -74.06462073326112, name: "St Pauls & Liberty", },
-    { lat: 40.73754314314559, lng: -74.0627431869507, stop: { name: "PS 31 / Golden Door", time: "7:55am", }},
+    { lat: 40.73754314314559, lng: -74.0627431869507, stop: { name: "PS 31 / Golden Door", time: "7:53am", }},
     { lat: 40.7375077, lng: -74.0610113, },
     { lat: 40.73733991001137, lng: -74.05920267105104, },
     summit139,
     summitHopkins,
     ps26,
     { lat: 40.73963640829574, lng: -74.05796885490419, },
-    { lat: 40.73972989238724, lng: -74.05943870544435, stop: { name: "MS 7", time: "8:02am", }},
+    { lat: 40.73972989238724, lng: -74.05943870544435, stop: { name: "MS 7", time: "7:58am", }},
     { lat: 40.7397786666437, lng: -74.06021654605867, name: "Collard & Laidlaw" },
     { lat: 40.73884382050208, lng: -74.0604203939438, name: "Collard & Hopkins" },
     summitHopkins,
-    { lat: 40.736730206883486, lng: -74.05567288398744, stop: { name: 'PS 6', time: '8:05am', }},
+    { lat: 40.736730206883486, lng: -74.05567288398744, stop: { name: 'PS 6', time: '8:00am', }},
     { lat: 40.73408809542487, lng: -74.0506410598755, name: "Palisade & Hopkins", },
     { lat: 40.73192555073219, lng: -74.05261516571046, name: "Palisade & 139", },
     { lat: 40.73147026920899, lng: -74.05188560485841, name: "Hoboken Ave & 139", },
     { lat: 40.73261659709138, lng: -74.05028700828554, },
     { lat: 40.734023057511926, lng: -74.04897809028627, },
     { lat: 40.73509617494571, lng: -74.0482807159424, },
-    { lat: 40.73570589304912, lng: -74.04555559158327, stop: { name: 'Hoboken Ave & NJ Transit Path', time: '8:10am', }},
+    { lat: 40.73570589304912, lng: -74.04555559158327, stop: { name: 'Hoboken Ave & NJ Transit Path', time: '8:05am', }},
 ]
 
 const hpPs5Ps3 = [
@@ -228,10 +228,10 @@ const routes: { [k: string]: Route } = {
             { lat: 40.74068911286629, lng: -74.04157519340517, },
             { lat: 40.739420987932526, lng: -74.04192924499513, },
             { lat: 40.73827477728785, lng: -74.03542757034303, name: "1st & Clinton", },
-            { lat: 40.7430114, lng: -74.0339956, stop: { name: "Mustard Seed School", time: "8:20am", } },
+            { lat: 40.7430114, lng: -74.0339956, stop: { name: "Mustard Seed School", time: "8:15am", } },
             { lat: 40.74201411501444, lng: -74.0283787250519, },
             { lat: 40.74090046467149, lng: -74.02767062187196, },
-            { lat: 40.7406034, lng: -74.0276482, stop: { name: "Stevens Cooperative", time: "8:25am", } },
+            { lat: 40.7406034, lng: -74.0276482, stop: { name: "Stevens Cooperative", time: "8:20am", } },
         ],
         offsets: [
             { start: "Lincoln Park", end: belmontWestSide.name, offset: -10, },
