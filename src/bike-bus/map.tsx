@@ -82,6 +82,7 @@ const greenBlueToNJT = [
 ]
 
 const ps3ms4 = { lat: 40.71777784806193, lng: -74.05000269412996, stop: { name: "PS 3 / MS 4", time: "Orange 7:50am, Green/Orange 8:35am", }}
+const groveSt = { lat: 40.71958306715651, lng: -74.04291093349458, stop: { name: "Grove St Plaza", time: "Orange 8:02am, Pink 8:10am" } }
 const hpPs5Ps3 = [
     { lat: 40.72761244627582, lng: -74.04411256313325, name: "McWilliams & Pavonia", },
     { lat: 40.72686036833718, lng: -74.04423594474794, stop: { name: "Hamilton Park", time: "8:15am", }},
@@ -159,7 +160,7 @@ const routes: { [k: string]: Route } = {
             { lat: 40.71805839207992, lng: -74.04714345932008, stop: { name: "Van Vorst Park", time: "7:55am", }},
             { lat: 40.71838365902651, lng: -74.0469664335251, },
             { lat: 40.717509500503695, lng: -74.04412329196931, stop: { name: "City Hall", time: "8:00am", }},
-            { lat: 40.71958306715651, lng: -74.04291093349458, name: "Grove St Plaza", },
+            groveSt,
             { lat: 40.7202498474144, lng: -74.04505133628847, },
             { lat: 40.72088816128179, lng: -74.04472947120668, stop: { name: "Newark Ave Plaza", time: "8:05am", }},
             { lat: 40.720790585035964, lng: -74.04443979263307, },
@@ -213,6 +214,27 @@ const routes: { [k: string]: Route } = {
             { start: ps26.stop.name, end: 'Hoboken Ave & NJ Transit Path', offset: -5, },
 
         ]
+    },
+    pink: {
+        color: "pink",
+        positions: [
+            { lat: 40.713442633573116, lng: -74.03457386242185, stop: { name: "Bluestone Lane Coffee", time: "7:55am" }},
+            { lat: 40.71365539708247, lng: -74.036295982652, name: "Greene & Morris" },
+            { lat: 40.72015227023285, lng: -74.035062789917, name: "Greene & Bay" },
+            { lat: 40.72185171902871, lng: -74.03636097908021, name: "Washington & 2nd" },
+            { lat: 40.72239650921919, lng: -74.04248714447023, name: "Grove & 2nd" },
+            // { lat: 40.72165656921906, lng: -74.042626619339, },
+            // { lat: 40.721038591047176, lng: -74.0365755558014, },
+            // { lat: 40.71773718941053, lng: -74.0371870994568, },
+            groveSt,
+            { lat: 40.718290144942145, lng: -74.03882861137392, name: "Columbus & Warren" },
+            { lat: 40.71554158535769, lng: -74.03934359550477, name: "Grand & Warren" },
+            { lat: 40.7158767, lng: -74.0426636, name: "Grand & Marin" },
+            { lat: 40.7145527, lng: -74.0429482, name: "Marin & Morris" },
+            { lat: 40.71389076869709, lng: -74.03798103332521, name: "?" },
+            { lat: 40.71529762488199, lng: -74.0376913547516, name: "Morris & Washington" },
+            { lat: 40.71533828502335, lng: -74.0380883216858, stop: { name: "PS16 Annex", time: "8:20am" }}
+        ],
     }
 }
 
