@@ -32,7 +32,7 @@ The more signups we get from each school, the easier it is to plan a route there
 
 - 7:30am: Pershing Field
 - 7:35am: PS 26
-- 8:00am: McGinley Square
+- 7:55am: McGinley Square
 - 8:15am: LCCS
 - 8:20am: Lincoln Park
 - 8:25am: PS 33
@@ -56,7 +56,7 @@ The more signups we get from each school, the easier it is to plan a route there
 
 <details><summary><strong>🟡 Yellow</strong></summary>
 
-- 8:00am: McGinley Square
+- 7:55am: McGinley Square
 - 8:15am: TECCS
 </details>
 
