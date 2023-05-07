@@ -102,5 +102,9 @@
     "Hola Hoboken Dual Language Charter School": {
         "lng": -74.0378162,
         "lat": 40.7394281
+    },
+    "Waldo ABC": {
+        "lng": -74.03788,
+        "lat": 40.72137
     }
 }
