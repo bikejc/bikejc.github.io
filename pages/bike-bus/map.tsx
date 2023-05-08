@@ -1,6 +1,6 @@
 import dynamic from "next/dynamic";
 import css from './map.module.css'
-import {Props, Schools, Signups} from "../../src/bike-bus/map-utils";
+import {Props, SchoolsJSON, SignupsJSON} from "../../src/bike-bus/map-utils";
 import {loadSync} from "next-utils/load";
 import {mapValues} from "next-utils/objs";
 import {boolParam, floatParam, llParam, parseQueryParams} from "next-utils/params";
@@ -9,9 +9,9 @@ import {Params, ParsedParams} from "../../src/bike-bus/params";
 const Map = dynamic(() => import('../../src/bike-bus/map'), { ssr: false });
 
 export function getStaticProps() {
-    const schools = loadSync<Schools>(`public/bikebus/schools.json`)
-    const signups = loadSync<Signups>(`public/bikebus/signups.json`)
-    const props: Props = mapValues(schools, (k, school) => ({ school, signups: signups[k] }))
+    const schools = loadSync<SchoolsJSON>(`public/bikebus/schools.json`)
+    const signups = loadSync<SignupsJSON>(`public/bikebus/signups.json`)
+    const props: Props = mapValues(schools, (k, school) => ({ school, signups: signups[k] || null }))
     return { props }
 }
 
