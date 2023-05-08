@@ -418,12 +418,13 @@ const RoutePoint = ({ name, center, opacity, radius, }: { center: LL, radius: nu
     <Tooltip className={css.tooltip}>{name}</Tooltip>
 </Circle>
 
-const Layers = ({ signups, setLL, zoom, setZoom, showHomes, hideSchools, drawMode }: {
+const Layers = ({ signups, setLL, zoom, setZoom, showHomes, hideRoutes, hideSchools, drawMode }: {
     signups: Props
     setLL: Dispatch<LL>
     zoom: number
     setZoom: Dispatch<number>
     showHomes: boolean
+    hideRoutes: boolean
     hideSchools: boolean
     drawMode: boolean
 }) => {
@@ -647,113 +648,125 @@ const Layers = ({ signups, setLL, zoom, setZoom, showHomes, hideSchools, drawMod
             />
         ))}
         {/* Route lines */}
-        {entries(routes).map(([ name, { color, positions, offsets } ], routeIdx) => {
-            const isSelectedRoute = name == selectedRoute
-            const isDeselectedRoute = selectedRoute && !isSelectedRoute
-            const routeLineOpacity = isDeselectedRoute ? 0.5 : 1
-            // console.log(`route ${name}`, isSelectedRoute, isDeselectedRoute, routeLineOpacity)
-            const offsetIdxs = offsets?.map((segment, idx) => {
-                const { start, end } = segment
-                const startIdx = positions.findIndex(p => p.name == start || p.stop?.name == start)
-                if (startIdx < 0) throw new Error(`Didn't find start ${start} (offset ${idx}) in route ${name}`)
-                let endIdx = positions.slice(startIdx).findIndex(p => p.name == end || p.stop?.name == end)
-                if (endIdx < 0) throw new Error(`Didn't find end ${end} (offset ${idx}) in route ${name}`)
-                endIdx += startIdx
-                return { segment, startIdx, endIdx }
-            }) || []
-            let idx = 0
-            const segments = [] as { startIdx: number, lastIdx: number, offset?: number }[]
-            for (let { segment: { offset }, startIdx, endIdx } of offsetIdxs) {
-                if (startIdx) {
-                    segments.push({startIdx: idx, lastIdx: startIdx})
-                }
-                segments.push({ startIdx, lastIdx: endIdx, offset })
-                idx = endIdx
-            }
-            if (idx + 1 < positions.length) {
-                segments.push({startIdx: idx, lastIdx: positions.length - 1})
-            }
-            // console.log("segments:", segments)
-            return ([] as ReactNode[]).concat(...segments.map(({ startIdx, lastIdx, offset }, segmentIdx) => {
-                const points = positions.slice(startIdx, lastIdx + 1)
-                const eventHandlers = {
-                    click: (e: LeafletMouseEvent) => {
-                        console.log("selected route:", name)
-                        setSelectedRoute(name)
-                        L.DomEvent.stopPropagation(e)
-                    },
-                    mouseover: (e: LeafletMouseEvent) => {
-                        console.log("selected route:", name)
-                        setSelectedRoute(name)
-                        L.DomEvent.stopPropagation(e)
+        {
+            !hideRoutes &&
+            entries(routes).map(([ name, { color, positions, offsets } ], routeIdx) => {
+                const isSelectedRoute = name == selectedRoute
+                const isDeselectedRoute = selectedRoute && !isSelectedRoute
+                const routeLineOpacity = isDeselectedRoute ? 0.5 : 1
+                // console.log(`route ${name}`, isSelectedRoute, isDeselectedRoute, routeLineOpacity)
+                const offsetIdxs = offsets?.map((segment, idx) => {
+                    const { start, end } = segment
+                    const startIdx = positions.findIndex(p => p.name == start || p.stop?.name == start)
+                    if (startIdx < 0) throw new Error(`Didn't find start ${start} (offset ${idx}) in route ${name}`)
+                    let endIdx = positions.slice(startIdx).findIndex(p => p.name == end || p.stop?.name == end)
+                    if (endIdx < 0) throw new Error(`Didn't find end ${end} (offset ${idx}) in route ${name}`)
+                    endIdx += startIdx
+                    return { segment, startIdx, endIdx }
+                }) || []
+                let idx = 0
+                const segments = [] as { startIdx: number, lastIdx: number, offset?: number }[]
+                for (let { segment: { offset }, startIdx, endIdx } of offsetIdxs) {
+                    if (startIdx) {
+                        segments.push({startIdx: idx, lastIdx: startIdx})
                     }
+                    segments.push({ startIdx, lastIdx: endIdx, offset })
+                    idx = endIdx
                 }
-                if (!offset) {
-                    // console.log(`range line: ${startIdx}-${lastIdx}`)
-                    return [<Polyline
-                        key={`route${routeIdx}-segment${segmentIdx}-${routeLineOpacity}`}
-                        positions={points}
-                        weight={10}
-                        color={color} fillColor={color}
-                        opacity={routeLineOpacity}
-                        fillOpacity={routeLineOpacity}
-                        eventHandlers={eventHandlers}
-                    />]
-                } else {
-                    return points.map((cur, idx) => {
-                        if (idx + 1 >= points.length) return
-                        // console.log(`offset line: ${idx}-${idx+1}`)
-                        const nxt = points[idx + 1]
-                        return <Polyline
-                            key={`route${routeIdx}-segment${segmentIdx}-point${idx}-${routeLineOpacity}`}
-                            positions={offsetLine(cur, nxt, offset)}
+                if (idx + 1 < positions.length) {
+                    segments.push({startIdx: idx, lastIdx: positions.length - 1})
+                }
+                // console.log("segments:", segments)
+                return ([] as ReactNode[]).concat(...segments.map(({ startIdx, lastIdx, offset }, segmentIdx) => {
+                    const points = positions.slice(startIdx, lastIdx + 1)
+                    const eventHandlers = {
+                        click: (e: LeafletMouseEvent) => {
+                            console.log("selected route:", name)
+                            setSelectedRoute(name)
+                            L.DomEvent.stopPropagation(e)
+                        },
+                        mouseover: (e: LeafletMouseEvent) => {
+                            console.log("selected route:", name)
+                            setSelectedRoute(name)
+                            L.DomEvent.stopPropagation(e)
+                        }
+                    }
+                    if (!offset) {
+                        // console.log(`range line: ${startIdx}-${lastIdx}`)
+                        return [<Polyline
+                            key={`route${routeIdx}-segment${segmentIdx}-${routeLineOpacity}`}
+                            positions={points}
                             weight={10}
                             color={color} fillColor={color}
                             opacity={routeLineOpacity}
                             fillOpacity={routeLineOpacity}
                             eventHandlers={eventHandlers}
-                        />
-                    })
-                }
-            }))
-        })}
+                        />]
+                    } else {
+                        return points.map((cur, idx) => {
+                            if (idx + 1 >= points.length) return
+                            // console.log(`offset line: ${idx}-${idx+1}`)
+                            const nxt = points[idx + 1]
+                            return <Polyline
+                                key={`route${routeIdx}-segment${segmentIdx}-point${idx}-${routeLineOpacity}`}
+                                positions={offsetLine(cur, nxt, offset)}
+                                weight={10}
+                                color={color} fillColor={color}
+                                opacity={routeLineOpacity}
+                                fillOpacity={routeLineOpacity}
+                                eventHandlers={eventHandlers}
+                            />
+                        })
+                    }
+                }))
+            })}
         {/* Route stops */}
-        {entries(routes).map(([ routeName, { color, positions } ], idx) => {
-            // console.log(`${routeName}:`)
-            const isSelectedRoute = routeName == selectedRoute
-            const isDeselectedRoute = selectedRoute && !isSelectedRoute
-            const routeStopOpacity = isDeselectedRoute ? 0.4 : 0.8
-            return positions.map((point, stopIdx) => {
-                const stop = point.stop
-                if (stop) {
-                    // console.log(`  ${stop.time}: ${stop.name}`)
-                    return <Stop
-                        key={`route-${routeName}-stop-${stop.name}=${stopIdx}-${routeStopOpacity}-${isSelectedRoute}`}
-                        center={point} radius={stopRadius}
-                        stop={stop}
-                        opacity={routeStopOpacity}
-                        isSelectedRoute={isSelectedRoute}
-                    />
-                }
-                const name = point.name
-                if (name && zoom >= minRoutePointZoom) {
-                    return <RoutePoint
-                        key={`route-${name}-point-${name}=${stopIdx}[${routeStopOpacity}`}
-                        center={point} radius={routePointRadius}
-                        opacity={routeStopOpacity}
-                        name={name}
-                    />
-                }
-            })
-        })}
+        {
+            !hideRoutes &&
+            entries(routes).map(([ routeName, { color, positions } ], idx) => {
+                // console.log(`${routeName}:`)
+                const isSelectedRoute = routeName == selectedRoute
+                const isDeselectedRoute = selectedRoute && !isSelectedRoute
+                const routeStopOpacity = isDeselectedRoute ? 0.4 : 0.8
+                return positions.map((point, stopIdx) => {
+                    const stop = point.stop
+                    if (stop) {
+                        // console.log(`  ${stop.time}: ${stop.name}`)
+                        return <Stop
+                            key={`route-${routeName}-stop-${stop.name}=${stopIdx}-${routeStopOpacity}-${isSelectedRoute}`}
+                            center={point} radius={stopRadius}
+                            stop={stop}
+                            opacity={routeStopOpacity}
+                            isSelectedRoute={isSelectedRoute}
+                        />
+                    }
+                    const name = point.name
+                    if (name && zoom >= minRoutePointZoom) {
+                        return <RoutePoint
+                            key={`route-${name}-point-${name}=${stopIdx}[${routeStopOpacity}`}
+                            center={point} radius={routePointRadius}
+                            opacity={routeStopOpacity}
+                            name={name}
+                        />
+                    }
+                })
+            })}
     </>
 }
 
 const Map = ({ signups, params, ...props }: MapContainerProps & { signups: Props, params: ParsedParams, }) => {
-    const { ll: [ center, setLL ], z: [ zoom, setZoom ], draw: [ drawMode, ], h: [ showHomes ], S: [ hideSchools] } = params
+    const { ll: [ center, setLL ], z: [ zoom, setZoom ], draw: [ drawMode, ], h: [ showHomes ], R: [ hideRoutes ], S: [ hideSchools] } = params
     return (
         <MapContainer center={center} zoom={zoom} {...props}>
-            <Layers signups={signups} setLL={setLL} zoom={zoom} setZoom={setZoom} showHomes={showHomes} hideSchools={hideSchools} drawMode={drawMode} />
+            <Layers
+                signups={signups}
+                setLL={setLL}
+                zoom={zoom} setZoom={setZoom}
+                showHomes={showHomes}
+                hideRoutes={hideRoutes}
+                hideSchools={hideSchools}
+                drawMode={drawMode}
+            />
         </MapContainer>
     )
 }
