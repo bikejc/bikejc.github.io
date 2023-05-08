@@ -93,8 +93,9 @@ export const Sitemap: Sitemap = {
             title: "Jersey City Ward Tour",
             header: false,
             children: {
+                "faq": { title: "FAQs", children: {}, },
                 "2022": {
-                    title: "2022 Jersey City Ward Tour",
+                    title: "2022 Ward Tour",
                     children: {
                         "registration": {
                             text: "Registration (closed)",
