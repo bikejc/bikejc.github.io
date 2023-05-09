@@ -426,7 +426,7 @@ const Layers = ({ signups, setLL, zoom, setZoom, showHomes, hideRoutes, hideScho
     showHomes: boolean
     hideRoutes: boolean
     hideSchools: boolean
-    showSchools: string[]
+    showSchools: string[] | undefined
     drawMode: boolean
 }) => {
     const { url, attribution } = MAPS['alidade_smooth_dark']
@@ -551,12 +551,13 @@ const Layers = ({ signups, setLL, zoom, setZoom, showHomes, hideRoutes, hideScho
         },
         [ map ],
     )
+    const displaySchools = !hideSchools || showSchools?.length
     return <>
         <TileLayer url={url} attribution={attribution}/>
         {
-            (!hideSchools || showSchools.length) &&
+            displaySchools &&
             o2a<string, SchoolSignups, ReactNode>(signups, (schoolName, { school, signups }, idx) => {
-                const showSchool = showSchools.includes(school.id)
+                const showSchool = !showSchools || showSchools.includes(school.id)
                 const selected = schoolName == selectedSchool
                 const selectedFactor = selected ? 1.3 : 1
                 const notSelected = selectedSchool && !selected

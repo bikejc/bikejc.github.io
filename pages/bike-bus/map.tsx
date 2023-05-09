@@ -3,7 +3,7 @@ import css from './map.module.css'
 import {Props, SchoolsJSON, SignupsJSON} from "../../src/bike-bus/map-utils";
 import {loadSync} from "next-utils/load";
 import {mapValues} from "next-utils/objs";
-import {boolParam, stringsParam, floatParam, llParam, parseQueryParams} from "next-utils/params";
+import {boolParam, optStringsParam, floatParam, llParam, parseQueryParams} from "next-utils/params";
 import {Params, ParsedParams} from "../../src/bike-bus/params";
 
 const Map = dynamic(() => import('../../src/bike-bus/map'), { ssr: false });
@@ -22,7 +22,7 @@ export default function Page(props: Props) {
         h: boolParam,
         R: boolParam,
         S: boolParam,
-        s: stringsParam([], " "),
+        s: optStringsParam(" "),
         draw: boolParam
     }
     const parsedParams: ParsedParams = parseQueryParams({ params })
