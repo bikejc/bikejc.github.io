@@ -6,6 +6,7 @@ export type Params = {
     h: Param<boolean>
     R: Param<boolean>
     S: Param<boolean>
+    s: Param<string[]>
     draw: Param<boolean>
 }
 
@@ -15,5 +16,6 @@ export type ParsedParams = {
     h: ParsedParam<boolean>
     R: ParsedParam<boolean>
     S: ParsedParam<boolean>
+    s: ParsedParam<string[]>
     draw: ParsedParam<boolean>
 }

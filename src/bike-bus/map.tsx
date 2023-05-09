@@ -6,8 +6,8 @@ import css from './map.module.css';
 
 import {Circle, MapContainer, Marker, Polyline, TileLayer, Tooltip, useMapEvents,} from 'react-leaflet'
 import {MapContainerProps} from "react-leaflet/lib/MapContainer";
-import {Props, School} from "./map-utils";
-import {entries, fromEntries, o2a} from "next-utils/objs";
+import {Props, SchoolSignups} from "./map-utils";
+import {entries, fromEntries, mapEntries, o2a} from "next-utils/objs";
 import {LL} from "next-utils/params";
 import {ParsedParams} from "./params";
 
@@ -418,7 +418,7 @@ const RoutePoint = ({ name, center, opacity, radius, }: { center: LL, radius: nu
     <Tooltip className={css.tooltip}>{name}</Tooltip>
 </Circle>
 
-const Layers = ({ signups, setLL, zoom, setZoom, showHomes, hideRoutes, hideSchools, drawMode }: {
+const Layers = ({ signups, setLL, zoom, setZoom, showHomes, hideRoutes, hideSchools, showSchools, drawMode }: {
     signups: Props
     setLL: Dispatch<LL>
     zoom: number
@@ -426,6 +426,7 @@ const Layers = ({ signups, setLL, zoom, setZoom, showHomes, hideRoutes, hideScho
     showHomes: boolean
     hideRoutes: boolean
     hideSchools: boolean
+    showSchools: string[]
     drawMode: boolean
 }) => {
     const { url, attribution } = MAPS['alidade_smooth_dark']
@@ -505,7 +506,7 @@ const Layers = ({ signups, setLL, zoom, setZoom, showHomes, hideRoutes, hideScho
     const lum = '50%'
     const schoolsByLat = useMemo(
         () => {
-            const schoolsByLat = o2a<string, School, [string, number]>(signups, (name, {school}) => [name, school.lat])
+            const schoolsByLat = o2a<string, SchoolSignups, [string, number]>(signups, (name, {school}) => [name, school.lat])
             schoolsByLat.sort((a, b) => a[1] - b[1])
             // console.log("schoolsByLat:", schoolsByLat)
             return fromEntries(schoolsByLat.map(([name,], idx) => [ name, idx ]))
@@ -553,7 +554,9 @@ const Layers = ({ signups, setLL, zoom, setZoom, showHomes, hideRoutes, hideScho
     return <>
         <TileLayer url={url} attribution={attribution}/>
         {
-            o2a<string, School, ReactNode>(signups, (schoolName, { school, signups }, idx) => {
+            (!hideSchools || showSchools.length) &&
+            o2a<string, SchoolSignups, ReactNode>(signups, (schoolName, { school, signups }, idx) => {
+                const showSchool = showSchools.includes(school.id)
                 const selected = schoolName == selectedSchool
                 const selectedFactor = selected ? 1.3 : 1
                 const notSelected = selectedSchool && !selected
@@ -572,7 +575,7 @@ const Layers = ({ signups, setLL, zoom, setZoom, showHomes, hideRoutes, hideScho
                 return <Fragment key={`${selectedSchool}-${schoolName}-${idx}`}>
                     {/* School */}
                     {
-                        !hideSchools &&
+                        showSchool &&
                         <Marker
                             position={school}
                             icon={schoolIcon({ size: schoolSize * selectedFactor, bg: signupColor, fg: "black", opacity: schoolOpacity })}
@@ -584,7 +587,7 @@ const Layers = ({ signups, setLL, zoom, setZoom, showHomes, hideRoutes, hideScho
                     }
                     {
                         // Homes
-                        showHomes &&
+                        (showSchool || showHomes) &&
                         signups?.map((ll, idx) =>
                             <Fragment key={`${selectedSchool}-${schoolName}-${idx}`}>
                                 {/* Home to School */}
@@ -755,7 +758,15 @@ const Layers = ({ signups, setLL, zoom, setZoom, showHomes, hideRoutes, hideScho
 }
 
 const Map = ({ signups, params, ...props }: MapContainerProps & { signups: Props, params: ParsedParams, }) => {
-    const { ll: [ center, setLL ], z: [ zoom, setZoom ], draw: [ drawMode, ], h: [ showHomes ], R: [ hideRoutes ], S: [ hideSchools] } = params
+    const {
+        ll: [ center, setLL ],
+        z: [ zoom, setZoom ],
+        draw: [ drawMode, ],
+        h: [ showHomes ],
+        R: [ hideRoutes ],
+        S: [ hideSchools ],
+        s: [ showSchools ],
+    } = params
     return (
         <MapContainer center={center} zoom={zoom} {...props}>
             <Layers
@@ -765,6 +776,7 @@ const Map = ({ signups, params, ...props }: MapContainerProps & { signups: Props
                 showHomes={showHomes}
                 hideRoutes={hideRoutes}
                 hideSchools={hideSchools}
+                showSchools={showSchools}
                 drawMode={drawMode}
             />
         </MapContainer>
