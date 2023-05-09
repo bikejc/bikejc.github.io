@@ -35,7 +35,7 @@ The [NY Waterway](https://www.nywaterway.com/) ferry runs two lines that you can
 - Arrives 10:22am at Hoboken 14th St.
 - [4mi ride to Ward Tour start](https://ridewithgps.com/routes/39648414)
 
-**NOTE! This is not the NYC Ferry!** You need the **NY Waterway** app, and it costs $7-$9 (including a $1.25 bike pass)
+**NOTE! This is not the NYC Ferry!** You need the **NY Waterway** app, and it costs $8-$9 (plus a $1.50 bike pass)
 
 ### I'll need to drive to the event. Is there parking available? <a id="driving"></a>
 
@@ -97,16 +97,16 @@ In the event you feel unwell or sustain an injury, Jersey City Medical Center wi
 
 ### What if I don't have a bike to ride? <a id="rentals"></a>
 
-#### [**Citi Bike**](https://citibikenyc.com/) is offering members 3-hour rentals on Ward Tour day!
-- Open the Lyft app
-- Tap on the Menu (top-left corner)
-- Tap on Rewards
-- Add Promo Code "JERSEYTOUR22"
-- Ride, friends, ride!
+<!--#### [**Citi Bike**](https://citibikenyc.com/) is offering members 3-hour rentals on Ward Tour day!-->
+<!-- - Open the Lyft app-->
+<!-- - Tap on the Menu (top-left corner)-->
+<!-- - Tap on Rewards-->
+<!-- - Add Promo Code "JERSEYTOUR22"-->
+<!-- - Ride, friends, ride!-->
 
-#### Local bike rental options
-- ~[**Grove Street Bicycles** offers bike rentals](https://www.grovestreetbicycles.com/about/rentals-pg110.htm)~ ([sold out!](https://www.instagram.com/p/CeT9pe7jhBG/))
-- [**Zoomo**](https://www.ridezoomo.com/us/plans) offers e-bike rentals in Journal Square
+<!--#### Local bike rental options-->
+<!-- - ~[**Grove Street Bicycles** offers bike rentals](https://www.grovestreetbicycles.com/about/rentals-pg110.htm)~ ([sold out!](https://www.instagram.com/p/CeT9pe7jhBG/))-->
+<!-- - [**Zoomo**](https://www.ridezoomo.com/us/plans) offers e-bike rentals in Journal Square-->
 
 <!--### Is there same-day registration? <a id="day-of-registration"></a>-->
 
