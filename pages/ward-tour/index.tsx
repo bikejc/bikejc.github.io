@@ -8,7 +8,7 @@ const md = `
 
 #### [Registration is open now!](https://bikejc.regfox.com/ward-tour-2023)
 
-**2,500 Bikes. 15 Miles. 6 Wards. 1 Great Day in Jersey City!**
+**3,000 Bikes. 15 Miles. 6 Wards. 1 Great Day in Jersey City!**
 
 [![](/img/wt22/wt22%20overhead%20city%20hall%20start%20cropped.JPG)](https://bikejc.regfox.com/ward-tour-2023)
 
@@ -25,7 +25,7 @@ The Jersey City Ward Tour will roll Sunday, June 4, 2023, taking you (and 3,000 
 ${faqMd}
 `
 
-export const description = "Register for the Jersey City Ward Tour, Sunday, June 4, 2023 at 11:00am! 2,500 Bikes. 15 Miles. 6 Wards. 1 Great Day in Jersey City!"
+export const description = "Register for the Jersey City Ward Tour, Sunday, June 4, 2023 at 11:00am! 3,000 Bikes. 15 Miles. 6 Wards. 1 Great Day in Jersey City!"
 
 export default function Home() {
     return (

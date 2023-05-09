@@ -28,7 +28,7 @@ export function Aside({ sectionMenu }: { sectionMenu?: SectionMenu }) {
                 <h2 className="block-title">Ward Tour 2023</h2>
                 <p>
                     <strong>The Jersey City Ward Tour is back! Sunday, June 4, roll out 11am from City Hall!</strong>
-                    {' '}<strong>2,500 Bikes. 15 Miles. 6 Wards, finishing at the Jersey City Jazz Festival.</strong>
+                    {' '}<strong>3,000 Bikes. 15 Miles. 6 Wards, finishing at the Jersey City Jazz Festival.</strong>
                     {' '}<strong>Free registration coming soon, <a href={"#subscribe"}>subscribe for updates</a></strong>.
                 </p>
             </section>

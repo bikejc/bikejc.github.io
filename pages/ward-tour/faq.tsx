@@ -78,10 +78,6 @@ New Jersey State law requires anyone under the age of 17 to wear a bicycle helme
 
 There is no age limit for riding in the Ward Tour, but riders should be able to maintain a pace of approximately 8 mph. This is a fairly relaxed pace for an adult who bikes even occasionally. We also take some short breaks to catch a breath and to allow for smooth traffic control, and our one long break in Lincoln Park roughly at the halfway point, after the only steep uphill on the course (so you can just walk your bike up that hill if you want).
 
-### Is the Finish Line Festival family friendly? <a id="family-friendly"></a>
-
-Yes! There will be activities available for all ages.
-
 ### Are the roads closed to traffic? <a id="road-closures"></a>
 
 Yes, the route has rolling closures which means that traffic is not allowed on the road until the riders pass.
