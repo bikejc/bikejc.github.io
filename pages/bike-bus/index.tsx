@@ -3,6 +3,7 @@ import {Page} from "../../src/page";
 import MD from "../../src/md";
 import YouTubeEmbed from "next-utils/youtube";
 import {helmets} from "../../src/img";
+import {iframeHtml} from "../../src/insta";
 
 export const bikeBusMapEmbedMD = (aspectRatio = '4/3') => `<iframe src="https://www.google.com/maps/d/u/0/embed?mid=1s2vaoPnDKwx4QRi4t5TDSRwyMEUDqM8&ehbc=2E312F" width="100%" style="aspect-ratio: ${aspectRatio};"></iframe>`
 
@@ -14,20 +15,40 @@ export default function Home() { return (
 
 [**Sign up here**](/bike-bus/signup) and Bike JC will help coordinate one in your area!
 
-#### Bike Bus Pilot: Wednesday May 3 <a id="pilot"></a>
-Coinciding with [National Bike, Walk, & Roll to School Day](https://www.walkbiketoschool.org/), we are hoping to run several routes, covering most schools we've received signups from.
+#### Next Bike Bus: Friday, May 12 <a id="next-bike-bus"></a>
+We're hoping to run another Bike Bus this Friday, May 12!
 
-The more signups we get from each school, the easier it is to plan a route there, ensure there will be sufficient bike racks, etc. Please get your friends and school networks to sign up! [bikejc.org/bike-bus/signup](/bike-bus/signup).
+Check out [this email to all our signups](https://mailchi.mp/bikejc/next-jc-bike-bus-friday-may-12) with more info about planning and next steps, and [make sure you and your school-mates are signed up](/bike-bus/signup)!
+
+#### Bike Bus Pilot: Wednesday May 3 <a id="pilot"></a>
+On [National Bike, Walk, & Roll to School Day](https://www.walkbiketoschool.org/), we ran 7 Bike Bus routes around Jersey City:
+
+${iframeHtml("CrySd81oNMn")}
+
+#### Routes <a id="map"></a>
+Here are the routes we ran (subject to change in future Bike Buses!):
+<iframe src="https://bikejc.org/bike-bus/map?ll=40.730_-74.057&S=" width="100%" style="aspect-ratio: 4/3"></iframe>
+
+[(full screen version)](/bike-bus/map?S)
+
+If we weren't able to run a route to your school, [let us know](mailto:bikebus@bikejc.org) and [make sure you and your school-mates are signed up](/bike-bus/signup). The more signups we get from each school, the easier it is to plan a route there, ensure there will be sufficient bike racks, etc.
 
 ---
 
-#### Route Map <a id="map"></a>
+#### School Signup Standings <a id="standings"></a>
 
-<iframe src="https://bikejc.org/bike-bus/map?S" width="100%" style="aspect-ratio: 4/3"></iframe>
+<iframe src="https://docs.google.com/spreadsheets/d/e/2PACX-1vR7OykHYT-mz7qF40nn18ivkbKrM8Q6UC1ys8vTadmcEloaN1X5u74kOZ441t-HBF6m6hoh0X6OA3Vk/pubhtml?gid=601478093&amp;single=true&amp;widget=true&amp;headers=false" width="100%" style="aspect-ratio: 4/3"></iframe>
 
-[View full screen here](/bike-bus/map?S)
+##### [**Get your school to sign up**](/bike-bus/signup), so that we can plan Bike Bus routes there!
+
+[**bikejc.org/bike-bus/signup**](https://bikejc.org/bike-bus/signup)
+
+#### Waiver <a id="waiver"></a>
+[**Parents must sign the waiver for their children who will join**](/bike-bus/waiver).
 
 #### Route schedules <a id="times"></a>
+These schedules were from our pilot on Wednesday, May 3, and are subject to change going forward.
+
 <details><summary><strong>🔴 Red</strong></summary>
 
 - 7:30am: Pershing Field
@@ -105,17 +126,6 @@ The more signups we get from each school, the easier it is to plan a route there
 </details>
 
 (click to expand)
-
-#### School Signup Standings <a id="standings"></a>
-
-<iframe src="https://docs.google.com/spreadsheets/d/e/2PACX-1vR7OykHYT-mz7qF40nn18ivkbKrM8Q6UC1ys8vTadmcEloaN1X5u74kOZ441t-HBF6m6hoh0X6OA3Vk/pubhtml?gid=601478093&amp;single=true&amp;widget=true&amp;headers=false" width="100%" style="aspect-ratio: 4/3"></iframe>
-
-##### [**Get your school to sign up**](/bike-bus/signup), so that we can plan Bike Bus routes there!
-
-[**bikejc.org/bike-bus/signup**](https://bikejc.org/bike-bus/signup)
-
-#### Waiver <a id="waiver"></a>
-[**Parents must sign the waiver for their children who will join**](/bike-bus/waiver).
 
 #### FAQs <a id="faq"></a>
 
