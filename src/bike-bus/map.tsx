@@ -555,7 +555,6 @@ const Layers = ({ signups, setLL, zoom, setZoom, showHomes, hideRoutes, hideScho
     return <>
         <TileLayer url={url} attribution={attribution}/>
         {
-            displaySchools &&
             o2a<string, SchoolSignups, ReactNode>(signups, (schoolName, { school, signups }, idx) => {
                 const showSchool = !showSchools || showSchools.includes(school.id)
                 const selected = schoolName == selectedSchool
@@ -574,9 +573,9 @@ const Layers = ({ signups, setLL, zoom, setZoom, showHomes, hideRoutes, hideScho
                 const schoolColor = color
                 const tooltipOpacity = 0.8
                 return <Fragment key={`${selectedSchool}-${schoolName}-${idx}`}>
-                    {/* School */}
                     {
-                        showSchool &&
+                        // School
+                        displaySchools && showSchool &&
                         <Marker
                             position={school}
                             icon={schoolIcon({ size: schoolSize * selectedFactor, bg: signupColor, fg: "black", opacity: schoolOpacity })}
@@ -588,7 +587,7 @@ const Layers = ({ signups, setLL, zoom, setZoom, showHomes, hideRoutes, hideScho
                     }
                     {
                         // Homes
-                        (showSchool || showHomes) &&
+                        ((!showSchools && showHomes) || showSchools?.includes(school.id)) &&
                         signups?.map((ll, idx) =>
                             <Fragment key={`${selectedSchool}-${schoolName}-${idx}`}>
                                 {/* Home to School */}

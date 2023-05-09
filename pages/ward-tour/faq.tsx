@@ -41,7 +41,10 @@ We suggest public transportation to the start. There are a few parking lots near
 
 ### How much does it cost to ride in the Ward Tour? <a id="cost"></a>
 
-It's free! We strive to encourage as many people as possible to join the ride and we don't want the cost of entry to be a barrier to participating in the event. That said, we do have a suggested donation of $5 and gladly accept donations online or at the registration tables.
+- General admission Ward Tour tickets cost $10
+- Riders under 18 are free, and over 60 are $5
+
+Bike JC is a 100% volunteer organization, and hosting the Ward Tour costs a significant amount of money. Proceeds from ticket sales also fund our year-round advocacy work (including our many other events, which are all free).
 
 ### What should I bring with me? <a id="gear"></a>
 
@@ -73,7 +76,7 @@ New Jersey State law requires anyone under the age of 17 to wear a bicycle helme
 
 ### What is the age limit for riders? <a id="ages"></a>
 
-The age limit for riding a bike in the Ward Tour is 12 years and older. Younger children are allowed to ride with an adult in a pull-wagon, on a child's bike seat, etc. All ages are welcome at the Finish Line Festival though!
+There is no age limit for riding in the Ward Tour, but riders should be able to maintain a pace of approximately 8 mph. This is a fairly relaxed pace for an adult who bikes even occasionally. We also take some short breaks to catch a breath and to allow for smooth traffic control, and our one long break in Lincoln Park roughly at the halfway point, after the only steep uphill on the course (so you can just walk your bike up that hill if you want).
 
 ### Is the Finish Line Festival family friendly? <a id="family-friendly"></a>
 
@@ -85,7 +88,7 @@ Yes, the route has rolling closures which means that traffic is not allowed on t
 
 ### How challenging is the course? Are there a lot of hills? <a id="difficulty"></a>
 
-[The route](https://ridewithgps.com/routes/38744234) is about 15 miles long. The riding pace is conversational. Most of of the course is slightly rolling to flat. However, there are a few steady uphill sections, and one steeper but very short hill in Lincoln Park just before the halfway rest point where the ride takes a short water and shade break. People with a wide range of athletic abilities should be able to complete this course.
+The route is about 15 miles long. The riding pace is conversational. Most of of the course is slightly rolling to flat. However, there are a few steady uphill sections, and one steeper but very short hill in Lincoln Park just before the halfway rest point where the ride takes a short water and shade break. People with a wide range of athletic abilities should be able to complete this course.
 
 ### What if I am unable to complete the ride? <a id="bailing"></a>
 
