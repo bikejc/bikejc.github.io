@@ -1,9 +1,7 @@
 import { Page } from "../../src/page";
 import {triptych} from "../../src/img";
 
-const md = `
-<!--## [2023 Ward Tour registration is closed.](https://www.eventbrite.com/e/jersey-city-ward-tour-2022-tickets-324066169637)-->
-
+export const md = `
 ## Jersey City Ward Tour – Frequently Asked Questions
 
 ### What is the time and date of the 2023 Ward Tour? <a id="date-time"></a>
@@ -14,7 +12,7 @@ Registration begins at 9am, roll out at 11am sharp, so be sure to come early to 
 
 ### Where is the event located? <a id="location"></a>
 
-The ride starts at City Hall ([280 Grove St., at Montgomery Street](https://goo.gl/maps/tMHCxVZU4Q3qBGvc8)) and finishes at the Jersey City Jazz Festival, at [107 Morgan St.](https://goo.gl/maps/YLfwHwet3ATYxVc79). Riders will find a bike parking area and great food, drink, and entertainment options there!
+The ride starts at City Hall ([280 Grove St., at Montgomery Street](https://goo.gl/maps/tMHCxVZU4Q3qBGvc8)) and finishes at [the Jersey City Jazz Festival](https://riverviewjazz.org/jersey-city-jazz-festival), at [Exchange Place](https://goo.gl/maps/fv4KrFsXdZKon6VD9). Riders will find a bike parking area and great food, drink, and entertainment options there.
 
 ### How do I get to the Ward Tour using public transportation? <a id="public-transit"></a>
 
