@@ -585,7 +585,7 @@ const Layers = ({ signups, setLL, zoom, setZoom, showHomes, hideRoutes, hideScho
                     {
                         // Homes
                         showHomes &&
-                        signups.map((ll, idx) =>
+                        signups?.map((ll, idx) =>
                             <Fragment key={`${selectedSchool}-${schoolName}-${idx}`}>
                                 {/* Home to School */}
                                 <Polyline

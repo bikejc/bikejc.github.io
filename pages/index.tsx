@@ -14,7 +14,8 @@ const Home: NextPage = () => {
               { src: "/files/BikeJcHomeSlide1.jpg", alt: "Ward Tour participants" },
               reservoir,
               { src: "/files/BikeJcHomeSlide5.jpg", alt: "Ward Tour participants and Let's Share a Meal volunteers in Liberty State Park" },
-              { src: "/img/ward-tour-forever-sticker-resized.jpg", alt: "Jersey City Ward Tour – first Sunday in June every year" },
+              { src: "img/wt22/Photos by Jen Brown/IMG_9097 1600x480.JPG", alt: "Ward Tour riders in Lincoln Park" },
+              // { src: "/img/ward-tour-forever-sticker-resized.jpg", alt: "Jersey City Ward Tour – first Sunday in June every year" },
           ]}
       >
           {MD(`
