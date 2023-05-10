@@ -31,34 +31,21 @@ export function getStaticProps() {
 export type Props = { redirects: Redirects }
 
 const Home = ({ redirects }: Props) => {
-    const [ domain, setDomain ] = useState('bikejc.org')
-    useEffect(
-        () => {
-            const location = window.location
-            const hostname = location.hostname
-            const port = location.port
-            setDomain(port ? `${hostname}:${port}` : hostname)
-        },
-        []
-    )
-    const qrs: QR[] = useMemo(
-        () =>
-            QRs.map(name => {
-                const path = `/${name}`
-                const url = `${domain}/${name}`
-                const protocol = domain.startsWith('127.0.0.1') ? 'http' : 'https'
-                const fullUrl = `${protocol}://${url}`
-                const pngPath = `/qr/bikejc.org/${name}.png`
-                const svgPath = `/qr/bikejc.org/${name}.svg`
-                const qr: QR = { name, path, url, fullUrl, pngPath, svgPath }
-                const redirect = redirects[path]
-                if (redirect) {
-                    qr.redirect = redirect
-                }
-                return qr
-            }),
-        [ domain ],
-    )
+    const domain = 'bikejc.org'
+    const qrs: QR[] = QRs.map(name => {
+            const path = `/${name}`
+            const url = `${domain}/${name}`
+            const protocol = 'https'
+            const fullUrl = `${protocol}://${url}`
+            const pngPath = `/qr/bikejc.org/${name}.png`
+            const svgPath = `/qr/bikejc.org/${name}.svg`
+            const qr: QR = { name, path, url, fullUrl, pngPath, svgPath }
+            const redirect = redirects[path]
+            if (redirect) {
+                qr.redirect = redirect
+            }
+            return qr
+        })
     return (
         <Page
             path={"/qrs"}
@@ -73,7 +60,7 @@ const Home = ({ redirects }: Props) => {
                 qrs.map(({ url, fullUrl, name, pngPath, svgPath, redirect }) => {
                     return <Fragment key={pngPath}>
                         <h3><a id={name} href={`#${name}`}>{url}</a></h3>
-                        <p className={css.qrPng}><A href={fullUrl}><img src={pngPath}/></A>
+                        <p className={css.qrPng}><A href={fullUrl}><img src={pngPath} alt={`QR code: ${url}`}/></A>
                         </p>
                         <p>(<a href={svgPath}>SVG</a>)</p>
                         { redirect && <p>Redirects to <A href={redirect}>{redirect}</A></p>}
