@@ -89,6 +89,7 @@ export const Sitemap: Sitemap = {
         },
         "bike-bus": { title: "Bike Bus", header: false, children: {}, },
         "contact-us": { title: "Contact", children: {} },
+        "qrs": { title: "QR Codes", header: false, children: {} },
         "ward-tour": {
             title: "Jersey City Ward Tour",
             header: false,
