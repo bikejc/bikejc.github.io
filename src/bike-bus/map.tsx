@@ -30,7 +30,7 @@ type RoutePoint = LL & {
     stop?: Stop
     name?: string
 }
-type SegmentOffset = { start: string, end: string, offset: number }
+type SegmentOffset = { start: string, end: string, offsets: { [k: string]: number } }
 type Route = {
     color: string
     positions: RoutePoint[]
@@ -142,45 +142,33 @@ const routes: { [k: string]: Route } = {
             { lat: 40.71894880656658, lng: -74.08470511436464, stop: { name: "PS 33", time: "8:25am", }, },
         ],
         offsets: [
-            { start: pershingField.stop.name, end: summitCarlton.name, offset: -5 },
-            { start: ps26.stop.name, end: "Summit & 139", offset: -10, },
-            { start: belmontWestSide.name, end: "Lincoln Park", offset: -10, },
+            { start: pershingField.stop.name, end: summitCarlton.name, offsets: { purple: -5 } },
+            { start: ps26.stop.name, end: "Summit & 139", offsets: { blue: -5, green: -5, } },
+            { start: belmontWestSide.name, end: "Lincoln Park", offsets: { blue: -5, green: -5, }, },
         ]
     },
     orange: {
         color: "hsl(27, 100%, 53%)",
         positions: [
-            // { lat: 40.71299622040226, lng: -74.06754970550539, stop: { name: "Berry Lane Park", time: "7:30am", }},
-            // { lat: 40.71445188831162, lng: -74.06648755073549, },
-            // { lat: 40.713589876521155, lng: -74.06530737876894, },
-            // { lat: 40.71437869906487, lng: -74.06406283378602, },
-            // { lat: 40.714362434776895, lng: -74.06273245811464, },
             { lat: 40.711447223789335, lng: -74.06264366353011, stop: { name: "The Grind Coffeeshop", time: "7:35am", }},
             {"lat":40.7125268,"lng":-74.0639396},
-            // { lat: 40.71230980019795, lng: -74.06139190212933, },
-            // { lat: 40.71335637790267, lng: -74.06274228715561, },
             { lat: 40.71384197546361, lng: -74.06211018562318, stop: { name: "Lafayette Park / PS 22", time: "7:40am", }},
             { lat: 40.71509432380268, lng: -74.0603291988373, },
             { lat: 40.71402901599767, lng: -74.05900955200197, name: "Johnston & Pacific" },
             { lat: 40.71720049288451, lng: -74.05455708503725, name: "Pacific & Grand" },
-            // { lat: 40.71658247334316, lng: -74.04892444610597, name: "Grand & Jersey", },
             { lat: 40.716972802142045, lng: -74.05228257179262, name: "Grand & Monmouth" },
             { lat: 40.71824948660363, lng: -74.0515422821045, name: "Bright & Monmouth" },
             ps3ms4,
-            { lat: 40.717371260430305, lng: -74.04851675033571, },
-            { lat: 40.718282013276436, lng: -74.04795885086061, },
-            { lat: 40.71805839207992, lng: -74.04714345932008, stop: { name: "Van Vorst Park", time: "7:55am", }},
-            { lat: 40.71838365902651, lng: -74.0469664335251, },
-            { lat: 40.717509500503695, lng: -74.04412329196931, stop: { name: "City Hall", time: "8:00am", }},
-            groveSt,
-            { lat: 40.7202498474144, lng: -74.04505133628847, },
+            { lat: 40.717371260430305, lng: -74.04851675033571, },  // Bright & Jersey
+            { lat: 40.718054274043766, lng: -74.0481156448484, },  // York & Jersey
+            { lat: 40.717571274308085, lng: -74.04657559900382, stop: { name: "Van Vorst Park", time: "7:55am", }},
             { lat: 40.72088816128179, lng: -74.04472947120668, stop: { name: "Newark Ave Plaza", time: "8:05am", }},
             { lat: 40.720790585035964, lng: -74.04443979263307, },
             { lat: 40.72755959783345, lng: -74.04340445995332, stop: { name: "PS 37", time: "8:10am", }},
             ...hpPs5Ps3,
         ],
         offsets: [
-            { start: "McWilliams & Pavonia", end: "PS 3 / MS 4", offset: -5, },
+            { start: "McWilliams & Pavonia", end: "PS 3 / MS 4", offsets: { green: -5 }, },
         ]
     },
     yellow: {
@@ -190,7 +178,7 @@ const routes: { [k: string]: Route } = {
             ...westSideToTeccs,
         ],
         offsets: [
-            { start: montgomeryWestSide.name, end: "TECCS", offset: 10, },
+            { start: montgomeryWestSide.name, end: "TECCS", offsets: { green: 5, blue: 5, }, },
         ]
     },
     green: {
@@ -202,13 +190,12 @@ const routes: { [k: string]: Route } = {
             ...hpPs5Ps3,
         ],
         offsets: [
-            //{ start: "Lincoln Park", end: belmontWestSide.name, offset: 5, },
-            { start: belmontWestSide.name, end: montgomeryWestSide.name, offset: 5, },
-            { start: montgomeryWestSide.name, end: "TECCS", offset: 0, },
-            { start: "TECCS", end: "Summit & 139", offset: 5, },
-            { start: "Summit & 139", end: ps26.stop.name, offset: 0, },
-            { start: ps26.stop.name, end: 'Hoboken Ave & NJ Transit Path', offset: 5, },
-            { start: "McWilliams & Pavonia", end: "PS 3 / MS 4", offset: 5, },
+            { start: belmontWestSide.name, end: montgomeryWestSide.name, offsets: { blue: 5 }, },
+            { start: montgomeryWestSide.name, end: "TECCS", offsets: { blue: 5, yellow: -5 }, },
+            { start: "TECCS", end: "Summit & 139", offsets: { blue: 5 }, },
+            { start: "Summit & 139", end: ps26.stop.name, offsets: { blue: 5, red: -5 }, },
+            { start: ps26.stop.name, end: 'Hoboken Ave & NJ Transit Path', offsets: { blue: 5 }, },
+            { start: "McWilliams & Pavonia", end: "PS 3 / MS 4", offsets: { orange: 5 }, },
         ]
     },
     blue: {
@@ -232,12 +219,12 @@ const routes: { [k: string]: Route } = {
             { lat: 40.7406034, lng: -74.0276482, stop: { name: "Stevens Cooperative", time: "8:20am", } },
         ],
         offsets: [
-            { start: "Lincoln Park", end: belmontWestSide.name, offset: -10, },
-            { start: belmontWestSide.name, end: montgomeryWestSide.name, offset: -5, },
-            { start: montgomeryWestSide.name, end: "TECCS", offset: -10, },
-            { start: "TECCS", end: "Summit & 139", offset: -5, },
-            { start: "Summit & 139", end: ps26.stop.name, offset: -10, },
-            { start: ps26.stop.name, end: 'Hoboken Ave & NJ Transit Path', offset: -5, },
+            { start: "Lincoln Park", end: belmontWestSide.name, offsets: { green: -5, red: -5 }, },
+            { start: belmontWestSide.name, end: montgomeryWestSide.name, offsets: { green: -5 }, },
+            { start: montgomeryWestSide.name, end: "TECCS", offsets: { green: -5, yellow: -5 }, },
+            { start: "TECCS", end: "Summit & 139", offsets: { green: -5 }, },
+            { start: "Summit & 139", end: ps26.stop.name, offsets: { green: -5, red: -5 }, },
+            { start: ps26.stop.name, end: 'Hoboken Ave & NJ Transit Path', offsets: { green: -5 }, },
 
         ]
     },
@@ -282,7 +269,7 @@ const routes: { [k: string]: Route } = {
             { lat: 40.75353941255337, lng: -74.05219714565821, stop: { name: "Jersey City Global Charter School", time: "7:50am" } },
         ],
         offsets: [
-            { start: pershingField.stop.name, end: summitCarlton.name, offset: 5 },
+            { start: pershingField.stop.name, end: summitCarlton.name, offsets: { red: 5 } },
         ]
     }
 }
@@ -418,15 +405,16 @@ const RoutePoint = ({ name, center, opacity, radius, }: { center: LL, radius: nu
     <Tooltip className={css.tooltip}>{name}</Tooltip>
 </Circle>
 
-const Layers = ({ signups, setLL, zoom, setZoom, showHomes, hideRoutes, hideSchools, showSchools, drawMode }: {
+const Layers = ({ signups, setLL, zoom, setZoom, showHomes, showRoutes, hideRoutes, showSchools, hideSchools, drawMode }: {
     signups: Props
     setLL: Dispatch<LL>
     zoom: number
     setZoom: Dispatch<number>
     showHomes: boolean
+    showRoutes: string[] | undefined
     hideRoutes: boolean
-    hideSchools: boolean
     showSchools: string[] | undefined
+    hideSchools: boolean
     drawMode: boolean
 }) => {
     const { url, attribution } = MAPS['alidade_smooth_dark']
@@ -529,13 +517,6 @@ const Layers = ({ signups, setLL, zoom, setZoom, showHomes, hideRoutes, hideScho
     const routePointRadius = 6 * mPerPx // + zoomAdjustment
     const minRoutePointZoom = 13
 
-    const adjustXY = useCallback(
-        (p: LL, dx: number, dy: number) => {
-            const { x, y } = map.latLngToContainerPoint(p)
-            return map.containerPointToLatLng(L.point([ x + dx, y + dy ]))
-        },
-        [ map ],
-    )
     const offsetLine = useCallback(
         (start: LL, end: LL, offset: number) => {
             const sxy = map.latLngToContainerPoint(start)
@@ -551,7 +532,12 @@ const Layers = ({ signups, setLL, zoom, setZoom, showHomes, hideRoutes, hideScho
         },
         [ map ],
     )
+    const displayRoutes = !hideRoutes || showRoutes?.length
     const displaySchools = !hideSchools || showSchools?.length
+    const displayRoute = useCallback(
+        (routeName: string) => !showRoutes || showRoutes.includes(routeName),
+        [ showRoutes ]
+    )
     return <>
         <TileLayer url={url} attribution={attribution}/>
         {
@@ -612,6 +598,7 @@ const Layers = ({ signups, setLL, zoom, setZoom, showHomes, hideRoutes, hideScho
                 </Fragment>
             })
         }
+        {/* New route (being drawn, in "draw" mode) */}
         {newRoutePoints && <Polyline positions={newRoutePoints} weight={10} color={"red"} fillColor={"red"} />}
         {newRoutePoints && nextPoint && <Polyline positions={[newRoutePoints[newRoutePoints.length - 1], nextPoint ]} weight={10} color={"pink"} fillColor={"pink"} />}
         {newRoutePoints?.map((point, idx) =>
@@ -631,7 +618,7 @@ const Layers = ({ signups, setLL, zoom, setZoom, showHomes, hideRoutes, hideScho
             >
             </Circle>
         )}
-        {/* New route lines */}
+        {/* New route lines (already drawn / "closed") */}
         {newRoutes.map((route, idx) =>
             <Polyline
                 key={`newRoute-${idx}`}
@@ -652,24 +639,29 @@ const Layers = ({ signups, setLL, zoom, setZoom, showHomes, hideRoutes, hideScho
         ))}
         {/* Route lines */}
         {
-            !hideRoutes &&
-            entries(routes).map(([ name, { color, positions, offsets } ], routeIdx) => {
-                const isSelectedRoute = name == selectedRoute
+            entries(routes).map(([ routeName, { color, positions, offsets } ], routeIdx) => {
+                const showRoute = displayRoute(routeName)
+                if (!displayRoutes || !showRoute) return
+                const isSelectedRoute = routeName == selectedRoute
                 const isDeselectedRoute = selectedRoute && !isSelectedRoute
                 const routeLineOpacity = isDeselectedRoute ? 0.5 : 1
                 // console.log(`route ${name}`, isSelectedRoute, isDeselectedRoute, routeLineOpacity)
                 const offsetIdxs = offsets?.map((segment, idx) => {
                     const { start, end } = segment
                     const startIdx = positions.findIndex(p => p.name == start || p.stop?.name == start)
-                    if (startIdx < 0) throw new Error(`Didn't find start ${start} (offset ${idx}) in route ${name}`)
+                    if (startIdx < 0) throw new Error(`Didn't find start ${start} (offset ${idx}) in route ${routeName}`)
                     let endIdx = positions.slice(startIdx).findIndex(p => p.name == end || p.stop?.name == end)
-                    if (endIdx < 0) throw new Error(`Didn't find end ${end} (offset ${idx}) in route ${name}`)
+                    if (endIdx < 0) throw new Error(`Didn't find end ${end} (offset ${idx}) in route ${routeName}`)
                     endIdx += startIdx
                     return { segment, startIdx, endIdx }
                 }) || []
                 let idx = 0
                 const segments = [] as { startIdx: number, lastIdx: number, offset?: number }[]
-                for (let { segment: { offset }, startIdx, endIdx } of offsetIdxs) {
+                for (let { segment: { offsets }, startIdx, endIdx } of offsetIdxs) {
+                    const offset = o2a<string, number, number>(
+                        offsets,
+                        (otherRoute, otherOffset) => displayRoute(otherRoute) ? otherOffset : 0,
+                    ).reduce((a, b) => a + b, 0)
                     if (startIdx) {
                         segments.push({startIdx: idx, lastIdx: startIdx})
                     }
@@ -684,13 +676,13 @@ const Layers = ({ signups, setLL, zoom, setZoom, showHomes, hideRoutes, hideScho
                     const points = positions.slice(startIdx, lastIdx + 1)
                     const eventHandlers = {
                         click: (e: LeafletMouseEvent) => {
-                            console.log("selected route:", name)
-                            setSelectedRoute(name)
+                            console.log("selected route:", routeName)
+                            setSelectedRoute(routeName)
                             L.DomEvent.stopPropagation(e)
                         },
                         mouseover: (e: LeafletMouseEvent) => {
-                            console.log("selected route:", name)
-                            setSelectedRoute(name)
+                            console.log("selected route:", routeName)
+                            setSelectedRoute(routeName)
                             L.DomEvent.stopPropagation(e)
                         }
                     }
@@ -725,8 +717,9 @@ const Layers = ({ signups, setLL, zoom, setZoom, showHomes, hideRoutes, hideScho
             })}
         {/* Route stops */}
         {
-            !hideRoutes &&
             entries(routes).map(([ routeName, { color, positions } ], idx) => {
+                const showRoute = displayRoute(routeName)
+                if (!displayRoutes || !showRoute) return
                 // console.log(`${routeName}:`)
                 const isSelectedRoute = routeName == selectedRoute
                 const isDeselectedRoute = selectedRoute && !isSelectedRoute
@@ -763,9 +756,10 @@ const Map = ({ signups, params, ...props }: MapContainerProps & { signups: Props
         z: [ zoom, setZoom ],
         draw: [ drawMode, ],
         h: [ showHomes ],
+        r: [ showRoutes ],
         R: [ hideRoutes ],
-        S: [ hideSchools ],
         s: [ showSchools ],
+        S: [ hideSchools ],
     } = params
     return (
         <MapContainer center={center} zoom={zoom} {...props}>
@@ -774,9 +768,10 @@ const Map = ({ signups, params, ...props }: MapContainerProps & { signups: Props
                 setLL={setLL}
                 zoom={zoom} setZoom={setZoom}
                 showHomes={showHomes}
+                showRoutes={showRoutes}
                 hideRoutes={hideRoutes}
-                hideSchools={hideSchools}
                 showSchools={showSchools}
+                hideSchools={hideSchools}
                 drawMode={drawMode}
             />
         </MapContainer>
