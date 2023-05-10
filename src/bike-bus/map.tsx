@@ -7,7 +7,7 @@ import css from './map.module.css';
 import {Circle, MapContainer, Marker, Polyline, TileLayer, Tooltip, useMapEvents,} from 'react-leaflet'
 import {MapContainerProps} from "react-leaflet/lib/MapContainer";
 import {Props, SchoolSignups} from "./map-utils";
-import {entries, fromEntries, mapEntries, o2a} from "next-utils/objs";
+import {entries, filterEntries, fromEntries, mapEntries, o2a} from "next-utils/objs";
 import {LL} from "next-utils/params";
 import {ParsedParams} from "./params";
 
@@ -24,13 +24,14 @@ export const MAPS = {
 
 type Stop = {
     name: string
-    time: string
+    time?: string
+    times?: { [route: string]: string | string[] }
 }
 type RoutePoint = LL & {
     stop?: Stop
     name?: string
 }
-type SegmentOffset = { start: string, end: string, offsets: { [k: string]: number } }
+type SegmentOffset = { start: string, end: string, offsets: { [route: string]: number } }
 type Route = {
     color: string
     positions: RoutePoint[]
@@ -39,8 +40,8 @@ type Route = {
 
 const summit139 = { lat: 40.73693344188031, lng: -74.05880570411684, name: "Summit & 139", }
 const summitHopkins = { lat: 40.73832355261124, lng: -74.05869841575624, name: "Summit & Hopkins", }
-const ps26 = { lat: 40.7393884715907, lng: -74.05757188796998, stop: { name: "PS 26", time: "Red @ 7:35am, Green/Blue @ 7:56am", }}
-const lincolnPark = { lat: 40.724087769759464, lng: -74.07970547676088, stop: { name: "Lincoln Park", time: "7:30am (blue/green), 8:20am (red)", } }
+const ps26 = { lat: 40.7393884715907, lng: -74.05757188796998, stop: { name: "PS 26", times: { red: "7:35am", green: "7:56am", blue: "7:56am" }}}
+const lincolnPark = { lat: 40.724087769759464, lng: -74.07970547676088, stop: { name: "Lincoln Park", time: "8:20am", } }
 const belmontWestSide = { lat: 40.723689351674786, lng: -74.07892227172853, name: "Belmont & West Side", }
 const mcginleySquare = { lat: 40.725356186961825, lng: -74.068021774292  , stop: { name: "McGinley Square", time: "7:55am", }, }
 const montgomeryWestSide = { lat: 40.72830569177484, lng: -74.07541921625074, name: "Montgomery & West Side"}
@@ -49,25 +50,17 @@ const pershingField = { lat: 40.74250183922047 , lng: -74.05369877815248, stop: 
 const summitSanford = { lat: 40.74282698670428 , lng: -74.05463218688966, name: "Summit & Sanford", }
 const summitCarlton = { lat: 40.74254654709375, lng: -74.05484139919282, name: "Summit & Carlton" }
 
-const ps3ms4 = { lat: 40.71777784806193, lng: -74.05000269412996, stop: { name: "PS 3 / MS 4", time: "Orange 7:50am, Green/Orange 8:35am", }}
-const groveSt = { lat: 40.71958306715651, lng: -74.04291093349458, stop: { name: "Grove St Plaza", time: "Orange 8:02am, Pink 7:55am" } }
+const ps3ms4 = { lat: 40.71777784806193, lng: -74.05000269412996, stop: { name: "PS 3 / MS 4", times: { orange: ["7:50am", "8:35am"], green: "8:35am", }}}
+const groveSt = { lat: 40.71958306715651, lng: -74.04291093349458, stop: { name: "Grove St Plaza", times: { Orange: "8:02am", pink: "7:55am" } }}
 
 const westSideToTeccs = [
     montgomeryWestSide,
     { lat: 40.734388894945276, lng: -74.07137453556062, name: "West Side & Pavonia", },
     { lat: 40.73479537862304, lng: -74.07276928424837, },
-    { lat: 40.73614488662359, lng: -74.07209873199464, stop: { name: "TECCS", time: "7:45am (blue/green), 8:15am (yellow)", }},
+    { lat: 40.73614488662359, lng: -74.07209873199464, stop: { name: "TECCS", time: "8:10am", }},
 ]
 
 const greenBlueToNJT = [
-    lincolnPark,
-    belmontWestSide,
-    { lat: 40.72670588641108, lng: -74.07657265663148, },
-    ...westSideToTeccs,
-    { lat: 40.73572621688966, lng: -74.07055377960206, },
-    { lat: 40.734884804698865, lng: -74.06713664531709, name: "Broadway & Tonnele", },
-    { lat: 40.73580751218978, lng: -74.06672894954683, name: "Newark & Tonnele", },
-    { lat: 40.736242440357856, lng: -74.06817734241487, name: "Newark & Senate", },
     { lat: 40.73783986240655, lng: -74.06729757785799, stop: { name: "Canco Park", time: "7:50am", }},
     { lat: 40.7374254, lng: -74.0659547, name: "Tonnele & Dey", },
     { lat: 40.73809593412948, lng: -74.06563997268678, name: "Tonnele & St Pauls", },
@@ -93,9 +86,17 @@ const greenBlueToNJT = [
     { lat: 40.73570589304912, lng: -74.04555559158327, stop: { name: 'Hoboken Ave & NJ Transit Path', time: '8:05am', }},
 ]
 
+const hamiltonPark = { lat: 40.72686036833718, lng: -74.04423594474794, stop: { name: "Hamilton Park", times: { green: "8:15am", orange: "8:15am", yellow: "7:30am", }}}
+const ccdBrunswickVarick = [
+    { lat: 40.721892375167045, lng: -74.0513062477112, name: "CCD & Brunswick", },
+    { lat: 40.72187204710097, lng: -74.0506410598755, },
+    { lat: 40.72110364165123, lng: -74.04821097850801, name: "CCD & Varick" },
+]
+const ccdVarickBrunswick = [...ccdBrunswickVarick]
+ccdVarickBrunswick.reverse()
 const hpPs5Ps3 = [
     { lat: 40.72761244627582, lng: -74.04411256313325, name: "McWilliams & Pavonia", },
-    { lat: 40.72686036833718, lng: -74.04423594474794, stop: { name: "Hamilton Park", time: "8:15am", }},
+    hamiltonPark,
     { lat: 40.727360399481135, lng: -74.05020117759706, },
     { lat: 40.724534970891085, lng: -74.05065715312959, name: "Brunswick & 4th" },
     { lat: 40.724644737982274, lng: -74.05206799507143, },
@@ -104,9 +105,7 @@ const hpPs5Ps3 = [
     { lat: 40.72386823355885, lng: -74.05153691768648, },
     { lat: 40.72379505466438, lng: -74.05076444149019, name: "Brunswick & 3rd" },
     { lat: 40.72240870596347, lng: -74.05096828937532, stop: { name: "Brunswick & 1st", time: "8:30am", }},
-    { lat: 40.721892375167045, lng: -74.0513062477112, },
-    { lat: 40.72187204710097, lng: -74.0506410598755, },
-    { lat: 40.72110364165123, lng: -74.04821097850801, name: "Christopher Columbus & Varick" },
+    ...ccdBrunswickVarick,
     ps3ms4,
 ]
 
@@ -169,16 +168,28 @@ const routes: { [k: string]: Route } = {
         ],
         offsets: [
             { start: "McWilliams & Pavonia", end: "PS 3 / MS 4", offsets: { green: -5 }, },
+            { start: "McWilliams & Pavonia", end: "CCD & Brunswick", offsets: { green: -5 }, },
+            { start: "CCD & Brunswick", end: "CCD & Varick", offsets: { yellow: 5, green: -5, }, },
+            { start: "CCD & Varick", end: "PS 3 / MS 4", offsets: { green: -5 }, },
         ]
     },
     yellow: {
         color: "yellow",
         positions: [
+            hamiltonPark,
+            { lat: 40.72692014655555, lng: -74.0451948682466, },
+            { lat: 40.721647912036914, lng: -74.04605972157802, name: "Newark & Jersey", },
+            { lat: 40.720704960202205, lng: -74.04669698192752, name: "Jersey & CCD", },
+            ...ccdVarickBrunswick,
+            { lat: 40.72301631837917, lng: -74.05484481068164, name: "Merseles & CCD" },
+            { lat: 40.721061443563826, lng: -74.0554213795693, name: "Merseles & Montgomery" },
+            { lat: 40.72379825222925, lng: -74.06420646867288, name: "Montgomery & Baldwin" },
+            { lat: 40.72484464933251, lng: -74.0672713874966, },
             mcginleySquare,
             ...westSideToTeccs,
         ],
         offsets: [
-            { start: montgomeryWestSide.name, end: "TECCS", offsets: { green: 5, blue: 5, }, },
+            { start: "CCD & Varick", end: "CCD & Brunswick", offsets: { green: 5, orange: 5 }, },
         ]
     },
     green: {
@@ -190,12 +201,12 @@ const routes: { [k: string]: Route } = {
             ...hpPs5Ps3,
         ],
         offsets: [
-            { start: belmontWestSide.name, end: montgomeryWestSide.name, offsets: { blue: 5 }, },
-            { start: montgomeryWestSide.name, end: "TECCS", offsets: { blue: 5, yellow: -5 }, },
-            { start: "TECCS", end: "Summit & 139", offsets: { blue: 5 }, },
+            { start: "Canco Park", end: "Summit & 139", offsets: { blue: 5 }, },
             { start: "Summit & 139", end: ps26.stop.name, offsets: { blue: 5, red: -5 }, },
             { start: ps26.stop.name, end: 'Hoboken Ave & NJ Transit Path', offsets: { blue: 5 }, },
-            { start: "McWilliams & Pavonia", end: "PS 3 / MS 4", offsets: { orange: 5 }, },
+            { start: "McWilliams & Pavonia", end: "CCD & Brunswick", offsets: { orange: 5 }, },
+            { start: "CCD & Brunswick", end: "CCD & Varick", offsets: { yellow: 5, orange: 5, }, },
+            { start: "CCD & Varick", end: "PS 3 / MS 4", offsets: { orange: 5 }, },
         ]
     },
     blue: {
@@ -219,10 +230,7 @@ const routes: { [k: string]: Route } = {
             { lat: 40.7406034, lng: -74.0276482, stop: { name: "Stevens Cooperative", time: "8:20am", } },
         ],
         offsets: [
-            { start: "Lincoln Park", end: belmontWestSide.name, offsets: { green: -5, red: -5 }, },
-            { start: belmontWestSide.name, end: montgomeryWestSide.name, offsets: { green: -5 }, },
-            { start: montgomeryWestSide.name, end: "TECCS", offsets: { green: -5, yellow: -5 }, },
-            { start: "TECCS", end: "Summit & 139", offsets: { green: -5 }, },
+            { start: "Canco Park", end: "Summit & 139", offsets: { green: -5 }, },
             { start: "Summit & 139", end: ps26.stop.name, offsets: { green: -5, red: -5 }, },
             { start: ps26.stop.name, end: 'Hoboken Ave & NJ Transit Path', offsets: { green: -5 }, },
 
@@ -387,14 +395,49 @@ function getMetersPerPixel(map: L.Map) {
     return (distanceX + distanceY) / 2
 }
 
-const Stop = ({ center, radius, stop, opacity, isSelectedRoute }: { center: LL, radius: number, stop: Stop, opacity: number, isSelectedRoute: boolean }) => <Circle
-    center={center} radius={radius}
-    weight={3}
-    color={"black"} fillColor={"white"}
-    opacity={opacity} fillOpacity={opacity}
->
-    <Tooltip className={css.tooltip} permanent={isSelectedRoute}>{stop.name}: {stop.time}</Tooltip>
-</Circle>
+const Stop = ({ center, radius, stop, opacity, isSelectedRoute, displayRoute, }: {
+    center: LL
+    radius: number
+    stop: Stop
+    opacity: number
+    isSelectedRoute: boolean
+    displayRoute: (route: string) => boolean
+}) => {
+    let timeStr = stop.time
+    if (!timeStr) {
+        const times = stop.times
+        if (!times) {
+            console.warn("Stop missing time and times:", stop)
+        } else {
+            const filteredTimes = entries(filterEntries(times, (route, t) => displayRoute(route)))
+            const times2Routes = {} as { [time: string]: string[] }
+            filteredTimes.forEach(([ route, time ]) => {
+                const times = time instanceof Array ? time : [time]
+                times.forEach(t => {
+                    if (!(t in times2Routes)) {
+                        times2Routes[t] = []
+                    }
+                    times2Routes[t].push(route)
+                })
+            })
+            const includeRoutes = entries(times2Routes).length > 1
+            const timeStrs = o2a<string, string[], string>(times2Routes, (time, routes) => {
+                //const ts = `${t instanceof Array ? t.join(", ") : t}`
+                return includeRoutes ? `${time} (${routes.join(", ")})` : time
+            })
+            console.log("stop", stop.name, "filteredTimes:", filteredTimes, times2Routes, timeStrs)
+            timeStr = timeStrs.join(", ")
+        }
+    }
+    return <Circle
+        center={center} radius={radius}
+        weight={3}
+        color={"black"} fillColor={"white"}
+        opacity={opacity} fillOpacity={opacity}
+    >
+        <Tooltip className={css.tooltip} permanent={isSelectedRoute}>{stop.name}: {timeStr}</Tooltip>
+    </Circle>
+}
 
 const RoutePoint = ({ name, center, opacity, radius, }: { center: LL, radius: number, name: string, opacity: number }) => <Circle
     center={center} radius={radius}
@@ -734,6 +777,7 @@ const Layers = ({ signups, setLL, zoom, setZoom, showHomes, showRoutes, hideRout
                             stop={stop}
                             opacity={routeStopOpacity}
                             isSelectedRoute={isSelectedRoute}
+                            displayRoute={displayRoute}
                         />
                     }
                     const name = point.name
