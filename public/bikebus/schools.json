@@ -66,6 +66,7 @@
     },
     "MS 4": { "id": "ms4", "lat": 40.71766, "lng": -74.05027 },
     "Hamilton Park Montessori School": {
+        "id": "hpms",
         "lng": -74.0440804,
         "lat": 40.7270276
     },
