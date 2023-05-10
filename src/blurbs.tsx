@@ -6,10 +6,10 @@ import {bikeBusMapEmbedMD} from "../pages/bike-bus";
 export const schedule2023Tweet = <TweetEmbed tweetId='1620594685185245185' />
 
 export const wtBlurb = MD(`
-#### [Register for the Jersey City Ward Tour!](https://bikejc.regfox.com/ward-tour-2023) Sunday, June 4, 2023
-Join 3,000 of your closest friends on a ride through all 6 wards of Jersey City! [**Register now**](https://bikejc.regfox.com/ward-tour-2023), more info [here](/ward-tour).
+#### [Register for the Jersey City Ward Tour!](https://bikejc.regfox.com/ward-tour-2023?t=ref-web) Sunday, June 4, 2023
+Join 3,000 of your closest friends on a ride through all 6 wards of Jersey City! [**Register now**](https://bikejc.regfox.com/ward-tour-2023?t=ref-web), more info [here](/ward-tour).
 
-[![](/img/wt22/wt22%20overhead%20city%20hall%20start%20cropped.JPG)](https://bikejc.regfox.com/ward-tour-2023)
+[![](/img/wt22/wt22%20overhead%20city%20hall%20start%20cropped.JPG)](https://bikejc.regfox.com/ward-tour-2023?t=ref-web)
 
 ---
 `)
