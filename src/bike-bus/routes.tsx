@@ -24,6 +24,7 @@ export type Route = {
 
 export const summit139 = { lat: 40.73693344188031, lng: -74.05880570411684, name: "Summit & 139", }
 export const summitHopkins = { lat: 40.73832355261124, lng: -74.05869841575624, name: "Summit & Hopkins", }
+export const ps6 = { lat: 40.736730206883486, lng: -74.05567288398744, stop: { name: 'PS 6', time: '7:45am', }}
 export const ps26 = {
     lat: 40.7393884715907, lng: -74.05757188796998,
     name: "PS 26",
@@ -52,7 +53,8 @@ export const westSideToTeccs = [
     { lat: 40.73614488662359, lng: -74.07209873199464, stop: { name: "TECCS", time: "8:10am", }},
 ]
 
-export const palisadeHopkinsToNJT = [
+export const ps6ToNJT = [
+    ps6,
     { lat: 40.73408809542487, lng: -74.0506410598755, stop: { name: "Palisade & Hopkins", time: "7:55am" } },
     { lat: 40.73192555073219, lng: -74.05261516571046, name: "Palisade & 139", },
     { lat: 40.73147026920899, lng: -74.05188560485841, name: "Hoboken Ave & 139", },
@@ -62,23 +64,16 @@ export const palisadeHopkinsToNJT = [
     { lat: 40.73570589304912, lng: -74.04555559158327, stop: { name: 'Hoboken Ave & NJ Transit Path', time: '8:05am', }},
 ]
 export const cancoToNJT = [
-    { lat: 40.73783986240655, lng: -74.06729757785799, stop: { name: "Canco Park", time: "7:50am", }},
+    { lat: 40.73783986240655, lng: -74.06729757785799, stop: { name: "Canco Park", time: "7:30am", }},
     { lat: 40.7374254, lng: -74.0659547, name: "Tonnele & Dey", },
     { lat: 40.73809593412948, lng: -74.06563997268678, name: "Tonnele & St Pauls", },
     { lat: 40.73773011708069, lng: -74.06462073326112, name: "St Pauls & Liberty", },
-    { lat: 40.73754314314559, lng: -74.0627431869507, stop: { name: "PS 31 / Golden Door", time: "7:53am", }},
+    { lat: 40.73754314314559, lng: -74.0627431869507, stop: { name: "PS 31 / Golden Door", time: "7:35am", }},
     { lat: 40.7375077, lng: -74.0610113, },
     { lat: 40.73733991001137, lng: -74.05920267105104, },
     summit139,
     summitHopkins,
-    ps26,
-    { lat: 40.73963640829574, lng: -74.05796885490419, },
-    { lat: 40.73972989238724, lng: -74.05943870544435, stop: { name: "MS 7", time: "7:58am", }},
-    { lat: 40.7397786666437, lng: -74.06021654605867, name: "Collard & Laidlaw" },
-    { lat: 40.73884382050208, lng: -74.0604203939438, name: "Collard & Hopkins" },
-    summitHopkins,
-    { lat: 40.736730206883486, lng: -74.05567288398744, stop: { name: 'PS 6', time: '8:00am', }},
-    ...palisadeHopkinsToNJT
+    ...ps6ToNJT
 ]
 
 export const hamiltonPark = { lat: 40.72686036833718, lng: -74.04423594474794, stop: { name: "Hamilton Park", times: { green: "8:15am", orange: "8:15am", yellow: "7:30am", }}}
@@ -143,29 +138,27 @@ export const purple = {
         { lat: 40.75353941255337, lng: -74.05219714565821, stop: { name: "Jersey City Global Charter School", time: "7:50am" } },
     ],
     offsets: [
-        { start: pershingField.stop.name, end: summitCarlton.name, offsets: { red: 5 } },
+        { start: pershingField.stop.name, end: summitCarlton.name, offsets: { blue: 5, red: 5 } },
     ]
 }
+
+const pershingSummitHopkins = [
+    pershingField,
+    summitSanford,
+    summitCarlton,
+    { lat: 40.74101426921151 , lng: -74.05582308769227 },  // mid-reservoir on Summit
+    ps26,
+    summitHopkins,
+]
 
 export const routes: { [k: string]: Route } = {
     silver: {
         color: "lightgrey",
         positions: [
-            // { lat: 40.71084925545855, lng: -74.06968474388124, stop: { name: "Berry Lane Park", time: "7:45am" } },
-            // { lat: 40.71576928099513, lng: -74.0790617465973, name: "Union & Bergen" },
-            // { lat: 40.71588312852183, lng: -74.07894372940065 },
             { lat: 40.71427643262643, lng: -74.08862719563707, stop: { name: "West Side & Grant", time: "7:45am" }},
             { lat: 40.71374845499957, lng: -74.08924877643587, },
             { lat: 40.71524070064235, lng: -74.09210264682771, },
-
-            // ps33,
-            // { lat: 40.7208759642589, lng: -74.08133625984193, },  // West Side & Communipaw
-            // { lat: 40.72181919410017, lng: -74.080628156662, },
-            // { lat: 40.72245342734003, lng: -74.08097147941591, },
-
             ...malloryUnionPs17,
-            // belmontWestSide,
-            // ...ps33ps17,
         ],
         offsets: [
             { start: malloryUnion.name, end: belmontBergen.stop.name, offsets: { red: 5 } },
@@ -174,13 +167,7 @@ export const routes: { [k: string]: Route } = {
     red: {
         color: "red",
         positions: [
-            pershingField,
-            summitSanford,
-            summitCarlton,
-            { lat: 40.74101426921151 , lng: -74.05582308769227 },
-            // { lat: 40.73827477728785 , lng: -74.05871987342836, name: "2"},
-            ps26,
-            summitHopkins,
+            ...pershingSummitHopkins,
             summit139,
             { lat: 40.73490919360775 , lng: -74.0592133998871 , name: "Summit & Newark", },
             { lat: 40.73257594750422 , lng: -74.05958890914918, name: "Summit & Pavonia", },
@@ -195,8 +182,9 @@ export const routes: { [k: string]: Route } = {
             ps33,
         ],
         offsets: [
-            { start: pershingField.stop.name, end: summitCarlton.name, offsets: { purple: -5 } },
-            { start: ps26.name, end: "Summit & 139", offsets: { green: -5, } },
+            { start: pershingField.stop.name, end: summitCarlton.name, offsets: { blue: 5, purple: -5 } },
+            { start: summitCarlton.name, end: summitHopkins.name, offsets: { blue: 5 } },
+            { start: summitHopkins.name, end: "Summit & 139", offsets: { green: 5, } },
             { start: belmontBergen.stop.name, end: malloryUnion.name, offsets: { silver: 5 } },
         ]
     },
@@ -255,8 +243,8 @@ export const routes: { [k: string]: Route } = {
             ...hpPs5Ps3,
         ],
         offsets: [
-            { start: "Summit & 139", end: ps26.name, offsets: { red: -5 }, },
-            { start: "Palisade & Hopkins", end: 'Hoboken Ave & NJ Transit Path', offsets: { blue: 5 }, },
+            { start: "Summit & 139", end: summitHopkins.name, offsets: { red: 5 }, },
+            { start: summitHopkins.name, end: 'Hoboken Ave & NJ Transit Path', offsets: { blue: 5 }, },
             { start: "McWilliams & Pavonia", end: "CCD & Brunswick", offsets: { orange: 5 }, },
             { start: "CCD & Brunswick", end: "CCD & Varick", offsets: { yellow: 5, orange: 5, }, },
             { start: "CCD & Varick", end: "PS 3 / MS 4", offsets: { orange: 5 }, },
@@ -265,7 +253,8 @@ export const routes: { [k: string]: Route } = {
     blue: {
         color: "hsl(223, 100%, 61%)",
         positions: [
-            ...palisadeHopkinsToNJT,
+            ...pershingSummitHopkins,
+            ...ps6ToNJT,
             { lat: 40.73563272717176, lng: -74.04402136802675, },
             { lat: 40.7362749582375, lng: -74.04395699501039, },
             { lat: 40.73639690014456, lng: -74.04331326484682, },
@@ -283,7 +272,9 @@ export const routes: { [k: string]: Route } = {
             { lat: 40.7406034, lng: -74.0276482, stop: { name: "Stevens Cooperative", time: "8:20am", } },
         ],
         offsets: [
-            { start: "Palisade & Hopkins", end: 'Hoboken Ave & NJ Transit Path', offsets: { green: -5 }, },
+            { start: pershingField.stop.name, end: summitCarlton.name, offsets: { red: -5, purple: -5 } },
+            { start: summitCarlton.name, end: summitHopkins.name, offsets: { red: -5 } },
+            { start: summitHopkins.name, end: 'Hoboken Ave & NJ Transit Path', offsets: { green: -5 }, },
         ]
     },
     pink: {
