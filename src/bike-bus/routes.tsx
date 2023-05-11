@@ -172,7 +172,7 @@ export const routes: { [k: string]: Route } = {
             { lat: 40.73490919360775 , lng: -74.0592133998871 , name: "Summit & Newark", },
             { lat: 40.73257594750422 , lng: -74.05958890914918, name: "Summit & Pavonia", },
             { lat: 40.73043774421105 , lng: -74.06129479408266, name: "Summit & Sip", },
-            { lat: 40.73080360135806 , lng: -74.06440615653993, name: "Sip & Bergen", },
+            { lat: 40.73080360135806 , lng: -74.06440615653993, stop: { name: "JSQ - Sip & Bergen", time: "7:45am" } },
             { lat: 40.728510863374794, lng: -74.06690597534181, name: "Bergen & Vroom"},
             { lat: 40.72718559227259 , lng: -74.0671741962433 , },
             mcginleySquare,
