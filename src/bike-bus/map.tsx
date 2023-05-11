@@ -223,9 +223,9 @@ const routes: { [k: string]: Route } = {
             { lat: 40.74141258356825, lng: -74.04275536537172, },
             { lat: 40.74130690856319, lng: -74.04225111007692, name: "2nd St HBLR", },
             { lat: 40.740843562328465, lng: -74.04240131378175, },
-            { lat: 40.74068911286629, lng: -74.04157519340517, },
-            { lat: 40.739420987932526, lng: -74.04192924499513, },
-            { lat: 40.73827477728785, lng: -74.03542757034303, name: "1st & Clinton", },
+            { lat: 40.740502147248066, lng: -74.04066860675813, },
+            { lat: 40.74178650916105, lng: -74.0402662754059, },
+            { lat: 40.74083136896291, lng: -74.0346658229828, },
             { lat: 40.7430114, lng: -74.0339956, stop: { name: "Mustard Seed School", time: "8:15am", } },
             { lat: 40.74201411501444, lng: -74.0283787250519, },
             { lat: 40.74090046467149, lng: -74.02767062187196, },
@@ -410,6 +410,7 @@ const Stop = ({ center, radius, stop, opacity, isSelectedRoute, displayRoute, }:
         } else {
             const filteredTimes = entries(filterEntries(times, (route, t) => displayRoute(route)))
             const times2Routes = {} as { [time: string]: string[] }
+            const routes = [] as string[]
             filteredTimes.forEach(([ route, time ]) => {
                 const times = time instanceof Array ? time : [time]
                 times.forEach(t => {
@@ -417,9 +418,12 @@ const Stop = ({ center, radius, stop, opacity, isSelectedRoute, displayRoute, }:
                         times2Routes[t] = []
                     }
                     times2Routes[t].push(route)
+                    if (!(routes.includes(route))) {
+                        routes.push(route)
+                    }
                 })
             })
-            const includeRoutes = entries(times2Routes).length > 1
+            const includeRoutes = routes.length > 1
             const timeStrs = o2a<string, string[], string>(times2Routes, (time, routes) => {
                 //const ts = `${t instanceof Array ? t.join(", ") : t}`
                 return includeRoutes ? `${time} (${routes.join(", ")})` : time
