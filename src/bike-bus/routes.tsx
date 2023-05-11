@@ -44,7 +44,7 @@ export const summitSanford = { lat: 40.74282698670428 , lng: -74.05463218688966,
 export const summitCarlton = { lat: 40.74254654709375, lng: -74.05484139919282, name: "Summit & Carlton" }
 
 export const ps3ms4 = { lat: 40.71777784806193, lng: -74.05000269412996, stop: { name: "PS 3 / MS 4", times: { orange: ["7:50am", "8:35am"], green: "8:35am", }}}
-export const groveSt = { lat: 40.71958306715651, lng: -74.04291093349458, stop: { name: "Grove St Plaza", times: { orange: "8:02am", pink: "7:55am" } }}
+export const groveSt = { lat: 40.71958306715651, lng: -74.04291093349458, stop: { name: "Grove St Plaza", times: { orange: "8:02am", pink: "7:45am" } }}
 
 export const westSideToTeccs = [
     montgomeryWestSide,
@@ -280,7 +280,7 @@ export const routes: { [k: string]: Route } = {
     pink: {
         color: "pink",
         positions: [
-            { lat: 40.713442633573116, lng: -74.03457386242185, stop: { name: "Bluestone Lane Coffee", time: "7:45am" }},
+            { lat: 40.713442633573116, lng: -74.03457386242185, stop: { name: "Bluestone Lane Coffee", time: "7:30am" }},
             { lat: 40.71365539708247, lng: -74.036295982652, name: "Greene & Morris" },
             { lat: 40.72015227023285, lng: -74.035062789917, name: "Greene & Bay" },
             { lat: 40.72185171902871, lng: -74.03636097908021, name: "Washington & 2nd" },
