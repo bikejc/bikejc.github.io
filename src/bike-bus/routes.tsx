@@ -376,7 +376,7 @@ export const routeDisplays: { [route: string]: RouteDisplay } = {
         query: "ll=40.725_-74.070&z=13.5&r=red&s=tlb+lccs+ps17",
     },
     silver: {
-        title: `Silver line: Bergen Lafayette to West Side`,
+        title: `Silver line: West Bergen to West Side`,
         // sub: "Berry Lane Park, Lincoln Park",
         query: `ll=40.717_-74.082&z=14&r=silver&s=tlb+lccs+ps17`,
     },
