@@ -7,6 +7,7 @@ import {iframeHtml} from "../../src/insta";
 import {RouteDisplay, routeDisplays, routeHref} from "../../src/bike-bus/routes";
 import {o2a} from "next-utils/objs";
 import {ReactNode} from "react";
+import Link from "next/link";
 
 export const bikeBusMapEmbedMD = (aspectRatio = '4/3') => `<iframe src="https://www.google.com/maps/d/u/0/embed?mid=1s2vaoPnDKwx4QRi4t5TDSRwyMEUDqM8&ehbc=2E312F" width="100%" style="aspect-ratio: ${aspectRatio};"></iframe>`
 
@@ -44,17 +45,11 @@ export default function Home() {
                 <ul>{
                     o2a<string, RouteDisplay, ReactNode>(
                         routeDisplays,
-                        (routeName, { title }) => <li key={routeName}><a href={`#${routeHref(routeName)}`}>{title}</a></li>
+                        (routeName, { title }) => <li key={routeName}><Link href={`/bike-bus/${routeName}-line`}>{title}</Link></li>
                     )
                 }</ul>
             </>}
             {MD(routesMapPsMd)}
-            {/*{*/}
-            {/*    o2a<string, RouteDisplay, ReactNode>(*/}
-            {/*        routeDisplays,*/}
-            {/*        (routeName, routeDisplay) => routeList(routeName, routeDisplay)*/}
-            {/*    )*/}
-            {/*}*/}
             {MD(`
 ---
 

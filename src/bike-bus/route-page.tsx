@@ -22,7 +22,7 @@ export default function RoutePage(routeName: string, props?: { nextDate?: string
 ### Join the Bike Bus!
 [**Sign up here**](/bike-bus/signup), and tell your school-mates to as well! The more signups we get from each school, the easier it is to plan a route there, ensure there will be sufficient bike racks, etc.
 
-[Other routes and more info here](/bike-bus).
+[Other routes and more info here](/bike-bus), or [contact the organizers](mailto:bikebus@bikejc.org).
 `)}
         </Page>
     ) }
