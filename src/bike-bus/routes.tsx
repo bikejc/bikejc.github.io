@@ -104,20 +104,23 @@ export const hpPs5Ps3 = [
     ps3ms4,
 ]
 
-export const ps33 = { lat: 40.71894880656658, lng: -74.08470511436464, stop: { name: "PS 33", times: { red: "8:25am", silver: "8:00am", } }, }
-export const ps17ps33 = [
+export const ps33 = {
+    lat: 40.718436514755226, lng: -74.0836000442505,
+    stop: { name: "West Side & Union / PS 33", times: { red: "8:25am", silver: "8:00am", } },
+}
+const malloryUnion = { lat: 40.72036368727873, lng: -74.08735513687135, name: "Mallory & Union" }
+export const ps17MalloryUnion = [
     belmontBergen,
     { lat: 40.72212818027965 , lng: -74.07572507858278, },
     lccs,
     belmontWestSide,
     lincolnPark,
     { lat: 40.723656827644206, lng: -74.08154010772706, },
-    { lat: 40.722551001148226, lng: -74.08548831939699, },
-    { lat: 40.72036368727873, lng: -74.08735513687135, },
-    ps33,
+    { lat: 40.722551001148226, lng: -74.08548831939699, name: "Mallory & Communipaw" },
+    malloryUnion,
 ]
-export const ps33ps17 = [...ps17ps33]
-ps33ps17.reverse()
+export const malloryUnionPs17 = [...ps17MalloryUnion]
+malloryUnionPs17.reverse()
 
 export const purple = {
     active: false,
@@ -148,13 +151,24 @@ export const routes: { [k: string]: Route } = {
     silver: {
         color: "lightgrey",
         positions: [
-            { lat: 40.71084925545855, lng: -74.06968474388124, stop: { name: "Berry Lane Park", time: "7:45am" } },
-            { lat: 40.71576928099513, lng: -74.0790617465973, name: "Union & Bergen" },
-            { lat: 40.71588312852183, lng: -74.07894372940065 },
-            ...ps33ps17,
+            // { lat: 40.71084925545855, lng: -74.06968474388124, stop: { name: "Berry Lane Park", time: "7:45am" } },
+            // { lat: 40.71576928099513, lng: -74.0790617465973, name: "Union & Bergen" },
+            // { lat: 40.71588312852183, lng: -74.07894372940065 },
+            { lat: 40.71427643262643, lng: -74.08862719563707, stop: { name: "West Side & Grant", time: "7:45am" }},
+            { lat: 40.71374845499957, lng: -74.08924877643587, },
+            { lat: 40.71524070064235, lng: -74.09210264682771, },
+
+            // ps33,
+            // { lat: 40.7208759642589, lng: -74.08133625984193, },  // West Side & Communipaw
+            // { lat: 40.72181919410017, lng: -74.080628156662, },
+            // { lat: 40.72245342734003, lng: -74.08097147941591, },
+
+            ...malloryUnionPs17,
+            // belmontWestSide,
+            // ...ps33ps17,
         ],
         offsets: [
-            { start: ps33.stop.name, end: belmontBergen.stop.name, offsets: { red: 5 } },
+            { start: malloryUnion.name, end: belmontBergen.stop.name, offsets: { red: 5 } },
         ]
     },
     red: {
@@ -177,12 +191,13 @@ export const routes: { [k: string]: Route } = {
             mcginleySquare,
             { lat: 40.724429269076595, lng: -74.06975984573366, },
             { lat: 40.72337224169876 , lng: -74.07050013542177, },
-            ...ps17ps33
+            ...ps17MalloryUnion,
+            ps33,
         ],
         offsets: [
             { start: pershingField.stop.name, end: summitCarlton.name, offsets: { purple: -5 } },
             { start: ps26.name, end: "Summit & 139", offsets: { green: -5, } },
-            { start: belmontBergen.stop.name, end: ps33.stop.name, offsets: { silver: 5 } },
+            { start: belmontBergen.stop.name, end: malloryUnion.name, offsets: { silver: 5 } },
         ]
     },
     orange: {
@@ -363,7 +378,7 @@ export const routeDisplays: { [route: string]: RouteDisplay } = {
     silver: {
         title: `Silver line: Bergen Lafayette to West Side`,
         // sub: "Berry Lane Park, Lincoln Park",
-        query: `ll=40.717_-74.079&z=15&r=silver&s=tlb+lccs+ps17`,
+        query: `ll=40.717_-74.082&z=14&r=silver&s=tlb+lccs+ps17`,
     },
     orange: {
         title: "Orange line: Bergen Lafayette to Downtown",
