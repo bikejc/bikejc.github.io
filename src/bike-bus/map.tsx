@@ -1,4 +1,4 @@
-import {Dispatch, Fragment, ReactNode, useCallback, useMemo, useState} from 'react';
+import {Dispatch, Fragment, ReactNode, useCallback, useEffect, useMemo, useState} from 'react';
 import L, {LeafletMouseEvent} from 'leaflet';
 import 'leaflet/dist/leaflet.css';
 
@@ -41,8 +41,12 @@ type Route = {
 const summit139 = { lat: 40.73693344188031, lng: -74.05880570411684, name: "Summit & 139", }
 const summitHopkins = { lat: 40.73832355261124, lng: -74.05869841575624, name: "Summit & Hopkins", }
 const ps26 = { lat: 40.7393884715907, lng: -74.05757188796998, stop: { name: "PS 26", times: { red: "7:35am", green: "7:56am", blue: "7:56am" }}}
-const lincolnPark = { lat: 40.724087769759464, lng: -74.07970547676088, stop: { name: "Lincoln Park", time: "8:20am", } }
-const belmontWestSide = { lat: 40.723689351674786, lng: -74.07892227172853, name: "Belmont & West Side", }
+
+const lincolnPark = { lat: 40.724087769759464, lng: -74.07970547676088, stop: { name: "Lincoln Park", times: { red: "8:20am", silver: "8:10am" } } }
+const belmontWestSide = { lat: 40.723689351674786, lng: -74.07892227172853, } // Belmont & West Side
+const lccs = { lat: 40.722437165024765, lng: -74.07618641853334, stop: { name: "LCCS", times: { red: "8:15am", silver: "8:15am" } }, }
+const belmontBergen = { lat: 40.720908489648345, lng: -74.07275319099428, stop: { name: "Belmont & Bergen / PS 17", times: { red: "8:10am", silver: "8:20am" } }, }
+
 const mcginleySquare = { lat: 40.725356186961825, lng: -74.068021774292  , stop: { name: "McGinley Square", time: "7:55am", }, }
 const montgomeryWestSide = { lat: 40.72830569177484, lng: -74.07541921625074, name: "Montgomery & West Side"}
 
@@ -112,7 +116,34 @@ const hpPs5Ps3 = [
     ps3ms4,
 ]
 
+const ps33 = { lat: 40.71894880656658, lng: -74.08470511436464, stop: { name: "PS 33", times: { red: "8:25am", silver: "8:00am", } }, }
+const ps17ps33 = [
+    belmontBergen,
+    { lat: 40.72212818027965 , lng: -74.07572507858278, },
+    lccs,
+    belmontWestSide,
+    lincolnPark,
+    { lat: 40.723656827644206, lng: -74.08154010772706, },
+    { lat: 40.722551001148226, lng: -74.08548831939699, },
+    { lat: 40.72036368727873, lng: -74.08735513687135, },
+    ps33,
+]
+const ps33ps17 = [...ps17ps33]
+ps33ps17.reverse()
+
 const routes: { [k: string]: Route } = {
+    silver: {
+        color: "lightgrey",
+        positions: [
+            { lat: 40.71084925545855, lng: -74.06968474388124, stop: { name: "Berry Lane Park", time: "7:45am" } },
+            { lat: 40.71576928099513, lng: -74.0790617465973, name: "Union & Bergen" },
+            { lat: 40.71588312852183, lng: -74.07894372940065 },
+            ...ps33ps17,
+        ],
+        offsets: [
+            { start: ps33.stop.name, end: belmontBergen.stop.name, offsets: { red: 5 } },
+        ]
+    },
     red: {
         color: "red",
         positions: [
@@ -133,20 +164,13 @@ const routes: { [k: string]: Route } = {
             mcginleySquare,
             { lat: 40.724429269076595, lng: -74.06975984573366, },
             { lat: 40.72337224169876 , lng: -74.07050013542177, },
-            { lat: 40.720908489648345, lng: -74.07275319099428, name: "Belmont & Bergen", },
-            { lat: 40.72212818027965 , lng: -74.07572507858278, },
-            { lat: 40.722437165024765, lng: -74.07618641853334, stop: { name: "LCCS", time: "8:15am", }, },
-            belmontWestSide,
-            lincolnPark,
-            { lat: 40.723656827644206, lng: -74.08154010772706, },
-            { lat: 40.722551001148226, lng: -74.08548831939699, },
-            { lat: 40.72036368727873, lng: -74.08735513687135, },
-            { lat: 40.71894880656658, lng: -74.08470511436464, stop: { name: "PS 33", time: "8:25am", }, },
+            ...ps17ps33
         ],
         offsets: [
             { start: pershingField.stop.name, end: summitCarlton.name, offsets: { purple: -5 } },
             { start: ps26.stop.name, end: "Summit & 139", offsets: { blue: -5, green: -5, } },
-            { start: belmontWestSide.name, end: "Lincoln Park", offsets: { blue: -5, green: -5, }, },
+            // { start: belmontWestSide.name, end: "Lincoln Park", offsets: { blue: -5, green: -5, }, },
+            { start: belmontBergen.stop.name, end: ps33.stop.name, offsets: { silver: 5 } },
         ]
     },
     orange: {
@@ -428,7 +452,7 @@ const Stop = ({ center, radius, stop, opacity, isSelectedRoute, displayRoute, }:
                 //const ts = `${t instanceof Array ? t.join(", ") : t}`
                 return includeRoutes ? `${time} (${routes.join(", ")})` : time
             })
-            console.log("stop", stop.name, "filteredTimes:", filteredTimes, times2Routes, timeStrs)
+            // console.log("stop", stop.name, "filteredTimes:", filteredTimes, times2Routes, timeStrs)
             timeStr = timeStrs.join(", ")
         }
     }
@@ -583,6 +607,22 @@ const Layers = ({ signups, setLL, zoom, setZoom, showHomes, showRoutes, hideRout
     const displayRoute = useCallback(
         (routeName: string) => !showRoutes || showRoutes.includes(routeName),
         [ showRoutes ]
+    )
+    useEffect(
+        () => {
+            entries(routes).forEach(([ routeName, { positions } ]) => {
+                if (!displayRoute(routeName)) return
+                let lines = [ `${routeName}:` ]
+                positions.forEach(({ stop }) => {
+                    if (!stop) return
+                    const { times, name } = stop
+                    const time = stop.time || (times && times[routeName])
+                    lines.push(`${time}: ${name}`)
+                })
+                console.log(lines.join("\n"))
+            })
+        },
+        []
     )
     return <>
         <TileLayer url={url} attribution={attribution}/>
