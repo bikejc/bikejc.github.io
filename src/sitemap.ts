@@ -1,4 +1,5 @@
 import {Breadcrumb} from "./breadcrumbs";
+import {fromEntries} from "next-utils/objs";
 
 export type Entry = Breadcrumb | string
 export type Child = Entry | Sitemap
@@ -87,7 +88,11 @@ export const Sitemap: Sitemap = {
                 "useful-links": "Useful Links",
             }
         },
-        "bike-bus": { title: "Bike Bus", header: false, children: {}, },
+        "bike-bus": {
+            title: "Bike Bus", header: false, children: fromEntries(
+                ["Red", "Orange", "Yellow", "Green", "Blue", "Purple", "Pink", "Silver" ].map(name => [ `${name.toLowerCase()}-line`, `${name} line` ])
+            ),
+        },
         "contact-us": { title: "Contact", children: {} },
         "qrs": { title: "QR Codes", header: false, children: {} },
         "ward-tour": {

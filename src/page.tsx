@@ -30,7 +30,7 @@ export function Main({ breadcrumbs, sectionMenu, children }: {
 
 export type Page = {
     path: string
-    h1?: string
+    h1?: ReactNode
     description?: string
     banner?: Img[] | Img
     article?: boolean

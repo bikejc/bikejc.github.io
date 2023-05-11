@@ -4,35 +4,58 @@ import MD from "../../src/md";
 import YouTubeEmbed from "next-utils/youtube";
 import {helmets} from "../../src/img";
 import {iframeHtml} from "../../src/insta";
+import {RouteDisplay, routeDisplays, routeHref} from "../../src/bike-bus/routes";
+import {o2a} from "next-utils/objs";
+import {ReactNode} from "react";
 
 export const bikeBusMapEmbedMD = (aspectRatio = '4/3') => `<iframe src="https://www.google.com/maps/d/u/0/embed?mid=1s2vaoPnDKwx4QRi4t5TDSRwyMEUDqM8&ehbc=2E312F" width="100%" style="aspect-ratio: ${aspectRatio};"></iframe>`
 
-export default function Home() { return (
-    <Page path={"/bike-bus"} banner={helmets}>
-        {MD(`
-#### [Sign up](/bike-bus/signup) for the Jersey City Bike Bus
+const signupMd = `
+### [Sign up for the Jersey City Bike Bus](/bike-bus/signup)
 "Bike buses" are the new best way to get to school: a group ride picks up kids near their homes, and everyone rides to school together. Being in a group improves safety, and there are dedicated "marshals" assisting with intersections and making sure no one is left behind.
 
 [**Sign up here**](/bike-bus/signup) and Bike JC will help coordinate one in your area!
 
-#### Next Bike Bus: Friday, May 12 <a id="next-bike-bus"></a>
-We're hoping to run another Bike Bus this Friday, May 12!
+### Next Bike Bus: Friday, May 12 <a id="next-bike-bus"></a>
+We're running another Bike Bus this Friday, May 12!
 
 Check out [this email to all our signups](https://mailchi.mp/bikejc/next-jc-bike-bus-friday-may-12) with more info about planning and next steps, and [make sure you and your school-mates are signed up](/bike-bus/signup)!
+`
 
-#### Bike Bus Pilot: Wednesday May 3 <a id="pilot"></a>
-On [National Bike, Walk, & Roll to School Day](https://www.walkbiketoschool.org/), we ran 7 Bike Bus routes around Jersey City:
-
-${iframeHtml("CrySd81oNMn")}
-
-#### Routes <a id="map"></a>
-Here are the routes we ran (subject to change in future Bike Buses!):
-<iframe src="https://bikejc.org/bike-bus/map?ll=40.730_-74.057&S=" width="100%" style="aspect-ratio: 4/3"></iframe>
+const routesMapMd = `
+### Routes <a id="routes"></a>
+Here are the routes we plan to run (subject to change!):
+<iframe src="/bike-bus/map?ll=40.725_-74.057&S=" width="100%" style="aspect-ratio: 1/1" loading="lazy"></iframe>
 
 [(full screen version)](/bike-bus/map?S)
+`
 
-If we weren't able to run a route to your school, [let us know](mailto:bikebus@bikejc.org) and [make sure you and your school-mates are signed up](/bike-bus/signup). The more signups we get from each school, the easier it is to plan a route there, ensure there will be sufficient bike racks, etc.
+const routesMapPsMd = `
+If you don't see a route that works for you, [let us know](mailto:bikebus@bikejc.org) and [make sure you and your school-mates are signed up](/bike-bus/signup). The more signups we get from each school, the easier it is to plan a route there, ensure there will be sufficient bike racks, etc.
+`
 
+export default function Home() {
+    return (
+        <Page path={"/bike-bus"} banner={helmets}>
+            {MD(signupMd)}
+            {MD(routesMapMd)}
+            {<>
+                <p>Jump to more info about a specific route:</p>
+                <ul>{
+                    o2a<string, RouteDisplay, ReactNode>(
+                        routeDisplays,
+                        (routeName, { title }) => <li key={routeName}><a href={`#${routeHref(routeName)}`}>{title}</a></li>
+                    )
+                }</ul>
+            </>}
+            {MD(routesMapPsMd)}
+            {/*{*/}
+            {/*    o2a<string, RouteDisplay, ReactNode>(*/}
+            {/*        routeDisplays,*/}
+            {/*        (routeName, routeDisplay) => routeList(routeName, routeDisplay)*/}
+            {/*    )*/}
+            {/*}*/}
+            {MD(`
 ---
 
 #### School Signup Standings <a id="standings"></a>
@@ -46,86 +69,14 @@ If we weren't able to run a route to your school, [let us know](mailto:bikebus@b
 #### Waiver <a id="waiver"></a>
 [**Parents must sign the waiver for their children who will join**](/bike-bus/waiver).
 
-#### Route schedules <a id="times"></a>
-These schedules were from our pilot on Wednesday, May 3, and are subject to change going forward.
+### Previous Bike Buses <a id="past"></a>
 
-<details><summary><strong>🔴 Red</strong></summary>
+#### Bike Bus Pilot: Wednesday May 3 <a id="pilot"></a>
+On [National Bike, Walk, & Roll to School Day](https://www.walkbiketoschool.org/), we ran 7 Bike Bus routes around Jersey City:
 
-- 7:30am: Pershing Field
-- 7:35am: PS 26
-- 7:55am: McGinley Square
-- 8:15am: LCCS
-- 8:20am: Lincoln Park
-- 8:25am: PS 33
-</details>
+<!--${iframeHtml("CrySd81oNMn")}-->
 
-<details><summary><strong>🟠 Orange</strong></summary>
-
-- 7:35am: The Grind Coffeeshop
-- 7:40am: Lafayette Park / PS 22
-- 7:50am: PS 3 / MS 4
-- 7:55am: Van Vorst Park
-- 8:00am: City Hall
-- 8:02am: Grove St Plaza
-- 8:05am: Newark Ave Plaza
-- 8:10am: PS 37
-- 8:15am: Hamilton Park
-- 8:25am: PS 5
-- 8:30am: Brunswick & 1st
-- 8:35am: PS 3 / MS 4
-</details>
-
-<details><summary><strong>🟡 Yellow</strong></summary>
-
-- 7:55am: McGinley Square
-- 8:15am: TECCS
-</details>
-
-<details><summary><strong>🟢 Green</strong></summary>
-
-- 7:30am: Lincoln Park
-- 7:45am: TECCS
-- 7:50am: Canco Park
-- 7:53am: PS 31 / Golden Door
-- 7:56am: PS 26
-- 7:58am: MS 7
-- 8:00am: PS 6
-- 8:05am: Hoboken Ave & NJ Transit Path
-- 8:10am: Hamilton Park
-- 8:25am: PS 5
-- 8:30am: Brunswick & 1st
-- 8:35am: PS 3 / MS 4
-</details>
-
-<details><summary><strong>🔵 Blue</strong></summary>
-
-- 7:30am: Lincoln Park
-- 7:45am: TECCS
-- 7:50am: Canco Park
-- 7:53am: PS 31 / Golden Door
-- 7:56am: PS 26
-- 7:58am: MS 7
-- 8:00am: PS 6
-- 8:05am: Hoboken Ave & NJ Transit Path
-- 8:20am: Mustard Seed School
-- 8:25am: Stevens Cooperative
-</details>
-
-<details><summary><strong>💖 Pink</strong></summary>
-
-- 7:45am: Bluestone Lane Coffee
-- 7:55am: Grove St Plaza
-- 8:05am: PS16 main building
-- 8:10am: PS16 annex
-</details>
-
-<details><summary><strong>🟣 Purple</strong></summary>
-
-- 7:30am: Pershing Field
-- 7:50am: Jersey City Global Charter School
-</details>
-
-(click to expand)
+---
 
 #### FAQs <a id="faq"></a>
 
@@ -165,16 +116,16 @@ Yes, biking is fun in most kinds of weather. Kids especially don't think twice a
 
 ##### "Oregon School’s Unique Way Of Getting Students To Class: A ‘Bike Bus’"
 `)}
-        <YouTubeEmbed video={"zNOb377piC8"} alt={"BikePortland – Bike Bus for Earth Day"} />
-        {MD(`
+            <YouTubeEmbed video={"zNOb377piC8"} alt={"BikePortland – Bike Bus for Earth Day"} />
+            {MD(`
 ##### "Kid Wheel Power: Barcelona Bici Bus is Magic"
 `)}
-        <YouTubeEmbed video={"5iwYkkqXTh0"} alt={"BikePortland – Bike Bus for Earth Day"} />
-        {MD(`
+            <YouTubeEmbed video={"5iwYkkqXTh0"} alt={"BikePortland – Bike Bus for Earth Day"} />
+            {MD(`
 ##### "Bike Bus for Earth Day"
 `)}
-        <YouTubeEmbed video={"XNRnKXd9sHE"} alt={"BikePortland – Bike Bus for Earth Day"} />
-        {MD(`
+            <YouTubeEmbed video={"XNRnKXd9sHE"} alt={"BikePortland – Bike Bus for Earth Day"} />
+            {MD(`
 
 ##### Misc links:
 - "[I Started a Bike Bus, and You Can Too](https://www.wired.com/story/how-to-start-a-bike-bus/)" (WIRED)
@@ -187,21 +138,21 @@ Yes, biking is fun in most kinds of weather. Kids especially don't think twice a
 
 ##### Misc #BikeBus Tweets
 `)}
-        <TweetEmbed tweetId="1524441653716561920" /> {/*https://twitter.com/CoachBalto/status/1524441653716561920*/}
-        <TweetEmbed tweetId="1534573151853522944" /> {/*https://twitter.com/CoachBalto/status/1534573151853522944*/}
-        <TweetEmbed tweetId="1570106591067934721" /> {/*https://twitter.com/coachbalto/status/1570106591067934721*/}
-        <TweetEmbed tweetId="1466994720010211328" /> {/*https://twitter.com/Qagggy/status/1466994720010211328*/}
-        <TweetEmbed tweetId="1449311777309741063" /> {/*https://twitter.com/adamtranter/status/1449311777309741063*/}
-        <TweetEmbed tweetId="1634991837630074880" /> {/*https://twitter.com/0jhl/status/1634991837630074880*/}
-        <TweetEmbed tweetId="1487172130252931077" /> {/*https://twitter.com/lasmartinez/status/1487172130252931077*/}
-        <TweetEmbed tweetId="1544073994793406464" /> {/*https://twitter.com/CarterRubin/status/1544073994793406464*/}
-        <TweetEmbed tweetId="1592562809455652865" /> {/*https://twitter.com/schneider/status/1592562809455652865*/}
-        {/*<TweetEmbed tweetId="1580853586400923648" /> /!*https://twitter.com/thomashallett/status/1580853586400923648*!/*/}
-        {/*<TweetEmbed tweetId="1393369358194286592" /> /!*https://twitter.com/BrentToderian/status/1393369358194286592*!/*/}
+            <TweetEmbed tweetId="1524441653716561920" /> {/*https://twitter.com/CoachBalto/status/1524441653716561920*/}
+            <TweetEmbed tweetId="1534573151853522944" /> {/*https://twitter.com/CoachBalto/status/1534573151853522944*/}
+            <TweetEmbed tweetId="1570106591067934721" /> {/*https://twitter.com/coachbalto/status/1570106591067934721*/}
+            <TweetEmbed tweetId="1466994720010211328" /> {/*https://twitter.com/Qagggy/status/1466994720010211328*/}
+            <TweetEmbed tweetId="1449311777309741063" /> {/*https://twitter.com/adamtranter/status/1449311777309741063*/}
+            <TweetEmbed tweetId="1634991837630074880" /> {/*https://twitter.com/0jhl/status/1634991837630074880*/}
+            <TweetEmbed tweetId="1487172130252931077" /> {/*https://twitter.com/lasmartinez/status/1487172130252931077*/}
+            <TweetEmbed tweetId="1544073994793406464" /> {/*https://twitter.com/CarterRubin/status/1544073994793406464*/}
+            <TweetEmbed tweetId="1592562809455652865" /> {/*https://twitter.com/schneider/status/1592562809455652865*/}
+            {/*<TweetEmbed tweetId="1580853586400923648" /> /!*https://twitter.com/thomashallett/status/1580853586400923648*!/*/}
+            {/*<TweetEmbed tweetId="1393369358194286592" /> /!*https://twitter.com/BrentToderian/status/1393369358194286592*!/*/}
 
-    {MD(`
+            {MD(`
 ### Join us!
 [Sign up here](/bike-bus/signup).
 `)}
-    </Page>
-) }
+        </Page>
+    ) }
