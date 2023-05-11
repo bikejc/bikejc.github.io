@@ -40,7 +40,11 @@ type Route = {
 
 const summit139 = { lat: 40.73693344188031, lng: -74.05880570411684, name: "Summit & 139", }
 const summitHopkins = { lat: 40.73832355261124, lng: -74.05869841575624, name: "Summit & Hopkins", }
-const ps26 = { lat: 40.7393884715907, lng: -74.05757188796998, stop: { name: "PS 26", times: { red: "7:35am", green: "7:56am", blue: "7:56am" }}}
+const ps26 = {
+    lat: 40.7393884715907, lng: -74.05757188796998,
+    name: "PS 26",
+    // stop: { name: "PS 26", times: { red: "7:35am", green: "7:56am", blue: "7:56am" }}
+}
 
 const lincolnPark = { lat: 40.724087769759464, lng: -74.07970547676088, stop: { name: "Lincoln Park", times: { red: "8:20am", silver: "8:10am" } } }
 const belmontWestSide = { lat: 40.723689351674786, lng: -74.07892227172853, } // Belmont & West Side
@@ -150,8 +154,8 @@ const routes: { [k: string]: Route } = {
             pershingField,
             summitSanford,
             summitCarlton,
-            { lat: 40.74101426921151 , lng: -74.05582308769227, },
-            { lat: 40.73827477728785 , lng: -74.05871987342836, },
+            { lat: 40.74101426921151 , lng: -74.05582308769227 },
+            // { lat: 40.73827477728785 , lng: -74.05871987342836, name: "2"},
             ps26,
             summitHopkins,
             summit139,
@@ -168,8 +172,7 @@ const routes: { [k: string]: Route } = {
         ],
         offsets: [
             { start: pershingField.stop.name, end: summitCarlton.name, offsets: { purple: -5 } },
-            { start: ps26.stop.name, end: "Summit & 139", offsets: { blue: -5, green: -5, } },
-            // { start: belmontWestSide.name, end: "Lincoln Park", offsets: { blue: -5, green: -5, }, },
+            { start: ps26.name, end: "Summit & 139", offsets: { green: -5, } },
             { start: belmontBergen.stop.name, end: ps33.stop.name, offsets: { silver: 5 } },
         ]
     },
@@ -228,7 +231,7 @@ const routes: { [k: string]: Route } = {
             ...hpPs5Ps3,
         ],
         offsets: [
-            { start: "Summit & 139", end: ps26.stop.name, offsets: { red: -5 }, },
+            { start: "Summit & 139", end: ps26.name, offsets: { red: -5 }, },
             { start: "Palisade & Hopkins", end: 'Hoboken Ave & NJ Transit Path', offsets: { blue: 5 }, },
             { start: "McWilliams & Pavonia", end: "CCD & Brunswick", offsets: { orange: 5 }, },
             { start: "CCD & Brunswick", end: "CCD & Varick", offsets: { yellow: 5, orange: 5, }, },
