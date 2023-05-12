@@ -280,17 +280,26 @@ export const routes: { [k: string]: Route } = {
     pink: {
         color: "pink",
         positions: [
-            { lat: 40.713442633573116, lng: -74.03457386242185, stop: { name: "Bluestone Lane Coffee", time: "7:30am" }},
-            { lat: 40.71365539708247, lng: -74.036295982652, name: "Greene & Morris" },
-            { lat: 40.72015227023285, lng: -74.035062789917, name: "Greene & Bay" },
+            // { lat: 40.713442633573116, lng: -74.03457386242185, stop: { name: "Bluestone Lane Coffee", time: "7:30am" }},
+            // { lat: 40.71365539708247, lng: -74.036295982652, name: "Greene & Morris" },
+            { lat: 40.72015227023285, lng: -74.035062789917, stop: { name: "Greene & Bay", time: "7:30am", } },
             { lat: 40.720558840878894, lng: -74.0383565425873, },
             { lat: 40.72094914636279, lng: -74.0426802635193, },
             groveSt,
-            { lat: 40.718290144942145, lng: -74.03882861137392, name: "Columbus & Warren" },
-            { lat: 40.71554158535769, lng: -74.03934359550477, name: "Grand & Warren" },
-            { lat: 40.7158767, lng: -74.0426636, name: "Grand & Marin" },
+            { lat: 40.7161510047829, lng: -74.04484589234092, },
+            // { lat: 40.718290144942145, lng: -74.03882861137392, name: "Columbus & Warren" },
+            // { lat: 40.71554158535769, lng: -74.03934359550477, name: "Grand & Warren" },
+
+            // { lat: 40.71612708685203, lng: -74.0448582172394, name: "Grove & Grand" },
+            // { lat: 40.7158767, lng: -74.0426636, name: "Grand & Marin" },
+
+            { lat: 40.715370813118575, lng: -74.04497623443605, },  // Grove & Regent
+            { lat: 40.71513498406821, lng: -74.04281973838808, },  // Marin & Regent
+
             { lat: 40.7145527, lng: -74.0429482, name: "Marin & Morris" },
-            { lat: 40.71390296699984, lng: -74.03803467750551, name: "Washington & Morris" },
+            // { lat: 40.71390296699984, lng: -74.03803467750551, name: "Washington & Morris" },
+            { lat: 40.71367119886497, lng: -74.03631806373598, },
+            { lat: 40.714386831207385, lng: -74.03615713119508, },
             { lat: 40.714586068388364, lng: -74.03790056705476, stop: { name: "PS16 main building", time: "8:05am" }},
             { lat: 40.71769246486529, lng: -74.03719782829286, stop: { name: "PS16 annex", time: "8:10am" }}
         ],
