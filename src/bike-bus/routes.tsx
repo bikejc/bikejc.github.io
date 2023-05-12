@@ -296,7 +296,7 @@ export const routes: { [k: string]: Route } = {
             { lat: 40.715370813118575, lng: -74.04497623443605, },  // Grove & Regent
             { lat: 40.71513498406821, lng: -74.04281973838808, },  // Marin & Regent
 
-            { lat: 40.7145527, lng: -74.0429482, name: "Marin & Morris" },
+            { lat: 40.7145527, lng: -74.0429482, stop: { name: "Marin & Morris", time: "7:55am", } },
             // { lat: 40.71390296699984, lng: -74.03803467750551, name: "Washington & Morris" },
             { lat: 40.71367119886497, lng: -74.03631806373598, },
             { lat: 40.714386831207385, lng: -74.03615713119508, },
