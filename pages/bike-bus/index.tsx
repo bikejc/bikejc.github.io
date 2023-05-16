@@ -69,7 +69,7 @@ We ran another Bike Bus on Friday, May 12, and are hoping to keep running them e
 
 Check out [this email to all our signups](https://mailchi.mp/bikejc/next-jc-bike-bus-friday-may-12) with more info about planning and next steps, and [make sure you and your school-mates are signed up](/bike-bus/signup)!
 
-![](/bikebus/20230512/yellow%201.jpg)
+![](/bikebus/20230512/yellow%201_50p.jpg)
 
 ![](/bikebus/20230512/blue%20line%201.jpeg)
 
