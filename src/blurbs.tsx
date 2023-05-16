@@ -1,7 +1,6 @@
 import TweetEmbed from "react-tweet-embed";
 import MD from "./md";
 import React from "react";
-import {bikeBusMapEmbedMD} from "../pages/bike-bus";
 
 export const schedule2023Tweet = <TweetEmbed tweetId='1620594685185245185' />
 
@@ -21,7 +20,7 @@ export const upcomingEventsBlurb = <>
 
 [**Sign up here**](/bike-bus/signup) and Bike JC will help coordinate one in your area! [**More info here**](/bike-bus).
 
-<iframe src="https://bikejc.org/bike-bus/map?ll=40.730_-74.057&S=" width="100%" style="aspect-ratio: 4/3"></iframe>
+<iframe src="/bike-bus/map?ll=40.730_-74.057&S=" width="100%" style="aspect-ratio: 4/3" loading="lazy"></iframe>
 
 [View full screen here](/bike-bus/map?S)
 

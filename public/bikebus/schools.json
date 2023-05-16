@@ -70,6 +70,10 @@
         "lng": -74.0440804,
         "lat": 40.7270276
     },
+    "Hamilton Park Montessori (Upper Campus)": {
+        "id": "hpmsu",
+        "lat": 40.72639, "lng": -74.04116
+    },
     "McNair Academic High School": {
         "id": "mcnair",
         "lng": -74.0475072,

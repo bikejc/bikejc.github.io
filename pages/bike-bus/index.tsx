@@ -9,24 +9,22 @@ import {o2a} from "next-utils/objs";
 import {ReactNode} from "react";
 import Link from "next/link";
 
-export const bikeBusMapEmbedMD = (aspectRatio = '4/3') => `<iframe src="https://www.google.com/maps/d/u/0/embed?mid=1s2vaoPnDKwx4QRi4t5TDSRwyMEUDqM8&ehbc=2E312F" width="100%" style="aspect-ratio: ${aspectRatio};"></iframe>`
-
 const signupMd = `
 ### [Sign up for the Jersey City Bike Bus](/bike-bus/signup)
 "Bike buses" are the new best way to get to school: a group ride picks up kids near their homes, and everyone rides to school together. Being in a group improves safety, and there are dedicated "marshals" assisting with intersections and making sure no one is left behind.
 
 [**Sign up here**](/bike-bus/signup) and Bike JC will help coordinate one in your area!
 
-### Next Bike Bus: Friday, May 12 <a id="next-bike-bus"></a>
-We're running another Bike Bus this Friday, May 12!
+### Next Bike Bus: Friday, May 19 <a id="next-bike-bus"></a>
+We're running another Bike Bus this Friday, May 19!
 
-Check out [this email to all our signups](https://mailchi.mp/bikejc/next-jc-bike-bus-friday-may-12) with more info about planning and next steps, and [make sure you and your school-mates are signed up](/bike-bus/signup)!
+[**Sign up**](/bike-bus/signup) and [sign the waiver](/bike-bus/waiver) (if you haven't yet), and tell your friends!
 `
 
 const routesMapMd = `
 ### Routes <a id="routes"></a>
 Here are the routes we plan to run (subject to change!):
-<iframe src="/bike-bus/map?ll=40.725_-74.057&S=" width="100%" style="aspect-ratio: 1/1" loading="lazy"></iframe>
+<iframe src="/bike-bus/map?ll=40.728_-74.057&S=" width="100%" style="aspect-ratio: 4/3" loading="lazy"></iframe>
 
 [(full screen version)](/bike-bus/map?S)
 `
@@ -66,10 +64,19 @@ export default function Home() {
 
 ### Previous Bike Buses <a id="past"></a>
 
+#### Bike Bus #2: Friday, May 12 <a id="pilot"></a>
+We ran another Bike Bus on Friday, May 12, and are hoping to keep running them each Friday.
+
+Check out [this email to all our signups](https://mailchi.mp/bikejc/next-jc-bike-bus-friday-may-12) with more info about planning and next steps, and [make sure you and your school-mates are signed up](/bike-bus/signup)!
+
+![](/bikebus/20230512/yellow%201.jpg)
+
+![](/bikebus/20230512/blue%20line%201.jpeg)
+
 #### Bike Bus Pilot: Wednesday May 3 <a id="pilot"></a>
 On [National Bike, Walk, & Roll to School Day](https://www.walkbiketoschool.org/), we ran 7 Bike Bus routes around Jersey City:
 
-<!--${iframeHtml("CrySd81oNMn")}-->
+${iframeHtml("CrySd81oNMn")}
 
 ---
 

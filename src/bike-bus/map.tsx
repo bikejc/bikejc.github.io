@@ -387,8 +387,10 @@ const Layers = ({ signups, setLL, zoom, setZoom, showHomes, showRoutes, hideRout
                                     color={lineColor} fillColor={lineColor}
                                     weight={5}
                                     opacity={lineOpacity} fillOpacity={lineOpacity}
-                                />
-                                {/* Home */}
+                                >
+                                    <Tooltip className={css.tooltip} opacity={tooltipOpacity}>{schoolName}</Tooltip>
+                                </Polyline>
+                                 Home
                                 <Marker
                                     position={ll}
                                     icon={houseIcon({ size: houseSize * selectedFactor, bg: schoolColor, fg: "black", opacity: signupOpacity })}

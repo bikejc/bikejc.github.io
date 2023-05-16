@@ -101,7 +101,7 @@ export const hpPs5Ps3 = [
 
 export const ps33 = {
     lat: 40.718436514755226, lng: -74.0836000442505,
-    stop: { name: "West Side & Union / PS 33", times: { red: "8:25am", silver: "8:00am", } },
+    stop: { name: "West Side & Union / PS 33", times: { red: "8:25am", silver: "7:50am", } },
 }
 const malloryUnion = { lat: 40.72036368727873, lng: -74.08735513687135, name: "Mallory & Union" }
 export const ps17MalloryUnion = [
@@ -118,7 +118,7 @@ export const malloryUnionPs17 = [...ps17MalloryUnion]
 malloryUnionPs17.reverse()
 
 export const purple = {
-    active: false,
+    //active: false,
     color: "hsl(275, 100%, 67%)",
     positions: [
         pershingField,
@@ -155,9 +155,15 @@ export const routes: { [k: string]: Route } = {
     silver: {
         color: "lightgrey",
         positions: [
-            { lat: 40.71427643262643, lng: -74.08862719563707, stop: { name: "West Side & Grant", time: "7:45am" }},
-            { lat: 40.71374845499957, lng: -74.08924877643587, },
-            { lat: 40.71524070064235, lng: -74.09210264682771, },
+            // { lat: 40.71427643262643, lng: -74.08862719563707, stop: { name: "West Side & Grant", time: "7:45am" }},
+            { lat: 40.71084925545855, lng: -74.06968474388124, stop: { name: "Berry Lane Park", time: "7:30am" } },
+            { lat: 40.71576928099513, lng: -74.0790617465973, name: "Union & Bergen" },
+            { lat: 40.71588312852183, lng: -74.07894372940065 },
+            ps33,
+            { lat: 40.71785103357191, lng: -74.0841579437256, },  // West Side & Williams
+            { lat: 40.719818880450106, lng: -74.08784866333009, },  // West Side & Mallory
+            // { lat: 40.71374845499957, lng: -74.08924877643587, },  // West Side & Grant
+            // { lat: 40.71524070064235, lng: -74.09210264682771, },  // Grant & Mallory
             ...malloryUnionPs17,
         ],
         offsets: [
@@ -373,9 +379,9 @@ export const routeDisplays: { [route: string]: RouteDisplay } = {
         query: "ll=40.725_-74.070&z=13.5&r=red&s=tlb+lccs+ps17",
     },
     silver: {
-        title: `Silver line: West Bergen to West Side`,
+        title: `Silver line: Bergen Lafayette to West Side`,
         // sub: "Berry Lane Park, Lincoln Park",
-        query: `ll=40.717_-74.082&z=14&r=silver&s=tlb+lccs+ps17`,
+        query: `ll=40.717_-74.082&z=14&r=silver&s=tlb+lccs+ps17+pp`,
     },
     orange: {
         title: "Orange line: Bergen Lafayette to Downtown",
@@ -389,7 +395,7 @@ export const routeDisplays: { [route: string]: RouteDisplay } = {
     },
     green: {
         title: "Green line: JSQ, Heights, Downtown",
-        query: "ll=40.727_-74.056&z=13.5&r=green&R=&s=ps5+ps3",
+        query: "ll=40.727_-74.056&z=13.5&r=green&R=&s=ps5+ps3+hpms+hpmsu",
     },
     blue: {
         title: "Blue line: Heights, Hoboken",
