@@ -150,13 +150,21 @@ const pershingSummitHopkins = [
     ps26,
     summitHopkins,
 ]
+const grindCoffeeshop = { lat: 40.711447223789335, lng: -74.06264366353011, stop: { name: "The Grind Coffeeshop", time: "7:30am", }}
+const communipawVanHorne = { lat: 40.7125268, lng: -74.0639396, name: "Communipaw & Van Horne" }
 
 export const routes: { [k: string]: Route } = {
     silver: {
         color: "lightgrey",
         positions: [
             // { lat: 40.71427643262643, lng: -74.08862719563707, stop: { name: "West Side & Grant", time: "7:45am" }},
-            { lat: 40.71084925545855, lng: -74.06968474388124, stop: { name: "Berry Lane Park", time: "7:30am" } },
+            grindCoffeeshop,
+            communipawVanHorne,
+            { lat: 40.71300560369163, lng: -74.0645630310113, },
+            { lat: 40.71448344318709, lng: -74.0666265407144, },
+            { lat: 40.7131436134378, lng: -74.06758243123863, },
+            { lat: 40.71325287095062, lng: -74.06790106141335, },
+            { lat: 40.71084925545855, lng: -74.06968474388124, stop: { name: "Berry Lane Park", time: "7:35am" } },
             { lat: 40.71576928099513, lng: -74.0790617465973, name: "Union & Bergen" },
             { lat: 40.71588312852183, lng: -74.07894372940065 },
             ps33,
@@ -167,6 +175,7 @@ export const routes: { [k: string]: Route } = {
             ...malloryUnionPs17,
         ],
         offsets: [
+            { start: grindCoffeeshop.stop.name, end: communipawVanHorne.name, offsets: { orange: -5 } },
             { start: malloryUnion.name, end: belmontBergen.stop.name, offsets: { red: 5 } },
         ]
     },
@@ -197,9 +206,9 @@ export const routes: { [k: string]: Route } = {
     orange: {
         color: "hsl(27, 100%, 53%)",
         positions: [
-            { lat: 40.711447223789335, lng: -74.06264366353011, stop: { name: "The Grind Coffeeshop", time: "7:35am", }},
-            {"lat":40.7125268,"lng":-74.0639396},
-            { lat: 40.71384197546361, lng: -74.06211018562318, stop: { name: "Lafayette Park / PS 22", time: "7:40am", }},
+            grindCoffeeshop,
+            communipawVanHorne,
+            { lat: 40.71384197546361, lng: -74.06211018562318, stop: { name: "Lafayette Park / PS 22", time: "7:35am", }},
             { lat: 40.71509432380268, lng: -74.0603291988373, },
             { lat: 40.71402901599767, lng: -74.05900955200197, name: "Johnston & Pacific" },
             { lat: 40.71720049288451, lng: -74.05455708503725, name: "Pacific & Grand" },
@@ -215,6 +224,7 @@ export const routes: { [k: string]: Route } = {
             ...hpPs5Ps3,
         ],
         offsets: [
+            { start: grindCoffeeshop.stop.name, end: communipawVanHorne.name, offsets: { silver: 5 } },
             { start: "McWilliams & Pavonia", end: "PS 3 / MS 4", offsets: { green: -5 }, },
             { start: "McWilliams & Pavonia", end: "CCD & Brunswick", offsets: { green: -5 }, },
             { start: "CCD & Brunswick", end: "CCD & Varick", offsets: { yellow: 5, green: -5, }, },
