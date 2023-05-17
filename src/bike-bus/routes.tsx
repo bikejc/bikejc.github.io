@@ -59,12 +59,12 @@ export const summitCarlton = { lat: 40.74254654709375, lng: -74.05484139919282, 
 export const ps3ms4 = { lat: 40.71777784806193, lng: -74.05000269412996, stop: { name: "PS 3 / MS 4", times: { orange: ["7:50am", "8:35am"], green: "8:35am", }}}
 export const groveSt = { lat: 40.71958306715651, lng: -74.04291093349458, stop: { name: "Grove St Plaza", times: { orange: "8:02am", pink: "7:45am" } }}
 
-export const westSideToTeccs = [
-    montgomeryWestSide,
-    { lat: 40.734388894945276, lng: -74.07137453556062, name: "West Side & Pavonia", },
-    { lat: 40.73479537862304, lng: -74.07276928424837, },
-    { lat: 40.73614488662359, lng: -74.07209873199464, stop: { name: "TECCS", time: "8:10am", }},
-]
+// export const westSideToTeccs = [
+//     montgomeryWestSide,
+//     { lat: 40.734388894945276, lng: -74.07137453556062, name: "West Side & Pavonia", },
+//     { lat: 40.73479537862304, lng: -74.07276928424837, },
+//     { lat: 40.73614488662359, lng: -74.07209873199464, stop: { name: "TECCS", time: "8:10am", }},
+// ]
 
 export const ps6ToNJT = [
     ps6,
@@ -282,10 +282,10 @@ export const routes: { [k: string]: Route } = {
             { lat: 40.72484464933251, lng: -74.0672713874966, },
             ...mcGinleyToJSQ,
             { lat: 40.731231914467145, lng: -74.06715759100562, },
-            { lat: 40.73223448999161, lng: -74.07161593437196, },
-            { lat: 40.73420191161954, lng: -74.07041430473329, },
+            { lat: 40.73223448999161, lng: -74.07161593437196, name: "Sip & Corbin" },
+            { lat: 40.73420191161954, lng: -74.07041430473329, name: "Pavonia & Corbin" },
             // { lat: 40.732416164479304, lng: -74.07255154467805, },
-            { lat: 40.73479537862304, lng: -74.07276928424837, },
+            { lat: 40.73479537862304, lng: -74.07276928424837, name: "Pavonia & Giles" },
             { lat: 40.73614488662359, lng: -74.07209873199464, stop: { name: "TECCS", time: "8:10am", }},
             //...westSideToTeccs,
         ],
