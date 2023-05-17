@@ -376,7 +376,7 @@ export const routeDisplays: { [route: string]: RouteDisplay } = {
     red: {
         title: "Red line: Heights to West Side",
         // sub: "Pershing Field, McGinley Square, Lincoln Park",
-        query: "ll=40.725_-74.070&z=13.5&r=red&s=tlb+lccs+ps17",
+        query: "ll=40.725_-74.070&z=13.5&r=red&s=tlb+lccs+ps17+ps33",
     },
     silver: {
         title: `Silver line: Bergen Lafayette to West Side`,
