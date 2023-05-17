@@ -170,10 +170,11 @@ export function Page(
             <meta content={title} property="og:title" />
             <meta content="website" property="og:type" />
             <meta content={path} property="og:url" />
-            {ogImg && <>
+            {
+                ogImg && <>
                     <meta content={`http://bikejc.org${ogImg}`} property="og:image"/>
                     <meta content={`https://bikejc.org${ogImg}`} property="og:image:secure_url"/>
-                    ogImgType && <meta property={"og:image:type"} content={ogImgType} />
+                    {ogImgType && <meta property={"og:image:type"} content={ogImgType} />}
                 </>
             }
             {descriptionTag("og:description")}

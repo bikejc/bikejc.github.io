@@ -77,7 +77,7 @@ export const Sitemap0: Sitemap0 = {
                 [ "media-coverage", "Media Coverage" ],
             ]
         } ],
-        ["support", {
+        [ "support", {
             title: "Support",
             children: [
                 [ "sponsors", "Sponsors" ],
@@ -86,7 +86,7 @@ export const Sitemap0: Sitemap0 = {
                 [ "cool-swag-cool-bikers", "Cool Swag for Cool Bikers!" ],
             ]
         }],
-        ["resources", {
+        [ "resources", {
             title: "Resources",
             children: [
                 [ "ctbk.dev", { node: "Citi Bike Dashboard", href: "https://ctbk.dev/?r=jh" } ],
@@ -96,7 +96,7 @@ export const Sitemap0: Sitemap0 = {
                 [ "useful-links", "Useful Links" ],
             ]
         }],
-        ["bike-bus", {
+        [ "bike-bus", {
             title: "Bike Bus", header: false,
             children: routes.map(({ color, title, summary, }) => [
                 `${title.split(" ")[0].toLowerCase()}-line`,
@@ -110,8 +110,9 @@ export const Sitemap0: Sitemap0 = {
             ])
         }],
         [ "contact-us", { title: "Contact", children: [] } ],
+        [ "thankyou", { title: "Thank you!", header: false, } ],
         [ "qrs", { title: "QR Codes", header: false, children: [] } ],
-        ["ward-tour", {
+        [ "ward-tour", {
             title: "Jersey City Ward Tour",
             header: false,
             children: [
