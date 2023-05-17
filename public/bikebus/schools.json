@@ -70,6 +70,8 @@
         "lng": -74.0440804,
         "lat": 40.7270276
     },
+    "PS 41": { "id": "ps41", "lat": 40.70483, "lng": -74.0783 },
+    "PS 15": { "id": "ps15", "lat":  40.70378, "lng": -74.08334 },
     "Hamilton Park Montessori (Upper Campus)": {
         "id": "hpmsu",
         "lat": 40.72639, "lng": -74.04116
