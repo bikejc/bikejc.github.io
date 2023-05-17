@@ -22,7 +22,7 @@ export const upcomingEventsBlurb = <>
 
 <iframe src="/bike-bus/map?ll=40.730_-74.057&S=" width="100%" style="aspect-ratio: 4/3" loading="lazy"></iframe>
 
-[View full screen here](/bike-bus/map?S)
+[More info](/bike-bus), [View full screen](/bike-bus/map?S)
 
 ---
 `)}

@@ -6,9 +6,9 @@ import css from "./route-page.module.css";
 import A from "next-utils/a";
 
 export default function RoutePage(routeName: string, props?: { nextDate?: string }) {
-    const nextDate = (props ? props.nextDate : `Friday, May 12`) || "TBD"
+    const nextDate = (props ? props.nextDate : `Friday, May 19`) || "TBD"
     const routeDisplay = routeDisplays[routeName]
-    const { title } = routeDisplay
+    const { title, rwgps } = routeDisplay
     const { color } = routes[routeName]
     return (
         <Page
@@ -16,7 +16,7 @@ export default function RoutePage(routeName: string, props?: { nextDate?: string
             banner={helmets}
             h1={<><span className={css.dot} style={{ backgroundColor: color }} /> {title}</>}
         >
-            <p><strong>Next Bike Bus:</strong> {nextDate}. <A><strong>Sign up to join here.</strong></A></p>
+            <p><strong>Next Bike Bus:</strong> {nextDate}. <A href={"/bike-bus/signup"}><strong>Sign up to join here.</strong></A>, and <A href={"/bike-bus/waiver"}>sign the waiver here</A></p>
             {routeList(routeName, routeDisplay)}
             {MD(`
 ### Join the Bike Bus!

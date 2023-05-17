@@ -39,7 +39,7 @@ export default function Home() {
             {MD(signupMd)}
             {MD(routesMapMd)}
             {<>
-                <p>Jump to more info about a specific route:</p>
+                <p>More info about each route:</p>
                 <ul>{
                     o2a<string, RouteDisplay, ReactNode>(
                         routeDisplays,
@@ -65,7 +65,7 @@ export default function Home() {
 ### Previous Bike Buses <a id="past"></a>
 
 #### Bike Bus #2: Friday, May 12 <a id="pilot"></a>
-We ran another Bike Bus on Friday, May 12, and are hoping to keep running them each Friday.
+[We ran another Bike Bus on Friday, May 12](https://www.instagram.com/p/CsVA5tRsxiK/), and are hoping to keep running them each Friday.
 
 Check out [this email to all our signups](https://mailchi.mp/bikejc/next-jc-bike-bus-friday-may-12) with more info about planning and next steps, and [make sure you and your school-mates are signed up](/bike-bus/signup)!
 
