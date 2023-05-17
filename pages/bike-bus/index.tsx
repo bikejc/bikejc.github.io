@@ -43,7 +43,7 @@ export default function Home() {
                 <ul>{
                     o2a<string, RouteDisplay, ReactNode>(
                         routeDisplays,
-                        (routeName, { title }) => <li key={routeName}><Link href={`/bike-bus/${routeName}-line`}>{title}</Link></li>
+                        (routeName, { title, summary }) => <li key={routeName}><Link href={`/bike-bus/${routeName}-line`}><strong>{title}</strong>: {summary}</Link></li>
                     )
                 }</ul>
             </>}

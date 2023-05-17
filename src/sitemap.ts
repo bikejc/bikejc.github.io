@@ -90,7 +90,7 @@ export const Sitemap: Sitemap = {
         },
         "bike-bus": {
             title: "Bike Bus", header: false, children: fromEntries(
-                ["Red", "Orange", "Yellow", "Green", "Blue", "Purple", "Pink", "Silver" ].map(name => [ `${name.toLowerCase()}-line`, `${name} line` ])
+                ["Red", "Orange", "Yellow", "Green", "Blue", "Purple", "Pink", "Gold", "Silver" ].map(name => [ `${name.toLowerCase()}-line`, `${name} line` ])
             ),
         },
         "contact-us": { title: "Contact", children: {} },

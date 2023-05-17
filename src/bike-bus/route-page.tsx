@@ -8,13 +8,13 @@ import A from "next-utils/a";
 export default function RoutePage(routeName: string, props?: { nextDate?: string }) {
     const nextDate = (props ? props.nextDate : `Friday, May 19`) || "TBD"
     const routeDisplay = routeDisplays[routeName]
-    const { title, rwgps } = routeDisplay
+    const { title, summary } = routeDisplay
     const { color } = routes[routeName]
     return (
         <Page
             path={`/bike-bus/${routeName}-line`}
             banner={helmets}
-            h1={<><span className={css.dot} style={{ backgroundColor: color }} /> {title}</>}
+            h1={<><span className={css.dot} style={{ backgroundColor: color }} /> {title}: {summary}</>}
         >
             <p><strong>Next Bike Bus:</strong> {nextDate}. <A href={"/bike-bus/signup"}><strong>Sign up to join here.</strong></A>, and <A href={"/bike-bus/waiver"}>sign the waiver here</A></p>
             {routeList(routeName, routeDisplay)}
