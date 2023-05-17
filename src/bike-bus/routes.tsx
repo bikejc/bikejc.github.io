@@ -466,7 +466,7 @@ export const routeDisplays: { [route: string]: RouteDisplay } = {
     gold: {
         title: `Gold line`,
         summary: "Communipaw, Bergen Lafayette (PS 41, PS 15)",
-        query: "ll=40.710_-74.074&z=15&r=gold&s=ps41+ps15",
+        query: "ll=40.708_-74.073&z=14.5&r=gold&s=ps41+ps15",
     },
     silver: {
         title: `Silver line`,
