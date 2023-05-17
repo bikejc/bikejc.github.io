@@ -31,13 +31,26 @@ export const ps26 = {
     // stop: { name: "PS 26", times: { red: "7:35am", green: "7:56am", blue: "7:56am" }}
 }
 
-export const lincolnPark = { lat: 40.724087769759464, lng: -74.07970547676088, stop: { name: "Lincoln Park", times: { red: "8:20am", silver: "8:10am" } } }
+export const lincolnPark = { lat: 40.724087769759464, lng: -74.07970547676088, stop: { name: "Lincoln Park", times: { red: "8:15am", silver: "8:05am" } } }
 export const belmontWestSide = { lat: 40.723689351674786, lng: -74.07892227172853, } // Belmont & West Side
-export const lccs = { lat: 40.722437165024765, lng: -74.07618641853334, stop: { name: "LCCS", times: { red: "8:15am", silver: "8:15am" } }, }
-export const belmontBergen = { lat: 40.720908489648345, lng: -74.07275319099428, stop: { name: "Belmont & Bergen / PS 17", times: { red: "8:10am", silver: "8:20am" } }, }
+export const lccs = { lat: 40.722437165024765, lng: -74.07618641853334, stop: { name: "LCCS", times: { red: "8:10am", silver: "8:10am" } }, }
+export const belmontBergen = { lat: 40.720908489648345, lng: -74.07275319099428, stop: { name: "Belmont & Bergen / PS 17", times: { red: "8:05am", silver: "8:15am" } }, }
 
+export const jsq = { lat: 40.73080360135806 , lng: -74.06440615653993, stop: { name: "JSQ - Sip & Bergen", times: { red: "7:45am", yellow: "8:05am" } } }
 export const mcginleySquare = { lat: 40.725356186961825, lng: -74.068021774292  , stop: { name: "McGinley Square", time: "7:55am", }, }
-export const montgomeryWestSide = { lat: 40.72830569177484, lng: -74.07541921625074, name: "Montgomery & West Side"}
+export const primaryPrep = { lat: 40.72639696637659, lng: -74.06746863474763, stop: { name: "Primary Prep", times: { red: "7:50am", yellow: "8:00am" } } }
+
+export const jsqToMcGinley = [
+    jsq,
+    { lat: 40.728510863374794, lng: -74.06690597534181, name: "Bergen & Vroom" },
+    { lat: 40.72718559227259 , lng: -74.0671741962433 , },
+    primaryPrep,
+    mcginleySquare,
+]
+export const mcGinleyToJSQ = [...jsqToMcGinley]
+mcGinleyToJSQ.reverse()
+
+export const montgomeryWestSide = { lat: 40.72830569177484, lng: -74.07541921625074, name: "Montgomery & West Side" }
 
 export const pershingField = { lat: 40.74250183922047 , lng: -74.05369877815248, stop: { name: "Pershing Field", time: "7:30am", }, }
 export const summitSanford = { lat: 40.74282698670428 , lng: -74.05463218688966, name: "Summit & Sanford", }
@@ -152,12 +165,12 @@ const pershingSummitHopkins = [
     ps26,
     summitHopkins,
 ]
-const grindCoffeeshop = { lat: 40.711447223789335, lng: -74.06264366353011, stop: { name: "The Grind Coffeeshop", time: "7:30am", }}
+const theGrindShop = { lat: 40.711447223789335, lng: -74.06264366353011, stop: { name: "The Grind Shop", time: "7:30am", }}
 const communipawVanHorne = { lat: 40.7125268, lng: -74.0639396, name: "Communipaw & Van Horne" }
 const unionMLK = { lat: 40.71411033780509, lng: -74.07597184181215, stop: { name: "Union & MLK", time: "7:45am", }, }
 
-const grindToUnionMLK = [
-    grindCoffeeshop,
+const grindShopToUnionMLK = [
+    theGrindShop,
     communipawVanHorne,
     { lat: 40.71300560369163, lng: -74.0645630310113, },
     { lat: 40.71448344318709, lng: -74.0666265407144, },
@@ -172,7 +185,7 @@ export const routes: { [k: string]: Route } = {
         color: "lightgrey",
         positions: [
             // { lat: 40.71427643262643, lng: -74.08862719563707, stop: { name: "West Side & Grant", time: "7:45am" }},
-            ...grindToUnionMLK,
+            ...grindShopToUnionMLK,
             { lat: 40.71576928099513, lng: -74.0790617465973, name: "Union & Bergen" },
             { lat: 40.71588312852183, lng: -74.07894372940065 },
             ps33,
@@ -183,7 +196,7 @@ export const routes: { [k: string]: Route } = {
             ...malloryUnionPs17,
         ],
         offsets: [
-            { start: grindCoffeeshop.stop.name, end: communipawVanHorne.name, offsets: { orange: -5, gold: 5 } },
+            { start: theGrindShop.stop.name, end: communipawVanHorne.name, offsets: { orange: -5, gold: 5 } },
             { start: communipawVanHorne.name, end: unionMLK.stop.name, offsets: { gold: 5 } },
             { start: malloryUnion.name, end: belmontBergen.stop.name, offsets: { red: 5 } },
         ]
@@ -191,7 +204,7 @@ export const routes: { [k: string]: Route } = {
     gold: {
         color: "hsl(49, 100%, 45%)",
         positions: [
-            ...grindToUnionMLK,
+            ...grindShopToUnionMLK,
             { lat: 40.71147, lng: -74.07839, },
             { lat: 40.71043449288867, lng: -74.07959818840028, stop: { name: "MLK & Orient", time: "7:50am", } },
             { lat: 40.70870222128798, lng: -74.07695889472963, name: "Ocean & Orient" },
@@ -200,7 +213,7 @@ export const routes: { [k: string]: Route } = {
             { lat: 40.70405007643559, lng: -74.08302068710329, stop: { name: "PS 15", time: "8:10am" }},
         ],
         offsets: [
-            { start: grindCoffeeshop.stop.name, end: communipawVanHorne.name, offsets: { silver: -5, orange: -5 } },
+            { start: theGrindShop.stop.name, end: communipawVanHorne.name, offsets: { silver: -5, orange: -5 } },
             { start: communipawVanHorne.name, end: unionMLK.stop.name, offsets: { silver: -5 } },
         ]
     },
@@ -212,10 +225,7 @@ export const routes: { [k: string]: Route } = {
             { lat: 40.73490919360775 , lng: -74.0592133998871 , name: "Summit & Newark", },
             { lat: 40.73257594750422 , lng: -74.05958890914918, name: "Summit & Pavonia", },
             { lat: 40.73043774421105 , lng: -74.06129479408266, name: "Summit & Sip", },
-            { lat: 40.73080360135806 , lng: -74.06440615653993, stop: { name: "JSQ - Sip & Bergen", time: "7:45am" } },
-            { lat: 40.728510863374794, lng: -74.06690597534181, name: "Bergen & Vroom"},
-            { lat: 40.72718559227259 , lng: -74.0671741962433 , },
-            mcginleySquare,
+            ...jsqToMcGinley,
             { lat: 40.724429269076595, lng: -74.06975984573366, },
             { lat: 40.72337224169876 , lng: -74.07050013542177, },
             ...ps17MalloryUnion,
@@ -225,13 +235,14 @@ export const routes: { [k: string]: Route } = {
             { start: pershingField.stop.name, end: summitCarlton.name, offsets: { blue: 5, purple: -5 } },
             { start: summitCarlton.name, end: summitHopkins.stop.name, offsets: { blue: 5 } },
             { start: summitHopkins.stop.name, end: "Summit & 139", offsets: { green: 5, } },
+            { start: jsq.stop.name, end: mcginleySquare.stop.name, offsets: { yellow: 5 } },
             { start: belmontBergen.stop.name, end: malloryUnion.name, offsets: { silver: 5 } },
         ]
     },
     orange: {
         color: "hsl(27, 100%, 53%)",
         positions: [
-            grindCoffeeshop,
+            theGrindShop,
             communipawVanHorne,
             { lat: 40.71384197546361, lng: -74.06211018562318, stop: { name: "Lafayette Park / PS 22", time: "7:35am", }},
             { lat: 40.71509432380268, lng: -74.0603291988373, },
@@ -249,7 +260,7 @@ export const routes: { [k: string]: Route } = {
             ...hpPs5Ps3,
         ],
         offsets: [
-            { start: grindCoffeeshop.stop.name, end: communipawVanHorne.name, offsets: { silver: 5, gold: 5 } },
+            { start: theGrindShop.stop.name, end: communipawVanHorne.name, offsets: { silver: 5, gold: 5 } },
             { start: "McWilliams & Pavonia", end: hamiltonPark.stop.name, offsets: { green: -5 }, },
             { start: hamiltonPark.stop.name, end: jersey8th.name, offsets: { green: -5, yellow: 5 }, },
             { start: jersey8th.name, end: "CCD & Brunswick", offsets: { green: -5 }, },
@@ -269,12 +280,19 @@ export const routes: { [k: string]: Route } = {
             { lat: 40.721061443563826, lng: -74.0554213795693, name: "Merseles & Montgomery" },
             { lat: 40.72379825222925, lng: -74.06420646867288, name: "Montgomery & Baldwin" },
             { lat: 40.72484464933251, lng: -74.0672713874966, },
-            mcginleySquare,
-            ...westSideToTeccs,
+            ...mcGinleyToJSQ,
+            { lat: 40.731231914467145, lng: -74.06715759100562, },
+            { lat: 40.73223448999161, lng: -74.07161593437196, },
+            { lat: 40.73420191161954, lng: -74.07041430473329, },
+            // { lat: 40.732416164479304, lng: -74.07255154467805, },
+            { lat: 40.73479537862304, lng: -74.07276928424837, },
+            { lat: 40.73614488662359, lng: -74.07209873199464, stop: { name: "TECCS", time: "8:10am", }},
+            //...westSideToTeccs,
         ],
         offsets: [
             { start: hamiltonPark.stop.name, end: jersey8th.name, offsets: { orange: -5, green: -5 }, },
             { start: "CCD & Varick", end: "CCD & Brunswick", offsets: { green: 5, orange: 5 }, },
+            { start: mcginleySquare.stop.name, end: jsq.stop.name, offsets: { red: 5 } },
         ]
     },
     green: {
