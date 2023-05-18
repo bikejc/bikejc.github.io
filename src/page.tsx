@@ -10,6 +10,7 @@ import Footer from "./footer";
 import {Breadcrumb, Breadcrumbs} from "./breadcrumbs";
 import Triptych from "./triptych";
 import {Img} from "./img";
+import {entries, fromEntries} from "next-utils/objs";
 
 export function Main({ breadcrumbs, sectionMenu, children }: {
     sectionMenu?: SectionMenu
@@ -76,34 +77,37 @@ export function Page({ path, h1, description, banner, article, ctime, mtime, doc
     if (!root) {
         // console.log("sectionMap:", sectionMap)
         const sectionMenuItems: Breadcrumb[] = []
-        let children = sitemap?.children, menuPath = path, title = sitemap.node
-        if (!children) {
+        let children = sitemap?.children
+        let menuPath = path
+        let title = sitemap.node || sitemap.title
+        if (!children?.size) {
             children = parent?.children
             menuPath = path.substring(0, path.lastIndexOf('/'))
             if (!parent) {
                 throw new Error(`No parent or children: ${path}`)
             }
-            title = parent.node
+            title = parent.node || parent.title
         }
         if (children) {
-            Object.entries(children).forEach(([piece, child]) => {
+            console.log("children:", children)
+            Array.from(children).forEach(([piece, child]) => {
                 //if (piece == "") return
                 let breadcrumb: Breadcrumb
                 if (!child) {
                     throw new Error(`path ${path}, falsey child, ${piece}: ${child}`)
                 }
-                if (child && typeof child === 'object') {
-                    if ('href' in child) {  // Breadcrumb
-                        breadcrumb = {...child}
-                        if (breadcrumb.href.startsWith("http")) {
-                            breadcrumb.target = "_blank"
-                        }
-                    } else {
-                        breadcrumb = { node: child.node || child.title, href: `${menuPath}/${piece}`  }
+                if (typeof child === 'object' && 'href' in child) {
+                    // if (child.has('href')) {  // Breadcrumb
+                    breadcrumb = child
+                    if (breadcrumb.href.startsWith("http")) {
+                        breadcrumb.target = "_blank"
                     }
+                } else if (typeof child === 'object') {
+                    breadcrumb = { node: child.node || child.title, href: `${menuPath}/${piece}`  }
                 } else {
-                    breadcrumb = { node: child, href: `${path}/${piece}` }
+                    breadcrumb = { node: child, href: `${menuPath}/${piece}` }
                 }
+                console.log("push:", breadcrumb)
                 sectionMenuItems.push(breadcrumb)
             })
             if (sectionMenuItems.length) {

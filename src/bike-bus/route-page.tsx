@@ -16,11 +16,11 @@ export default function RoutePage(routeName: string, props?: Props) {
     const body = props?.inactive
         ? <>
             <p><strong>Next {`"${routeDisplay.title}"`} Bike Bus Date: TBD</strong></p>
-            <p><A href={"/bike-bus/signup"}><strong>Sign up</strong></A> or <a href={"mailto:bikebus@bikejc.org"}>get in touch</a> if you'd like to ride this route!</p>
+            {MD(`[Sign up](/bike-bus/signup) or [get in touch](mailto:bikebus@bikejc.org) if you'd like to ride this route!`)}
         </>
         : <>
             <p><strong>Next {`"${routeDisplay.title}"`} Bike Bus Date:</strong> {nextDate}.</p>
-            <p><A href={"/bike-bus/signup"}><strong>Sign up to join here.</strong></A>, and <A href={"/bike-bus/waiver"}>sign the waiver here</A>, or <a href={"mailto:bikebus@bikejc.org"}>get in touch</a>.</p>
+            {MD(`[Sign up to join here](/bike-bus/signup), and [sign the waiver here](/bike-bus/waiver), or [get in touch](mailto:bikebus@bikejc.org).`)}
         </>
     const { title, summary } = routeDisplay
     const { color } = routes[routeName]

@@ -2,6 +2,7 @@ import {Children, Sitemap} from "./sitemap";
 import {MenuListItem} from "./sectionMenu";
 import React from "react";
 import Link from "next/link";
+import {entries, keys} from "next-utils/objs";
 
 export function SmallMenu() {
     return (
@@ -50,14 +51,15 @@ export function SmallMenu() {
 }
 
 export function BigMenu({ path }: { path: string }) {
-    const topLevelItems: Children = Sitemap.children || {}
-    const numTopLevels = Object.keys(Sitemap).length
-    const menuListItems = Object.entries(topLevelItems).map(
+    const topLevelItems: Children = Sitemap.children || new Map()
+    const numTopLevels = keys(Sitemap).length
+    const menuListItems = Array.from(topLevelItems).map(
         ([ name, child ], idx) => {
-            if (typeof child === 'object' && 'text' in child) {
-                throw new Error(`Unrecognized top-level child: ${child}`)
+            if (typeof child === 'object' && 'href' in child) {
+                throw new Error(`Unrecognized breadcrumb as top-level sitemap child: ${child}`)
             }
-            child = (typeof child === 'string') ? { node: child } : child
+
+            child = (typeof child === 'string') ? { title: child } : child
             const text = child.title
             const topLevelPath = `/${name}`
             const n = topLevelPath.length
@@ -75,7 +77,7 @@ export function BigMenu({ path }: { path: string }) {
                             && path != '/'
                         )
                     }
-                    text={text}
+                    node={text}
                     href={topLevelPath}
                 />
             )

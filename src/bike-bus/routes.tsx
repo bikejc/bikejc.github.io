@@ -510,7 +510,7 @@ export const routeDisplays: { [route: string]: RouteDisplay } = {
     orange: {
         title: "Orange line",
         summary: "Bergen Lafayette to Downtown",
-        query: "ll=40.719_-74.054&z=14&r=orange&R=&s=ps5+ps3",
+        query: "ll=40.719_-74.054&z=14&r=orange&R=&s=ps5+ps3+ps22",
         rwgps: "https://ridewithgps.com/routes/42858088",
     },
     yellow: {

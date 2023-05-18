@@ -93,9 +93,10 @@
         { "lat": 40.7215058, "lng": -74.0409751, "cross":  "1st & Marin " },
         { "lat": 40.71717, "lng": -74.03882, "cross":  "Montgomery & Warren" },
         { "lat": 40.71904, "lng": -74.04137, "cross":  "Columbus & Marin" },
-        { "lat":  40.71366, "lng": -74.03633, "cross":  "Morris & Greene" },
+        { "lat": 40.71366, "lng": -74.03633, "cross":  "Morris & Greene" },
         { "lat": 40.71957, "lng": -74.03683, "cross":  "Washington & Morgan" },
-        { "lat":  40.71705, "lng": -74.03907, "cross":  "Montgomery & Warren" }
+        { "lat": 40.71705, "lng": -74.03907, "cross":  "Montgomery & Warren" },
+        { "lat": 40.71973, "lng": -74.04268, "cross": "Grove & Columbus" }
     ],
     "PS 17": [
         { "lat":  40.71708, "lng": -74.07745 }

@@ -3,135 +3,157 @@ import {entries, fromEntries, values} from "next-utils/objs";
 import {routeDisplays, routes} from "./bike-bus/routes";
 import {Fragment, isValidElement, ReactNode} from "react";
 import css from "./bike-bus/route-page.module.css";
+import {regfox} from "./blurbs";
 
 export type Entry = Breadcrumb | string
+export type Child0 = Entry | Sitemap0
+export type Children0 = [ string, Child0 ][]
 export type Child = Entry | Sitemap
-export type Children = { [name: string]: Child }
-export type Sitemap = {
+export type Children = Map<string, Child>
+
+export type SitemapBase = {
     title: string
     node?: ReactNode
     header?: boolean
+}
+export type Sitemap0 = SitemapBase & {
+    children?: Children0
+}
+export type Sitemap = SitemapBase & {
     children?: Children
 }
 
-export const Sitemap: Sitemap = {
+export const Sitemap0: Sitemap0 = {
     title: "Home",
-    children: {
-        "about": {
+    children: [
+        [ "about", {
             title: "About",
-            children: {
-                "history": "History",
-                "founding": "Founding",
-                "board-members": "Board Members",
-                "non-profit-information": "Non Profit Information",
-            }
-        },
-        "projects": {
+            children: [
+                [ "history", "History", ],
+                [ "founding", "Founding", ],
+                [ "board-members", "Board Members", ],
+                [ "non-profit-information", "Non Profit Information", ],
+            ]
+        } ],
+        [ "projects", {
             title: "Projects",
-            children: {
-                "bike-bus": { node: "Bike Bus", href: "/bike-bus" },
-                "bike-lanes": "Bike Lanes",
-                "bike-share": "Bike Share",
-                "bike-racks": "Bike Racks",
-                // "revised-zoning": "Revised Zoning",
-                "gsv": "Grand Street Vision",
-            }
-        },
-        "events": {
+            children: [
+                [ "bike-bus", { node: "Bike Bus", href: "/bike-bus" } ],
+                [ "bike-lanes", "Bike Lanes" ],
+                [ "bike-share", "Bike Share" ],
+                [ "bike-racks", "Bike Racks" ],
+                [ "gsv", "Grand Street Vision" ],
+            ]
+        } ],
+        [ "events", {
             title: "Events",
-            children: {
-                "bike-jcast": {
+            children: [
+                [ "jersey-city-ward-tour", { node: "WARD TOUR", href: "/ward-tour" } ],
+                [ "bike-jcast", {
                     title: "Bike JCAST",
-                    children: {
-                        "bike-jcast-2017": "Bike JCAST 2017",
-                    }
-                },
-                "calendar": "Calendar",
-                "jersey-city-ward-tour": { node: "Jersey City Ward Tour", href: "/ward-tour" },
-            }
-        },
-        "news": {
+                    children: [
+                        [ "bike-jcast-2017", "Bike JCAST 2017" ],
+                    ]
+                } ],
+                [ "calendar", "Calendar" ],
+            ]
+        } ],
+        [ "news", {
             title: "News",
-            children: {
-                "articles": {
+            children: [
+                [ "articles", {
                     title: "Articles and Press Releases",
-                    children: {
-                        "citi-bike-jc-rebalancing": "Citi Bike JC Rebalancing",
-                        "2016-ward-tour-press-release": "2016 Ward Tour Press Release",
-                        "grand-street-vision-protected-bike-lane-petition": "Grand Street Vision - Protected Bike Lane Petition",
-                        "job-posting-contract-grant-writer": "Job Posting: Contract Grant Writer",
-                        "design-bike-jcs-7th-annual-ward-tour-poster": "Design Bike JC's 7th Annual Ward Tour Poster",
-                        "jersey-citys-first-permanent-bike-lane": "Jersey City's First Permanent Bike Lane",
-                        "installation-jersey-citys-new-bike-racks-underway": "New Bike Rack Installation Underway",
-                        "bike-jc-awarded-jersey-city-green-award": "Bike JC Awarded 'Jersey City Green Award'",
-                        "footbridge-liberty-state-park-arrives": "Footbridge to Liberty State Park Arrives",
-                    }
-                },
-                "media-coverage": "Media Coverage",
-            }
-        },
-        "support": {
+                    children: [
+                        [ "citi-bike-jc-rebalancing", "Citi Bike JC Rebalancing" ],
+                        [ "2016-ward-tour-press-release", "2016 Ward Tour Press Release" ],
+                        [ "grand-street-vision-protected-bike-lane-petition", "Grand Street Vision - Protected Bike Lane Petition" ],
+                        [ "job-posting-contract-grant-writer", "Job Posting: Contract Grant Writer" ],
+                        [ "design-bike-jcs-7th-annual-ward-tour-poster", "Design Bike JC's 7th Annual Ward Tour Poster" ],
+                        [ "jersey-citys-first-permanent-bike-lane", "Jersey City's First Permanent Bike Lane" ],
+                        [ "installation-jersey-citys-new-bike-racks-underway", "New Bike Rack Installation Underway" ],
+                        [ "bike-jc-awarded-jersey-city-green-award", "Bike JC Awarded 'Jersey City Green Award'" ],
+                        [ "footbridge-liberty-state-park-arrives", "Footbridge to Liberty State Park Arrives" ],
+                    ],
+                } ],
+                [ "media-coverage", "Media Coverage" ],
+            ]
+        } ],
+        ["support", {
             title: "Support",
-            children: {
-                "sponsors": "Sponsors",
-                "volunteer": "Volunteer",
-                "donate": "Donate",
-                "cool-swag-cool-bikers": "Cool Swag for Cool Bikers!",
-            }
-        },
-        "resources": {
+            children: [
+                [ "sponsors", "Sponsors" ],
+                [ "volunteer", "Volunteer" ],
+                [ "donate", "Donate" ],
+                [ "cool-swag-cool-bikers", "Cool Swag for Cool Bikers!" ],
+            ]
+        }],
+        ["resources", {
             title: "Resources",
-            children: {
-                // "citi-bike-usage-jersey-city-2018": "Citi Bike Usage 2018",
-                "ctbk.dev": { node: "Citi Bike Dashboard", href: "https://ctbk.dev/?r=jh" },
-                "bike-maps": { node: "Bike Maps", href: "https://bikejc.github.io/maps" },
-                "rules-road": "Rules of the Road",
-                "national-bike-registry": "National Bike Registry",
-                // "speed-hump-requests": "Speed Hump Requests",
-                // "bike-racks-businesses": "Bike Racks for Businesses",
-                "useful-links": "Useful Links",
-            }
-        },
-        "bike-bus": {
-            title: "Bike Bus", header: false, children: fromEntries(
-                entries(routeDisplays).map(([ routeName, { title, summary, } ]) => [
-                    `${title.split(" ")[0].toLowerCase()}-line`,
-                    {
-                        title: `${title} (${summary})`,
-                        node: <Fragment key={title}>
-                            <span className={css.dot} style={{ backgroundColor: routes[routeName].color, marginRight: "0.3em", marginTop: "-0.2em", }} />
-                            {title} <span style={{ fontWeight: "normal" }}>({summary})</span>
-                        </Fragment>,
-                    },
-                ])
-                // [ "Red", "Orange", "Yellow", "Green", "Blue", "Purple", "Pink", "Gold", "Silver", "Teal", ].map(name => [ `${name.toLowerCase()}-line`, `${name} line` ])
-            ),
-        },
-        "contact-us": { title: "Contact", children: {} },
-        "qrs": { title: "QR Codes", header: false, children: {} },
-        "ward-tour": {
+            children: [
+                [ "ctbk.dev", { node: "Citi Bike Dashboard", href: "https://ctbk.dev/?r=jh" } ],
+                [ "bike-maps", { node: "Bike Maps", href: "https://bikejc.github.io/maps" } ],
+                [ "rules-road", "Rules of the Road" ],
+                [ "national-bike-registry", "National Bike Registry" ],
+                [ "useful-links", "Useful Links" ],
+            ]
+        }],
+        ["bike-bus", {
+            title: "Bike Bus", header: false,
+            children: entries(routeDisplays).map(([ routeName, { title, summary, } ]) => [
+                `${title.split(" ")[0].toLowerCase()}-line`,
+                {
+                    title: `${title} (${summary})`,
+                    node: <Fragment key={title}>
+                        <span className={css.dot} style={{ backgroundColor: routes[routeName].color, marginRight: "0.3em", marginTop: "-0.2em", }} />
+                        {title} <span style={{ fontWeight: "normal" }}>({summary})</span>
+                    </Fragment>,
+                },
+            ])
+        }],
+        [ "contact-us", { title: "Contact", children: [] } ],
+        [ "qrs", { title: "QR Codes", header: false, children: [] } ],
+        ["ward-tour", {
             title: "Jersey City Ward Tour",
             header: false,
-            children: {
-                "faq": { title: "FAQs", children: {}, },
-                "2022": {
+            children: [
+                [ "register", { node: "Register", href: regfox } ],
+                [ "faq", { title: "FAQs", children: [], } ],
+                [ "2022", {
                     title: "2022 Ward Tour",
-                    children: {
-                        "registration": {
-                            node: "Registration (closed)",
-                            href: "https://www.eventbrite.com/e/jersey-city-ward-tour-2022-tickets-324066169637"
-                        },
-                        "volunteer": "Volunteer for the Ward Tour",
-                        "route": "Ward Tour Route",
-                        "finish-line-festival": "Finish Line Festival",
-                        "sponsors": "Ward Tour Sponsors",
-                        "faqs": "Ward Tour FAQs",
-                    }
-                }
-            }
-        }
-    }
+                    children: [
+                        [ "registration", { node: "Registration (closed)", href: "https://www.eventbrite.com/e/jersey-city-ward-tour-2022-tickets-324066169637" } ],
+                        [ "volunteer", "Volunteer for the Ward Tour" ],
+                        [ "route", "Ward Tour Route" ],
+                        [ "finish-line-festival", "Finish Line Festival" ],
+                        [ "sponsors", "Ward Tour Sponsors" ],
+                        [ "faqs", "Ward Tour FAQs" ],
+                    ]
+                } ]
+            ]
+        }]
+    ]
 }
+
+function normalizeChild0(child0: Child0): Child {
+    if (typeof child0 === 'string') return child0
+    if ('href' in child0) return child0
+    return normalizeSitemap(child0)
+}
+
+function normalizeSitemap({ children, ...rest }: Sitemap0): Sitemap {
+
+    if (children) {
+        return {
+            ...rest,
+            children: new Map(
+                children.map(([ name, child0 ]) => ([ name, normalizeChild0(child0) ]))
+            )
+        }
+    } else
+        return rest
+}
+
+export const Sitemap: Sitemap = normalizeSitemap(Sitemap0)
 
 export type SitePath = {
     sitemap: Sitemap
@@ -157,15 +179,17 @@ export function lookup(path: string): SitePath {
         }
         parent = sitemap
         const siblings = parent.children
-        let child: Child | undefined = siblings && siblings[name]
+        let child: Child | undefined = siblings?.get(name)
         if (!child) {
             throw new Error(`No child ${name} found for ${href}`)
         } else if (typeof child === 'object' && 'title' in child) {
             sitemap = child
+        } else if (typeof child === 'string') {
+            sitemap = { title: child }
         } else {
-            throw new Error(`Found leaf breadcrump ${child} at ${href}`)
+            throw new Error(`Found leaf breadcrumb ${child} at ${href}`)
         }
-        breadcrumbs.push({ node: sitemap.node, href })
+        breadcrumbs.push({ node: sitemap.node || sitemap.title, href })
     }
 
     return { sitemap, breadcrumbs, parent }

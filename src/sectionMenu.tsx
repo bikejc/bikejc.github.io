@@ -1,5 +1,6 @@
 import React, {ReactNode} from "react";
 import {Breadcrumb} from "./breadcrumbs";
+import A from "next-utils/a";
 
 export function MenuListItem({ idx, n, active, node, href, target, }: {
     idx: number
@@ -26,7 +27,7 @@ export function MenuListItem({ idx, n, active, node, href, target, }: {
     }
     return (
         <li className={classes.join(" ")}>
-            <a href={href} target={target} className={linkClasses.join(" ")}>{node}</a>
+            <A href={href} target={target || "_self"} className={linkClasses.join(" ")}>{node}</A>
         </li>
     )
 }
