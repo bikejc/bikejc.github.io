@@ -36,9 +36,9 @@ export const belmontWestSide = { lat: 40.723689351674786, lng: -74.0789222717285
 export const lccs = { lat: 40.722437165024765, lng: -74.07618641853334, stop: { name: "LCCS", times: { red: "8:10am", silver: "8:10am" } }, }
 export const belmontBergen = { lat: 40.720908489648345, lng: -74.07275319099428, stop: { name: "Belmont & Bergen / PS 17", times: { red: "8:05am", silver: "8:15am", teal: "7:40am", } }, }
 
-export const jsq = { lat: 40.73080360135806 , lng: -74.06440615653993, stop: { name: "JSQ - Sip & Bergen", times: { red: "7:45am", yellow: "8:05am" } } }
+export const jsq = { lat: 40.73080360135806 , lng: -74.06440615653993, stop: { name: "JSQ - Sip & Bergen", times: { red: "7:50am", yellow: "8:05am" } } }
 export const mcginleySquare = { lat: 40.725356186961825, lng: -74.068021774292  , stop: { name: "McGinley Square", times: { red: "7:55am", yellow: "7:55am", teal: "7:30am", }, }, }
-export const primaryPrep = { lat: 40.72639696637659, lng: -74.06746863474763, stop: { name: "Primary Prep", times: { red: "7:50am", yellow: "8:00am" } } }
+export const primaryPrep = { lat: 40.72639696637659, lng: -74.06746863474763, stop: { name: "Primary Prep", times: { red: "7:54am", yellow: "8:00am" } } }
 
 export const jsqToMcGinley = [
     jsq,
@@ -52,8 +52,8 @@ mcGinleyToJSQ.reverse()
 
 export const montgomeryWestSide = { lat: 40.72830569177484, lng: -74.07541921625074, name: "Montgomery & West Side" }
 
-export const pershingField = { lat: 40.74250183922047 , lng: -74.05369877815248, stop: { name: "Pershing Field", time: "7:30am", }, }
-export const summitSanford = { lat: 40.74282698670428 , lng: -74.05463218688966, name: "Summit & Sanford", }
+export const pershingField = { lat: 40.742794472027434, lng: -74.05348956584932, stop: { name: "Pershing Field", time: "7:30am", }, }
+export const summitSanford = { lat: 40.743135875341636, lng: -74.05439078807832, name: "Summit & Sanford", }
 export const summitCarlton = { lat: 40.74254654709375, lng: -74.05484139919282, name: "Summit & Carlton" }
 
 export const ps3ms4 = { lat: 40.71777784806193, lng: -74.05000269412996, stop: { name: "PS 3 / MS 4", times: { orange: ["7:50am", "8:35am"], green: "8:35am", }}}
@@ -81,7 +81,7 @@ export const cancoToNJT = [
     { lat: 40.7374254, lng: -74.0659547, name: "Tonnele & Dey", },
     { lat: 40.73809593412948, lng: -74.06563997268678, name: "Tonnele & St Pauls", },
     { lat: 40.73773011708069, lng: -74.06462073326112, name: "St Pauls & Liberty", },
-    { lat: 40.73754314314559, lng: -74.0627431869507, stop: { name: "PS 31 / Golden Door", time: "7:35am", }},
+    { lat: 40.73754314314559, lng: -74.0627431869507, }, //stop: { name: "PS 31 / Golden Door", time: "7:35am", }},
     { lat: 40.7375077, lng: -74.0610113, },
     { lat: 40.73733991001137, lng: -74.05920267105104, },
     summit139,
@@ -133,7 +133,7 @@ export const malloryUnionPs17 = [...ps17MalloryUnion]
 malloryUnionPs17.reverse()
 
 export const purple = {
-    // active: false,
+    active: false,
     color: "hsl(275, 100%, 67%)",
     positions: [
         pershingField,
@@ -231,6 +231,7 @@ export const routes: { [k: string]: Route } = {
         ]
     },
     gold: {
+        active: false,
         color: "hsl(49, 100%, 45%)",
         positions: [
             ...grindShopToUnionBergen,
@@ -253,6 +254,7 @@ export const routes: { [k: string]: Route } = {
         ]
     },
     teal: {
+        active: false,
         color: "teal",
         positions: [
             mcginleySquare,

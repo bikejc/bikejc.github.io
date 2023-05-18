@@ -5,7 +5,7 @@ import YouTubeEmbed from "next-utils/youtube";
 import {helmets} from "../../src/img";
 import {iframeHtml} from "../../src/insta";
 import {RouteDisplay, routeDisplays, routeHref, routes} from "../../src/bike-bus/routes";
-import {o2a} from "next-utils/objs";
+import {filterEntries, o2a} from "next-utils/objs";
 import {ReactNode} from "react";
 import Link from "next/link";
 import css from "../../src/bike-bus/route-page.module.css";
@@ -35,6 +35,7 @@ If you don't see a route that works for you, [let us know](mailto:bikebus@bikejc
 `
 
 export default function Home() {
+    const activeRoutes = filterEntries(routeDisplays, (routeName) => routes[routeName].active !== false)
     return (
         <Page path={"/bike-bus"} banner={helmets}>
             {MD(signupMd)}

@@ -193,18 +193,19 @@ const RoutePoint = ({ name, center, opacity, radius, }: { center: LL, radius: nu
     <Tooltip className={css.tooltip}>{name}</Tooltip>
 </Circle>
 
-const Layers = ({ signups, setLL, zoom, setZoom, showHomes, showRoutes, hideRoutes, showSchools, hideSchools, drawMode }: {
+const Layers = ({ signups, setLL, zoom, setZoom, showHomes, showRoutes, pinRoutes, showSchools, hideSchools, drawMode }: {
     signups: Props
     setLL: Dispatch<LL>
     zoom: number
     setZoom: Dispatch<number>
     showHomes: boolean
     showRoutes: string[] | undefined
-    hideRoutes: boolean
+    pinRoutes: string[] | undefined
     showSchools: string[] | undefined
     hideSchools: boolean
     drawMode: boolean
 }) => {
+    const hideRoutes = pinRoutes && !pinRoutes.length
     const { url, attribution } = MAPS['alidade_smooth_dark']
     const [ newRoutes, setNewRoutes ] = useState<LL[][]>([])
     // console.log("num routes:", newRoutes.length)
@@ -320,7 +321,7 @@ const Layers = ({ signups, setLL, zoom, setZoom, showHomes, showRoutes, hideRout
         },
         [ map ],
     )
-    const displayRoutes = !hideRoutes || showRoutes?.length
+    const displayRoutes = !hideRoutes || showRoutes?.length || pinRoutes?.length
     const displaySchools = !hideSchools || showSchools?.length
     const displayRoute = useCallback(
         (routeName: string) => {
@@ -329,9 +330,9 @@ const Layers = ({ signups, setLL, zoom, setZoom, showHomes, showRoutes, hideRout
                 console.warn(`Didn't find route: ${route}`)
                 return false
             }
-            return showRoutes?.includes(routeName) || (!showRoutes && route.active !== false)
+            return showRoutes?.includes(routeName) || pinRoutes?.includes(routeName) || (!showRoutes && !pinRoutes)
         },
-        [ showRoutes ]
+        [ showRoutes, pinRoutes ]
     )
     useEffect(
         () => {
@@ -446,11 +447,11 @@ const Layers = ({ signups, setLL, zoom, setZoom, showHomes, showRoutes, hideRout
         ))}
         {/* Route lines */}
         {
-            entries(routes).map(([ routeName, { color, positions, offsets } ], routeIdx) => {
+            entries(routes).map(([ routeName, { active, color, positions, offsets } ], routeIdx) => {
                 const showRoute = displayRoute(routeName)
                 if (!displayRoutes || !showRoute) return
                 const isSelectedRoute = routeName == selectedRoute
-                const isDeselectedRoute = selectedRoute && !isSelectedRoute
+                const isDeselectedRoute = (selectedRoute && !isSelectedRoute) || (active === false)
                 const routeLineOpacity = isDeselectedRoute ? 0.5 : 1
                 // console.log(`route ${name}`, isSelectedRoute, isDeselectedRoute, routeLineOpacity)
                 const offsetIdxs = offsets?.map((segment, idx) => {
@@ -528,7 +529,7 @@ const Layers = ({ signups, setLL, zoom, setZoom, showHomes, showRoutes, hideRout
                 const showRoute = displayRoute(routeName)
                 if (!displayRoutes || !showRoute) return
                 // console.log(`${routeName}:`)
-                const isSelectedRoute = routeName == selectedRoute
+                const isSelectedRoute = routeName == selectedRoute || !!pinRoutes?.includes(routeName)
                 const isDeselectedRoute = selectedRoute && !isSelectedRoute
                 const routeStopOpacity = isDeselectedRoute ? 0.4 : 0.8
                 return positions.map((point, stopIdx) => {
@@ -565,7 +566,7 @@ const Map = ({ signups, params, ...props }: MapContainerProps & { signups: Props
         draw: [ drawMode, ],
         h: [ showHomes ],
         r: [ showRoutes ],
-        R: [ hideRoutes ],
+        R: [ pinRoutes ],
         s: [ showSchools ],
         S: [ hideSchools ],
     } = params
@@ -577,7 +578,7 @@ const Map = ({ signups, params, ...props }: MapContainerProps & { signups: Props
                 zoom={zoom} setZoom={setZoom}
                 showHomes={showHomes}
                 showRoutes={showRoutes}
-                hideRoutes={hideRoutes}
+                pinRoutes={pinRoutes}
                 showSchools={showSchools}
                 hideSchools={hideSchools}
                 drawMode={drawMode}

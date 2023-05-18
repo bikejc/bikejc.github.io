@@ -5,7 +5,7 @@ export type Params = {
     z: Param<number>
     h: Param<boolean>
     r: Param<string[] | undefined>
-    R: Param<boolean>
+    R: Param<string[] | undefined>
     s: Param<string[] | undefined>
     S: Param<boolean>
     draw: Param<boolean>
@@ -16,7 +16,7 @@ export type ParsedParams = {
     z: ParsedParam<number>
     h: ParsedParam<boolean>
     r: ParsedParam<string[] | undefined>
-    R: ParsedParam<boolean>
+    R: ParsedParam<string[] | undefined>
     s: ParsedParam<string[] | undefined>
     S: ParsedParam<boolean>
     draw: ParsedParam<boolean>

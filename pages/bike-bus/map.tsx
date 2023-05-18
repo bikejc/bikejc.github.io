@@ -21,7 +21,7 @@ export default function Page(props: Props) {
         z: floatParam(13, false),
         h: boolParam,
         r: optStringsParam(" "),
-        R: boolParam,
+        R: optStringsParam(" "),
         s: optStringsParam(" "),
         S: boolParam,
         draw: boolParam
