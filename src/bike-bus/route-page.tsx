@@ -5,9 +5,23 @@ import {routeDisplays, routeList, routes} from "./routes";
 import css from "./route-page.module.css";
 import A from "next-utils/a";
 
-export default function RoutePage(routeName: string, props?: { nextDate?: string }) {
-    const nextDate = (props ? props.nextDate : `Friday, May 19`) || "TBD"
+export type Props = {
+    inactive?: boolean
+    nextDate?: string
+}
+
+export default function RoutePage(routeName: string, props?: Props) {
     const routeDisplay = routeDisplays[routeName]
+    const nextDate = props ? props.nextDate : `Friday, May 19`
+    const body = props?.inactive
+        ? <>
+            <p><strong>Next {`"${routeDisplay.title}"`} Bike Bus Date: TBD</strong></p>
+            <p><A href={"/bike-bus/signup"}><strong>Sign up</strong></A> or <a href={"mailto:bikebus@bikejc.org"}>get in touch</a> if you'd like to ride this route!</p>
+        </>
+        : <>
+            <p><strong>Next {`"${routeDisplay.title}"`} Bike Bus Date:</strong> {nextDate}.</p>
+            <p><A href={"/bike-bus/signup"}><strong>Sign up to join here.</strong></A>, and <A href={"/bike-bus/waiver"}>sign the waiver here</A>, or <a href={"mailto:bikebus@bikejc.org"}>get in touch</a>.</p>
+        </>
     const { title, summary } = routeDisplay
     const { color } = routes[routeName]
     return (
@@ -16,7 +30,7 @@ export default function RoutePage(routeName: string, props?: { nextDate?: string
             banner={helmets}
             h1={<><span className={css.dot} style={{ backgroundColor: color }} /> {title}: {summary}</>}
         >
-            <p><strong>Next Bike Bus:</strong> {nextDate}. <A href={"/bike-bus/signup"}><strong>Sign up to join here.</strong></A>, and <A href={"/bike-bus/waiver"}>sign the waiver here</A></p>
+            {body}
             {routeList(routeName, routeDisplay)}
             {MD(`
 ### Join the Bike Bus!

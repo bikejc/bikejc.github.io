@@ -1,11 +1,15 @@
 import {Breadcrumb} from "./breadcrumbs";
-import {fromEntries} from "next-utils/objs";
+import {entries, fromEntries, values} from "next-utils/objs";
+import {routeDisplays, routes} from "./bike-bus/routes";
+import {Fragment, isValidElement, ReactNode} from "react";
+import css from "./bike-bus/route-page.module.css";
 
 export type Entry = Breadcrumb | string
 export type Child = Entry | Sitemap
 export type Children = { [name: string]: Child }
 export type Sitemap = {
     title: string
+    node?: ReactNode
     header?: boolean
     children?: Children
 }
@@ -25,7 +29,7 @@ export const Sitemap: Sitemap = {
         "projects": {
             title: "Projects",
             children: {
-                "bike-bus": { text: "Bike Bus", href: "/bike-bus" },
+                "bike-bus": { node: "Bike Bus", href: "/bike-bus" },
                 "bike-lanes": "Bike Lanes",
                 "bike-share": "Bike Share",
                 "bike-racks": "Bike Racks",
@@ -43,7 +47,7 @@ export const Sitemap: Sitemap = {
                     }
                 },
                 "calendar": "Calendar",
-                "jersey-city-ward-tour": { text: "Jersey City Ward Tour", href: "/ward-tour" },
+                "jersey-city-ward-tour": { node: "Jersey City Ward Tour", href: "/ward-tour" },
             }
         },
         "news": {
@@ -79,8 +83,8 @@ export const Sitemap: Sitemap = {
             title: "Resources",
             children: {
                 // "citi-bike-usage-jersey-city-2018": "Citi Bike Usage 2018",
-                "ctbk.dev": { text: "Citi Bike Dashboard", href: "https://ctbk.dev/?r=jh" },
-                "bike-maps": { text: "Bike Maps", href: "https://bikejc.github.io/maps" },
+                "ctbk.dev": { node: "Citi Bike Dashboard", href: "https://ctbk.dev/?r=jh" },
+                "bike-maps": { node: "Bike Maps", href: "https://bikejc.github.io/maps" },
                 "rules-road": "Rules of the Road",
                 "national-bike-registry": "National Bike Registry",
                 // "speed-hump-requests": "Speed Hump Requests",
@@ -90,7 +94,17 @@ export const Sitemap: Sitemap = {
         },
         "bike-bus": {
             title: "Bike Bus", header: false, children: fromEntries(
-                ["Red", "Orange", "Yellow", "Green", "Blue", "Purple", "Pink", "Gold", "Silver" ].map(name => [ `${name.toLowerCase()}-line`, `${name} line` ])
+                entries(routeDisplays).map(([ routeName, { title, summary, } ]) => [
+                    `${title.split(" ")[0].toLowerCase()}-line`,
+                    {
+                        title: `${title} (${summary})`,
+                        node: <Fragment key={title}>
+                            <span className={css.dot} style={{ backgroundColor: routes[routeName].color, marginRight: "0.3em", marginTop: "-0.2em", }} />
+                            {title} <span style={{ fontWeight: "normal" }}>({summary})</span>
+                        </Fragment>,
+                    },
+                ])
+                // [ "Red", "Orange", "Yellow", "Green", "Blue", "Purple", "Pink", "Gold", "Silver", "Teal", ].map(name => [ `${name.toLowerCase()}-line`, `${name} line` ])
             ),
         },
         "contact-us": { title: "Contact", children: {} },
@@ -104,7 +118,7 @@ export const Sitemap: Sitemap = {
                     title: "2022 Ward Tour",
                     children: {
                         "registration": {
-                            text: "Registration (closed)",
+                            node: "Registration (closed)",
                             href: "https://www.eventbrite.com/e/jersey-city-ward-tour-2022-tickets-324066169637"
                         },
                         "volunteer": "Volunteer for the Ward Tour",
@@ -119,7 +133,11 @@ export const Sitemap: Sitemap = {
     }
 }
 
-export type SitePath = { sitemap: Sitemap, breadcrumbs: Breadcrumb[], parent?: Sitemap }
+export type SitePath = {
+    sitemap: Sitemap
+    breadcrumbs: Breadcrumb[]
+    parent?: Sitemap
+}
 
 export function lookup(path: string): SitePath {
     const root = path == '/' || path == ''
@@ -130,7 +148,7 @@ export function lookup(path: string): SitePath {
 
     let sitemap: Sitemap = Sitemap
     let href = ""
-    const breadcrumbs: Breadcrumb[] = [{ text: "Home", href: "/" }]
+    const breadcrumbs: Breadcrumb[] = [{ node: "Home", href: "/" }]
     let parent: Sitemap | undefined
     for (const name of pieces) {
         href = `${href}/${name}`
@@ -142,14 +160,12 @@ export function lookup(path: string): SitePath {
         let child: Child | undefined = siblings && siblings[name]
         if (!child) {
             throw new Error(`No child ${name} found for ${href}`)
-        } else if (typeof child === 'string') {
-            sitemap = { title: child }
-        } else if ('title' in child) {
+        } else if (typeof child === 'object' && 'title' in child) {
             sitemap = child
         } else {
             throw new Error(`Found leaf breadcrump ${child} at ${href}`)
         }
-        breadcrumbs.push({ text: sitemap.title, href })
+        breadcrumbs.push({ node: sitemap.node, href })
     }
 
     return { sitemap, breadcrumbs, parent }

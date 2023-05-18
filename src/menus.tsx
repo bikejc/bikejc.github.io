@@ -57,7 +57,7 @@ export function BigMenu({ path }: { path: string }) {
             if (typeof child === 'object' && 'text' in child) {
                 throw new Error(`Unrecognized top-level child: ${child}`)
             }
-            child = (typeof child === 'string') ? { title: child } : child
+            child = (typeof child === 'string') ? { node: child } : child
             const text = child.title
             const topLevelPath = `/${name}`
             const n = topLevelPath.length

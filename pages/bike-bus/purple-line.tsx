@@ -1,3 +1,5 @@
 import RoutePage from "../../src/bike-bus/route-page";
 
-export default function Home() { return RoutePage("purple", { nextDate: undefined }) }
+export default function Home() {
+    return RoutePage("purple", { inactive: true })
+}

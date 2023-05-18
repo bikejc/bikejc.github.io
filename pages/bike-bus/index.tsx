@@ -4,10 +4,11 @@ import MD from "../../src/md";
 import YouTubeEmbed from "next-utils/youtube";
 import {helmets} from "../../src/img";
 import {iframeHtml} from "../../src/insta";
-import {RouteDisplay, routeDisplays, routeHref} from "../../src/bike-bus/routes";
+import {RouteDisplay, routeDisplays, routeHref, routes} from "../../src/bike-bus/routes";
 import {o2a} from "next-utils/objs";
 import {ReactNode} from "react";
 import Link from "next/link";
+import css from "../../src/bike-bus/route-page.module.css";
 
 const signupMd = `
 ### [Sign up for the Jersey City Bike Bus](/bike-bus/signup)
@@ -43,7 +44,13 @@ export default function Home() {
                 <ul>{
                     o2a<string, RouteDisplay, ReactNode>(
                         routeDisplays,
-                        (routeName, { title, summary }) => <li key={routeName}><Link href={`/bike-bus/${routeName}-line`}><strong>{title}</strong>: {summary}</Link></li>
+                        (routeName, { title, summary }) =>
+                            <li key={routeName}>
+                                <Link href={`/bike-bus/${routeName}-line`}>
+                                    <span className={css.dot} style={{ backgroundColor: routes[routeName].color, marginRight: "0.3em", marginTop: "-0.2em", }} />
+                                    <strong>{title}</strong>: {summary}
+                                </Link>
+                            </li>
                     )
                 }</ul>
             </>}

@@ -1,11 +1,11 @@
-import React from "react";
+import React, {ReactNode} from "react";
 import {Breadcrumb} from "./breadcrumbs";
 
-export function MenuListItem({ idx, n, active, text, href, target, }: {
+export function MenuListItem({ idx, n, active, node, href, target, }: {
     idx: number
     n: number
     active: boolean
-    text: string
+    node: ReactNode
     href: string
     target?: string
 }) {
@@ -25,14 +25,14 @@ export function MenuListItem({ idx, n, active, text, href, target, }: {
         classes.push("last")
     }
     return (
-        <li key={text} className={classes.join(" ")}>
-            <a href={href} target={target} className={linkClasses.join(" ")}>{text}</a>
+        <li className={classes.join(" ")}>
+            <a href={href} target={target} className={linkClasses.join(" ")}>{node}</a>
         </li>
     )
 }
 
 export type SectionMenu = {
-    title: string
+    title: ReactNode
     activePath?: string
     breadcrumbs: Breadcrumb[]
 }
@@ -44,12 +44,14 @@ export function SectionMenu({ title, activePath, breadcrumbs }: SectionMenu) {
             <h2 className="block-title">{title}</h2>
             <div className="menu-block-wrapper menu-block-1 menu-name-main-menu parent-mlid-0 menu-level-2">
                 <ul className="menu">{
-                    breadcrumbs.map(({ href, text, target, }, idx) =>
+                    breadcrumbs.map(({ href, node, target, }, idx) =>
                         <MenuListItem
-                            key={text}
+                            key={href}
                             idx={idx} n={numBreadcrumbs}
                             active={!!activePath && href == activePath}
-                            text={text} href={href} target={target}
+                            node={node}
+                            href={href}
+                            target={target}
                         />
                     )
                 }</ul>

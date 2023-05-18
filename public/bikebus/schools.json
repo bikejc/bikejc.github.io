@@ -39,63 +39,24 @@
         "lng": -74.0462154,
         "lat": 40.7482161
     },
-    "PS 8": {
-        "id": "ps8",
-        "lng": -74.0488021,
-        "lat": 40.7425707
-    },
-    "Jersey City Global Charter School": {
-        "id": "jcgcs",
-        "lng": -74.0521856,
-        "lat": 40.7532838
-    },
-    "PS 25": {
-        "id": "ps25",
-        "lng": -74.0563538,
-        "lat": 40.7483306
-    },
-    "PS 5": {
-        "id": "ps5",
-        "lng": -74.0525834,
-        "lat": 40.7246769
-    },
-    "PS 3": {
-        "id": "ps3",
-        "lng": -74.0497111,
-        "lat": 40.7178675
-    },
-    "MS 4": { "id": "ms4", "lat": 40.71766, "lng": -74.05027 },
-    "Hamilton Park Montessori School": {
-        "id": "hpms",
-        "lng": -74.0440804,
-        "lat": 40.7270276
-    },
+    "PS 8": { "id": "ps8", "lng": -74.0488021, "lat": 40.7425707 },
+    "Jersey City Global Charter School": { "id": "jcgcs", "lng": -74.0521856, "lat": 40.7532838 },
+    "PS 20": { "id": "ps20", "lat": 40.69679, "lng": -74.08971 },
+    "PS 25": { "id": "ps25", "lng": -74.0563538, "lat": 40.7483306 },
+    "PS 34": { "id": "ps34", "lat": 40.70221, "lng": -74.09096 },
+    "PS 38": { "id": "ps38", "lat": 40.70882, "lng": -74.09059 },
     "PS 41": { "id": "ps41", "lat": 40.70483, "lng": -74.0783 },
     "PS 15": { "id": "ps15", "lat":  40.70378, "lng": -74.08334 },
-    "Hamilton Park Montessori (Upper Campus)": {
-        "id": "hpmsu",
-        "lat": 40.72639, "lng": -74.04116
-    },
-    "McNair Academic High School": {
-        "id": "mcnair",
-        "lng": -74.0475072,
-        "lat": 40.7268028
-    },
-    "Scandinavian School of Jersey City": {
-        "id": "ssjc",
-        "lng": -74.0423823,
-        "lat": 40.7282799
-    },
-    "PS 16": {
-        "id": "ps16",
-        "lng": -74.0382138,
-        "lat": 40.7147905
-    },
-    "French American Academy of Jersey City": {
-        "id": "faa",
-        "lng": -74.0434138,
-        "lat": 40.7229609
-    },
+    "PS 3": { "id": "ps3", "lng": -74.0497111, "lat": 40.7178675 },
+    "MS 4": { "id": "ms4", "lat": 40.71766, "lng": -74.05027 },
+    "PS 5": { "id": "ps5", "lng": -74.0525834, "lat": 40.7246769 },
+    "Hamilton Park Montessori School": { "id": "hpms", "lng": -74.0440804, "lat": 40.7270276 },
+    "Hamilton Park Montessori (Upper Campus)": { "id": "hpmsu", "lat": 40.72639, "lng": -74.04116 },
+    "Innovation High School": { "id": "ihs", "lat": 40.7101, "lng": -74.0843 },
+    "McNair Academic High School": { "id": "mcnair", "lng": -74.0475072, "lat": 40.7268028 },
+    "Scandinavian School of Jersey City": { "id": "ssjc", "lng": -74.0423823, "lat": 40.7282799 },
+    "PS 16": { "id": "ps16", "lng": -74.0382138, "lat": 40.7147905 },
+    "French American Academy of Jersey City": { "id": "faa", "lng": -74.0434138, "lat": 40.7229609 },
     "Hudson Montessori School": {
         "id": "hms",
         "lng": -74.0466017,

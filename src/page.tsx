@@ -76,28 +76,33 @@ export function Page({ path, h1, description, banner, article, ctime, mtime, doc
     if (!root) {
         // console.log("sectionMap:", sectionMap)
         const sectionMenuItems: Breadcrumb[] = []
-        let children = sitemap?.children, menuPath = path, title = sitemap.title
+        let children = sitemap?.children, menuPath = path, title = sitemap.node
         if (!children) {
             children = parent?.children
             menuPath = path.substring(0, path.lastIndexOf('/'))
             if (!parent) {
                 throw new Error(`No parent or children: ${path}`)
             }
-            title = parent.title
+            title = parent.node
         }
         if (children) {
             Object.entries(children).forEach(([piece, child]) => {
                 //if (piece == "") return
                 let breadcrumb: Breadcrumb
-                if (typeof child === 'string') {
-                    breadcrumb = {text: child, href: `${menuPath}/${piece}`}
-                } else if ('text' in child) {
-                    breadcrumb = {...child}
-                    if (breadcrumb.href.startsWith("http")) {
-                        breadcrumb.target = "_blank"
+                if (!child) {
+                    throw new Error(`path ${path}, falsey child, ${piece}: ${child}`)
+                }
+                if (child && typeof child === 'object') {
+                    if ('href' in child) {  // Breadcrumb
+                        breadcrumb = {...child}
+                        if (breadcrumb.href.startsWith("http")) {
+                            breadcrumb.target = "_blank"
+                        }
+                    } else {
+                        breadcrumb = { node: child.node || child.title, href: `${menuPath}/${piece}`  }
                     }
                 } else {
-                    breadcrumb = {text: child.title, href: `${path}/${piece}`}
+                    breadcrumb = { node: child, href: `${path}/${piece}` }
                 }
                 sectionMenuItems.push(breadcrumb)
             })

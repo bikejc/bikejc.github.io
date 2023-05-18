@@ -1,8 +1,8 @@
-import React from "react";
+import React, {ReactNode} from "react";
 
 export type Breadcrumb = {
     href: string
-    text: string
+    node: ReactNode
     target?: string
 }
 
@@ -13,10 +13,10 @@ export function Breadcrumbs({ breadcrumbs }: { breadcrumbs: Breadcrumb[] }) {
                 <h2 className="element-invisible">You are here</h2>
                 <ul className="breadcrumbs">{
                     breadcrumbs.map(
-                        ( { href, text }, idx) => {
+                        ({ href, node }, idx) => {
                             return (
                                 <li key={href} className={idx + 1 == breadcrumbs.length ? "current" : ""}>
-                                    <a href={href}>{text}</a>
+                                    <a href={href}>{node}</a>
                                 </li>
                             )
                         }
