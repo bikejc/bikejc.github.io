@@ -333,6 +333,7 @@ export const routes: { [k: string]: Route } = {
         ]
     },
     yellow: {
+        active: false,
         color: "hsl(62, 100%, 64%)",
         positions: [
             hamiltonPark,
