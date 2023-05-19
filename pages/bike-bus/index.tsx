@@ -16,8 +16,8 @@ const signupMd = `
 
 [**Sign up here**](/bike-bus/signup) and Bike JC will help coordinate one in your area!
 
-### Next Bike Bus: Friday, May 19 <a id="next-bike-bus"></a>
-We're running another Bike Bus this Friday, May 19!
+### Next Bike Bus: Thursday, May 25 <a id="next-bike-bus"></a>
+Next Bike Bus is Thursday, May 25!
 
 [**Sign up**](/bike-bus/signup) and [sign the waiver](/bike-bus/waiver) (if you haven't yet), and tell your friends!
 `
@@ -25,7 +25,7 @@ We're running another Bike Bus this Friday, May 19!
 const routesMapMd = `
 ### Routes <a id="routes"></a>
 Here are the routes we plan to run (subject to change!):
-<iframe src="/bike-bus/map?ll=40.728_-74.057&S=" width="100%" style="aspect-ratio: 4/3" loading="lazy"></iframe>
+<iframe src="/bike-bus/map?ll=40.724_-74.057&S=" width="100%" style="aspect-ratio: 4/3" loading="lazy"></iframe>
 
 [(full screen version)](/bike-bus/map?S)
 `
@@ -72,7 +72,12 @@ export default function Home() {
 
 ### Previous Bike Buses <a id="past"></a>
 
-#### Bike Bus #2: Friday, May 12 <a id="pilot"></a>
+#### Bike Bus #3: Friday, May 19 <a id="20230519"></a>
+We added a new route this week, [the "silver line"](/bike-bus/silver-line) from Communipaw / Bergen Lafayette to the West Side (Three Little Birds, LCCS, PS 17)
+
+<img src="/bikebus/20230519/silver%202.jpeg" style="max-height: 40em; margin: 0"></img>
+
+#### Bike Bus #2: Friday, May 12 <a id="20230512"></a>
 [We ran another Bike Bus on Friday, May 12](https://www.instagram.com/p/CsVA5tRsxiK/), and are hoping to keep running them each Friday.
 
 Check out [this email to all our signups](https://mailchi.mp/bikejc/next-jc-bike-bus-friday-may-12) with more info about planning and next steps, and [make sure you and your school-mates are signed up](/bike-bus/signup)!

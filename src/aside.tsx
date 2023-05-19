@@ -2,6 +2,7 @@ import React from "react";
 import {SectionMenu} from "./sectionMenu";
 import A from "next-utils/a";
 import Link from "next/link";
+import {regfox} from "./blurbs";
 
 export function Aside({ sectionMenu }: { sectionMenu?: SectionMenu }) {
     // console.log("sectionMenu:", sectionMenu)
@@ -29,7 +30,7 @@ export function Aside({ sectionMenu }: { sectionMenu?: SectionMenu }) {
                 <p>
                     <strong>The Jersey City Ward Tour is back! Sunday, June 4, roll out 11am from City Hall!</strong>
                     {' '}<strong>3,000 Bikes. 15 Miles. 6 Wards, finishing at the Jersey City Jazz Festival.</strong>
-                    {' '}<strong>Free registration coming soon, <a href={"#subscribe"}>subscribe for updates</a></strong>.
+                    {' '}<strong><A href={regfox}>REGISTER HERE NOW</A></strong>.
                 </p>
             </section>
             <section className="block block-block block-block-14 block-odd clearfix">
