@@ -133,7 +133,6 @@ export const malloryUnionPs17 = [...ps17MalloryUnion]
 malloryUnionPs17.reverse()
 
 export const purple = {
-    active: false,
     color: "hsl(275, 100%, 67%)",
     positions: [
         pershingField,
@@ -231,7 +230,6 @@ export const routes: { [k: string]: Route } = {
         ]
     },
     gold: {
-        active: false,
         color: "hsl(49, 100%, 45%)",
         positions: [
             ...grindShopToUnionBergen,
@@ -254,7 +252,6 @@ export const routes: { [k: string]: Route } = {
         ]
     },
     teal: {
-        active: false,
         color: "teal",
         positions: [
             mcginleySquare,
@@ -333,7 +330,6 @@ export const routes: { [k: string]: Route } = {
         ]
     },
     yellow: {
-        active: false,
         color: "hsl(62, 100%, 64%)",
         positions: [
             hamiltonPark,

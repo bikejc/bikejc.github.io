@@ -1,112 +1,50 @@
 {
-    "Infinity Institute": {
-        "id": "ii",
-        "lng": -74.0939077,
-        "lat": 40.6960585
-    },
-    "LCCS": {
-        "id": "lccs",
-        "lng": -74.0756835,
-        "lat": 40.7228584
-    },
-    "Academy 1": {
-        "id": "a1",
-        "lng": -74.084549,
-        "lat": 40.70958
-    },
-    "PS 33": {
-        "id": "ps33",
-        "lng": -74.0846368,
-        "lat": 40.7191098
-    },
-    "Three Little Birds": {
-        "id": "tlb",
-        "lng": -74.0785926,
-        "lat": 40.7244668
-    },
-    "Primary Prep": {
-        "id": "pp",
-        "lng": -74.0664246,
-        "lat": 40.7266252
-    },
-    "TECCS": {
-        "id": "teccs",
-        "lng": -74.0723602,
-        "lat": 40.736092
-    },
-    "PS 28": {
-        "id": "ps28",
-        "lng": -74.0462154,
-        "lat": 40.7482161
-    },
-    "PS 8": { "id": "ps8", "lng": -74.0488021, "lat": 40.7425707 },
-    "Jersey City Global Charter School": { "id": "jcgcs", "lng": -74.0521856, "lat": 40.7532838 },
-    "PS 20": { "id": "ps20", "lat": 40.69679, "lng": -74.08971 },
-    "PS 25": { "id": "ps25", "lng": -74.0563538, "lat": 40.7483306 },
-    "PS 34": { "id": "ps34", "lat": 40.70221, "lng": -74.09096 },
-    "PS 38": { "id": "ps38", "lat": 40.70882, "lng": -74.09059 },
-    "PS 41": { "id": "ps41", "lat": 40.70483, "lng": -74.0783 },
-    "PS 15": { "id": "ps15", "lat":  40.70378, "lng": -74.08334 },
+    "Infinity Institute": { "id": "ii", "lng": -74.0939077, "lat": 40.6960585 },
+    "LCCS": { "id": "lccs", "lng": -74.0756835, "lat": 40.7228584 },
+    "Academy 1": { "id": "a1", "lng": -74.084549, "lat": 40.70958 },
+    "Three Little Birds": { "id": "tlb", "lng": -74.0785926, "lat": 40.7244668 },
+    "Primary Prep": { "id": "pp", "lng": -74.0664246, "lat": 40.7266252 },
+    "TECCS": { "id": "teccs", "lng": -74.0723602, "lat": 40.736092 },
     "PS 3": { "id": "ps3", "lng": -74.0497111, "lat": 40.7178675 },
     "MS 4": { "id": "ms4", "lat": 40.71766, "lng": -74.05027 },
     "PS 5": { "id": "ps5", "lng": -74.0525834, "lat": 40.7246769 },
+    "PS 6": { "id": "ps6", "lat": 40.73638, "lng": -74.05535 },
+    "MS 7": { "id": "ms7", "lat":  40.7404, "lng": -74.05984 },
+    "PS 8": { "id": "ps8", "lng": -74.0488021, "lat": 40.7425707 },
+    "PS 15": { "id": "ps15", "lat":  40.70378, "lng": -74.08334 },
+    "PS 16": { "id": "ps16", "lng": -74.0382138, "lat": 40.7147905 },
+    "PS 17": { "id": "ps17", "lat": 40.72144, "lng": -74.0721 },
+    "PS 20": { "id": "ps20", "lat": 40.69679, "lng": -74.08971 },
+    "PS 22": { "id": "ps22", "lng": -74.0614983, "lat": 40.7136212 },
+    "PS 23": { "id": "ps23", "lat": 40.73467, "lng": -74.06827 },
+    "PS 25": { "id": "ps25", "lng": -74.0563538, "lat": 40.7483306 },
+    "PS 26": { "id":  "ps26", "lat": 40.73914, "lng": -74.05663 },
+    "PS 28": { "id": "ps28", "lng": -74.0462154, "lat": 40.7482161 },
+    "PS 33": { "id": "ps33", "lng": -74.0846368, "lat": 40.7191098 },
+    "PS 34": { "id": "ps34", "lat": 40.70221, "lng": -74.09096 },
+    "PS 37": { "id": "ps37", "lat": 40.72787, "lng": -74.043 },
+    "PS 38": { "id": "ps38", "lat": 40.70882, "lng": -74.09059 },
+    "PS 41": { "id": "ps41", "lat": 40.70483, "lng": -74.0783 },
     "Hamilton Park Montessori School": { "id": "hpms", "lng": -74.0440804, "lat": 40.7270276 },
     "Hamilton Park Montessori (Upper Campus)": { "id": "hpmsu", "lat": 40.72639, "lng": -74.04116 },
+    "Dickinson HS": { "id": "ds", "lat":  40.72962, "lng": -74.05365 },
+    "Ferris HS": { "id": "ferris", "lat":  40.72161, "lng": -74.05381 },
     "Innovation High School": { "id": "ihs", "lat": 40.7101, "lng": -74.0843 },
     "McNair Academic High School": { "id": "mcnair", "lng": -74.0475072, "lat": 40.7268028 },
     "Scandinavian School of Jersey City": { "id": "ssjc", "lng": -74.0423823, "lat": 40.7282799 },
-    "PS 16": { "id": "ps16", "lng": -74.0382138, "lat": 40.7147905 },
     "French American Academy of Jersey City": { "id": "faa", "lng": -74.0434138, "lat": 40.7229609 },
-    "Hudson Montessori School": {
-        "id": "hms",
-        "lng": -74.0466017,
-        "lat": 40.7153871
-    },
-    "PS 22": {
-        "id": "ps22",
-        "lng": -74.0614983,
-        "lat": 40.7136212
-    },
-    "PS 17": {
-        "id": "ps17",
-        "lat": 40.72144, "lng": -74.0721
-    },
-    "Beloved Community Charter School": {
-        "id": "bccs",
-        "lng": -74.0584887,
-        "lat": 40.7178383
-    },
-    "Mustard Seed School": {
-        "id": "mss",
-        "lng": -74.0332533,
-        "lat": 40.7428168
-    },
-    "St. Francis Academy": {
-        "id": "sfa",
-        "lng": -74.0386075,
-        "lat": 40.7639017
-    },
-    "Stevens Cooperative School": {
-        "id": "scs",
-        "lng": -74.0276482,
-        "lat": 40.7406034
-    },
-    "Hola Hoboken Dual Language Charter School": {
-        "id": "hola",
-        "lng": -74.0378162,
-        "lat": 40.7394281
-    },
-    "Waldo ABC": {
-        "id": "waldo",
-        "lng": -74.03788,
-        "lat": 40.72137
-    },
-    "St. Al's Elementary": {
-        "id": "stals",
-        "lat": 40.72447, "lng": -74.07894
-    },
-    "JC Community Charter School":{
-        "id": "jcccs",
-        "lat": 40.71998, "lng": -74.07465
-    }
+    "Hudson Montessori School": { "id": "hms", "lng": -74.0466017, "lat": 40.7153871 },
+    "Beloved Community Charter School": { "id": "bccs", "lng": -74.0584887, "lat": 40.7178383 },
+    "Mustard Seed School": { "id": "mss", "lng": -74.0332533, "lat": 40.7428168 },
+    "St. Francis Academy": { "id": "sfa", "lng": -74.0386075, "lat": 40.7639017 },
+    "Stevens Cooperative School": { "id": "scs", "lng": -74.0276482, "lat": 40.7406034 },
+    "Hola Hoboken Dual Language Charter School": { "id": "hola", "lng": -74.0378162, "lat": 40.7394281 },
+    "Waldo ABC": { "id": "waldo", "lng": -74.03788, "lat": 40.72137 },
+    "St. Al's Elementary": { "id": "stals", "lat": 40.72447, "lng": -74.07894 },
+    "Jersey City Global Charter School": { "id": "jcgcs", "lng": -74.0521856, "lat": 40.7532838 },
+    "Golden Door Charter School": { "id":  "gdcs", "lat":  40.73718, "lng": -74.06228 },
+    "JC Community Charter School": { "id": "jcccs", "lat": 40.71998, "lng": -74.07465 },
+    "St. Nicholas School": { "id": "sns", "lat": 40.74193, "lng": -74.05096 },
+    "OLC School": { "id": "old", "lat": 40.71612, "lng": -74.04211 },
+    "St. Peter's Prep": { "id": "spp", "lat": 40.71566, "lng": -74.03966 }
 }
