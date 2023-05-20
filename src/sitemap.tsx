@@ -1,9 +1,9 @@
 import {Breadcrumb} from "./breadcrumbs";
-import {entries, fromEntries, values} from "next-utils/objs";
+import {entries} from "next-utils/objs";
 import {routeDisplays, routes} from "./bike-bus/routes";
-import {Fragment, isValidElement, ReactNode} from "react";
-import css from "./bike-bus/route-page.module.css";
+import {Fragment, ReactNode} from "react";
 import {regfox} from "./blurbs";
+import Dot from "./dot";
 
 export type Entry = Breadcrumb | string
 export type Child0 = Entry | Sitemap0
@@ -104,7 +104,7 @@ export const Sitemap0: Sitemap0 = {
                 {
                     title: `${title} (${summary})`,
                     node: <Fragment key={title}>
-                        <span className={css.dot} style={{ backgroundColor: routes[routeName].color, marginRight: "0.3em", marginTop: "-0.2em", }} />
+                        <Dot color={routes[routeName].color} />
                         {title} <span style={{ fontWeight: "normal" }}>({summary})</span>
                     </Fragment>,
                 },

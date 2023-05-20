@@ -495,7 +495,9 @@ export function routeList(routeName: string, { sub, query, rwgps }: RouteDisplay
         {MD(`${stopTimes.map(({ time, name }) => `- **${time}**: ${name}`).join("\n")}`)}
         {rwgps && MD(`[Turn-by-turn directions on RideWithGPS](${rwgps})`)}
         {MD(`### Map <a id="map"></a>`)}
-        <iframe src={url} style={{ width: "100%", aspectRatio: "1/1" }} loading="lazy" />
+        <div style={{ width: "100%", textAlign: "center", margin: "auto" }}>
+            <iframe src={url} style={{ width: "100%", maxWidth: "86vw", height: "90vh", maxHeight: "40em", }} loading="lazy" />
+        </div>
         <p><A href={url}>(full screen version)</A></p>
     </Fragment>
 }
@@ -505,59 +507,59 @@ export const routeDisplays: { [route: string]: RouteDisplay } = {
         title: "Red line",
         summary: "Heights to West Side",
         // sub: "Pershing Field, McGinley Square, Lincoln Park",
-        query: "ll=40.725_-74.070&z=13.5&r=red&s=tlb+lccs+ps17+ps33",
+        query: "H&R&S&ll=40.725-74.070&z=13.5&r=red&s=tlb+lccs+ps17+ps33",
         rwgps: "https://ridewithgps.com/routes/42858043",
     },
     orange: {
         title: "Orange line",
         summary: "Bergen Lafayette to Downtown",
-        query: "ll=40.719_-74.054&z=14&r=orange&R=&s=ps5+ps3+ps22",
+        query: "H&R&S&ll=40.719-74.054&z=14&r=orange&R=&s=ps5+ps3+ps22",
         rwgps: "https://ridewithgps.com/routes/42858088",
     },
     yellow: {
         title: "Yellow line",
         summary: "Downtown, West Side, JSQ",
-        query: "ll=40.727_-74.060&z=13.5&r=yellow&s=pp+teccs",
+        query: "H&R&S&ll=40.727-74.060&z=13.5&r=yellow&s=pp+teccs",
         rwgps: "https://ridewithgps.com/routes/42858124",
     },
     green: {
         title: "Green line",
         summary: "JSQ, Heights, Downtown",
-        query: "ll=40.727_-74.056&z=13.5&r=green&R=&s=ps5+ps3+hpms+hpmsu",
+        query: "H&R&S&ll=40.727-74.056&z=13.5&r=green&R=&s=ps5+ps3+hpms+hpmsu",
         rwgps: "https://ridewithgps.com/routes/42858167",
     },
     blue: {
         title: "Blue line",
         summary: "Heights to Hoboken",
-        query: "ll=40.739_-74.041&z=13.5&r=blue&s=mss+hola+scs",
+        query: "H&R&S&ll=40.739-74.041&z=13.5&r=blue&s=mss+hola+scs",
         rwgps: "https://ridewithgps.com/routes/42858196",
     },
     purple: {
         title: "Purple line",
         summary: "Heights, Western Slope",
-        query: "ll=40.748_-74.057&z=14.5&r=purple&s=jcgcs",
+        query: "H&R&S&ll=40.748-74.057&z=14.5&r=purple&s=jcgcs",
         rwgps: "https://ridewithgps.com/routes/42858216",
     },
     pink: {
         title: "Pink line",
         summary: "Paulus Hook / PS16",
-        query: "ll=40.718_-74.038&z=15&r=pink&s=ps16",
+        query: "H&R&S&ll=40.718-74.038&z=15&r=pink&s=ps16",
         rwgps: "https://ridewithgps.com/routes/42858902",
     },
     gold: {
         title: `Gold line`,
         summary: "Communipaw, Bergen Lafayette, Greenville",
-        query: "ll=40.704_-74.079&z=13.5&r=gold&s=a1+ihs+ps20+ps15+ps41+ii",
+        query: "H&R&S&ll=40.704-74.079&z=13.5&r=gold&s=a1+ihs+ps20+ps15+ps41+ii",
     },
     silver: {
         title: `Silver line`,
         summary: "Communipaw to West Side",
-        query: `ll=40.717_-74.082&z=14&r=silver&s=tlb+lccs+ps17+pp`,
+        query: "H&R&S&ll=40.717-74.082&z=14&r=silver&s=tlb+lccs+ps17+pp",
         rwgps: "https://ridewithgps.com/routes/42858061",
     },
     teal: {
         title: "Teal line",
         summary: "McGinley Square to Greenville",
-        query: "ll=40.712_-74.080&z=13.5&r=teal&s=ps38+ps34+a1+ihs",
+        query: "H&R&S&ll=40.712-74.080&z=13.5&r=teal&s=ps38+ps34+a1+ihs",
     }
 }

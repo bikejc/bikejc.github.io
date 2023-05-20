@@ -18,7 +18,8 @@ export type Props = {
 export const SettingsGear = ({ icons, show, children }: Props) => {
     const router = useRouter()
     const basePath = router.basePath
-    const [ showSettings, setShowSettings ] = show || useState(false)
+    const [ fallbackShowSettings, setFallbackShowSettings ] = useState(false)
+    const [ showSettings, setShowSettings ] = show || [ fallbackShowSettings, setFallbackShowSettings ]
     const [ hoverSettings, setHoverSettings ] = useState(false)
     return (
         <div className={css.gearContainer} onMouseEnter={() => setHoverSettings(true)} onMouseLeave={() => setHoverSettings(false)}>

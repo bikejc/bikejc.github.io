@@ -13,6 +13,7 @@ import {ParsedParams} from "./params";
 import {routes, routeStops, Stop} from "./routes";
 import {SettingsGear} from "./settings";
 import {Actions} from "next-utils/use-set";
+import Dot from "../dot";
 
 export const MAPS = {
     openstreetmap: {
@@ -143,18 +144,18 @@ const Stop = ({ center, radius, stop, opacity, displayRoute, permanentTooltip, }
     radius: number
     stop: Stop
     opacity: number
-    displayRoute: (route: string) => boolean
+    displayRoute: (route: string, selected?: boolean) => boolean
     permanentTooltip: boolean
 }) => {
-    let timeStr = stop.time
+    let timeStr: ReactNode = stop.time?.replace(/am$/, '')
     if (!timeStr) {
         const times = stop.times
         if (!times) {
             console.warn("Stop missing time and times:", stop)
         } else {
-            const filteredTimes = entries(filterEntries(times, route => displayRoute(route)))
+            const filteredTimes = entries(filterEntries(times, route => displayRoute(route, true)))
             const times2Routes = {} as { [time: string]: string[] }
-            const routes = [] as string[]
+            const showRoutes = [] as string[]
             filteredTimes.forEach(([ route, time ]) => {
                 const times = time instanceof Array ? time : [time]
                 times.forEach(t => {
@@ -162,18 +163,25 @@ const Stop = ({ center, radius, stop, opacity, displayRoute, permanentTooltip, }
                         times2Routes[t] = []
                     }
                     times2Routes[t].push(route)
-                    if (!(routes.includes(route))) {
-                        routes.push(route)
+                    if (!(showRoutes.includes(route))) {
+                        showRoutes.push(route)
                     }
                 })
             })
-            const includeRoutes = routes.length > 1
-            const timeStrs = o2a<string, string[], string>(times2Routes, (time, routes) => {
+            const includeRoutes = true // showRoutes.length > 1
+            const timeStrs = o2a<string, string[], ReactNode>(times2Routes, (time, showRoutes) => {
                 //const ts = `${t instanceof Array ? t.join(", ") : t}`
-                return includeRoutes ? `${time} (${routes.join(", ")})` : time
+                time = time.replace(/am$/, '')
+                return <Fragment key={time}>
+                    {time}{' '}
+                    {
+                        includeRoutes &&
+                        showRoutes.map(route => <Dot key={route} color={routes[route].color} style={{ border: "1px solid black", }} />)
+                    }
+                </Fragment>
             })
             // console.log("stop", stop.name, "filteredTimes:", filteredTimes, times2Routes, timeStrs)
-            timeStr = timeStrs.join(", ")
+            timeStr = <>{timeStrs}</>
         }
     }
     return <Circle
@@ -200,30 +208,37 @@ const Layers = (
         signups, setLL, zoom, setZoom,
         showRoutes, showRouteActions, hideUnselectedRoutes,
         showSchools, showSchoolActions, hideUnselectedSchools,
-        hideUnselectedHomes,
-        hideSelectedTooltips,
+        showAllHomes, hideSelectedHomes,
+        hideSelectedTooltips, setHideSelectedTooltips,
         drawMode,
         setShowSettings
     }: {
         signups: Props
+        // Map
         setLL: Dispatch<LL>
         zoom: number
         setZoom: Dispatch<number>
+        // Routes
         showRoutes: string[]
         showRouteActions: Actions<string>
         hideUnselectedRoutes: boolean
+        // Schools
         showSchools: string[]
         showSchoolActions: Actions<string>
         hideUnselectedSchools: boolean
-        hideUnselectedHomes: boolean
+        // Homes
+        showAllHomes: boolean
+        hideSelectedHomes: boolean
+        // Labels
         hideSelectedTooltips: boolean
+        setHideSelectedTooltips: Dispatch<boolean>
+        // Misc
         drawMode: boolean
         setShowSettings: Dispatch<boolean>
     }
 ) => {
     const { url, attribution } = MAPS['alidade_smooth_dark']
     const [ newRoutes, setNewRoutes ] = useState<LL[][]>([])
-    // console.log("num routes:", newRoutes.length)
     const [ newRoutePoints, setNewRoutePoints ] = useState<LL[] | null>(null)
     const [ nextPoint, setNextPoint ] = useState<LL | null>(null)
     const toggleSchool = useCallback(
@@ -246,6 +261,7 @@ const Layers = (
         dragend: e => console.log("map dragend:", map.getCenter(), e),
         click: (e: LeafletMouseEvent) => {
             console.log(`map click: latlng:`, JSON.stringify(e.latlng), "newRoutePoints:", newRoutePoints, "nextPoint:", nextPoint, "e:", e)
+            setHideSelectedTooltips(!hideSelectedTooltips)
             setShowSettings(false)
             if (!drawMode) return
             if (!newRoutePoints) {
@@ -262,8 +278,6 @@ const Layers = (
         },
     })
     const mPerPx = useMemo(() => getMetersPerPixel(map), [ map, zoom, ])
-    // const [ selectedSchool, setSelectedSchool ] = useState<string | null>(null)
-    // console.log("render, selectedSchool:", selectedSchool)
     const eventHandlers = useCallback(
         (schoolId: string) => ({
             click: (e: LeafletMouseEvent) => {
@@ -336,13 +350,13 @@ const Layers = (
         [ map ],
     )
     const displayRoute = useCallback(
-        (routeName: string) => {
+        (routeName: string, selected?: boolean) => {
             const route = routes[routeName]
             if (!route) {
                 console.warn(`Didn't find route: ${route}`)
                 return false
             }
-            return showRoutes.includes(routeName) || !hideUnselectedRoutes
+            return showRoutes.includes(routeName) || (!selected && !hideUnselectedRoutes)
         },
         [ showRoutes, hideUnselectedRoutes ]
     )
@@ -350,15 +364,20 @@ const Layers = (
         (e: LeafletMouseEvent, routeName: string) => {
             console.log("showRouteActions:", showRouteActions)
             if (showRoutes.includes(routeName)) {
-                console.log("deselecting route:", routeName)
-                showRouteActions.remove(routeName)
+                if (showRoutes.length == 1) {
+                    setHideSelectedTooltips(false)
+                } else {
+                    console.log("deselecting route:", routeName)
+                    showRouteActions.remove(routeName)
+                }
             } else {
                 console.log("selecting route:", routeName)
                 showRouteActions.add(routeName)
+                setHideSelectedTooltips(false)
             }
             L.DomEvent.stopPropagation(e)
         },
-        [ showRoutes, showRouteActions ]
+        [ showRoutes, showRouteActions, hideUnselectedRoutes, setHideSelectedTooltips ]
     )
     console.log("showRoutes:", showRoutes)
     useEffect(
@@ -380,17 +399,20 @@ const Layers = (
                 const selected = showSchools.includes(school.id)
                 const permanentTooltip = selected && !hideSelectedTooltips
                 const selectedFactor = selected ? 1.3 : 1
-                const notSelected = !selected
                 // console.log(`school ${schoolName}, ${selected}`)
-                const iconFade = 0.4
-                const lineOpacity = selected ? 0.8 : 0.15
-                // const color = latColor(school.lat)
+
                 const color = idxColor(schoolsByLat[schoolName])
+                // const color = latColor(school.lat)
                 // console.log(`school ${schoolName}: lat ${school.lat}, color ${color}`)
+                const iconFade = 0.4
+
+                const homeSelected = selected && !hideSelectedHomes
+                const lineOpacity = homeSelected ? 0.8 : 0.15
                 const lineColor = color
-                const signupOpacity = notSelected ? iconFade : 1
-                const signupColor = color
-                const schoolOpacity = notSelected ? iconFade : 1
+                const homeOpacity = (selected && !hideSelectedHomes) ? 1 : iconFade
+                const homeColor = color
+
+                const schoolOpacity = selected ? 1 : iconFade
                 const schoolColor = color
                 const tooltipOpacity = 0.8
                 return <Fragment key={`${schoolName}-${idx}-${showSchoolsKey}-tt${hideSelectedTooltips}`}>
@@ -399,7 +421,7 @@ const Layers = (
                         showSchool &&
                         <Marker
                             position={school}
-                            icon={schoolIcon({ size: schoolSize * selectedFactor, bg: signupColor, fg: "black", opacity: schoolOpacity })}
+                            icon={schoolIcon({ size: schoolSize * selectedFactor, bg: homeColor, fg: "black", opacity: schoolOpacity })}
                             // opacity={schoolOpacity}
                             eventHandlers={eventHandlers(school.id)}
                         >
@@ -408,9 +430,9 @@ const Layers = (
                     }
                     {
                         // Homes
-                        (!hideUnselectedHomes || selected) &&
+                        (showAllHomes || (!hideSelectedHomes && selected)) &&
                         signups?.map((ll, idx) =>
-                            <Fragment key={`${schoolName}-${idx}-${showSchoolsKey}`}>
+                            <Fragment key={`${schoolName}-${idx}-${showSchoolsKey}-${hideSelectedHomes ? '!' : ''}selected-${showAllHomes ? '' : '!'}all`}>
                                 {/* Home to School */}
                                 <Polyline
                                     positions={[ ll, school ]}
@@ -423,7 +445,7 @@ const Layers = (
                                 Home
                                 <Marker
                                     position={ll}
-                                    icon={houseIcon({ size: houseSize * selectedFactor, bg: schoolColor, fg: "black", opacity: signupOpacity })}
+                                    icon={houseIcon({ size: houseSize * selectedFactor, bg: schoolColor, fg: "black", opacity: homeOpacity })}
                                     // opacity={signupOpacity}
                                     eventHandlers={eventHandlers(school.id)}
                                 >
@@ -586,7 +608,8 @@ const Map = ({ signups, params, ...props }: MapContainerProps & { signups: Props
         ll: [ center, setLL ],
         z: [ zoom, setZoom ],
         draw: [ drawMode, ],
-        h: [ showHomes, setShowHomes ],
+        h: [ showAllHomes, setShowAllHomes ],
+        H: [ hideSelectedHomes, setHideSelectedHomes ],
         r: [ showRoutes, showRouteActions ],
         R: [ hideUnselectedRoutes, setHideUnselectedRoutes ],
         s: [ showSchools, showSchoolActions ],
@@ -595,25 +618,34 @@ const Map = ({ signups, params, ...props }: MapContainerProps & { signups: Props
     } = params
     const [ showSettings, setShowSettings ] = useState(false)
     const types: { [type: string]: [ boolean, Dispatch<boolean> ]} = {
-        Homes: [ !showHomes, (hideUnselectedHomes: boolean) => setShowHomes(!hideUnselectedHomes) ],
-        Schools: [ hideUnselectedSchools, setHideUnselectedSchools ],
         Routes: [ hideUnselectedRoutes, setHideUnselectedRoutes ],
+        Schools: [ hideUnselectedSchools, setHideUnselectedSchools ],
+        'Homes (all)': [ !showAllHomes, (hideUnselectedHomes: boolean) => setShowAllHomes(!hideUnselectedHomes) ],
+        'Homes (selected))': [ hideSelectedHomes, setHideSelectedHomes ],
         Labels: [ hideSelectedTooltips, setHideSelectedTooltips ],
     }
     return <>
         <MapContainer center={center} zoom={zoom} {...props}>
             <Layers
                 signups={signups}
+                // Map
                 setLL={setLL}
                 zoom={zoom} setZoom={setZoom}
-                hideUnselectedHomes={!showHomes}
-                showSchools={showSchools}
+                // Routes
                 showRoutes={showRoutes}
-                hideUnselectedRoutes={hideUnselectedRoutes}
-                showSchoolActions={showSchoolActions}
                 showRouteActions={showRouteActions}
+                hideUnselectedRoutes={hideUnselectedRoutes}
+                // Schools
+                showSchools={showSchools}
+                showSchoolActions={showSchoolActions}
                 hideUnselectedSchools={hideUnselectedSchools}
+                // Homes
+                showAllHomes={showAllHomes}
+                hideSelectedHomes={hideSelectedHomes}
+                // Labels
                 hideSelectedTooltips={hideSelectedTooltips}
+                setHideSelectedTooltips={setHideSelectedTooltips}
+                // Misc
                 drawMode={drawMode}
                 setShowSettings={setShowSettings}
             />

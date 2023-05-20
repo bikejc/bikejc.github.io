@@ -2,8 +2,7 @@ import {Page} from "../page";
 import MD from "../../src/md";
 import {helmets} from "../img";
 import {routeDisplays, routeList, routes} from "./routes";
-import css from "./route-page.module.css";
-import A from "next-utils/a";
+import Dot from "../dot";
 
 export type Props = {
     inactive?: boolean
@@ -28,7 +27,7 @@ export default function RoutePage(routeName: string, props?: Props) {
         <Page
             path={`/bike-bus/${routeName}-line`}
             banner={helmets}
-            h1={<><span className={css.dot} style={{ backgroundColor: color }} /> {title}: {summary}</>}
+            h1={<><Dot color={color} /> {title}: {summary}</>}
         >
             {body}
             {routeList(routeName, routeDisplay)}

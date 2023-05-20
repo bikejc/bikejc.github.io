@@ -8,7 +8,7 @@ import {RouteDisplay, routeDisplays, routeHref, routes} from "../../src/bike-bus
 import {filterEntries, o2a} from "next-utils/objs";
 import {ReactNode} from "react";
 import Link from "next/link";
-import css from "../../src/bike-bus/route-page.module.css";
+import Dot from "../../src/dot";
 
 const signupMd = `
 ### [Sign up for the Jersey City Bike Bus](/bike-bus/signup)
@@ -48,7 +48,7 @@ export default function Home() {
                         (routeName, { title, summary }) =>
                             <li key={routeName}>
                                 <Link href={`/bike-bus/${routeName}-line`}>
-                                    <span className={css.dot} style={{ backgroundColor: routes[routeName].color, marginRight: "0.3em", marginTop: "-0.2em", }} />
+                                    <Dot color={routes[routeName].color} />
                                     <strong>{title}</strong>: {summary}
                                 </Link>
                             </li>

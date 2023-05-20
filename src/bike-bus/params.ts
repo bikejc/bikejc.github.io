@@ -5,6 +5,7 @@ export type Params = {
     ll: Param<LL>
     z: Param<number>
     h: Param<boolean>
+    H: Param<boolean>
     r: Param<string[], Actions<string>>
     R: Param<boolean>
     s: Param<string[], Actions<string>>
@@ -17,6 +18,7 @@ export type ParsedParams = {
     ll: ParsedParam<LL>
     z: ParsedParam<number>
     h: ParsedParam<boolean>
+    H: ParsedParam<boolean>
     r: [ string[], Actions<string> ]
     R: ParsedParam<boolean>
     s: [ string[], Actions<string> ]

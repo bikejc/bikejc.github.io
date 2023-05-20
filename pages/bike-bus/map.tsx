@@ -20,6 +20,7 @@ export default function Page(props: Props) {
         ll: llParam({ init: { lat: 40.725, lng: -74.057 }, places: 3, }),
         z: floatParam(13, false),
         h: boolParam,
+        H: boolParam,
         r: stringsParam([], " "),
         R: boolParam,
         s: stringsParam([], " "),
