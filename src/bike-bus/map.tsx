@@ -1,8 +1,8 @@
-import {Dispatch, Fragment, ReactNode, useCallback, useEffect, useMemo, useState} from 'react';
-import L, {LeafletMouseEvent} from 'leaflet';
+import {ChangeEvent, Dispatch, Fragment, ReactNode, useCallback, useEffect, useMemo, useReducer, useState} from 'react';
+import L, {LeafletEventHandlerFnMap, LeafletMouseEvent} from 'leaflet';
 import 'leaflet/dist/leaflet.css';
 
-import css from './map.module.css';
+import css from './map.module.scss';
 
 import {Circle, MapContainer, Marker, Polyline, TileLayer, Tooltip, useMapEvents,} from 'react-leaflet'
 import {MapContainerProps} from "react-leaflet/lib/MapContainer";
@@ -11,6 +11,8 @@ import {entries, filterEntries, fromEntries, mapEntries, o2a} from "next-utils/o
 import {LL} from "next-utils/params";
 import {ParsedParams} from "./params";
 import {routes, routeStops, Stop} from "./routes";
+import {SettingsGear} from "./settings";
+import {Actions} from "next-utils/use-set";
 
 export const MAPS = {
     openstreetmap: {
@@ -136,13 +138,13 @@ function getMetersPerPixel(map: L.Map) {
     return (distanceX + distanceY) / 2
 }
 
-const Stop = ({ center, radius, stop, opacity, isSelectedRoute, displayRoute, }: {
+const Stop = ({ center, radius, stop, opacity, displayRoute, permanentTooltip, }: {
     center: LL
     radius: number
     stop: Stop
     opacity: number
-    isSelectedRoute: boolean
     displayRoute: (route: string) => boolean
+    permanentTooltip: boolean
 }) => {
     let timeStr = stop.time
     if (!timeStr) {
@@ -150,7 +152,7 @@ const Stop = ({ center, radius, stop, opacity, isSelectedRoute, displayRoute, }:
         if (!times) {
             console.warn("Stop missing time and times:", stop)
         } else {
-            const filteredTimes = entries(filterEntries(times, (route, t) => displayRoute(route)))
+            const filteredTimes = entries(filterEntries(times, route => displayRoute(route)))
             const times2Routes = {} as { [time: string]: string[] }
             const routes = [] as string[]
             filteredTimes.forEach(([ route, time ]) => {
@@ -180,7 +182,7 @@ const Stop = ({ center, radius, stop, opacity, isSelectedRoute, displayRoute, }:
         color={"black"} fillColor={"white"}
         opacity={opacity} fillOpacity={opacity}
     >
-        <Tooltip className={css.tooltip} permanent={isSelectedRoute}>{stop.name}: {timeStr}</Tooltip>
+        <Tooltip className={css.tooltip} permanent={permanentTooltip}>{stop.name}: {timeStr}</Tooltip>
     </Circle>
 }
 
@@ -193,26 +195,48 @@ const RoutePoint = ({ name, center, opacity, radius, }: { center: LL, radius: nu
     <Tooltip className={css.tooltip}>{name}</Tooltip>
 </Circle>
 
-const Layers = ({ signups, setLL, zoom, setZoom, showHomes, showRoutes, pinRoutes, showSchools, hideSchools, drawMode }: {
-    signups: Props
-    setLL: Dispatch<LL>
-    zoom: number
-    setZoom: Dispatch<number>
-    showHomes: boolean
-    showRoutes: string[] | undefined
-    pinRoutes: string[] | undefined
-    showSchools: string[] | undefined
-    hideSchools: boolean
-    drawMode: boolean
-}) => {
-    const hideRoutes = pinRoutes && !pinRoutes.length
+const Layers = (
+    {
+        signups, setLL, zoom, setZoom,
+        showRoutes, showRouteActions, hideUnselectedRoutes,
+        showSchools, showSchoolActions, hideUnselectedSchools,
+        hideUnselectedHomes,
+        hideSelectedTooltips,
+        drawMode,
+        setShowSettings
+    }: {
+        signups: Props
+        setLL: Dispatch<LL>
+        zoom: number
+        setZoom: Dispatch<number>
+        showRoutes: string[]
+        showRouteActions: Actions<string>
+        hideUnselectedRoutes: boolean
+        showSchools: string[]
+        showSchoolActions: Actions<string>
+        hideUnselectedSchools: boolean
+        hideUnselectedHomes: boolean
+        hideSelectedTooltips: boolean
+        drawMode: boolean
+        setShowSettings: Dispatch<boolean>
+    }
+) => {
     const { url, attribution } = MAPS['alidade_smooth_dark']
     const [ newRoutes, setNewRoutes ] = useState<LL[][]>([])
     // console.log("num routes:", newRoutes.length)
     const [ newRoutePoints, setNewRoutePoints ] = useState<LL[] | null>(null)
     const [ nextPoint, setNextPoint ] = useState<LL | null>(null)
-    const [ selectedRoute, setSelectedRoute ] = useState<string | null>(null)
-    // const [ zoom, setZoom ] = useState<number | null>(null)
+    const toggleSchool = useCallback(
+        (school: string) => {
+            if (showSchools.includes(school)) {
+                showSchoolActions.remove(school)
+            } else {
+                showSchoolActions.add(school)
+            }
+            console.log("toggle", school, showSchools)
+        },
+        [ showSchools, showSchoolActions, ]
+    )
     const map: L.Map = useMapEvents({
         zoom: () => {
             console.log("map zoom:", map.getZoom())
@@ -221,11 +245,8 @@ const Layers = ({ signups, setLL, zoom, setZoom, showHomes, showRoutes, pinRoute
         moveend: () => setLL(map.getCenter()),
         dragend: e => console.log("map dragend:", map.getCenter(), e),
         click: (e: LeafletMouseEvent) => {
-            setSelectedSchool(null)
-            setSelectedRoute(null)
-            // const { lat, lng } = e.latlng
             console.log(`map click: latlng:`, JSON.stringify(e.latlng), "newRoutePoints:", newRoutePoints, "nextPoint:", nextPoint, "e:", e)
-            if (selectedSchool || selectedRoute) return
+            setShowSettings(false)
             if (!drawMode) return
             if (!newRoutePoints) {
                 setNewRoutePoints([ e.latlng ])
@@ -241,10 +262,10 @@ const Layers = ({ signups, setLL, zoom, setZoom, showHomes, showRoutes, pinRoute
         },
     })
     const mPerPx = useMemo(() => getMetersPerPixel(map), [ map, zoom, ])
-    const [ selectedSchool, setSelectedSchool ] = useState<string | null>(null)
+    // const [ selectedSchool, setSelectedSchool ] = useState<string | null>(null)
     // console.log("render, selectedSchool:", selectedSchool)
     const eventHandlers = useCallback(
-        (schoolName: string) => ({
+        (schoolId: string) => ({
             click: (e: LeafletMouseEvent) => {
                 if (nextPoint) {
                     console.log("found nextPoint", nextPoint, "aborting click")
@@ -259,18 +280,11 @@ const Layers = ({ signups, setLL, zoom, setZoom, showHomes, showRoutes, pinRoute
                     return
                 }
                 L.DomEvent.stopPropagation(e)
-                if (schoolName == selectedSchool) return
-                console.log("click:", schoolName)
-                setSelectedSchool(schoolName)
-            },
-            mouseover: () => {
-                if (nextPoint || newRoutePoints) return
-                if (schoolName == selectedSchool) return
-                console.log("over:", schoolName, !!nextPoint, !!newRoutePoints)
-                setSelectedSchool(schoolName)
+                console.log("click:", schoolId)
+                toggleSchool(schoolId)
             },
         }),
-        [selectedSchool, setSelectedSchool, nextPoint, newRoutePoints]
+        [ showSchools,  nextPoint, newRoutePoints]
     )
     const numSchools = entries(signups).length
     const minLat = min(...o2a(signups, (name, { school }) => school.lat))
@@ -321,8 +335,6 @@ const Layers = ({ signups, setLL, zoom, setZoom, showHomes, showRoutes, pinRoute
         },
         [ map ],
     )
-    const displayRoutes = !hideRoutes || showRoutes?.length || pinRoutes?.length
-    const displaySchools = !hideSchools || showSchools?.length
     const displayRoute = useCallback(
         (routeName: string) => {
             const route = routes[routeName]
@@ -330,31 +342,48 @@ const Layers = ({ signups, setLL, zoom, setZoom, showHomes, showRoutes, pinRoute
                 console.warn(`Didn't find route: ${route}`)
                 return false
             }
-            return showRoutes?.includes(routeName) || pinRoutes?.includes(routeName) || (!showRoutes && !pinRoutes)
+            return showRoutes.includes(routeName) || !hideUnselectedRoutes
         },
-        [ showRoutes, pinRoutes ]
+        [ showRoutes, hideUnselectedRoutes ]
     )
+    const handleRouteClick = useCallback(
+        (e: LeafletMouseEvent, routeName: string) => {
+            console.log("showRouteActions:", showRouteActions)
+            if (showRoutes.includes(routeName)) {
+                console.log("deselecting route:", routeName)
+                showRouteActions.remove(routeName)
+            } else {
+                console.log("selecting route:", routeName)
+                showRouteActions.add(routeName)
+            }
+            L.DomEvent.stopPropagation(e)
+        },
+        [ showRoutes, showRouteActions ]
+    )
+    console.log("showRoutes:", showRoutes)
     useEffect(
         () => {
-            if (!selectedRoute) return
-            // const {positions} = routes[selectedRoute]
-            const stopTimes = routeStops(selectedRoute)
-            let lines = [`${selectedRoute}:`].concat(stopTimes.map(({ name, time }) => `${time}: ${name}`))
-            console.log(lines.join("\n"))
+            showRoutes.forEach(routeName => {
+                const stopTimes = routeStops(routeName)
+                let lines = [`${routeName}:`].concat(stopTimes.map(({ name, time }) => `${time}: ${name}`))
+                console.log(lines.join("\n"))
+            })
         },
-        [ selectedRoute ]
+        [ showRoutes ]
     )
+    const showSchoolsKey = useMemo(() => showSchools?.join("-") || "", [ showSchools ])
     return <>
         <TileLayer url={url} attribution={attribution}/>
         {
             o2a<string, SchoolSignups, ReactNode>(signups, (schoolName, { school, signups }, idx) => {
-                const showSchool = !showSchools || showSchools.includes(school.id)
-                const selected = schoolName == selectedSchool
+                const showSchool = !hideUnselectedSchools  // !showSchools || showSchools.includes(school.id)
+                const selected = showSchools.includes(school.id)
+                const permanentTooltip = selected && !hideSelectedTooltips
                 const selectedFactor = selected ? 1.3 : 1
-                const notSelected = selectedSchool && !selected
+                const notSelected = !selected
                 // console.log(`school ${schoolName}, ${selected}`)
                 const iconFade = 0.4
-                const lineOpacity = selected ? 1 : (notSelected ? 0.2 : 0.3)
+                const lineOpacity = selected ? 0.8 : 0.15
                 // const color = latColor(school.lat)
                 const color = idxColor(schoolsByLat[schoolName])
                 // console.log(`school ${schoolName}: lat ${school.lat}, color ${color}`)
@@ -364,24 +393,24 @@ const Layers = ({ signups, setLL, zoom, setZoom, showHomes, showRoutes, pinRoute
                 const schoolOpacity = notSelected ? iconFade : 1
                 const schoolColor = color
                 const tooltipOpacity = 0.8
-                return <Fragment key={`${selectedSchool}-${schoolName}-${idx}`}>
+                return <Fragment key={`${schoolName}-${idx}-${showSchoolsKey}-tt${hideSelectedTooltips}`}>
                     {
                         // School
-                        displaySchools && showSchool &&
+                        showSchool &&
                         <Marker
                             position={school}
                             icon={schoolIcon({ size: schoolSize * selectedFactor, bg: signupColor, fg: "black", opacity: schoolOpacity })}
                             // opacity={schoolOpacity}
-                            eventHandlers={eventHandlers(schoolName)}
+                            eventHandlers={eventHandlers(school.id)}
                         >
-                            <Tooltip className={css.tooltip} permanent={selected} opacity={tooltipOpacity}>{schoolName}</Tooltip>
+                            <Tooltip className={css.tooltip} permanent={permanentTooltip} opacity={tooltipOpacity}>{schoolName}</Tooltip>
                         </Marker>
                     }
                     {
                         // Homes
-                        ((!showSchools && showHomes) || showSchools?.includes(school.id)) &&
+                        (!hideUnselectedHomes || selected) &&
                         signups?.map((ll, idx) =>
-                            <Fragment key={`${selectedSchool}-${schoolName}-${idx}`}>
+                            <Fragment key={`${schoolName}-${idx}-${showSchoolsKey}`}>
                                 {/* Home to School */}
                                 <Polyline
                                     positions={[ ll, school ]}
@@ -391,12 +420,12 @@ const Layers = ({ signups, setLL, zoom, setZoom, showHomes, showRoutes, pinRoute
                                 >
                                     <Tooltip className={css.tooltip} opacity={tooltipOpacity}>{schoolName}</Tooltip>
                                 </Polyline>
-                                 Home
+                                Home
                                 <Marker
                                     position={ll}
                                     icon={houseIcon({ size: houseSize * selectedFactor, bg: schoolColor, fg: "black", opacity: signupOpacity })}
                                     // opacity={signupOpacity}
-                                    eventHandlers={eventHandlers(schoolName)}
+                                    eventHandlers={eventHandlers(school.id)}
                                 >
                                     <Tooltip className={css.tooltip} opacity={tooltipOpacity}>{schoolName}</Tooltip>
                                 </Marker>
@@ -449,9 +478,9 @@ const Layers = ({ signups, setLL, zoom, setZoom, showHomes, showRoutes, pinRoute
         {
             entries(routes).map(([ routeName, { active, color, positions, offsets } ], routeIdx) => {
                 const showRoute = displayRoute(routeName)
-                if (!displayRoutes || !showRoute) return
-                const isSelectedRoute = routeName == selectedRoute
-                const isDeselectedRoute = (selectedRoute && !isSelectedRoute) || (active === false)
+                if (!showRoute) return
+                const isSelectedRoute = showRoutes.includes(routeName)
+                const isDeselectedRoute = (showRoutes.length && !isSelectedRoute) || (active === false)
                 const routeLineOpacity = isDeselectedRoute ? 0.5 : 1
                 // console.log(`route ${name}`, isSelectedRoute, isDeselectedRoute, routeLineOpacity)
                 const offsetIdxs = offsets?.map((segment, idx) => {
@@ -483,17 +512,8 @@ const Layers = ({ signups, setLL, zoom, setZoom, showHomes, showRoutes, pinRoute
                 return ([] as ReactNode[]).concat(...segments.map(({ startIdx, lastIdx, offset }, segmentIdx) => {
                     const points = positions.slice(startIdx, lastIdx + 1)
                     const eventHandlers = {
-                        click: (e: LeafletMouseEvent) => {
-                            console.log("selected route:", routeName)
-                            setSelectedRoute(routeName)
-                            L.DomEvent.stopPropagation(e)
-                        },
-                        mouseover: (e: LeafletMouseEvent) => {
-                            console.log("selected route:", routeName)
-                            setSelectedRoute(routeName)
-                            L.DomEvent.stopPropagation(e)
-                        }
-                    }
+                        click: e => handleRouteClick(e, routeName),
+                    } as LeafletEventHandlerFnMap
                     if (!offset) {
                         // console.log(`range line: ${startIdx}-${lastIdx}`)
                         return [<Polyline
@@ -527,22 +547,23 @@ const Layers = ({ signups, setLL, zoom, setZoom, showHomes, showRoutes, pinRoute
         {
             entries(routes).map(([ routeName, { color, positions } ], idx) => {
                 const showRoute = displayRoute(routeName)
-                if (!displayRoutes || !showRoute) return
+                if (!showRoute) return
                 // console.log(`${routeName}:`)
-                const isSelectedRoute = routeName == selectedRoute || !!pinRoutes?.includes(routeName)
-                const isDeselectedRoute = selectedRoute && !isSelectedRoute
+                const isSelectedRoute = showRoutes.includes(routeName)
+                const isDeselectedRoute = showRoutes.length && !isSelectedRoute
                 const routeStopOpacity = isDeselectedRoute ? 0.4 : 0.8
                 return positions.map((point, stopIdx) => {
                     const stop = point.stop
                     if (stop) {
+                        const permanentTooltip = isSelectedRoute && !hideSelectedTooltips
                         // console.log(`  ${stop.time}: ${stop.name}`)
                         return <Stop
-                            key={`route-${routeName}-stop-${stop.name}=${stopIdx}-${routeStopOpacity}-${isSelectedRoute}`}
+                            key={`route${routeName}-idx${stopIdx}-stop${stop.name}-opacity${routeStopOpacity}-tt${permanentTooltip}`}
                             center={point} radius={stopRadius}
                             stop={stop}
                             opacity={routeStopOpacity}
-                            isSelectedRoute={isSelectedRoute}
                             displayRoute={displayRoute}
+                            permanentTooltip={permanentTooltip}
                         />
                     }
                     const name = point.name
@@ -555,7 +576,8 @@ const Layers = ({ signups, setLL, zoom, setZoom, showHomes, showRoutes, pinRoute
                         />
                     }
                 })
-            })}
+            })
+        }
     </>
 }
 
@@ -564,27 +586,64 @@ const Map = ({ signups, params, ...props }: MapContainerProps & { signups: Props
         ll: [ center, setLL ],
         z: [ zoom, setZoom ],
         draw: [ drawMode, ],
-        h: [ showHomes ],
-        r: [ showRoutes ],
-        R: [ pinRoutes ],
-        s: [ showSchools ],
-        S: [ hideSchools ],
+        h: [ showHomes, setShowHomes ],
+        r: [ showRoutes, showRouteActions ],
+        R: [ hideUnselectedRoutes, setHideUnselectedRoutes ],
+        s: [ showSchools, showSchoolActions ],
+        S: [ hideUnselectedSchools, setHideUnselectedSchools ],
+        T: [ hideSelectedTooltips, setHideSelectedTooltips ]
     } = params
-    return (
+    const [ showSettings, setShowSettings ] = useState(false)
+    const types: { [type: string]: [ boolean, Dispatch<boolean> ]} = {
+        Homes: [ !showHomes, (hideUnselectedHomes: boolean) => setShowHomes(!hideUnselectedHomes) ],
+        Schools: [ hideUnselectedSchools, setHideUnselectedSchools ],
+        Routes: [ hideUnselectedRoutes, setHideUnselectedRoutes ],
+        Labels: [ hideSelectedTooltips, setHideSelectedTooltips ],
+    }
+    return <>
         <MapContainer center={center} zoom={zoom} {...props}>
             <Layers
                 signups={signups}
                 setLL={setLL}
                 zoom={zoom} setZoom={setZoom}
-                showHomes={showHomes}
-                showRoutes={showRoutes}
-                pinRoutes={pinRoutes}
+                hideUnselectedHomes={!showHomes}
                 showSchools={showSchools}
-                hideSchools={hideSchools}
+                showRoutes={showRoutes}
+                hideUnselectedRoutes={hideUnselectedRoutes}
+                showSchoolActions={showSchoolActions}
+                showRouteActions={showRouteActions}
+                hideUnselectedSchools={hideUnselectedSchools}
+                hideSelectedTooltips={hideSelectedTooltips}
                 drawMode={drawMode}
+                setShowSettings={setShowSettings}
             />
         </MapContainer>
-    )
+        <SettingsGear
+            show={[ showSettings, setShowSettings ]}
+            icons={[
+                { href: "https://github.com/bikejc/bikejc.github.io", alt: "GitHub logo", src: "icon/gh.png", },
+                { href: "https://bikejc.org", alt: "Bike JC logo", src: "icon/logo.png", },
+            ]}
+        >
+            <div className={css.settings}>
+                <ul className={css.layers}>
+                    {
+                        o2a(types, (type, [ hideType, setHideType ]) => {
+                            const active = !hideType
+                            function onChange(e: ChangeEvent<HTMLInputElement>) {
+                                const checked = e.target.checked
+                                if (checked === active) {
+                                    console.error(`layer ${type}: checked ${checked} != active ${active}`)
+                                }
+                                setHideType(!hideType)
+                            }
+                            return <li key={type}><label><input type={"checkbox"} onChange={onChange} checked={active} />{type}</label></li>
+                        })
+                    }
+                </ul>
+            </div>
+        </SettingsGear>
+    </>
 }
 
 export default Map;

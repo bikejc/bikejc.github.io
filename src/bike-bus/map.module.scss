@@ -1,0 +1,20 @@
+.tooltip {
+    font-size: 1.4em;
+}
+
+.settings {
+    width: 8em;
+    .layers {
+        list-style-type: none;
+        text-align: left;
+        padding-inline-start: 0.5em;
+        margin: 0.5em;
+
+        label {
+            user-select: none;
+            input[type=checkbox] {
+                margin: 3px;
+            }
+        }
+    }
+}

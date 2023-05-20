@@ -214,8 +214,6 @@ export const routes: { [k: string]: Route } = {
         positions: [
             // { lat: 40.71427643262643, lng: -74.08862719563707, stop: { name: "West Side & Grant", time: "7:45am" }},
             ...grindShopToUnionBergen,
-            { lat: 40.71576928099513, lng: -74.0790617465973 },
-            unionBergen,
             ps33,
             { lat: 40.71785103357191, lng: -74.0841579437256, },  // West Side & Williams
             { lat: 40.719818880450106, lng: -74.08784866333009, },  // West Side & Mallory
@@ -435,7 +433,11 @@ export const routes: { [k: string]: Route } = {
 export type StopTime = { time: string, name: string }
 export type StopTimes = StopTime[]
 export function routeStops(routeName: string): StopTimes {
-    const positions = routes[routeName].positions
+    const route = routes[routeName]
+    if (!route) {
+        throw new Error(`Couldn't find route ${routeName}`)
+    }
+    const positions = route.positions
     //const stops = [] as StopTimes
     const stops = {} as { [time: string]: string }
     positions.forEach(({ stop }) => {

@@ -6,6 +6,7 @@ export default function Document() {
             <Head>
                 <meta content="text/html; charset=UTF-8" httpEquiv="Content-Type" />
                 <link href="/favicon.ico" rel="shortcut icon" />
+                <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
                 <meta content="false" httpEquiv="ImageToolbar" />
                 <meta className="foundation-mq-small" />
                 <meta className="foundation-mq-medium" />
@@ -21,7 +22,7 @@ export default function Document() {
                 <script type="text/javascript" dangerouslySetInnerHTML={{ __html: process.env.foundationJsFromFile || 'console.error("failed to load foundation.min.js from env")' }} />
                 <script type="text/javascript" async src="https://platform.twitter.com/widgets.js" />
             </Head>
-            <body className="html front not-logged-in one-sidebar sidebar-second page-node page-node- node-type-home-page">
+            <body className="html sidebar-second">
             <Main />
             <NextScript />
             </body>

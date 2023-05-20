@@ -1,0 +1,41 @@
+.gearContainer {
+  position: fixed;
+  bottom: 1em;
+  right: 1em;
+  z-index: 1000;
+}
+
+.gear {
+  font-size: 2.5em;
+  color: white;
+}
+
+.settings {
+  position: relative;
+  display: inline-block;
+
+  .menu {
+    //width: 8em;
+    background-color: white;
+    color: black;
+    text-align: center;
+    border-radius: 3px;
+    padding: 5px 0;
+
+    position: absolute;
+    z-index: 1;
+    bottom: 1em;
+    right: 105%;
+  }
+}
+
+.icons {
+  text-align: center;
+  margin-top: 0.6em;
+  margin-bottom: 0.3em;
+
+  .icon {
+    margin-left: 0.5em;
+    max-height: 1.5em;
+  }
+}

@@ -1,13 +1,15 @@
 import {LL, Param, ParsedParam} from "next-utils/params";
+import {Actions} from "next-utils/use-set";
 
 export type Params = {
     ll: Param<LL>
     z: Param<number>
     h: Param<boolean>
-    r: Param<string[] | undefined>
-    R: Param<string[] | undefined>
-    s: Param<string[] | undefined>
+    r: Param<string[], Actions<string>>
+    R: Param<boolean>
+    s: Param<string[], Actions<string>>
     S: Param<boolean>
+    T: Param<boolean>
     draw: Param<boolean>
 }
 
@@ -15,9 +17,10 @@ export type ParsedParams = {
     ll: ParsedParam<LL>
     z: ParsedParam<number>
     h: ParsedParam<boolean>
-    r: ParsedParam<string[] | undefined>
-    R: ParsedParam<string[] | undefined>
-    s: ParsedParam<string[] | undefined>
+    r: [ string[], Actions<string> ]
+    R: ParsedParam<boolean>
+    s: [ string[], Actions<string> ]
     S: ParsedParam<boolean>
+    T: ParsedParam<boolean>
     draw: ParsedParam<boolean>
 }
