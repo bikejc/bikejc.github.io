@@ -1,7 +1,7 @@
 import {LL} from "next-utils/params";
 import {entries, fromEntries, o2a} from "next-utils/objs";
 import {Fragment} from "react";
-import css from "../../pages/bike-bus/index.module.css";
+import css from "./routes.module.scss";
 import A from "next-utils/a";
 import MD from "../md"
 
@@ -494,6 +494,11 @@ export type RouteDisplay = {
 }
 export const routeHref = (routeName: string) => `${routeName}-line`
 
+export const MapEmbed = ({ url }: { url: string }) =>
+    <div className={css.mapEmbedContainer}>
+        <iframe className={css.mapEmbed} src={url} loading="lazy" />
+    </div>
+
 export function routeList(routeName: string, { sub, query, rwgps }: RouteDisplay) {
     const stopTimes = getRouteStops(routeName)
     const url = `/bike-bus/map/?${query}`
@@ -503,9 +508,7 @@ export function routeList(routeName: string, { sub, query, rwgps }: RouteDisplay
         {MD(`${stopTimes.map(({ time, name }) => `- **${time}**: ${name}`).join("\n")}`)}
         {rwgps && MD(`[Turn-by-turn directions on RideWithGPS](${rwgps})`)}
         {MD(`### Map <a id="map"></a>`)}
-        <div style={{ width: "100%", textAlign: "center", margin: "auto" }}>
-            <iframe src={url} style={{ width: "100%", maxWidth: "86vw", height: "90vh", maxHeight: "40em", }} loading="lazy" />
-        </div>
+        <MapEmbed url={url} />
         <p><A href={url}>(full screen version)</A></p>
     </Fragment>
 }

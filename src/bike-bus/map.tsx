@@ -1,5 +1,5 @@
 import {ChangeEvent, Dispatch, Fragment, ReactNode, useCallback, useEffect, useMemo, useReducer, useState} from 'react';
-import L, {LeafletEventHandlerFnMap, LeafletMouseEvent} from 'leaflet';
+import L, {LatLngBounds, LatLngBoundsExpression, LeafletEventHandlerFnMap, LeafletMouseEvent} from 'leaflet';
 import 'leaflet/dist/leaflet.css';
 
 import css from './map.module.scss';
@@ -8,11 +8,11 @@ import {Circle, MapContainer, Marker, Polyline, TileLayer, Tooltip, useMapEvents
 import {MapContainerProps} from "react-leaflet/lib/MapContainer";
 import {Props, SchoolSignups} from "./map-utils";
 import {entries, filterEntries, fromEntries, mapEntries, o2a} from "next-utils/objs";
-import {LL} from "next-utils/params";
+import {BB, LL} from "next-utils/params";
 import {HideLevel, ParsedParams} from "./params";
 import {routes, getRouteStops, Stop} from "./routes";
 import {SettingsGear} from "./settings";
-import {Actions} from "next-utils/use-set";
+import {Actions, OptActions} from "next-utils/use-set";
 import Dot from "../dot";
 import {LayerToggle} from "../map/layer-toggle";
 
@@ -140,13 +140,15 @@ function getMetersPerPixel(map: L.Map) {
     return (distanceX + distanceY) / 2
 }
 
-const Stop = ({ center, radius, stop, opacity, displayRoute, permanentTooltip, }: {
+const Stop = ({ center, radius, stop, opacity, displayRoute, permanentTooltip, isPinned, handleClick, }: {
     center: LL
     radius: number
     stop: Stop
     opacity: number
     displayRoute: (route: string, pinnedOnly?: boolean) => boolean
     permanentTooltip: boolean
+    isPinned?: boolean
+    handleClick?: Dispatch<LeafletMouseEvent>
 }) => {
     let timesNode: ReactNode = stop.time?.replace(/am$/, '')
     if (!timesNode) {
@@ -154,7 +156,7 @@ const Stop = ({ center, radius, stop, opacity, displayRoute, permanentTooltip, }
         if (!times) {
             console.warn("Stop missing time and times:", stop)
         } else {
-            const filteredTimes = entries(filterEntries(times, route => displayRoute(route, true)))
+            const filteredTimes = entries(filterEntries(times, route => displayRoute(route, !isPinned)))
             const times2Routes = {} as { [time: string]: string[] }
             const showRoutes = [] as string[]
             filteredTimes.forEach(([ route, time ]) => {
@@ -186,6 +188,7 @@ const Stop = ({ center, radius, stop, opacity, displayRoute, permanentTooltip, }
         weight={3}
         color={"black"} fillColor={"white"}
         opacity={opacity} fillOpacity={opacity}
+        eventHandlers={ handleClick && { click: handleClick } }
     >
         <Tooltip className={css.tooltip} permanent={permanentTooltip}>{stop.name}: {timesNode}</Tooltip>
     </Circle>
@@ -202,7 +205,7 @@ const RoutePoint = ({ name, center, opacity, radius, }: { center: LL, radius: nu
 
 const Layers = (
     {
-        signups, setLL, zoom, setZoom,
+        signups, bounds, setBounds,
         pinnedRoutes, pinnedRouteActions, hideRoutesLevel,
         pinnedSchools, pinnedSchoolActions, hideSchoolsLevel,
         hideHomesLevel,
@@ -211,16 +214,15 @@ const Layers = (
     }: {
         signups: Props
         // Map
-        setLL: Dispatch<LL>
-        zoom: number
-        setZoom: Dispatch<number>
+        bounds: BB
+        setBounds: Dispatch<LatLngBounds>
         // Routes
-        pinnedRoutes: string[]
-        pinnedRouteActions: Actions<string>
+        pinnedRoutes: string[] | null
+        pinnedRouteActions: OptActions<string>
         hideRoutesLevel: HideLevel
         // Schools
-        pinnedSchools: string[]
-        pinnedSchoolActions: Actions<string>
+        pinnedSchools: string[] | null
+        pinnedSchoolActions: OptActions<string>
         hideSchoolsLevel: HideLevel
         // Homes
         hideHomesLevel: HideLevel
@@ -236,9 +238,11 @@ const Layers = (
     const [ newRoutes, setNewRoutes ] = useState<LL[][]>([])
     const [ newRoutePoints, setNewRoutePoints ] = useState<LL[] | null>(null)
     const [ nextPoint, setNextPoint ] = useState<LL | null>(null)
+    const [ pinnedStop, setPinnedStop ] = useState<string>()
+    const [ lastPinnedSchool, setLastPinnedSchool ] = useState<string>()
     const toggleSchool = useCallback(
         (school: string) => {
-            if (pinnedSchools.includes(school)) {
+            if (pinnedSchools?.includes(school)) {
                 pinnedSchoolActions.remove(school)
             } else {
                 pinnedSchoolActions.add(school)
@@ -250,12 +254,23 @@ const Layers = (
     const map: L.Map = useMapEvents({
         zoom: () => {
             console.log("map zoom:", map.getZoom())
+            setBounds(map.getBounds())
             setZoom(map.getZoom())
         },
-        moveend: () => setLL(map.getCenter()),
-        dragend: e => console.log("map dragend:", map.getCenter(), e),
+        moveend: e => {
+            console.log("map moveend:", map.getBounds(), e)
+        },
+        dragend: e => {
+            console.log("map dragend:", map.getBounds(), e)
+            setBounds(map.getBounds())
+        },
         click: (e: LeafletMouseEvent) => {
-            console.log(`map click: latlng:`, JSON.stringify(e.latlng), "newRoutePoints:", newRoutePoints, "nextPoint:", nextPoint, "e:", e)
+            //console.log(`map click: latlng:`, JSON.stringify(e.latlng), "newRoutePoints:", newRoutePoints, "nextPoint:", nextPoint, "e:", e)
+            if (pinnedStop || lastPinnedSchool) {
+                if (pinnedStop) setPinnedStop(undefined)
+                if (lastPinnedSchool) setLastPinnedSchool(undefined)
+                return
+            }
             setHidePinnedTooltips(!hidePinnedTooltips)
             // setShowSettings(false)
             if (!drawMode) return
@@ -272,8 +287,10 @@ const Layers = (
             setNextPoint(e.latlng)
         },
     })
-    const mPerPx = useMemo(() => getMetersPerPixel(map), [ map, zoom, ])
-    const eventHandlers = useCallback(
+    const [ zoom, setZoom ] = useState<number>(map.getZoom())
+
+    const mPerPx = useMemo(() => getMetersPerPixel(map), [ map, bounds, ])
+    const schoolEventHandlers = useCallback(
         (schoolId: string) => ({
             click: (e: LeafletMouseEvent) => {
                 if (nextPoint) {
@@ -288,12 +305,17 @@ const Layers = (
                     }
                     return
                 }
+                if (lastPinnedSchool == schoolId) {
+                    setLastPinnedSchool(undefined)
+                } else if(!pinnedSchools?.includes(schoolId)) {
+                    setLastPinnedSchool(schoolId)
+                }
                 L.DomEvent.stopPropagation(e)
                 console.log("click:", schoolId)
                 toggleSchool(schoolId)
             },
         }),
-        [ pinnedSchools,  nextPoint, newRoutePoints]
+        [ toggleSchool, nextPoint, newRoutePoints]
     )
     const numSchools = entries(signups).length
     const minLat = min(...o2a(signups, (name, { school }) => school.lat))
@@ -351,24 +373,26 @@ const Layers = (
                 console.warn(`Didn't find route: ${route}`)
                 return false
             }
-            return (hideRoutesLevel != 'All' && pinnedRoutes.includes(routeName)) || (hideRoutesLevel == 'None' && !pinnedOnly)
+            return (hideRoutesLevel != 'All' && (!pinnedRoutes || pinnedRoutes.includes(routeName))) || (hideRoutesLevel == 'None' && !pinnedOnly)
         },
         [ pinnedRoutes, hideRoutesLevel ]
     )
     const handleRouteClick = useCallback(
         (e: LeafletMouseEvent, routeName: string) => {
-            if (pinnedRoutes.includes(routeName)) {
-                if (pinnedRoutes.length == 1 && hideRoutesLevel != 'None') {
-                    console.log("toggle tooltips")
-                    setHidePinnedTooltips(!hidePinnedTooltips)
+            if (hideRoutesLevel == 'None') {
+                if (pinnedRoutes?.includes(routeName)) {
+                    if (pinnedRoutes.length == 1) {
+                        pinnedRouteActions.clear()
+                        setHidePinnedTooltips(true)
+                    } else {
+                        pinnedRouteActions.remove(routeName)
+                    }
                 } else {
-                    console.log("deselecting route:", routeName)
-                    pinnedRouteActions.remove(routeName)
+                    pinnedRouteActions.add(routeName)
+                    setHidePinnedTooltips(false)
                 }
-            } else {
-                console.log("selecting route:", routeName)
-                pinnedRouteActions.add(routeName)
-                setHidePinnedTooltips(false)
+            } else if (hideRoutesLevel == 'Unpinned') {
+                setHidePinnedTooltips(!hidePinnedTooltips)
             }
             L.DomEvent.stopPropagation(e)
         },
@@ -377,7 +401,7 @@ const Layers = (
     // Print pinned route stop times to console
     useEffect(
         () => {
-            pinnedRoutes.forEach(routeName => {
+            pinnedRoutes?.forEach(routeName => {
                 const stopTimes = getRouteStops(routeName)
                 let lines = [`${routeName}:`].concat(stopTimes.map(({ name, time }) => `${time}: ${name}`))
                 console.log(lines.join("\n"))
@@ -385,18 +409,19 @@ const Layers = (
         },
         [ pinnedRoutes ]
     )
-    const showSchoolsKey = useMemo(() => pinnedSchools?.join("-") || "", [ pinnedSchools ])
+    const showSchoolsKey = useMemo(() => pinnedSchools ? pinnedSchools.join("-") : "-", [ pinnedSchools ])
     const routeStops = useMemo(
         () => entries(routes).map(([ routeName, { color, positions } ], idx) => {
             const showRoute = displayRoute(routeName)
             if (!showRoute) return
-            const isSelectedRoute = pinnedRoutes.includes(routeName)
-            const isDeselectedRoute = !isSelectedRoute
+            const isSelectedRoute = !pinnedRoutes || pinnedRoutes.includes(routeName)
+            const isDeselectedRoute = !isSelectedRoute && pinnedRoutes
             const routeStopOpacity = isDeselectedRoute ? 0.4 : 0.8
             return positions.map((point, stopIdx) => {
                 const stop = point.stop
                 if (stop) {
-                    const permanentTooltip = isSelectedRoute && !hidePinnedTooltips
+                    const isPinned = stop.name == pinnedStop
+                    const permanentTooltip = isPinned || (isSelectedRoute && !hidePinnedTooltips)
                     return <Stop
                         key={`route${routeName}-idx${stopIdx}-stop${stop.name}-opacity${routeStopOpacity}-tt${permanentTooltip}`}
                         center={point} radius={stopRadius}
@@ -404,6 +429,16 @@ const Layers = (
                         opacity={routeStopOpacity}
                         displayRoute={displayRoute}
                         permanentTooltip={permanentTooltip}
+                        isPinned={isPinned}
+                        handleClick={(e: LeafletMouseEvent) => {
+                            console.log("clicked stop", isPinned)
+                            if (isPinned) {
+                                setPinnedStop(undefined)
+                            } else {
+                                setPinnedStop(stop.name)
+                            }
+                            L.DomEvent.stopPropagation(e)
+                        }}
                     />
                 }
                 const name = point.name
@@ -417,17 +452,17 @@ const Layers = (
                 }
             })
         }),
-        [ displayRoute, pinnedRoutes, hidePinnedTooltips, zoom ]
+        [ displayRoute, pinnedRoutes, hidePinnedTooltips, zoom, pinnedStop ]
     )
     return <>
         <TileLayer url={url} attribution={attribution}/>
         {
             o2a<string, SchoolSignups, ReactNode>(signups, (schoolName, { school, signups }, idx) => {
-                const schoolPinned = pinnedSchools.includes(school.id)
+                const schoolPinned = !pinnedSchools || pinnedSchools.includes(school.id)
                 const showSchool = hideSchoolsLevel == 'None' || hideSchoolsLevel == 'Unpinned' && schoolPinned
-                const permanentTooltip = schoolPinned && !hidePinnedTooltips
+                const permanentTooltip = schoolPinned && (school.id == lastPinnedSchool)
                 const pinnedSizeBonus = schoolPinned ? 1.3 : 1
-                // console.log(`school ${schoolName}, ${selected}`)
+                // console.log(`school ${schoolName}, ${permanentTooltip}`, lastPinnedSchool)
 
                 const color = idxColor(schoolsByLat[schoolName])
                 // const color = latColor(school.lat)
@@ -444,7 +479,7 @@ const Layers = (
                 const schoolOpacity = schoolPinned ? 1 : iconFade
                 const schoolColor = color
                 const tooltipOpacity = 0.8
-                return <Fragment key={`${schoolName}-${idx}-${showSchoolsKey}-tt${hidePinnedTooltips}`}>
+                return <Fragment key={`${schoolName}-${idx}-${showSchoolsKey}-tt${permanentTooltip}`}>
                     {
                         // School
                         showSchool &&
@@ -452,7 +487,7 @@ const Layers = (
                             position={school}
                             icon={schoolIcon({ size: schoolSize * pinnedSizeBonus, bg: homeColor, fg: "black", opacity: schoolOpacity })}
                             // opacity={schoolOpacity}
-                            eventHandlers={eventHandlers(school.id)}
+                            eventHandlers={schoolEventHandlers(school.id)}
                         >
                             <Tooltip className={css.tooltip} permanent={permanentTooltip} opacity={tooltipOpacity}>{schoolName}</Tooltip>
                         </Marker>
@@ -476,7 +511,7 @@ const Layers = (
                                     position={ll}
                                     icon={houseIcon({ size: houseSize * pinnedSizeBonus, bg: schoolColor, fg: "black", opacity: homeOpacity })}
                                     // opacity={signupOpacity}
-                                    eventHandlers={eventHandlers(school.id)}
+                                    eventHandlers={schoolEventHandlers(school.id)}
                                 >
                                     <Tooltip className={css.tooltip} opacity={tooltipOpacity}>{schoolName}</Tooltip>
                                 </Marker>
@@ -530,7 +565,7 @@ const Layers = (
             entries(routes).map(([ routeName, { active, color, positions, offsets } ], routeIdx) => {
                 const showRoute = displayRoute(routeName)
                 if (!showRoute) return
-                const isSelectedRoute = pinnedRoutes.includes(routeName)
+                const isSelectedRoute = !pinnedRoutes || pinnedRoutes.includes(routeName)
                 const isDeselectedRoute = !isSelectedRoute //(showRoutes.length && !isSelectedRoute) || (active === false)
                 const routeLineOpacity = isDeselectedRoute ? 0.4 : 1
                 // console.log(`route ${name}`, isSelectedRoute, isDeselectedRoute, routeLineOpacity)
@@ -601,24 +636,28 @@ const Layers = (
 
 const Map = ({ signups, params, ...props }: MapContainerProps & { signups: Props, params: ParsedParams, }) => {
     const {
-        ll: [ center, setLL ],
-        z: [ zoom, setZoom ],
+        bb: [ bounds, setBounds ],
         draw: [ drawMode, ],
         h: [ hideHomesLevel, setHideHomesLevel ],
         r: [ pinnedRoutes, pinnedRouteActions ],
         R: [ hideRoutesLevel, setHideRoutesLevel ],
         s: [ pinnedSchools, pinnedSchoolActions ],
         S: [ hideSchoolsLevel, setHideSchoolsLevel ],
-        T: [ hidePinnedTooltips, setHidePinnedTooltips ]
+        t: [ showPinnedTooltips, setShowPinnedTooltips ]
     } = params
+    const { sw, ne } = bounds
     const [ showSettings, setShowSettings ] = useState(false)
     return <>
-        <MapContainer center={center} zoom={zoom} {...props}>
+        <MapContainer bounds={[ [sw.lat, sw.lng], [ne.lat, ne.lng] ]} maxZoom={17} {...props}>
             <Layers
                 signups={signups}
                 // Map
-                setLL={setLL}
-                zoom={zoom} setZoom={setZoom}
+                bounds={bounds}
+                setBounds={(bounds: LatLngBounds) => {
+                    const bb = { sw: bounds.getSouthWest(), ne: bounds.getNorthEast(), }
+                    console.log("setting bounds:", bounds, bb)
+                    setBounds(bb)
+                }}
                 // Routes
                 pinnedRoutes={pinnedRoutes}
                 pinnedRouteActions={pinnedRouteActions}
@@ -630,8 +669,8 @@ const Map = ({ signups, params, ...props }: MapContainerProps & { signups: Props
                 // Homes
                 hideHomesLevel={hideHomesLevel}
                 // Labels
-                hidePinnedTooltips={hidePinnedTooltips}
-                setHidePinnedTooltips={setHidePinnedTooltips}
+                hidePinnedTooltips={!showPinnedTooltips}
+                setHidePinnedTooltips={t => setShowPinnedTooltips(!t)}
                 // Misc
                 drawMode={drawMode}
                 setShowSettings={setShowSettings}
@@ -641,7 +680,7 @@ const Map = ({ signups, params, ...props }: MapContainerProps & { signups: Props
             show={[ showSettings, setShowSettings ]}
             icons={[
                 { href: "https://github.com/bikejc/bikejc.github.io", alt: "GitHub logo", src: "icon/gh.png", },
-                { href: "https://bikejc.org/bike-bus", alt: "Bike JC logo – JC Bike Bus homepage", src: "icon/logo.png", },
+                { href: "/bike-bus", alt: "Bike JC logo – JC Bike Bus homepage", src: "icon/logo.png", },
             ]}
         >
             <div className={css.settings}>
@@ -695,7 +734,7 @@ const Map = ({ signups, params, ...props }: MapContainerProps & { signups: Props
                         },
                     ]} />
                     <LayerToggle label={"🪧️"} title={"Show/Hide Pinned Labels"} buttons={[
-                        { label: "📌", title: `${hidePinnedTooltips ? "Show" : "Hide"} labels`, active: !hidePinnedTooltips, setActive: active => setHidePinnedTooltips(!active), },
+                        { label: "📌", title: `${showPinnedTooltips ? "Show" : "Hide"} labels`, active: !showPinnedTooltips, setActive: active => setShowPinnedTooltips(!active), },
                     ]} />
                 </ul>
             </div>

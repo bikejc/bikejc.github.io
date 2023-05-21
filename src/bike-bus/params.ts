@@ -1,6 +1,5 @@
-import {LL, Param, ParsedParam} from "next-utils/params";
-import {Actions} from "next-utils/use-set";
-import {entries} from "next-utils/objs";
+import {BB, Param, ParsedParam} from "next-utils/params";
+import {OptActions} from "next-utils/use-set";
 
 export type HideLevel = "None" | "Unpinned" | "All"
 
@@ -9,10 +8,7 @@ export function hideLevelParam(props?: { None?: string, Unpinned?: string, All?:
     const None = ('None' in props) ? props.None : undefined
     const Unpinned = ('Unpinned' in props) ? props.Unpinned : ''
     const All = ('All' in props) ? props.All : '1'
-    // const { None = undefined, Unpinned = '', All = '1', } = props
     const entries = [ ['None', None], ['Unpinned', Unpinned], ['All', All], ]
-    // const newProps = { None, Unpinned, All, }
-    // console.log(newProps)
     const decodeObj = {} as { [encoded: string]: HideLevel }
     const undefineds = [] as HideLevel[]
     entries.forEach(([level, encoded]) => {
@@ -37,25 +33,23 @@ export function hideLevelParam(props?: { None?: string, Unpinned?: string, All?:
 }
 
 export type Params = {
-    ll: Param<LL>
-    z: Param<number>
+    bb: Param<BB>
     h: Param<HideLevel>
-    r: Param<string[], Actions<string>>
+    r: Param<string[] | null, OptActions<string>>
     R: Param<HideLevel>
-    s: Param<string[], Actions<string>>
+    s: Param<string[] | null, OptActions<string>>
     S: Param<HideLevel>
-    T: Param<boolean>
+    t: Param<boolean>
     draw: Param<boolean>
 }
 
 export type ParsedParams = {
-    ll: ParsedParam<LL>
-    z: ParsedParam<number>
+    bb: ParsedParam<BB>
     h: ParsedParam<HideLevel>
-    r: [ string[], Actions<string> ]
+    r: [ string[] | null, OptActions<string> ]
     R: ParsedParam<HideLevel>
-    s: [ string[], Actions<string> ]
+    s: [ string[] | null, OptActions<string> ]
     S: ParsedParam<HideLevel>
-    T: ParsedParam<boolean>
+    t: ParsedParam<boolean>
     draw: ParsedParam<boolean>
 }

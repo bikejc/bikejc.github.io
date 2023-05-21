@@ -1,0 +1,11 @@
+.mapEmbedContainer {
+    width: 100%;
+    text-align: center;
+    margin: auto;
+    .mapEmbed {
+        width: 100% ;
+        max-width: 86vw;
+        height: 90vh;
+        max-height: 40em;
+    }
+}

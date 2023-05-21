@@ -4,7 +4,7 @@ import MD from "../../src/md";
 import YouTubeEmbed from "next-utils/youtube";
 import {helmets} from "../../src/img";
 import {iframeHtml} from "../../src/insta";
-import {RouteDisplay, routeDisplays, routeHref, routes} from "../../src/bike-bus/routes";
+import {MapEmbed, RouteDisplay, routeDisplays, routeHref, routes} from "../../src/bike-bus/routes";
 import {filterEntries, o2a} from "next-utils/objs";
 import {ReactNode} from "react";
 import Link from "next/link";
@@ -22,14 +22,6 @@ Next Bike Bus is Thursday, May 25!
 [**Sign up**](/bike-bus/signup) and [sign the waiver](/bike-bus/waiver) (if you haven't yet), and tell your friends!
 `
 
-const routesMapMd = `
-### Routes <a id="routes"></a>
-Here are the routes we plan to run (subject to change!):
-<iframe src="/bike-bus/map?ll=40.724_-74.057&S=" width="100%" style="aspect-ratio: 4/3" loading="lazy"></iframe>
-
-[(full screen version)](/bike-bus/map?S)
-`
-
 const routesMapPsMd = `
 If you don't see a route that works for you, [let us know](mailto:bikebus@bikejc.org) and [make sure you and your school-mates are signed up](/bike-bus/signup). The more signups we get from each school, the easier it is to plan a route there, ensure there will be sufficient bike racks, etc.
 `
@@ -39,7 +31,12 @@ export default function Home() {
     return (
         <Page path={"/bike-bus"} banner={helmets}>
             {MD(signupMd)}
-            {MD(routesMapMd)}
+            {MD(`
+### Routes <a id="routes"></a>
+Here are the routes we plan to run (subject to change!):
+`)}
+            <MapEmbed url={"/bike-bus/map?bb=40.704-74.085+40.747-74.038&S"} />
+            {MD(`[(full screen version)](/bike-bus/map?S)`)}
             {<>
                 <p>More info about each route:</p>
                 <ul>{
