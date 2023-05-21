@@ -4,7 +4,7 @@ import {Props, SchoolsJSON, SignupsJSON} from "../../src/bike-bus/map-utils";
 import {loadSync} from "next-utils/load";
 import {mapValues} from "next-utils/objs";
 import {boolParam, floatParam, llParam, parseQueryParams, stringsParam} from "next-utils/params";
-import {Params, ParsedParams} from "../../src/bike-bus/params";
+import {hideLevelParam, Params, ParsedParams} from "../../src/bike-bus/params";
 
 const Map = dynamic(() => import('../../src/bike-bus/map'), { ssr: false });
 
@@ -19,12 +19,11 @@ export default function Page(props: Props) {
     const params: Params = {
         ll: llParam({ init: { lat: 40.725, lng: -74.057 }, places: 3, }),
         z: floatParam(13, false),
-        h: boolParam,
-        H: boolParam,
+        h: hideLevelParam({ All: undefined, None: '', Unpinned: 'p' }),
         r: stringsParam([], " "),
-        R: boolParam,
+        R: hideLevelParam(),
         s: stringsParam([], " "),
-        S: boolParam,
+        S: hideLevelParam(),
         T: boolParam,
         draw: boolParam
     }

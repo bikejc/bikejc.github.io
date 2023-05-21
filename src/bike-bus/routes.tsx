@@ -34,11 +34,11 @@ export const ps26 = {
 export const lincolnPark = { lat: 40.724087769759464, lng: -74.07970547676088, stop: { name: "Lincoln Park", times: { red: "8:15am", silver: "8:05am" } } }
 export const belmontWestSide = { lat: 40.723689351674786, lng: -74.07892227172853, } // Belmont & West Side
 export const lccs = { lat: 40.722526607709575, lng: -74.07551586627962, stop: { name: "LCCS", times: { red: "8:10am", silver: "8:10am" } }, }
-export const bergenKensington = { lat: 40.72165250359196, lng: -74.07213628292085, stop: { name: "Belmont & Bergen / PS 17", times: { red: "8:05am", silver: "8:15am", teal: "7:40am", } }, }
+export const bergenKensington = { lat: 40.72165250359196, lng: -74.07213628292085, stop: { name: "PS 17", times: { red: "8:05am", silver: "8:15am", teal: "7:40am", } }, }
 export const kensingtonJFK = { lat: 40.72296975378418, lng: -74.0750813484192, }
-export const bergenBelmont = { lat: 40.720908489648345, lng: -74.07275319099428, }
-export const jsq = { lat: 40.73080360135806 , lng: -74.06440615653993, stop: { name: "JSQ - Sip & Bergen", times: { red: "7:50am", yellow: "8:05am" } } }
-export const mcginleySquare = { lat: 40.725356186961825, lng: -74.068021774292  , stop: { name: "McGinley Square", times: { red: "7:55am", yellow: "7:55am", teal: "7:30am", }, }, }
+export const bergenBelmont = { lat: 40.720908489648345, lng: -74.07275319099428, name: "Bergen & Belmont" }
+export const jsq = { lat: 40.73080360135806 , lng: -74.06440615653993, stop: { name: "JSQ", times: { red: "7:50am", yellow: "8:05am" } } }
+export const mcginleySquare = { lat: 40.725356186961825, lng: -74.068021774292  , stop: { name: "McGinley Sq.", times: { red: "7:55am", yellow: "7:55am", teal: "7:30am", }, }, }
 export const primaryPrep = { lat: 40.72639696637659, lng: -74.06746863474763, stop: { name: "Primary Prep", times: { red: "7:54am", yellow: "8:00am" } } }
 
 export const jsqToMcGinley = [
@@ -117,7 +117,7 @@ export const hpPs5Ps3 = [
 
 export const ps33 = {
     lat: 40.718436514755226, lng: -74.0836000442505,
-    stop: { name: "West Side & Union / PS 33", times: { red: "8:25am", silver: "7:50am", } },
+    stop: { name: "PS 33", times: { red: "8:25am", silver: "7:50am", } },
 }
 const malloryUnion = { lat: 40.72036368727873, lng: -74.08735513687135, name: "Mallory & Union" }
 export const lccsToMalloryUnion = [
@@ -182,7 +182,7 @@ const grindShopToUnionBergen = [
 const bostwickOcean = { lat: 40.70599393172901, lng: -74.07842874526979, name: "Bostwick & Ocean" }
 const oceanStegman = { lat: 40.7028951229916, lng: -74.08116459846498, name: "Ocean & Stegman" }
 const oceanWegman = { lat: 40.70352140304891, lng: -74.08056378364564, }
-const audubonPark = { lat: 40.7074294202432, lng: -74.08730685710908, stop: { name: "Audubon Park", time: "7:55am" }}
+const audubonPark = { lat: 40.70723829466288, lng: -74.08699035644533, stop: { name: "Audubon Park", time: "7:55am" }}
 const ps38 = { lat: 40.709108861861516, lng: -74.09027874469759, stop: { name: "PS 38", time: "8:00am" }}
 const ps15 = { lat: 40.70382234072197, lng: -74.08263444900514, stop: { name: "PS 15", time: "8:10am" }}
 const ps34 = { lat: 40.70262530092376, lng: -74.09134313855512, stop: { name: "PS 34", time: "8:15am" } }
@@ -256,6 +256,7 @@ export const routes: { [k: string]: Route } = {
             mcginleySquare,
             ...bergenMcGinleyPS17,
             bergenKensington,
+            bergenBelmont,
             bergenHarrison,
             unionBergen,
             ...unionBergenToAcademy1,
@@ -263,17 +264,20 @@ export const routes: { [k: string]: Route } = {
             // { lat: 40.706514452386344, lng: -74.0867704153061, name: "Stegman & Bergen" },
             { lat: 40.70728369786154, lng: -74.08622229646105, },
             audubonPark,
-            { lat: 40.70752701607262, lng: -74.08792376518251, },
-            ps38,
-            { lat: 40.71106883459667, lng: -74.0932881832123, name: "West Side & Stegman" },
-            { lat: 40.70927151739564, lng: -74.09526228904726, name: "West Side & Woodlawn" },
+            { lat: 40.70644938752666, lng: -74.08686161041261, },  // Stegman & Bergen
+            { lat: 40.70575806946678, lng: -74.08738732337953, },
+            { lat: 40.70476581218036, lng: -74.08862113952638, name: "Woodlawn & Bergen" },
+            // { lat: 40.70752701607262, lng: -74.08792376518251, },
+            // ps38,
+            // { lat: 40.71106883459667, lng: -74.0932881832123, name: "West Side & Stegman" },
+            // { lat: 40.70927151739564, lng: -74.09526228904726, name: "West Side & Woodlawn" },
             { lat: 40.703890576767, lng: -74.08730715634172, name: "MLK & Woodlawn" },
             { lat: 40.70125072401823, lng: -74.0903417294345, name: "MLK & Warner" },
             { lat: 40.70234348621301, lng: -74.09169970089351, },
             ps34,
         ],
         offsets: [
-            { start: mcginleySquare.stop.name, end: bergenKensington.stop.name, offsets: { red: -5 } },
+            { start: mcginleySquare.stop.name, end: bergenBelmont.name, offsets: { red: -5 } },
             { start: unionBergen.stop.name, end: academy1.stop.name, offsets: { gold: 5 } },
         ]
     },
@@ -298,7 +302,7 @@ export const routes: { [k: string]: Route } = {
             { start: summitCarlton.name, end: summitHopkins.stop.name, offsets: { blue: 5 } },
             { start: summitHopkins.stop.name, end: "Summit & 139", offsets: { green: 5, } },
             { start: jsq.stop.name, end: mcginleySquare.stop.name, offsets: { yellow: 5 } },
-            { start: mcginleySquare.stop.name, end: bergenKensington.stop.name, offsets: { teal: 5 } },
+            { start: mcginleySquare.stop.name, end: bergenBelmont.name, offsets: { teal: 5 } },
             { start: lccs.stop.name, end: malloryUnion.name, offsets: { silver: -5 } },
         ]
     },
@@ -427,8 +431,8 @@ export const routes: { [k: string]: Route } = {
             // { lat: 40.71390296699984, lng: -74.03803467750551, name: "Washington & Morris" },
             { lat: 40.71367119886497, lng: -74.03631806373598, },
             { lat: 40.714386831207385, lng: -74.03615713119508, },
-            { lat: 40.714586068388364, lng: -74.03790056705476, stop: { name: "PS16 main building", time: "8:05am" }},
-            { lat: 40.71769246486529, lng: -74.03719782829286, stop: { name: "PS16 annex", time: "8:10am" }}
+            { lat: 40.714586068388364, lng: -74.03790056705476, stop: { name: "PS16", time: "8:05am" }},
+            { lat: 40.71769246486529, lng: -74.03719782829286, stop: { name: "PS16 Annex", time: "8:10am" }}
         ],
     },
     purple
@@ -511,59 +515,59 @@ export const routeDisplays: { [route: string]: RouteDisplay } = {
         title: "Red line",
         summary: "Heights to West Side",
         // sub: "Pershing Field, McGinley Square, Lincoln Park",
-        query: "H&R&S&ll=40.725-74.070&z=13.5&r=red&s=tlb+lccs+ps17+ps33",
+        query: "R&S&ll=40.725-74.070&z=13.5&r=red&s=tlb+lccs+ps17+ps33",
         rwgps: "https://ridewithgps.com/routes/42858043",
     },
     orange: {
         title: "Orange line",
         summary: "Bergen Lafayette to Downtown",
-        query: "H&R&S&ll=40.719-74.054&z=14&r=orange&R=&s=ps5+ps3+ps22",
+        query: "R&S&ll=40.719-74.054&z=14&r=orange&R=&s=ps5+ps3+ps22",
         rwgps: "https://ridewithgps.com/routes/42858088",
     },
     yellow: {
         title: "Yellow line",
         summary: "Downtown, West Side, JSQ",
-        query: "H&R&S&ll=40.727-74.060&z=13.5&r=yellow&s=pp+teccs",
+        query: "R&S&ll=40.727-74.060&z=13.5&r=yellow&s=pp+teccs",
         rwgps: "https://ridewithgps.com/routes/42858124",
     },
     green: {
         title: "Green line",
         summary: "JSQ, Heights, Downtown",
-        query: "H&R&S&ll=40.727-74.056&z=13.5&r=green&R=&s=ps5+ps3+hpms+hpmsu",
+        query: "R&S&ll=40.727-74.056&z=13.5&r=green&R=&s=ps5+ps3+hpms+hpmsu",
         rwgps: "https://ridewithgps.com/routes/42858167",
     },
     blue: {
         title: "Blue line",
         summary: "Heights to Hoboken",
-        query: "H&R&S&ll=40.739-74.041&z=13.5&r=blue&s=mss+hola+scs",
+        query: "R&S&ll=40.739-74.041&z=13.5&r=blue&s=mss+hola+scs",
         rwgps: "https://ridewithgps.com/routes/42858196",
     },
     purple: {
         title: "Purple line",
         summary: "Heights, Western Slope",
-        query: "H&R&S&ll=40.748-74.057&z=14.5&r=purple&s=jcgcs",
+        query: "R&S&ll=40.748-74.057&z=14.5&r=purple&s=jcgcs",
         rwgps: "https://ridewithgps.com/routes/42858216",
     },
     pink: {
         title: "Pink line",
         summary: "Paulus Hook / PS16",
-        query: "H&R&S&ll=40.718-74.038&z=15&r=pink&s=ps16",
+        query: "R&S&ll=40.718-74.038&z=15&r=pink&s=ps16",
         rwgps: "https://ridewithgps.com/routes/42858902",
     },
     gold: {
         title: `Gold line`,
         summary: "Communipaw, Bergen Lafayette, Greenville",
-        query: "H&R&S&ll=40.704-74.079&z=13.5&r=gold&s=a1+ihs+ps20+ps15+ps41+ii",
+        query: "R&S&ll=40.704-74.079&z=13.5&r=gold&s=a1+ihs+ps20+ps15+ps41+ii",
     },
     silver: {
         title: `Silver line`,
         summary: "Communipaw to West Side",
-        query: "H&R&S&ll=40.717-74.082&z=14&r=silver&s=tlb+lccs+ps17+pp",
+        query: "R&S&ll=40.717-74.082&z=14&r=silver&s=tlb+lccs+ps17+pp",
         rwgps: "https://ridewithgps.com/routes/42858061",
     },
     teal: {
         title: "Teal line",
         summary: "McGinley Square to Greenville",
-        query: "H&R&S&ll=40.712-74.080&z=13.5&r=teal&s=ps38+ps34+a1+ihs",
+        query: "R&S&ll=40.712-74.080&z=13.5&r=teal&s=ps38+ps34+a1+ihs",
     }
 }

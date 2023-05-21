@@ -1,6 +1,7 @@
 import css from "./settings.module.scss";
 import {Dispatch, ReactNode, useState} from "react";
 import {useRouter} from "next/router";
+import A from "next-utils/a";
 
 export type Icon = {
     src: string
@@ -38,9 +39,9 @@ export const SettingsGear = ({ icons, show, children }: Props) => {
                         <div className={css.icons}>{
                             icons?.map(
                                 ({ src, alt, href, key }) =>
-                                    <a key={key || src} href={href}>
+                                    <A key={key || src} href={href}>
                                         <img alt={alt} className={css.icon} src={`${basePath}/${src}`} />
-                                    </a>)
+                                    </A>)
                         }
                         </div>
                     </div>
