@@ -10,7 +10,7 @@ import {Props, SchoolSignups} from "./map-utils";
 import {entries, filterEntries, fromEntries, mapEntries, o2a} from "next-utils/objs";
 import {LL} from "next-utils/params";
 import {ParsedParams} from "./params";
-import {routes, routeStops, Stop} from "./routes";
+import {routes, getRouteStops, Stop} from "./routes";
 import {SettingsGear} from "./settings";
 import {Actions} from "next-utils/use-set";
 import Dot from "../dot";
@@ -147,8 +147,8 @@ const Stop = ({ center, radius, stop, opacity, displayRoute, permanentTooltip, }
     displayRoute: (route: string, selected?: boolean) => boolean
     permanentTooltip: boolean
 }) => {
-    let timeStr: ReactNode = stop.time?.replace(/am$/, '')
-    if (!timeStr) {
+    let timesNode: ReactNode = stop.time?.replace(/am$/, '')
+    if (!timesNode) {
         const times = stop.times
         if (!times) {
             console.warn("Stop missing time and times:", stop)
@@ -168,7 +168,7 @@ const Stop = ({ center, radius, stop, opacity, displayRoute, permanentTooltip, }
                     }
                 })
             })
-            const includeRoutes = true // showRoutes.length > 1
+            const includeRoutes = true
             const timeStrs = o2a<string, string[], ReactNode>(times2Routes, (time, showRoutes) => {
                 //const ts = `${t instanceof Array ? t.join(", ") : t}`
                 time = time.replace(/am$/, '')
@@ -181,7 +181,7 @@ const Stop = ({ center, radius, stop, opacity, displayRoute, permanentTooltip, }
                 </Fragment>
             })
             // console.log("stop", stop.name, "filteredTimes:", filteredTimes, times2Routes, timeStrs)
-            timeStr = <>{timeStrs}</>
+            timesNode = <>{timeStrs}</>
         }
     }
     return <Circle
@@ -190,7 +190,7 @@ const Stop = ({ center, radius, stop, opacity, displayRoute, permanentTooltip, }
         color={"black"} fillColor={"white"}
         opacity={opacity} fillOpacity={opacity}
     >
-        <Tooltip className={css.tooltip} permanent={permanentTooltip}>{stop.name}: {timeStr}</Tooltip>
+        <Tooltip className={css.tooltip} permanent={permanentTooltip}>{stop.name}: {timesNode}</Tooltip>
     </Circle>
 }
 
@@ -329,7 +329,7 @@ const Layers = (
     }
     const zoomAdjustment = zoom ? max(0, zoom - 14) * 2 : 0
     const schoolSize = 24 + zoomAdjustment
-    const houseSize = 20 + zoomAdjustment
+    const houseSize = 15 + zoomAdjustment
     const stopRadius = 10 * mPerPx + zoomAdjustment
     const routePointRadius = 6 * mPerPx // + zoomAdjustment
     const minRoutePointZoom = 13.5
@@ -350,22 +350,22 @@ const Layers = (
         [ map ],
     )
     const displayRoute = useCallback(
-        (routeName: string, selected?: boolean) => {
+        (routeName: string, selectedOnly?: boolean) => {
             const route = routes[routeName]
             if (!route) {
                 console.warn(`Didn't find route: ${route}`)
                 return false
             }
-            return showRoutes.includes(routeName) || (!selected && !hideUnselectedRoutes)
+            return showRoutes.includes(routeName) || (!selectedOnly && !hideUnselectedRoutes)
         },
         [ showRoutes, hideUnselectedRoutes ]
     )
     const handleRouteClick = useCallback(
         (e: LeafletMouseEvent, routeName: string) => {
-            console.log("showRouteActions:", showRouteActions)
             if (showRoutes.includes(routeName)) {
-                if (showRoutes.length == 1) {
-                    setHideSelectedTooltips(false)
+                if (showRoutes.length == 1 && hideUnselectedRoutes) {
+                    console.log("toggle tooltips")
+                    setHideSelectedTooltips(!hideSelectedTooltips)
                 } else {
                     console.log("deselecting route:", routeName)
                     showRouteActions.remove(routeName)
@@ -377,13 +377,12 @@ const Layers = (
             }
             L.DomEvent.stopPropagation(e)
         },
-        [ showRoutes, showRouteActions, hideUnselectedRoutes, setHideSelectedTooltips ]
+        [ showRoutes, showRouteActions, hideUnselectedRoutes, hideSelectedTooltips, setHideSelectedTooltips ]
     )
-    console.log("showRoutes:", showRoutes)
     useEffect(
         () => {
             showRoutes.forEach(routeName => {
-                const stopTimes = routeStops(routeName)
+                const stopTimes = getRouteStops(routeName)
                 let lines = [`${routeName}:`].concat(stopTimes.map(({ name, time }) => `${time}: ${name}`))
                 console.log(lines.join("\n"))
             })
@@ -391,6 +390,39 @@ const Layers = (
         [ showRoutes ]
     )
     const showSchoolsKey = useMemo(() => showSchools?.join("-") || "", [ showSchools ])
+    const routeStops = useMemo(
+        () => entries(routes).map(([ routeName, { color, positions } ], idx) => {
+            const showRoute = displayRoute(routeName)
+            if (!showRoute) return
+            const isSelectedRoute = showRoutes.includes(routeName)
+            const isDeselectedRoute = !isSelectedRoute
+            const routeStopOpacity = isDeselectedRoute ? 0.4 : 0.8
+            return positions.map((point, stopIdx) => {
+                const stop = point.stop
+                if (stop) {
+                    const permanentTooltip = isSelectedRoute && !hideSelectedTooltips
+                    return <Stop
+                        key={`route${routeName}-idx${stopIdx}-stop${stop.name}-opacity${routeStopOpacity}-tt${permanentTooltip}`}
+                        center={point} radius={stopRadius}
+                        stop={stop}
+                        opacity={routeStopOpacity}
+                        displayRoute={displayRoute}
+                        permanentTooltip={permanentTooltip}
+                    />
+                }
+                const name = point.name
+                if (name && zoom >= minRoutePointZoom) {
+                    return <RoutePoint
+                        key={`route-${name}-point-${name}=${stopIdx}[${routeStopOpacity}`}
+                        center={point} radius={routePointRadius}
+                        opacity={routeStopOpacity}
+                        name={name}
+                    />
+                }
+            })
+        }),
+        [ displayRoute, showRoutes, hideSelectedTooltips, zoom ]
+    )
     return <>
         <TileLayer url={url} attribution={attribution}/>
         {
@@ -430,10 +462,11 @@ const Layers = (
                     }
                     {
                         // Homes
-                        (showAllHomes || (!hideSelectedHomes && selected)) &&
+                        showSchool &&
+                        //(showAllHomes || (!hideSelectedHomes && selected)) &&
                         signups?.map((ll, idx) =>
                             <Fragment key={`${schoolName}-${idx}-${showSchoolsKey}-${hideSelectedHomes ? '!' : ''}selected-${showAllHomes ? '' : '!'}all`}>
-                                {/* Home to School */}
+                                {/* Home to School line */}
                                 <Polyline
                                     positions={[ ll, school ]}
                                     color={lineColor} fillColor={lineColor}
@@ -442,7 +475,7 @@ const Layers = (
                                 >
                                     <Tooltip className={css.tooltip} opacity={tooltipOpacity}>{schoolName}</Tooltip>
                                 </Polyline>
-                                Home
+                                {/*Home*/}
                                 <Marker
                                     position={ll}
                                     icon={houseIcon({ size: houseSize * selectedFactor, bg: schoolColor, fg: "black", opacity: homeOpacity })}
@@ -502,8 +535,8 @@ const Layers = (
                 const showRoute = displayRoute(routeName)
                 if (!showRoute) return
                 const isSelectedRoute = showRoutes.includes(routeName)
-                const isDeselectedRoute = (showRoutes.length && !isSelectedRoute) || (active === false)
-                const routeLineOpacity = isDeselectedRoute ? 0.5 : 1
+                const isDeselectedRoute = !isSelectedRoute //(showRoutes.length && !isSelectedRoute) || (active === false)
+                const routeLineOpacity = isDeselectedRoute ? 0.4 : 1
                 // console.log(`route ${name}`, isSelectedRoute, isDeselectedRoute, routeLineOpacity)
                 const offsetIdxs = offsets?.map((segment, idx) => {
                     const { start, end } = segment
@@ -566,40 +599,7 @@ const Layers = (
                 }))
             })}
         {/* Route stops */}
-        {
-            entries(routes).map(([ routeName, { color, positions } ], idx) => {
-                const showRoute = displayRoute(routeName)
-                if (!showRoute) return
-                // console.log(`${routeName}:`)
-                const isSelectedRoute = showRoutes.includes(routeName)
-                const isDeselectedRoute = showRoutes.length && !isSelectedRoute
-                const routeStopOpacity = isDeselectedRoute ? 0.4 : 0.8
-                return positions.map((point, stopIdx) => {
-                    const stop = point.stop
-                    if (stop) {
-                        const permanentTooltip = isSelectedRoute && !hideSelectedTooltips
-                        // console.log(`  ${stop.time}: ${stop.name}`)
-                        return <Stop
-                            key={`route${routeName}-idx${stopIdx}-stop${stop.name}-opacity${routeStopOpacity}-tt${permanentTooltip}`}
-                            center={point} radius={stopRadius}
-                            stop={stop}
-                            opacity={routeStopOpacity}
-                            displayRoute={displayRoute}
-                            permanentTooltip={permanentTooltip}
-                        />
-                    }
-                    const name = point.name
-                    if (name && zoom >= minRoutePointZoom) {
-                        return <RoutePoint
-                            key={`route-${name}-point-${name}=${stopIdx}[${routeStopOpacity}`}
-                            center={point} radius={routePointRadius}
-                            opacity={routeStopOpacity}
-                            name={name}
-                        />
-                    }
-                })
-            })
-        }
+        {routeStops}
     </>
 }
 
@@ -621,7 +621,7 @@ const Map = ({ signups, params, ...props }: MapContainerProps & { signups: Props
         Routes: [ hideUnselectedRoutes, setHideUnselectedRoutes ],
         Schools: [ hideUnselectedSchools, setHideUnselectedSchools ],
         'Homes (all)': [ !showAllHomes, (hideUnselectedHomes: boolean) => setShowAllHomes(!hideUnselectedHomes) ],
-        'Homes (selected))': [ hideSelectedHomes, setHideSelectedHomes ],
+        'Homes (selected)': [ hideSelectedHomes, setHideSelectedHomes ],
         Labels: [ hideSelectedTooltips, setHideSelectedTooltips ],
     }
     return <>

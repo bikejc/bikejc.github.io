@@ -33,9 +33,10 @@ export const ps26 = {
 
 export const lincolnPark = { lat: 40.724087769759464, lng: -74.07970547676088, stop: { name: "Lincoln Park", times: { red: "8:15am", silver: "8:05am" } } }
 export const belmontWestSide = { lat: 40.723689351674786, lng: -74.07892227172853, } // Belmont & West Side
-export const lccs = { lat: 40.722437165024765, lng: -74.07618641853334, stop: { name: "LCCS", times: { red: "8:10am", silver: "8:10am" } }, }
-export const belmontBergen = { lat: 40.720908489648345, lng: -74.07275319099428, stop: { name: "Belmont & Bergen / PS 17", times: { red: "8:05am", silver: "8:15am", teal: "7:40am", } }, }
-
+export const lccs = { lat: 40.722526607709575, lng: -74.07551586627962, stop: { name: "LCCS", times: { red: "8:10am", silver: "8:10am" } }, }
+export const bergenKensington = { lat: 40.72165250359196, lng: -74.07213628292085, stop: { name: "Belmont & Bergen / PS 17", times: { red: "8:05am", silver: "8:15am", teal: "7:40am", } }, }
+export const kensingtonJFK = { lat: 40.72296975378418, lng: -74.0750813484192, }
+export const bergenBelmont = { lat: 40.720908489648345, lng: -74.07275319099428, }
 export const jsq = { lat: 40.73080360135806 , lng: -74.06440615653993, stop: { name: "JSQ - Sip & Bergen", times: { red: "7:50am", yellow: "8:05am" } } }
 export const mcginleySquare = { lat: 40.725356186961825, lng: -74.068021774292  , stop: { name: "McGinley Square", times: { red: "7:55am", yellow: "7:55am", teal: "7:30am", }, }, }
 export const primaryPrep = { lat: 40.72639696637659, lng: -74.06746863474763, stop: { name: "Primary Prep", times: { red: "7:54am", yellow: "8:00am" } } }
@@ -119,9 +120,7 @@ export const ps33 = {
     stop: { name: "West Side & Union / PS 33", times: { red: "8:25am", silver: "7:50am", } },
 }
 const malloryUnion = { lat: 40.72036368727873, lng: -74.08735513687135, name: "Mallory & Union" }
-export const ps17MalloryUnion = [
-    belmontBergen,
-    { lat: 40.72212818027965 , lng: -74.07572507858278, },
+export const lccsToMalloryUnion = [
     lccs,
     belmontWestSide,
     lincolnPark,
@@ -129,8 +128,8 @@ export const ps17MalloryUnion = [
     { lat: 40.722551001148226, lng: -74.08548831939699, name: "Mallory & Communipaw" },
     malloryUnion,
 ]
-export const malloryUnionPs17 = [...ps17MalloryUnion]
-malloryUnionPs17.reverse()
+export const malloryUnionToLCCS = [...lccsToMalloryUnion]
+malloryUnionToLCCS.reverse()
 
 export const purple = {
     color: "hsl(275, 100%, 67%)",
@@ -219,12 +218,14 @@ export const routes: { [k: string]: Route } = {
             { lat: 40.719818880450106, lng: -74.08784866333009, },  // West Side & Mallory
             // { lat: 40.71374845499957, lng: -74.08924877643587, },  // West Side & Grant
             // { lat: 40.71524070064235, lng: -74.09210264682771, },  // Grant & Mallory
-            ...malloryUnionPs17,
+            ...malloryUnionToLCCS,
+            kensingtonJFK,
+            bergenKensington,
         ],
         offsets: [
             { start: theGrindShop.stop.name, end: communipawVanHorne.name, offsets: { orange: -5, gold: 5 } },
             { start: communipawVanHorne.name, end: unionBergen.stop.name, offsets: { gold: 5 } },
-            { start: malloryUnion.name, end: belmontBergen.stop.name, offsets: { red: 5 } },
+            { start: malloryUnion.name, end: lccs.stop.name, offsets: { red: -5 } },
         ]
     },
     gold: {
@@ -254,7 +255,7 @@ export const routes: { [k: string]: Route } = {
         positions: [
             mcginleySquare,
             ...bergenMcGinleyPS17,
-            belmontBergen,
+            bergenKensington,
             bergenHarrison,
             unionBergen,
             ...unionBergenToAcademy1,
@@ -272,7 +273,7 @@ export const routes: { [k: string]: Route } = {
             ps34,
         ],
         offsets: [
-            { start: mcginleySquare.stop.name, end: belmontBergen.stop.name, offsets: { red: -5 } },
+            { start: mcginleySquare.stop.name, end: bergenKensington.stop.name, offsets: { red: -5 } },
             { start: unionBergen.stop.name, end: academy1.stop.name, offsets: { gold: 5 } },
         ]
     },
@@ -286,7 +287,10 @@ export const routes: { [k: string]: Route } = {
             { lat: 40.73043774421105 , lng: -74.06129479408266, name: "Summit & Sip", },
             ...jsqToMcGinley,
             ...bergenMcGinleyPS17,
-            ...ps17MalloryUnion,
+            bergenKensington,
+            bergenBelmont,
+            { lat: 40.72212818027965 , lng: -74.07572507858278, },
+            ...lccsToMalloryUnion,
             ps33,
         ],
         offsets: [
@@ -294,8 +298,8 @@ export const routes: { [k: string]: Route } = {
             { start: summitCarlton.name, end: summitHopkins.stop.name, offsets: { blue: 5 } },
             { start: summitHopkins.stop.name, end: "Summit & 139", offsets: { green: 5, } },
             { start: jsq.stop.name, end: mcginleySquare.stop.name, offsets: { yellow: 5 } },
-            { start: mcginleySquare.stop.name, end: belmontBergen.stop.name, offsets: { teal: 5 } },
-            { start: belmontBergen.stop.name, end: malloryUnion.name, offsets: { silver: 5 } },
+            { start: mcginleySquare.stop.name, end: bergenKensington.stop.name, offsets: { teal: 5 } },
+            { start: lccs.stop.name, end: malloryUnion.name, offsets: { silver: -5 } },
         ]
     },
     orange: {
@@ -432,7 +436,7 @@ export const routes: { [k: string]: Route } = {
 
 export type StopTime = { time: string, name: string }
 export type StopTimes = StopTime[]
-export function routeStops(routeName: string): StopTimes {
+export function getRouteStops(routeName: string): StopTimes {
     const route = routes[routeName]
     if (!route) {
         throw new Error(`Couldn't find route ${routeName}`)
@@ -487,7 +491,7 @@ export type RouteDisplay = {
 export const routeHref = (routeName: string) => `${routeName}-line`
 
 export function routeList(routeName: string, { sub, query, rwgps }: RouteDisplay) {
-    const stopTimes = routeStops(routeName)
+    const stopTimes = getRouteStops(routeName)
     const url = `/bike-bus/map/?${query}`
     return <Fragment key={routeName}>
         {sub && <p style={{ marginBottom: 0, marginTop: 0 }}>({sub})</p>}

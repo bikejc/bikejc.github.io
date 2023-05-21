@@ -29,7 +29,6 @@ export default function Page(props: Props) {
         draw: boolParam
     }
     const parsedParams: ParsedParams = parseQueryParams<Params, ParsedParams>({ params })
-    console.log("parsedParams:", parsedParams)
     return <main>
         <Map className={css.map} params={parsedParams} signups={props} zoomDelta={0.5} zoomSnap={0.5} />
     </main>
