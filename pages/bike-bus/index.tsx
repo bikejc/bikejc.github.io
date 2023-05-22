@@ -4,7 +4,7 @@ import MD from "../../src/md";
 import YouTubeEmbed from "next-utils/youtube";
 import {helmets} from "../../src/img";
 import {iframeHtml} from "../../src/insta";
-import {MapEmbed, RouteDisplay, routeDisplays, routeHref, routes} from "../../src/bike-bus/routes";
+import {MapEmbed, Route, routeHref, routesByName} from "../../src/bike-bus/routes";
 import {filterEntries, o2a} from "next-utils/objs";
 import {ReactNode} from "react";
 import Link from "next/link";
@@ -27,7 +27,7 @@ If you don't see a route that works for you, [let us know](mailto:bikebus@bikejc
 `
 
 export default function Home() {
-    const activeRoutes = filterEntries(routeDisplays, (routeName) => routes[routeName].active !== false)
+    const activeRoutes = filterEntries(routesByName, (routeName) => routesByName[routeName].active !== false)
     return (
         <Page path={"/bike-bus"} banner={helmets}>
             {MD(signupMd)}
@@ -40,12 +40,12 @@ Here are the routes we plan to run (subject to change!):
             {<>
                 <p>More info about each route:</p>
                 <ul>{
-                    o2a<string, RouteDisplay, ReactNode>(
-                        routeDisplays,
+                    o2a<string, Route, ReactNode>(
+                        routesByName,
                         (routeName, { title, summary }) =>
                             <li key={routeName}>
                                 <Link href={`/bike-bus/${routeName}-line`}>
-                                    <Dot color={routes[routeName].color} />
+                                    <Dot color={routesByName[routeName].color} />
                                     <strong>{title}</strong>: {summary}
                                 </Link>
                             </li>

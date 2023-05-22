@@ -1,5 +1,5 @@
-import {ChangeEvent, Dispatch, Fragment, ReactNode, useCallback, useEffect, useMemo, useReducer, useState} from 'react';
-import L, {LatLngBounds, LatLngBoundsExpression, LeafletEventHandlerFnMap, LeafletMouseEvent} from 'leaflet';
+import {Dispatch, Fragment, ReactNode, useCallback, useEffect, useMemo, useState} from 'react';
+import L, {LatLngBounds, LeafletEventHandlerFnMap, LeafletMouseEvent} from 'leaflet';
 import 'leaflet/dist/leaflet.css';
 
 import css from './map.module.scss';
@@ -10,9 +10,9 @@ import {Props, SchoolSignups} from "./map-utils";
 import {entries, filterEntries, fromEntries, mapEntries, o2a} from "next-utils/objs";
 import {BB, LL} from "next-utils/params";
 import {CaseStrings, CaseStringsActions, HideLevel, ParsedParams} from "./params";
-import {routes, getRouteStops, Stop} from "./routes";
+import {getRouteStops, routes, routesById, routesByName, Stop} from "./routes";
 import {SettingsGear} from "./settings";
-import {Actions, OptActions} from "next-utils/use-set";
+import {OptActions} from "next-utils/use-set";
 import Dot from "../dot";
 import {LayerToggle} from "../map/layer-toggle";
 
@@ -176,7 +176,7 @@ const Stop = ({ center, radius, stop, opacity, displayRoute, permanentTooltip, i
                 time = time.replace(/am$/, '')
                 return <Fragment key={time}>
                     {time}{' '}
-                    {showRoutes.map(route => <Dot key={route} color={routes[route].color} style={{ border: "1px solid black", }} />)}
+                    {showRoutes.map(route => <Dot key={route} color={routesByName[route].color} style={{ border: "1px solid black", }} />)}
                 </Fragment>
             })
             // console.log("stop", stop.name, "filteredTimes:", filteredTimes, times2Routes, timeStrs)
@@ -266,6 +266,13 @@ const Layers = (
         },
         click: (e: LeafletMouseEvent) => {
             //console.log(`map click: latlng:`, JSON.stringify(e.latlng), "newRoutePoints:", newRoutePoints, "nextPoint:", nextPoint, "e:", e)
+            if (pinnedRoutes) {
+                const unpinIds = mapEntries(
+                    filterEntries(pinnedRoutes, (_, pinned) => pinned),
+                    (id) => [ id, false ]
+                )
+                pinnedRouteActions.updateAll(unpinIds)
+            }
             if (pinnedStop || lastPinnedSchool) {
                 if (pinnedStop) setPinnedStop(undefined)
                 if (lastPinnedSchool) setLastPinnedSchool(undefined)
@@ -367,64 +374,34 @@ const Layers = (
         [ map ],
     )
     const displayRoute = useCallback(
-        (routeName: string, pinnedOnly?: boolean) => {
-            const route = routes[routeName]
-            if (!route) {
-                console.warn(`Didn't find route: ${route}`)
-                return false
-            }
-            return (hideRoutesLevel == 'Unpinned' && pinnedRoutes && pinnedRoutes[routeName]) || (hideRoutesLevel == 'None' && !pinnedOnly)
+        (id: string, pinnedOnly?: boolean) => {
+            return (hideRoutesLevel == 'Unpinned' && pinnedRoutes && pinnedRoutes[id]) || (hideRoutesLevel == 'None' && !pinnedOnly)
         },
         [ pinnedRoutes, hideRoutesLevel ]
     )
     const handleRouteClick = useCallback(
-        (e: LeafletMouseEvent, routeName: string) => {
-            console.log("route click:", routeName, hideRoutesLevel, pinnedRoutes)
+        (e: LeafletMouseEvent, id: string) => {
+            console.log("route click:", id, hideRoutesLevel, pinnedRoutes)
             if (hideRoutesLevel == 'None') {
                 if (pinnedRoutes) {
-                    const level = pinnedRoutes[routeName]
+                    const level = pinnedRoutes[id]
                     if (level === undefined) {
-                        pinnedRouteActions.update(routeName, false)
+                        pinnedRouteActions.update(id, false)
                     } else if (!level) {
-                        pinnedRouteActions.update(routeName, true)
+                        pinnedRouteActions.update(id, true)
                     } else {
-                        pinnedRouteActions.update(routeName, undefined)
+                        pinnedRouteActions.update(id, undefined)
                     }
                 } else {
-                    pinnedRouteActions.update(routeName, false)
+                    pinnedRouteActions.update(id, false)
                 }
             } else if (hideRoutesLevel == 'Unpinned') {
-                if (!pinnedRoutes || !(routeName in pinnedRoutes)) {
-                    console.error("Route click:", routeName, pinnedRoutes)
+                if (!pinnedRoutes || !(id in pinnedRoutes)) {
+                    console.error("Route click:", id, pinnedRoutes)
                 } else {
-                    pinnedRouteActions.update(routeName, !pinnedRoutes[routeName])
+                    pinnedRouteActions.update(id, !pinnedRoutes[id])
                 }
             }
-            //     if (pinnedRoutes?.includes(routeName)) {
-            //         if (pinnedRoutes.length == 1) {
-            //             pinnedRouteActions.clear()
-            //             setHidePinnedTooltips(true)
-            //         } else {
-            //             pinnedRouteActions.remove(routeName)
-            //         }
-            //     } else {
-            //         pinnedRouteActions.add(routeName)
-            //         setHidePinnedTooltips(false)
-            //     }
-            // } else if (hideRoutesLevel == 'Unpinned') {
-            //     if (pinnedRoutes?.includes(routeName)) {
-            //         if (pinnedRoutes.length == 1) {
-            //             setHidePinnedTooltips(false)
-            //         } else {
-            //             pinnedRouteActions.remove(routeName)
-            //             setHidePinnedTooltips(true)
-            //         }
-            //     } else {
-            //         pinnedRouteActions.add(routeName)
-            //         setHidePinnedTooltips(false)
-            //     }
-            //     //setHidePinnedTooltips(!hidePinnedTooltips)
-            // }
             L.DomEvent.stopPropagation(e)
         },
         [ pinnedRoutes, pinnedRouteActions, hideRoutesLevel, hidePinnedTooltips, setHidePinnedTooltips ]
@@ -432,10 +409,11 @@ const Layers = (
     // Print pinned route stop times to console
     useEffect(
         () => {
-            entries(pinnedRoutes || {}).forEach(([ routeName, pinned ]) => {
+            entries(pinnedRoutes || {}).forEach(([ id, pinned ]) => {
                 if (!pinned) return
-                const stopTimes = getRouteStops(routeName)
-                let lines = [`${routeName}:`].concat(stopTimes.map(({ name, time }) => `${time}: ${name}`))
+                const route = routesById[id] || routesByName[id]
+                const stopTimes = getRouteStops(route)
+                let lines = [`${route.name}:`].concat(stopTimes.map(({ name, time }) => `${time}: ${name}`))
                 console.log(lines.join("\n"))
             })
         },
@@ -443,24 +421,23 @@ const Layers = (
     )
     const showSchoolsKey = useMemo(() => pinnedSchools ? pinnedSchools.join("-") : "-", [ pinnedSchools ])
     const routeStops = useMemo(
-        () => entries(routes).map(([ routeName, { color, positions } ], idx) => {
-            const showRoute = displayRoute(routeName)
+        () => routes.map(({ id, name, color, positions }, idx) => {
+            const showRoute = displayRoute(id)
             if (!showRoute) return
-            const isSelectedRoute = !pinnedRoutes || (routeName in pinnedRoutes)
+            const isSelectedRoute = !pinnedRoutes || (id in pinnedRoutes)
             const isDeselectedRoute = !isSelectedRoute && pinnedRoutes
             const routeStopOpacity = isDeselectedRoute ? 0.4 : 0.8
             return positions.map((point, stopIdx) => {
                 const stop = point.stop
                 if (stop) {
-                    const isPinned = stop.name == pinnedStop
-                    const permanentTooltip = isPinned || (isSelectedRoute && !hidePinnedTooltips)
+                    const isPinned = stop.name == pinnedStop || !!(pinnedRoutes && pinnedRoutes[id])
                     return <Stop
-                        key={`route${routeName}-idx${stopIdx}-stop${stop.name}-opacity${routeStopOpacity}-tt${permanentTooltip}`}
+                        key={`route${name}-idx${stopIdx}-stop${stop.name}-opacity${routeStopOpacity}-pinned${isPinned}`}
                         center={point} radius={stopRadius}
                         stop={stop}
                         opacity={routeStopOpacity}
                         displayRoute={displayRoute}
-                        permanentTooltip={permanentTooltip}
+                        permanentTooltip={isPinned}
                         isPinned={isPinned}
                         handleClick={(e: LeafletMouseEvent) => {
                             console.log("clicked stop", isPinned)
@@ -473,13 +450,12 @@ const Layers = (
                         }}
                     />
                 }
-                const name = point.name
-                if (name && zoom >= minRoutePointZoom) {
+                if (point.name && zoom >= minRoutePointZoom) {
                     return <RoutePoint
-                        key={`route-${name}-point-${name}=${stopIdx}[${routeStopOpacity}`}
+                        key={`route-${name}-point-${point.name}=${stopIdx}[${routeStopOpacity}`}
                         center={point} radius={routePointRadius}
                         opacity={routeStopOpacity}
-                        name={name}
+                        name={point.name}
                     />
                 }
             })
@@ -536,6 +512,7 @@ const Layers = (
                                     color={lineColor} fillColor={lineColor}
                                     weight={5}
                                     opacity={lineOpacity} fillOpacity={lineOpacity}
+                                    eventHandlers={schoolEventHandlers(school.id)}
                                 >
                                     <Tooltip className={css.tooltip} opacity={tooltipOpacity}>{schoolName}</Tooltip>
                                 </Polyline>
@@ -595,19 +572,19 @@ const Layers = (
         ))}
         {/* Route lines */}
         {
-            entries(routes).map(([ routeName, { active, color, positions, offsets } ], routeIdx) => {
-                const showRoute = displayRoute(routeName)
+            routes.map(({ id, name, active, color, positions, offsets }, routeIdx) => {
+                const showRoute = displayRoute(id)
                 if (!showRoute) return
-                const isSelectedRoute = !pinnedRoutes || (pinnedRoutes[routeName])
+                const isSelectedRoute = !pinnedRoutes || (id in pinnedRoutes)
                 const isDeselectedRoute = (pinnedRoutes && !isSelectedRoute) || (active === false)
                 const routeLineOpacity = isDeselectedRoute ? 0.4 : 1
                 // console.log(`route ${name}`, isSelectedRoute, isDeselectedRoute, routeLineOpacity)
                 const offsetIdxs = offsets?.map((segment, idx) => {
                     const { start, end } = segment
                     const startIdx = positions.findIndex(p => p.name == start || p.stop?.name == start)
-                    if (startIdx < 0) throw new Error(`Didn't find start ${start} (offset ${idx}) in route ${routeName}`)
+                    if (startIdx < 0) throw new Error(`Route ${name}: didn't find start ${start} (offset ${idx})`)
                     let endIdx = positions.slice(startIdx).findIndex(p => p.name == end || p.stop?.name == end)
-                    if (endIdx < 0) throw new Error(`Didn't find end ${end} (offset ${idx}) in route ${routeName}`)
+                    if (endIdx < 0) throw new Error(`Route ${name}: didn't find end ${end} (offset ${idx})`)
                     endIdx += startIdx
                     return { segment, startIdx, endIdx }
                 }) || []
@@ -631,7 +608,7 @@ const Layers = (
                 return ([] as ReactNode[]).concat(...segments.map(({ startIdx, lastIdx, offset }, segmentIdx) => {
                     const points = positions.slice(startIdx, lastIdx + 1)
                     const eventHandlers = {
-                        click: e => handleRouteClick(e, routeName),
+                        click: e => handleRouteClick(e, id),
                     } as LeafletEventHandlerFnMap
                     if (!offset) {
                         // console.log(`range line: ${startIdx}-${lastIdx}`)

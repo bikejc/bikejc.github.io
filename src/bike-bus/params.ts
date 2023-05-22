@@ -39,6 +39,7 @@ export type CaseStrings = { [k: string]: boolean } | null
 export type CaseStringsActions = {
     set: Dispatch<CaseStrings>
     update: (e: string, v: boolean | undefined) => void
+    updateAll: (updates: { [e: string]: boolean }) => void
 }
 export function useCaseStrings(init: CaseStrings): [ CaseStrings, CaseStringsActions ] {
     const [ obj, setObj ] = useState(init)
@@ -54,7 +55,7 @@ export function useCaseStrings(init: CaseStrings): [ CaseStrings, CaseStringsAct
                             delete newObj[e]
                             changed = true
                         }
-                    } else {
+                    } else if (newObj[e] != v) {
                         newObj[e] = v
                         changed = true
                     }
@@ -69,6 +70,31 @@ export function useCaseStrings(init: CaseStrings): [ CaseStrings, CaseStringsAct
                     }
                     console.log("update:", e, v, obj, newObj, changed)
                 },
+                updateAll: (updates: { [e: string]: boolean }) => {
+                    const newObj = {...(obj || {})}
+                    let changed = false
+                    entries(updates).forEach(([ e, v ]) => {
+                        if (v === undefined) {
+                            if (e in newObj) {
+                                delete newObj[e]
+                                changed = true
+                            }
+                        } else if (newObj[e] != v) {
+                            newObj[e] = v
+                            changed = true
+                        }
+                    })
+                    if (changed) {
+                        if (entries(newObj).length) {
+                            console.log("setObj:", newObj, obj, obj === newObj)
+                            setObj(newObj)
+                        } else {
+                            console.log("setObj:", null)
+                            setObj(null)
+                        }
+                    }
+                    console.log("updateAll:", updates, obj, newObj, changed)
+                },
                 set: (cs: CaseStrings) => {
                     console.log("useCallback setObj:", cs)
                     setObj(cs)
@@ -77,7 +103,7 @@ export function useCaseStrings(init: CaseStrings): [ CaseStrings, CaseStringsAct
         },
         [ obj, setObj ]
     )
-    return [ init, actions ]
+    return [ obj, actions ]
 }
 export function caseStringsParam(): Param<CaseStrings, CaseStringsActions> {
     const delimiter = ' '

@@ -1,6 +1,5 @@
 import {Breadcrumb} from "./breadcrumbs";
-import {entries} from "next-utils/objs";
-import {routeDisplays, routes} from "./bike-bus/routes";
+import {routes} from "./bike-bus/routes";
 import {Fragment, ReactNode} from "react";
 import {regfox} from "./blurbs";
 import Dot from "./dot";
@@ -99,12 +98,12 @@ export const Sitemap0: Sitemap0 = {
         }],
         ["bike-bus", {
             title: "Bike Bus", header: false,
-            children: entries(routeDisplays).map(([ routeName, { title, summary, } ]) => [
+            children: routes.map(({ color, title, summary, }) => [
                 `${title.split(" ")[0].toLowerCase()}-line`,
                 {
                     title: `${title} (${summary})`,
                     node: <Fragment key={title}>
-                        <Dot color={routes[routeName].color} />
+                        <Dot color={color} />
                         {title} <span style={{ fontWeight: "normal" }}>({summary})</span>
                     </Fragment>,
                 },

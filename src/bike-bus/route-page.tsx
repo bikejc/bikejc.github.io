@@ -1,7 +1,7 @@
 import {Page} from "../page";
 import MD from "../../src/md";
 import {helmets} from "../img";
-import {routeDisplays, routeList, routes} from "./routes";
+import {routeList, routesByName} from "./routes";
 import Dot from "../dot";
 
 export type Props = {
@@ -9,28 +9,28 @@ export type Props = {
     nextDate?: string
 }
 
-export default function RoutePage(routeName: string, props?: Props) {
-    const routeDisplay = routeDisplays[routeName]
-    const nextDate = props ? props.nextDate : `Friday, May 19`
+export default function RoutePage(name: string, props?: Props) {
+    const route = routesByName[name]
+    const nextDate = props ? props.nextDate : `Thursday, May 25`
     const body = props?.inactive
         ? <>
-            <p><strong>Next {`"${routeDisplay.title}"`} Bike Bus Date: TBD</strong></p>
+            <p><strong>Next {`"${route.title}"`} Bike Bus Date: TBD</strong></p>
             {MD(`[Sign up](/bike-bus/signup) or [get in touch](mailto:bikebus@bikejc.org) if you'd like to ride this route!`)}
         </>
         : <>
-            <p><strong>Next {`"${routeDisplay.title}"`} Bike Bus Date:</strong> {nextDate}.</p>
+            <p><strong>Next {`"${route.title}"`} Bike Bus Date:</strong> {nextDate}.</p>
             {MD(`[Sign up to join here](/bike-bus/signup), and [sign the waiver here](/bike-bus/waiver), or [get in touch](mailto:bikebus@bikejc.org).`)}
         </>
-    const { title, summary } = routeDisplay
-    const { color } = routes[routeName]
+    const { title, summary } = route
+    const { color } = routesByName[name]
     return (
         <Page
-            path={`/bike-bus/${routeName}-line`}
+            path={`/bike-bus/${name}-line`}
             banner={helmets}
             h1={<><Dot color={color} /> {title}: {summary}</>}
         >
             {body}
-            {routeList(routeName, routeDisplay)}
+            {routeList(route)}
             {MD(`
 ### Join the Bike Bus!
 [**Sign up here**](/bike-bus/signup), and tell your school-mates to as well! The more signups we get from each school, the easier it is to plan a route there, ensure there will be sufficient bike racks, etc.
