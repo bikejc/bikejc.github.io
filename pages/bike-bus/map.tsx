@@ -4,7 +4,7 @@ import {Props, SchoolsJSON, SignupsJSON} from "../../src/bike-bus/map-utils";
 import {loadSync} from "next-utils/load";
 import {mapValues} from "next-utils/objs";
 import {boolParam, floatParam, bbParam, parseQueryParams, stringsParam, optStringsParam} from "next-utils/params";
-import {hideLevelParam, Params, ParsedParams} from "../../src/bike-bus/params";
+import {caseStringsParam, hideLevelParam, Params, ParsedParams} from "../../src/bike-bus/params";
 
 const Map = dynamic(() => import('../../src/bike-bus/map'), { ssr: false });
 
@@ -19,7 +19,7 @@ export default function Page(props: Props) {
     const params: Params = {
         bb: bbParam({ init: { sw: { lat: 40.704, lng: -74.085 }, ne: { lat: 40.747, lng: -74.038 } }, places: 3, }),
         h: hideLevelParam({ All: undefined, None: '', Unpinned: 'p' }),
-        r: optStringsParam(),
+        r: caseStringsParam(),
         R: hideLevelParam(),
         s: optStringsParam({ emptyIsUndefined: true }),
         S: hideLevelParam(),

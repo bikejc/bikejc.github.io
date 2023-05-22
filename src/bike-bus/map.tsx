@@ -9,7 +9,7 @@ import {MapContainerProps} from "react-leaflet/lib/MapContainer";
 import {Props, SchoolSignups} from "./map-utils";
 import {entries, filterEntries, fromEntries, mapEntries, o2a} from "next-utils/objs";
 import {BB, LL} from "next-utils/params";
-import {HideLevel, ParsedParams} from "./params";
+import {CaseStrings, CaseStringsActions, HideLevel, ParsedParams} from "./params";
 import {routes, getRouteStops, Stop} from "./routes";
 import {SettingsGear} from "./settings";
 import {Actions, OptActions} from "next-utils/use-set";
@@ -217,8 +217,8 @@ const Layers = (
         bounds: BB
         setBounds: Dispatch<LatLngBounds>
         // Routes
-        pinnedRoutes: string[] | null
-        pinnedRouteActions: OptActions<string>
+        pinnedRoutes: CaseStrings
+        pinnedRouteActions: CaseStringsActions
         hideRoutesLevel: HideLevel
         // Schools
         pinnedSchools: string[] | null
@@ -373,27 +373,58 @@ const Layers = (
                 console.warn(`Didn't find route: ${route}`)
                 return false
             }
-            return (hideRoutesLevel != 'All' && (!pinnedRoutes || pinnedRoutes.includes(routeName))) || (hideRoutesLevel == 'None' && !pinnedOnly)
+            return (hideRoutesLevel == 'Unpinned' && pinnedRoutes && pinnedRoutes[routeName]) || (hideRoutesLevel == 'None' && !pinnedOnly)
         },
         [ pinnedRoutes, hideRoutesLevel ]
     )
     const handleRouteClick = useCallback(
         (e: LeafletMouseEvent, routeName: string) => {
+            console.log("route click:", routeName, hideRoutesLevel, pinnedRoutes)
             if (hideRoutesLevel == 'None') {
-                if (pinnedRoutes?.includes(routeName)) {
-                    if (pinnedRoutes.length == 1) {
-                        pinnedRouteActions.clear()
-                        setHidePinnedTooltips(true)
+                if (pinnedRoutes) {
+                    const level = pinnedRoutes[routeName]
+                    if (level === undefined) {
+                        pinnedRouteActions.update(routeName, false)
+                    } else if (!level) {
+                        pinnedRouteActions.update(routeName, true)
                     } else {
-                        pinnedRouteActions.remove(routeName)
+                        pinnedRouteActions.update(routeName, undefined)
                     }
                 } else {
-                    pinnedRouteActions.add(routeName)
-                    setHidePinnedTooltips(false)
+                    pinnedRouteActions.update(routeName, false)
                 }
             } else if (hideRoutesLevel == 'Unpinned') {
-                setHidePinnedTooltips(!hidePinnedTooltips)
+                if (!pinnedRoutes || !(routeName in pinnedRoutes)) {
+                    console.error("Route click:", routeName, pinnedRoutes)
+                } else {
+                    pinnedRouteActions.update(routeName, !pinnedRoutes[routeName])
+                }
             }
+            //     if (pinnedRoutes?.includes(routeName)) {
+            //         if (pinnedRoutes.length == 1) {
+            //             pinnedRouteActions.clear()
+            //             setHidePinnedTooltips(true)
+            //         } else {
+            //             pinnedRouteActions.remove(routeName)
+            //         }
+            //     } else {
+            //         pinnedRouteActions.add(routeName)
+            //         setHidePinnedTooltips(false)
+            //     }
+            // } else if (hideRoutesLevel == 'Unpinned') {
+            //     if (pinnedRoutes?.includes(routeName)) {
+            //         if (pinnedRoutes.length == 1) {
+            //             setHidePinnedTooltips(false)
+            //         } else {
+            //             pinnedRouteActions.remove(routeName)
+            //             setHidePinnedTooltips(true)
+            //         }
+            //     } else {
+            //         pinnedRouteActions.add(routeName)
+            //         setHidePinnedTooltips(false)
+            //     }
+            //     //setHidePinnedTooltips(!hidePinnedTooltips)
+            // }
             L.DomEvent.stopPropagation(e)
         },
         [ pinnedRoutes, pinnedRouteActions, hideRoutesLevel, hidePinnedTooltips, setHidePinnedTooltips ]
@@ -401,7 +432,8 @@ const Layers = (
     // Print pinned route stop times to console
     useEffect(
         () => {
-            pinnedRoutes?.forEach(routeName => {
+            entries(pinnedRoutes || {}).forEach(([ routeName, pinned ]) => {
+                if (!pinned) return
                 const stopTimes = getRouteStops(routeName)
                 let lines = [`${routeName}:`].concat(stopTimes.map(({ name, time }) => `${time}: ${name}`))
                 console.log(lines.join("\n"))
@@ -414,7 +446,7 @@ const Layers = (
         () => entries(routes).map(([ routeName, { color, positions } ], idx) => {
             const showRoute = displayRoute(routeName)
             if (!showRoute) return
-            const isSelectedRoute = !pinnedRoutes || pinnedRoutes.includes(routeName)
+            const isSelectedRoute = !pinnedRoutes || (routeName in pinnedRoutes)
             const isDeselectedRoute = !isSelectedRoute && pinnedRoutes
             const routeStopOpacity = isDeselectedRoute ? 0.4 : 0.8
             return positions.map((point, stopIdx) => {
@@ -454,6 +486,7 @@ const Layers = (
         }),
         [ displayRoute, pinnedRoutes, hidePinnedTooltips, zoom, pinnedStop ]
     )
+    console.log("pinnedRoutes:", pinnedRoutes)
     return <>
         <TileLayer url={url} attribution={attribution}/>
         {
@@ -565,8 +598,8 @@ const Layers = (
             entries(routes).map(([ routeName, { active, color, positions, offsets } ], routeIdx) => {
                 const showRoute = displayRoute(routeName)
                 if (!showRoute) return
-                const isSelectedRoute = !pinnedRoutes || pinnedRoutes.includes(routeName)
-                const isDeselectedRoute = !isSelectedRoute //(showRoutes.length && !isSelectedRoute) || (active === false)
+                const isSelectedRoute = !pinnedRoutes || (pinnedRoutes[routeName])
+                const isDeselectedRoute = (pinnedRoutes && !isSelectedRoute) || (active === false)
                 const routeLineOpacity = isDeselectedRoute ? 0.4 : 1
                 // console.log(`route ${name}`, isSelectedRoute, isDeselectedRoute, routeLineOpacity)
                 const offsetIdxs = offsets?.map((segment, idx) => {
@@ -647,6 +680,24 @@ const Map = ({ signups, params, ...props }: MapContainerProps & { signups: Props
     } = params
     const { sw, ne } = bounds
     const [ showSettings, setShowSettings ] = useState(false)
+    // const routeLevels = useMemo(
+    //     () =>
+    //         pinnedRoutes
+    //             ? fromEntries(
+    //                 pinnedRoutes.map(name => [ name.toLowerCase(), !!name.match(/[A-Z]/) ])
+    //             )
+    //             : null,
+    //     [ pinnedRoutes ]
+    // )
+    useEffect(
+        () => {
+            console.log("init:", hideRoutesLevel, pinnedRoutes)
+            if (hideRoutesLevel == 'Unpinned' && !pinnedRoutes?.length) {
+                setHideRoutesLevel('None')
+            }
+        },
+        []
+    )
     return <>
         <MapContainer bounds={[ [sw.lat, sw.lng], [ne.lat, ne.lng] ]} maxZoom={17} {...props}>
             <Layers
@@ -687,7 +738,22 @@ const Map = ({ signups, params, ...props }: MapContainerProps & { signups: Props
                 <ul className={css.layers}>
                     <LayerToggle label={"🗺️"} title={"Show/Hide Routes"} buttons={[
                         { label: "📌", title: `${hideRoutesLevel == 'All' ? "Show pinned" : "Hide all"} routes`, active: hideRoutesLevel != 'All', setActive: active => setHideRoutesLevel(active ? 'Unpinned' : 'All'), },
-                        { label: "🌎", title: `${hideRoutesLevel != 'None' ? "Show All" : "Hide unpinned"} routes`, active: hideRoutesLevel == 'None', setActive: active => setHideRoutesLevel(active ? 'None' : 'Unpinned'), },
+                        {
+                            label: "🌎", title: `${hideRoutesLevel != 'None' ? "Show All" : "Hide unpinned"} routes`,
+                            active: hideRoutesLevel != 'None' && !!pinnedRoutes,
+                            setActive: active => {
+                                setHideRoutesLevel(active ? 'None' : 'Unpinned')
+                            },
+                        }, {
+                            label: "♻️", title: `Show all routes, reset pins`,
+                            active: !!pinnedRoutes,
+                            setActive: active => {
+                                if (!active) {
+                                    setHideRoutesLevel('None')
+                                    pinnedRouteActions.set(null)
+                                }
+                            },
+                        },
                     ]} />
                     <LayerToggle label={"📚"} title={"Show/Hide Schools"} buttons={[
                         {
