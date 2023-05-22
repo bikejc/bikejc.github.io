@@ -344,6 +344,7 @@ const Layers = (
     )
     // console.log("schoolsByLat:", schoolsByLat)
     function idxColor(idx: number) {
+        if (idx == -1) return 'grey'
         const hue =  minHue + idx * hueRange / (numSchools - 1)
         return `hsl(${hue},${sat},${lum})`
     }
@@ -473,7 +474,7 @@ const Layers = (
                 const pinnedSizeBonus = schoolPinned ? 1.3 : 1
                 // console.log(`school ${schoolName}, ${permanentTooltip}`, lastPinnedSchool)
 
-                const color = idxColor(schoolsByLat[schoolName])
+                const color = idxColor(signups.length ? schoolsByLat[schoolName] : -1)
                 // const color = latColor(school.lat)
                 // console.log(`school ${schoolName}: lat ${school.lat}, color ${color}`)
                 const iconFade = 0.4
@@ -676,7 +677,7 @@ const Map = ({ signups, params, ...props }: MapContainerProps & { signups: Props
         []
     )
     return <>
-        <MapContainer bounds={[ [sw.lat, sw.lng], [ne.lat, ne.lng] ]} maxZoom={17} {...props}>
+        <MapContainer bounds={[ [sw.lat, sw.lng], [ne.lat, ne.lng] ]} maxZoom={18} {...props}>
             <Layers
                 signups={signups}
                 // Map

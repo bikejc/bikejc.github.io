@@ -11,7 +11,7 @@ const Map = dynamic(() => import('../../src/bike-bus/map'), { ssr: false });
 export function getStaticProps() {
     const schools = loadSync<SchoolsJSON>(`public/bikebus/schools.json`)
     const signups = loadSync<SignupsJSON>(`public/bikebus/signups.json`)
-    const props: Props = mapValues(schools, (k, school) => ({ school, signups: signups[k] || null }))
+    const props: Props = mapValues(schools, (k, school) => ({ school, signups: signups[k] || [] }))
     return { props }
 }
 

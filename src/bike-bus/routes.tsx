@@ -201,37 +201,37 @@ export const routes: Route[] = [
         rwgps: "https://ridewithgps.com/routes/42858043",
         color: "red",
         positions: [
-        ...pershingSummitHopkins,
-        summit139,
-        { lat: 40.73490919360775 , lng: -74.0592133998871 , name: "Summit & Newark", },
-        { lat: 40.73257594750422 , lng: -74.05958890914918, name: "Summit & Pavonia", },
-        { lat: 40.73043774421105 , lng: -74.06129479408266, name: "Summit & Sip", },
-        ...jsqToMcGinley,
-        ...bergenMcGinleyPS17,
-        bergenKensington,
-        bergenBelmont,
-        { lat: 40.72212818027965 , lng: -74.07572507858278, },
-        ...lccsToMalloryUnion,
-        ps33,
-    ],
+            ...pershingSummitHopkins,
+            summit139,
+            { lat: 40.73490919360775 , lng: -74.0592133998871 , name: "Summit & Newark", },
+            { lat: 40.73257594750422 , lng: -74.05958890914918, name: "Summit & Pavonia", },
+            { lat: 40.73043774421105 , lng: -74.06129479408266, name: "Summit & Sip", },
+            ...jsqToMcGinley,
+            ...bergenMcGinleyPS17,
+            bergenKensington,
+            bergenBelmont,
+            { lat: 40.72212818027965 , lng: -74.07572507858278, },
+            ...lccsToMalloryUnion,
+            ps33,
+        ],
         offsets: [
-        { start: pershingField.stop.name, end: summitCarlton.name, offsets: { blue: 5, purple: -5 } },
-        { start: summitCarlton.name, end: summitHopkins.stop.name, offsets: { blue: 5 } },
-        { start: summitHopkins.stop.name, end: "Summit & 139", offsets: { green: 5, } },
-        { start: jsq.stop.name, end: mcginleySquare.stop.name, offsets: { yellow: 5 } },
-        { start: mcginleySquare.stop.name, end: bergenBelmont.name, offsets: { teal: 5 } },
-        { start: lccs.stop.name, end: malloryUnion.name, offsets: { silver: -5 } },
-    ]
+            { start: pershingField.stop.name, end: summitCarlton.name, offsets: { blue: 5, purple: -5 } },
+            { start: summitCarlton.name, end: summitHopkins.stop.name, offsets: { blue: 5 } },
+            { start: summitHopkins.stop.name, end: "Summit & 139", offsets: { green: 5, } },
+            { start: jsq.stop.name, end: mcginleySquare.stop.name, offsets: { yellow: 5 } },
+            { start: mcginleySquare.stop.name, end: bergenBelmont.name, offsets: { teal: 5 } },
+            { start: lccs.stop.name, end: malloryUnion.name, offsets: { silver: -5 } },
+        ]
     },
     {
         name: "orange",
         id: "o",
-            title: "Orange line",
-            summary: "Bergen Lafayette to Downtown",
-            query: "R&S&ll=40.719-74.054&z=14&r=orange&R=&s=ps5+ps3+ps22",
-            rwgps: "https://ridewithgps.com/routes/42858088",
-            color: "hsl(27, 100%, 53%)",
-            positions: [
+        title: "Orange line",
+        summary: "Bergen Lafayette to Downtown",
+        query: "R&S&ll=40.719-74.054&z=14&r=orange&R=&s=ps5+ps3+ps22",
+        rwgps: "https://ridewithgps.com/routes/42858088",
+        color: "hsl(27, 100%, 53%)",
+        positions: [
             theGrindShop,
             communipawVanHorne,
             { lat: 40.71384197546361, lng: -74.06211018562318, stop: { name: "Lafayette Park / PS 22", time: "7:35am", }},
@@ -249,7 +249,7 @@ export const routes: Route[] = [
             { lat: 40.72755959783345, lng: -74.04340445995332, stop: { name: "PS 37", time: "8:10am", }},
             ...hpPs5Ps3,
         ],
-            offsets: [
+        offsets: [
             { start: theGrindShop.stop.name, end: communipawVanHorne.name, offsets: { silver: 5, gold: 5 } },
             { start: "McWilliams & Pavonia", end: hamiltonPark.stop.name, offsets: { green: -5 }, },
             { start: hamiltonPark.stop.name, end: jersey8th.name, offsets: { green: -5, yellow: 5 }, },
@@ -261,12 +261,12 @@ export const routes: Route[] = [
     {
         name: "yellow",
         id: "y",
-            title: "Yellow line",
-            summary: "Downtown, West Side, JSQ",
-            query: "R&S&ll=40.727-74.060&z=13.5&r=yellow&s=pp+teccs",
-            rwgps: "https://ridewithgps.com/routes/42858124",
-            color: "hsl(62, 100%, 64%)",
-            positions: [
+        title: "Yellow line",
+        summary: "Downtown, West Side, JSQ",
+        query: "R&S&ll=40.727-74.060&z=13.5&r=yellow&s=pp+teccs",
+        rwgps: "https://ridewithgps.com/routes/42858124",
+        color: "hsl(62, 100%, 64%)",
+        positions: [
             hamiltonPark,
             jersey8th,
             { lat: 40.721647912036914, lng: -74.04605972157802, name: "Newark & Jersey", },
@@ -285,7 +285,7 @@ export const routes: Route[] = [
             { lat: 40.73614488662359, lng: -74.07209873199464, stop: { name: "TECCS", time: "8:10am", }},
             //...westSideToTeccs,
         ],
-            offsets: [
+        offsets: [
             { start: hamiltonPark.stop.name, end: jersey8th.name, offsets: { orange: -5, green: -5 }, },
             { start: "CCD & Varick", end: "CCD & Brunswick", offsets: { green: 5, orange: 5 }, },
             { start: mcginleySquare.stop.name, end: jsq.stop.name, offsets: { red: 5 } },
@@ -294,18 +294,18 @@ export const routes: Route[] = [
     {
         id: "g",
         name: "green",
-            title: "Green line",
-            summary: "JSQ, Heights, Downtown",
-            query: "R&S&ll=40.727-74.056&z=13.5&r=green&R=&s=ps5+ps3+hpms+hpmsu",
-            rwgps: "https://ridewithgps.com/routes/42858167",
-            color: "hsl(119, 100%, 61%)",
-            positions: [
+        title: "Green line",
+        summary: "JSQ, Heights, Downtown",
+        query: "R&S&ll=40.727-74.056&z=13.5&r=green&R=&s=ps5+ps3+hpms+hpmsu",
+        rwgps: "https://ridewithgps.com/routes/42858167",
+        color: "hsl(119, 100%, 61%)",
+        positions: [
             ...cancoToNJT,
             { lat: 40.728575906675815, lng: -74.0466606616974, name: "Coles & 9th", },
             { lat: 40.72833199396919, lng: -74.04402136802675, name: "9th & McWilliams", },
             ...hpPs5Ps3,
         ],
-            offsets: [
+        offsets: [
             { start: "Summit & 139", end: summitHopkins.stop.name, offsets: { red: 5 }, },
             { start: summitHopkins.stop.name, end: 'Hoboken Ave & NJ Transit Path', offsets: { blue: 5 }, },
             // { start: "McWilliams & Pavonia", end: "CCD & Brunswick", offsets: { orange: 5 }, },
@@ -319,12 +319,12 @@ export const routes: Route[] = [
     {
         id: "b",
         name: "blue",
-            title: "Blue line",
-            summary: "Heights to Hoboken",
-            query: "R&S&ll=40.739-74.041&z=13.5&r=blue&s=mss+hola+scs",
-            rwgps: "https://ridewithgps.com/routes/42858196",
-            color: "hsl(223, 100%, 61%)",
-            positions: [
+        title: "Blue line",
+        summary: "Heights to Hoboken",
+        query: "R&S&ll=40.739-74.041&z=13.5&r=blue&s=mss+hola+scs",
+        rwgps: "https://ridewithgps.com/routes/42858196",
+        color: "hsl(223, 100%, 61%)",
+        positions: [
             ...pershingSummitHopkins,
             ...ps6ToNJT,
             { lat: 40.73563272717176, lng: -74.04402136802675, },
@@ -343,7 +343,7 @@ export const routes: Route[] = [
             { lat: 40.74090046467149, lng: -74.02767062187196, },
             { lat: 40.7406034, lng: -74.0276482, stop: { name: "Stevens Cooperative", time: "8:20am", } },
         ],
-            offsets: [
+        offsets: [
             { start: pershingField.stop.name, end: summitCarlton.name, offsets: { red: -5, purple: -5 } },
             { start: summitCarlton.name, end: summitHopkins.stop.name, offsets: { red: -5 } },
             { start: summitHopkins.stop.name, end: 'Hoboken Ave & NJ Transit Path', offsets: { green: -5 }, },
@@ -352,12 +352,12 @@ export const routes: Route[] = [
     {
         name: "purple",
         id: "p",
-            title: "Purple line",
-            summary: "Heights, Western Slope",
-            query: "R&S&ll=40.748-74.057&z=14.5&r=purple&s=jcgcs",
-            rwgps: "https://ridewithgps.com/routes/42858216",
-            color: "hsl(275, 100%, 67%)",
-            positions: [
+        title: "Purple line",
+        summary: "Heights, Western Slope",
+        query: "R&S&ll=40.748-74.057&z=14.5&r=purple&s=jcgcs",
+        rwgps: "https://ridewithgps.com/routes/42858216",
+        color: "hsl(275, 100%, 67%)",
+        positions: [
             pershingField,
             summitSanford,
             summitCarlton,
@@ -374,22 +374,35 @@ export const routes: Route[] = [
             // { lat: 40.75406812615908, lng: -74.05181782402161, },
             { lat: 40.75353941255337, lng: -74.05219714565821, stop: { name: "Jersey City Global Charter School", time: "7:50am" } },
         ],
-            offsets: [
+        offsets: [
             { start: pershingField.stop.name, end: summitCarlton.name, offsets: { blue: 5, red: 5 } },
         ]
     },
     {
         name: "pink",
         id: "k",
-            title: "Pink line",
-            summary: "Paulus Hook / PS16",
-            query: "R&S&ll=40.718-74.038&z=15&r=pink&s=ps16",
-            rwgps: "https://ridewithgps.com/routes/42858902",
-            color: "pink",
-            positions: [
+        title: "Pink line",
+        summary: "Paulus Hook / PS16",
+        query: "R&S&ll=40.718-74.038&z=15&r=pink&s=ps16",
+        rwgps: "https://ridewithgps.com/routes/42858902",
+        color: "pink",
+        positions: [
+            { lat: 40.729210075529004, lng: -74.034880399704, stop: { name: "Washington & 11th", time: "7:20am" } },
+            { lat: 40.728909252595706, lng: -74.03493404388429, },
+            { lat: 40.72821816773346, lng: -74.03470873832704, },
+            { lat: 40.72768155571405, lng: -74.03462290763856, },
+            { lat: 40.72730755083861, lng: -74.0346658229828, },
+            { lat: 40.72678719273269, lng: -74.03498768806459, },
+            { lat: 40.726022909387964, lng: -74.0353846549988, },
+            { lat: 40.72558384902902, lng: -74.03559923171998, },
+            { lat: 40.72456749449252, lng: -74.03584599494936, name: "Washington & 6th", },
+            { lat: 40.72427478150731, lng: -74.03597474098207, },
+            { lat: 40.72377879267691, lng: -74.03615713119508, },
+            { lat: 40.72305513021186, lng: -74.03630733489992, },
+            { lat: 40.72037995010059, lng: -74.036682844162, stop: { name: "Washington & Bay", time: "7:35am" } },
             // { lat: 40.713442633573116, lng: -74.03457386242185, stop: { name: "Bluestone Lane Coffee", time: "7:30am" }},
             // { lat: 40.71365539708247, lng: -74.036295982652, name: "Greene & Morris" },
-            { lat: 40.72015227023285, lng: -74.035062789917, stop: { name: "Greene & Bay", time: "7:30am", } },
+            // { lat: 40.72015227023285, lng: -74.035062789917, stop: { name: "Greene & Bay", time: "7:30am", } },
             { lat: 40.720558840878894, lng: -74.0383565425873, },
             { lat: 40.72094914636279, lng: -74.0426802635193, },
             groveSt,
@@ -414,12 +427,12 @@ export const routes: Route[] = [
     {
         name: "silver",
         id: "s",
-            title: `Silver line`,
-            summary: "Communipaw to West Side",
-            query: "R&S&ll=40.717-74.082&z=14&r=silver&s=tlb+lccs+ps17+pp",
-            rwgps: "https://ridewithgps.com/routes/42858061",
-            color: "lightgrey",
-            positions: [
+        title: `Silver line`,
+        summary: "Communipaw to West Side",
+        query: "R&S&ll=40.717-74.082&z=14&r=silver&s=tlb+lccs+ps17+pp",
+        rwgps: "https://ridewithgps.com/routes/42858061",
+        color: "lightgrey",
+        positions: [
             // { lat: 40.71427643262643, lng: -74.08862719563707, stop: { name: "West Side & Grant", time: "7:45am" }},
             ...grindShopToUnionBergen,
             ps33,
@@ -431,7 +444,7 @@ export const routes: Route[] = [
             kensingtonJFK,
             bergenKensington,
         ],
-            offsets: [
+        offsets: [
             { start: theGrindShop.stop.name, end: communipawVanHorne.name, offsets: { orange: -5, gold: 5 } },
             { start: communipawVanHorne.name, end: unionBergen.stop.name, offsets: { gold: 5 } },
             { start: malloryUnion.name, end: lccs.stop.name, offsets: { red: -5 } },
@@ -440,11 +453,11 @@ export const routes: Route[] = [
     {
         name: "gold",
         id: "d",
-            title: `Gold line`,
-            summary: "Communipaw, Bergen Lafayette, Greenville",
-            query: "R&S&ll=40.704-74.079&z=13.5&r=gold&s=a1+ihs+ps20+ps15+ps41+ii",
-            color: "hsl(49, 100%, 45%)",
-            positions: [
+        title: `Gold line`,
+        summary: "Communipaw, Bergen Lafayette, Greenville",
+        query: "R&S&ll=40.704-74.079&z=13.5&r=gold&s=a1+ihs+ps20+ps15+ps41+ii",
+        color: "hsl(49, 100%, 45%)",
+        positions: [
             ...grindShopToUnionBergen,
             ...unionBergenToOceanStegman,
             { lat: 40.70019820453425, lng: -74.08380981085229, },
@@ -458,7 +471,7 @@ export const routes: Route[] = [
             // { lat: 40.70870222128798, lng: -74.07695889472963, name: "Ocean & Orient" },
             // bostwickOcean,
         ],
-            offsets: [
+        offsets: [
             { start: theGrindShop.stop.name, end: communipawVanHorne.name, offsets: { silver: -5, orange: -5 } },
             { start: communipawVanHorne.name, end: unionBergen.stop.name, offsets: { silver: -5 } },
             { start: unionBergen.stop.name, end: academy1.stop.name, offsets: { teal: -5 } },
@@ -467,11 +480,11 @@ export const routes: Route[] = [
     {
         name: "teal",
         id: "t",
-            title: "Teal line",
-            summary: "McGinley Square to Greenville",
-            query: "R&S&ll=40.712-74.080&z=13.5&r=teal&s=ps38+ps34+a1+ihs",
-            color: "teal",
-            positions: [
+        title: "Teal line",
+        summary: "McGinley Square to Greenville",
+        query: "R&S&ll=40.712-74.080&z=13.5&r=teal&s=ps38+ps34+a1+ihs",
+        color: "teal",
+        positions: [
             mcginleySquare,
             ...bergenMcGinleyPS17,
             bergenKensington,
@@ -495,7 +508,7 @@ export const routes: Route[] = [
             { lat: 40.70234348621301, lng: -74.09169970089351, },
             ps34,
         ],
-            offsets: [
+        offsets: [
             { start: mcginleySquare.stop.name, end: bergenBelmont.name, offsets: { red: -5 } },
             { start: unionBergen.stop.name, end: academy1.stop.name, offsets: { gold: 5 } },
         ]
