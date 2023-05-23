@@ -11,7 +11,7 @@ import {Breadcrumb, Breadcrumbs} from "./breadcrumbs";
 import Triptych from "./triptych";
 import {Img} from "./img";
 import {entries, fromEntries} from "next-utils/objs";
-import {wt23poster} from "./blurbs";
+import {wt23poster, wt23posterSq} from "./blurbs";
 
 export function Main({ breadcrumbs, sectionMenu, children }: {
     sectionMenu?: SectionMenu
@@ -35,6 +35,7 @@ export type Page = {
     h1?: ReactNode
     description?: string
     ogImg?: string
+    ogImgType?: string
     banner?: Img[] | Img
     article?: boolean
     ctime?: string
@@ -46,7 +47,18 @@ export type Page = {
     children?: ReactNode
 }
 
-export function Page({ path, h1, description, ogImg = `https://bikejc.org${wt23poster}`, banner, article, ctime, mtime, documentClasses, articleClasses, md, preFooter=<Triptych/>, children, }: Page) {
+export function Page(
+    {
+        path, h1,
+        description,
+        ogImg = wt23posterSq, ogImgType = "image/png",
+        banner, article,
+        ctime, mtime,
+        documentClasses, articleClasses,
+        md,
+        preFooter=<Triptych/>,
+        children,
+    }: Page) {
     if (!banner) {
         banner = [{ src: "/files/lincoln-park-banner.jpg", alt: "Ward Tour participants in Lincoln Park" } ]
     } else if ('src' in banner) {
@@ -154,11 +166,16 @@ export function Page({ path, h1, description, ogImg = `https://bikejc.org${wt23p
             {descriptionTag("description")}
             <link href={path} rel="canonical" />
             <link href={path} rel="shortlink" />
-            <meta content="bikejc" property="og:site_name" />
-            <meta content="article" property="og:type" />
-            <meta content={path} property="og:url" />
+            <meta content="Bike JC" property="og:site_name" />
             <meta content={title} property="og:title" />
-            {ogImg && <meta content={ogImg} property="og:image"/>}
+            <meta content="website" property="og:type" />
+            <meta content={path} property="og:url" />
+            {ogImg && <>
+                    <meta content={`http://bikejc.org${ogImg}`} property="og:image"/>
+                    <meta content={`https://bikejc.org${ogImg}`} property="og:image:secure_url"/>
+                    ogImgType && <meta property={"og:image:type"} content={ogImgType} />
+                </>
+            }
             {descriptionTag("og:description")}
             {mtime && <meta content={mtime} property="og:updated_time" />}
             <meta content="summary" name="twitter:card" />

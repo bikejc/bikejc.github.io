@@ -5,6 +5,7 @@ import React from "react"
 export const schedule2023Tweet = <TweetEmbed tweetId='1620594685185245185' />
 export const regfox = `https://bikejc.regfox.com/ward-tour-2023?t=ref-web`
 export const wt23vol = 'https://docs.google.com/forms/d/e/1FAIpQLSfp4MnwIfZ3U6wsIBs5cQabnuxkC1lipEYqq13b52waDSKDqA/viewform'
+export const wt23posterSq = '/img/wt23/poster_50p_sq.png'
 export const wt23poster = '/img/wt23/BikeJC_WT_2023_7x11_.jpg'
 export const wt23rwgps = `https://ridewithgps.com/routes/42028667`
 
