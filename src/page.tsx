@@ -11,6 +11,7 @@ import {Breadcrumb, Breadcrumbs} from "./breadcrumbs";
 import Triptych from "./triptych";
 import {Img} from "./img";
 import {entries, fromEntries} from "next-utils/objs";
+import {wt23poster} from "./blurbs";
 
 export function Main({ breadcrumbs, sectionMenu, children }: {
     sectionMenu?: SectionMenu
@@ -33,6 +34,7 @@ export type Page = {
     path: string
     h1?: ReactNode
     description?: string
+    ogImg?: string
     banner?: Img[] | Img
     article?: boolean
     ctime?: string
@@ -44,7 +46,7 @@ export type Page = {
     children?: ReactNode
 }
 
-export function Page({ path, h1, description, banner, article, ctime, mtime, documentClasses, articleClasses, md, preFooter=<Triptych/>, children, }: Page) {
+export function Page({ path, h1, description, ogImg = `https://bikejc.org${wt23poster}`, banner, article, ctime, mtime, documentClasses, articleClasses, md, preFooter=<Triptych/>, children, }: Page) {
     if (!banner) {
         banner = [{ src: "/files/lincoln-park-banner.jpg", alt: "Ward Tour participants in Lincoln Park" } ]
     } else if ('src' in banner) {
@@ -142,28 +144,29 @@ export function Page({ path, h1, description, banner, article, ctime, mtime, doc
     </>
 
     // TODO: make required
-    const descriptionTag = (name: string) => (description && <meta content={description} name={name}></meta>)
+    const descriptionTag = (name: string) => (description && <meta content={description} name={name} />)
 
     // TODO: add og thumbs
 
     return (
         <>
-            <meta content="width=device-width, maximum-scale = 1.0" name="viewport"></meta>
+            <meta content="width=device-width, maximum-scale = 1.0" name="viewport" />
             {descriptionTag("description")}
-            <link href={path} rel="canonical"></link>
-            <link href={path} rel="shortlink"></link>
-            <meta content="bikejc" property="og:site_name"></meta>
-            <meta content="article" property="og:type"></meta>
-            <meta content={path} property="og:url"></meta>
-            <meta content={title} property="og:title"></meta>
+            <link href={path} rel="canonical" />
+            <link href={path} rel="shortlink" />
+            <meta content="bikejc" property="og:site_name" />
+            <meta content="article" property="og:type" />
+            <meta content={path} property="og:url" />
+            <meta content={title} property="og:title" />
+            {ogImg && <meta content={ogImg} property="og:image"/>}
             {descriptionTag("og:description")}
-            {mtime && <meta content={mtime} property="og:updated_time"></meta>}
-            <meta content="summary" name="twitter:card"></meta>
-            <meta content={path} name="twitter:url"></meta>
-            <meta content={title} name="twitter:title"></meta>
+            {mtime && <meta content={mtime} property="og:updated_time" />}
+            <meta content="summary" name="twitter:card" />
+            <meta content={path} name="twitter:url" />
+            <meta content={title} name="twitter:title" />
             {descriptionTag("twitter:description")}
-            {ctime && <meta content={ctime} property="article:published_time"></meta>}
-            {mtime && <meta content={mtime} property="article:modified_time"></meta>}
+            {ctime && <meta content={ctime} property="article:published_time" />}
+            {mtime && <meta content={mtime} property="article:modified_time" />}
             <Script src="/files/drupal.js"></Script>
             <Script src="/files/foundation-init.js"></Script>
             <Head>
