@@ -101,9 +101,9 @@ In the event you feel unwell or sustain an injury, Jersey City Medical Center wi
 <!-- - Add Promo Code "JERSEYTOUR22"-->
 <!-- - Ride, friends, ride!-->
 
-<!--#### Local bike rental options-->
-<!-- - ~[**Grove Street Bicycles** offers bike rentals](https://www.grovestreetbicycles.com/about/rentals-pg110.htm)~ ([sold out!](https://www.instagram.com/p/CeT9pe7jhBG/))-->
-<!-- - [**Zoomo**](https://www.ridezoomo.com/us/plans) offers e-bike rentals in Journal Square-->
+#### Local bike rental options
+ - [**Grove Street Bicycles** offers bike rentals](https://www.grovestreetbicycles.com/about/rentals-pg110.htm)
+ - [**Zoomo**](https://www.ridezoomo.com/us/plans) offers e-bike rentals in Journal Square
 
 <!--### Is there same-day registration? <a id="day-of-registration"></a>-->
 

@@ -1,30 +1,10 @@
 import {Page} from "../../src/page";
+import MD from "../../src/md"
+import A from "next-utils/a"
 import {reservoir} from "../../src/img";
 
 import { md as faqMd } from "./faq"
-import {regfox} from "../../src/blurbs";
-
-const md = `
-#### The Jersey City Ward Tour is back on Sunday, June 4, 2023, at 11:00am.
-
-#### [Registration is open now!](${regfox})
-
-**3,000 Bikes. 15 Miles. 6 Wards. 1 Great Day in Jersey City!**
-
-[![](/img/wt22/wt22%20overhead%20city%20hall%20start%20cropped.JPG)](${regfox})
-
----
-`
-
-export const bodyMd = `
-The Jersey City Ward Tour will roll Sunday, June 4, 2023, taking you (and 3,000 of our closest friends) on a tour of our great city, and passing through all of its wards.
-
-[Register here](${regfox}), [subscribe for updates](#subscribe), or [register to volunteer here](/support/volunteer)!
-
----
-
-${faqMd}
-`
+import {regfox, wt23vol} from "../../src/blurbs";
 
 export const description = "Register for the Jersey City Ward Tour, Sunday, June 4, 2023 at 11:00am! 3,000 Bikes. 15 Miles. 6 Wards. 1 Great Day in Jersey City!"
 
@@ -40,7 +20,33 @@ export default function Home() {
                 // { src: "/img/ward-tour-forever-sticker-resized.jpg", alt: "Jersey City Ward Tour – first Sunday in June every year" },
             ]}
             description={description}
-            md={md + bodyMd}
-        />
+        >
+            {MD(`
+#### The Jersey City Ward Tour is back on Sunday, June 4, 2023, at 11:00am.
+
+#### [Registration is open now!](${regfox})
+
+**3,000 Bikes. 15 Miles. 6 Wards. 1 Great Day in Jersey City!**
+`)}
+            <A href={regfox}>
+                <img
+                    style={{ margin: 0 }}
+                    src={"/img/wt23/poster.png"}
+                    alt={"Bike JC presents the 12th Annual Jersey City Ward Tour, Sunday, June 4, 2023. Start 11 AM at City Hall, end at Jersey City Jazz Fest"}
+                />
+            </A>
+            {MD(`
+---
+
+The Jersey City Ward Tour will roll Sunday, June 4, 2023, taking you (and 3,000 of our closest friends) on a tour of our great city, and passing through all of its wards.
+
+[**Register here**](${regfox}), [**sign up to volunteer here**](${wt23vol}), [**subscribe for updates**](#subscribe), or find [**more info here**](/ward-tour)!
+
+---
+
+${faqMd}
+`)}
+        </Page>
+
     )
 }

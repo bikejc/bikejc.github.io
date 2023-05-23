@@ -666,12 +666,14 @@ const Map = ({ signups, params, ...props }: MapContainerProps & { signups: Props
                 noTooltipRoutes.length
                     ? { title: "Show labels", activate: () => pinnedRouteActions.updateAll(fromEntries(noTooltipRoutes.map(r => [r, true]))), style: {} }
                     : { title: "Hide labels", activate: () => pinnedRouteActions.updateAll(fromEntries(tooltipRoutes.map(r => [r, false]))), style: { opacity: 0.5 } }
+            const enableUnpinned = !!pinnedRoutes
             return [
                 ...Buttons({
                     type: "route",
-                    hideLevel: hideRoutesLevel, setHideLevel: setHideRoutesLevel,
+                    hideLevel: (!enableUnpinned && hideRoutesLevel == 'Unpinned') ? 'None' : hideRoutesLevel,
+                    setHideLevel: setHideRoutesLevel,
                     actions: pinnedRouteActions,
-                    enableUnpinned: !!pinnedRoutes,
+                    enableUnpinned,
                 }),
                 {
                     id: "tooltips",
@@ -685,12 +687,16 @@ const Map = ({ signups, params, ...props }: MapContainerProps & { signups: Props
     )
 
     const schoolButtons = useMemo(
-        () => Buttons({
-            type: "school",
-            hideLevel: hideSchoolsLevel, setHideLevel: setHideSchoolsLevel,
-            actions: pinnedSchoolActions,
-            enableUnpinned: !!pinnedSchools?.length,
-        }),
+        () => {
+            const enableUnpinned = !!pinnedSchools?.length
+            return Buttons({
+                type: "school",
+                hideLevel: (!enableUnpinned && hideSchoolsLevel == 'Unpinned') ? 'All' : hideSchoolsLevel,
+                setHideLevel: setHideSchoolsLevel,
+                actions: pinnedSchoolActions,
+                enableUnpinned,
+            })
+        },
         [ pinnedSchools, hideSchoolsLevel, setHideSchoolsLevel, pinnedSchoolActions, ]
     )
 

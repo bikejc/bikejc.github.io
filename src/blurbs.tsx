@@ -1,15 +1,18 @@
-import TweetEmbed from "react-tweet-embed";
-import MD from "./md";
-import React from "react";
+import TweetEmbed from "react-tweet-embed"
+import MD from "./md"
+import React from "react"
 
 export const schedule2023Tweet = <TweetEmbed tweetId='1620594685185245185' />
 export const regfox = `https://bikejc.regfox.com/ward-tour-2023?t=ref-web`
+export const wt23vol = 'https://docs.google.com/forms/d/e/1FAIpQLSfp4MnwIfZ3U6wsIBs5cQabnuxkC1lipEYqq13b52waDSKDqA/viewform'
 
 export const wtBlurb = MD(`
 #### [Register for the Jersey City Ward Tour!](${regfox}) Sunday, June 4, 2023
-Join 3,000 of your closest friends on a ride through all 6 wards of Jersey City! [**Register now**](${regfox}), more info [here](/ward-tour).
+Join 3,000 of your closest friends on a ride through all 6 wards of Jersey City!
 
-[![](/img/wt22/wt22%20overhead%20city%20hall%20start%20cropped.JPG)](${regfox})
+[**Register here**](${regfox}), [**sign up to volunteer here**](${wt23vol}), [**subscribe for updates**](#subscribe), or find [**more info here**](/ward-tour).
+
+[![](/img/wt23/poster.png)](${regfox})
 
 ---
 `)
@@ -17,11 +20,9 @@ export const upcomingEventsBlurb = <>
     {wtBlurb}
     {MD(`
 #### [Sign up](/bike-bus/signup) for the Jersey City Bike Bus
-"Bike buses" are the new best way to get to school. [Our pilot on May 3](https://www.instagram.com/p/CrySd81oNMn/) was a great success, and we are aiming to run them weekly going forward.
+"Bike buses" are the new best way to get to school. [**Sign up here**](/bike-bus/signup) and Bike JC will help coordinate one in your area! [**More info here**](/bike-bus).
 
-[**Sign up here**](/bike-bus/signup) and Bike JC will help coordinate one in your area! [**More info here**](/bike-bus).
-
-<iframe src="/bike-bus/map?ll=40.730_-74.057&S=" width="100%" style="aspect-ratio: 4/3" loading="lazy"></iframe>
+<iframe src="/bike-bus/map?S" width="100%" style="aspect-ratio: 4/3" loading="lazy"></iframe>
 
 [More info](/bike-bus), [View full screen](/bike-bus/map?S)
 
