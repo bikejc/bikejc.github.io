@@ -12,7 +12,7 @@ Join 3,000 of your closest friends on a ride through all 6 wards of Jersey City!
 
 [**Register here**](${regfox}), [**sign up to volunteer here**](${wt23vol}), [**subscribe for updates**](#subscribe), or find [**more info here**](/ward-tour).
 
-[![](/img/wt23/poster.png)](${regfox})
+[![](/img/wt23/poster_50p.png)](${regfox})
 
 ---
 `)

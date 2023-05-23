@@ -31,7 +31,7 @@ export default function Home() {
             <A href={regfox}>
                 <img
                     style={{ margin: 0 }}
-                    src={"/img/wt23/poster.png"}
+                    src={"/img/wt23/poster_50p.png"}
                     alt={"Bike JC presents the 12th Annual Jersey City Ward Tour, Sunday, June 4, 2023. Start 11 AM at City Hall, end at Jersey City Jazz Fest"}
                 />
             </A>
