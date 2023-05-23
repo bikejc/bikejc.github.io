@@ -3,8 +3,9 @@ import MD from "../../src/md"
 import A from "next-utils/a"
 import {reservoir} from "../../src/img";
 
-import { md as faqMd } from "./faq"
-import {regfox, wt23poster, wt23vol} from "../../src/blurbs";
+import {difficultyMd, md as faqMd} from "./faq"
+import {regfox, wt23poster, wt23rwgps, wt23vol} from "../../src/blurbs";
+import {SponsorsList2023} from "../support/sponsors";
 
 export const description = "Register for the Jersey City Ward Tour, Sunday, June 4, 2023 at 11:00am! 3,000 Bikes. 15 Miles. 6 Wards. 1 Great Day in Jersey City!"
 
@@ -40,12 +41,33 @@ export default function Home() {
 
 The Jersey City Ward Tour will roll Sunday, June 4, 2023, taking you (and 3,000 of our closest friends) on a tour of our great city, and passing through all of its wards.
 
-[**Register here**](${regfox}), [**sign up to volunteer here**](${wt23vol}), [**subscribe for updates**](#subscribe), or find [**more info here**](/ward-tour)!
+Quick links:
+- [**REGISTER**](${regfox})
+- [**Sign up to volunteer**](${wt23vol})
+- [**Subscribe for updates**](#subscribe)
+- [**Sponsors**](#sponsors)
+- [**Route**](#route)
+- [**FAQs**](#faqs)
+
+[![Overhead view of the start of the 2022 Ward Tour, at Jersey City Hall](/img/wt22/wt22%20overhead%20city%20hall%20start%20cropped.JPG)](${regfox})
 
 ---
 
-${faqMd}
+## Thank you to our sponsors! <a id="sponsors"></a>
+This event would not be possible without their support:
 `)}
+            <SponsorsList2023 />
+            {MD(`
+## Route <a id="route"></a>
+The 2023 Ward Tour route is 15.2mi long, with ≈300' of elevation gain/loss:
+
+[![Ward Tour 2023 Route – RideWithGPS](/img/wt23/route.png)](${wt23rwgps})
+([View full route on RideWithGPS](${wt23rwgps}))
+
+From [the FAQs below](#difficulty):
+> ${difficultyMd}
+`)}
+            {MD(faqMd)}
         </Page>
 
     )

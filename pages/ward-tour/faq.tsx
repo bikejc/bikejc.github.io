@@ -1,8 +1,11 @@
 import { Page } from "../../src/page";
 import {triptych} from "../../src/img";
 
+export const difficultyMd = `[The route](/ward-tour/#route) is about 15 miles long. The riding pace is conversational. Most of of the course is slightly rolling to flat. However, there are a few steady uphill sections, and one steeper but very short hill in Lincoln Park just before the halfway rest point where the ride takes a short water and shade break. People with a wide range of athletic abilities should be able to complete this course.
+`
+
 export const md = `
-## Jersey City Ward Tour – Frequently Asked Questions
+## Jersey City Ward Tour – Frequently Asked Questions <a id="faqs"></a>
 
 ### What is the time and date of the 2023 Ward Tour? <a id="date-time"></a>
 
@@ -84,7 +87,7 @@ Yes, the route has rolling closures which means that traffic is not allowed on t
 
 ### How challenging is the course? Are there a lot of hills? <a id="difficulty"></a>
 
-The route is about 15 miles long. The riding pace is conversational. Most of of the course is slightly rolling to flat. However, there are a few steady uphill sections, and one steeper but very short hill in Lincoln Park just before the halfway rest point where the ride takes a short water and shade break. People with a wide range of athletic abilities should be able to complete this course.
+${difficultyMd}
 
 ### What if I am unable to complete the ride? <a id="bailing"></a>
 

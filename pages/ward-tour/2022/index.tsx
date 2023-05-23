@@ -1,6 +1,6 @@
 import { Page } from "../../../src/page";
 import Markdown from "../../../src/md";
-import {SponsorsList} from "../../support/sponsors";
+import {SponsorsList2022} from "./sponsors";
 import {reservoir} from "../../../src/img";
 
 const md = `
@@ -156,7 +156,7 @@ export default function Home() {
             description={description}
         >
             {Markdown(md + bodyMd)}
-            <SponsorsList />
+            <SponsorsList2022 />
             {Markdown(psMd)}
         </Page>
     )

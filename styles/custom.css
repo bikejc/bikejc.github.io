@@ -7041,8 +7041,8 @@ a:active, a:focus {
 body {
   border-top: 0.5em solid #008a76; }
 
-.node-page img {
-  margin: 1em; }
+/*.node-page img {*/
+/*  margin: 1em; }*/
 
 div.page .sidebar-second {
   padding-top: 42px; }
@@ -7319,6 +7319,11 @@ h2.block-title {
 }
 
 .sponsors-titanium li {
+  max-width: 280px;
+  max-height: 280px;
+}
+
+.sponsors-aluminum li {
   max-width: 280px;
   max-height: 280px;
 }

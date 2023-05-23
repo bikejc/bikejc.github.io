@@ -1,102 +1,76 @@
-import { Page } from "../../src/page";
+import { Page } from "../../src/page"
+import MD from "../../src/md"
+import {ReactNode} from "react";
+import A from "next-utils/a";
 
 type Sponsor = {
     href: string
     src: string
     alt: string
+    label?: ReactNode
     doubleWidth?: boolean
+    children?: ReactNode
 }
 
-const width = 560
-
-function Sponsor({ href, src, alt, doubleWidth }: Sponsor) {
-    return (
-        <li style={doubleWidth ? { maxWidth: 560, maxHeight: 560, } : {}}>
-            <div className="views-field views-field-field-sponsor-logo">
-                <div className="field-content">
-                    <a href={href} target="_blank" rel="noreferrer">
-                        <img alt={alt} src={src} />
-                    </a>
-                </div>
+export function SponsorsList2023() {
+    const aluminums: Sponsor[] = [
+        { href: "https://modcup.com/", src: "/img/wt23/sponsors/ModCup_Logo.png", alt: "ModCup Coffee", },
+        { href: "https://www.4wall.com/", src: "/img/wt23/sponsors/4Wall Flat_PantoneBlue-01.png", alt: "4Wall Entertainment", },
+        { href: "https://silvermanbuilding.com/", src: "/img/wt23/sponsors/silverman.png", alt: "SILVERMAN / NJ Beer Co.", label: <><A href={"https://silvermanbuilding.com"}><strong>SILVERMAN</strong></A> / <A href={"https://www.instagram.com/njbeerco/"}><strong>NJ Beer Co.</strong></A></> },
+        { href: "https://riverviewjazz.org/", src: "/img/wt23/sponsors/RVJ_Stacked_Logo_Blue_RGB.png", alt: "Riverview Jazz", },
+        { href: "https://visithudson.org/", src: "/img/wt23/sponsors/hudson-home-logo-01.png", alt: "Hudson County Cultural & Heritage Affairs", },
+        { href: "https://twitter.com/bicyclesonly", src: "/img/wt23/sponsors/vaccaro-01.png", alt: "Vaccaro Law", },
+        { href: "https://citibikenyc.com/", src: "/img/wt23/sponsors/Citi_Bike_logo_padded.png", alt: "Citi Bike", },
+        { href: "https://twitter.com/solomonforjc", src: "/img/wt23/sponsors/solomon-sq.png", alt: "James Solomon Civic Association", },
+        { href: "https://www.radpowerbikes.com/", src: "/img/wt23/sponsors/rad-square.png", alt: "Rad Power Bikes", },
+        { href: "https://letsshareameal.org/", src: "/img/wt23/sponsors/Lets Share A Meal logo.jpeg", alt: "Let's Share A Meal", },
+    ]
+    const steels: Sponsor[] = [
+        { href: "https://www.chocopainbakery.com/", src: "/img/wt23/sponsors/choc-o-pain-sq2.png", alt: "Choc O Pain", },
+        { href: "https://www.ckokickboxing.com/", src: "/img/wt23/sponsors/cko-sq.jpg", alt: "CKO Kickboxing", },
+        { href: "https://www.grovestreetbicycles.com/", src: "/img/wt23/sponsors/grove-sq.png", alt: "Grove Street Bicycles", },
+        { href: "https://hudsontma.org/", src: "/img/wt23/sponsors/hudson-tma.png", alt: "Hudson TMA", },
+        { href: "https://www.veolianorthamerica.com/", src: "/img/wt23/sponsors/veolia-sq.png", alt: "Veolia", },
+        { href: "https://www.facebook.com/jerseycyclesllc/", src: "/img/wt23/sponsors/jersey cycles.jpeg", alt: "Jersey Cycles", },
+    ]
+    return <div>
+        <div>
+            <div className={"col-12"}>
+                <img style={{ marginBottom: "1em" }} src={"/img/wt23/sponsors/epa3.png"} alt={"Exchange Place Alliance"} />
+                {MD(`The 2023 Ward Tour is presented by the [Exchange Place Alliance](https://www.exchangeplacealliance.com/). The Exchange Place Alliance elevates Downtown Jersey City through capital improvements, repairs and maintenance, landscaping, cleaning, and programming. We thank the E.P.A. for their support of the Ward Tour, and Bike JC's mission.`)}
             </div>
-        </li>
-    )
-}
-
-function Sponsors({ title, sponsors, tier }: {
-    title: string
-    sponsors: Sponsor[]
-    tier: string
-}) {
-    const id = `${tier}-sponsors`
-    return (
-        <section className="block block-views block-views-sponsor-logos-all-block-3">
-            <a href={`#${id}`}><h2 id={id} className="block-title">{title}</h2></a>
-            <div className="view view-sponsor-logos-all view-id-sponsor_logos_all view-display-id-block_3 sponsors">
-                <div className="view-content">
-                    <div className={`item-list sponsors sponsors-${tier}`}>
-                        <ul>{
-                            sponsors.map(sponsor => <Sponsor key={sponsor.alt} {...sponsor} />)
-                        }</ul>
+        </div>
+        <hr/>
+        <div>
+            <p>We are deeply grateful to our other sponsors and community partners for their support:</p>
+            {
+                aluminums.map(({ href, src, alt, label }) =>
+                    <div key={alt} style={{ display: "inline-block", width: "50%", padding: "0 0.5em" }} className={"col-6"}>
+                        <A href={href}><img style={{ marginBottom: "1em", }} src={src} alt={alt} /></A>
+                        <p>{ label || <A href={href}><strong>{alt}</strong></A> }</p>
                     </div>
+                )
+            }
+        </div>
+        <div>{
+            steels.map(({ href, src, alt, label }) =>
+                <div key={alt} style={{ display: "inline-block", width: "33.333333333%", padding: "0 0.5em" }}className={"col-4"}>
+                    <A href={href}><img style={{ marginBottom: "1em", }} src={src} alt={alt} /></A>
+                    <p>{ label || <A href={href}><strong>{alt}</strong></A> }</p>
                 </div>
-            </div>
-        </section>
-    )
+            )
+        }</div>
+    </div>
 }
-
-export function SponsorsList() {
-    return <>
-        <Sponsors
-            title={`"Carbon Fiber" Sponsors`}
-            tier={"carbon"}
-            sponsors={[
-                { href: "https://www.grovestreetbicycles.com/", src: "/files/Grove_Logo_Final_50p.jpg", alt: "Grove Street Bicycles", doubleWidth: true, }
-            ]}
-        />
-        <Sponsors
-            title={`"Titanium" Sponsors`}
-            tier={"titanium"}
-            sponsors={[
-                { href: "https://citibikenyc.com/homepage", src: "/files/Citi_Bike_logo_padded.png", alt: "Citi Bike logo", },
-                { href: "https://www.vaccaroandwhite.com/", src: "/files/vaccaro_280.png", alt: "Vaccaro & White logo", },
-                { href: "https://www.cityofjerseycity.com/", src: "/files/city-of-jersey-city.png", alt: "City of Jersey City", },
-                { href: "https://jerseycityculture.org", src: "/files/cultural-affairs.jpg", alt: "Jersey City Office of Cultural Affairs", },
-                // { href: "", src: "", alt: "", },
-            ]}
-        />
-        {/*<Sponsors*/}
-        {/*    title="Aluminum Sponsors"*/}
-        {/*    sponsors={[*/}
-        {/*    ]}*/}
-        {/*/>*/}
-        <Sponsors
-            title={`"Steel" Sponsors`}
-            tier={"steel"}
-            sponsors={[
-                { href: "https://www.ooneepod.com/", src: "/files/oonee-square.png", alt: "Oonee Pod", },
-                { href: "https://www.hudsontma.org/", src: "/files/hudson-tma.png", alt: "Hudson TMA", },
-                { href: "https://www.roadid.com/", src: "/files/roadid-square.png", alt: "RoadID", },
-                { href: "https://silvermanbuilding.com/", src: "/files/silverman_square.png", alt: "Silverman", },
-                { href: "https://www.jcbicycleco.com/", src: "/files/JCBC_square_negated.png", alt: "Jersey City Bicycle Co", },
-                { href: "https://www.facebook.com/jerseycyclesllc/", src: "/files/JerseyCyclesLogo_square.jpg", alt: "Jersey Cycles", },
-                { href: "https://www.mysuezwater.com/", src: "/files/suez-vertical_square.png", alt: "Suez Water", },
-                { href: "https://davidsankey.net/", src: "/files/davidsankey_square.png", alt: "David Sankey", },
-                { href: "https://riverviewjazz.org/jersey-city-jazz-festival", src: "/files/riverview-jazz_bg_square.png", alt: "Jersey City Jazz Festival", },
-                { href: "https://letsshareameal.org/", src: "/files/lets-share-a-meal_25p.jpg", alt: "Let's Share A Meal", },
-            ]}
-        />
-    </>
-}
-
 export default function Home() {
     return (
         <Page path={"/support/sponsors"} documentClasses={["section-support"]}>
             <div className="field field-name-body field-type-text-with-summary field-label-hidden field-wrapper body field">
-                <h3>We are grateful for our 2022 Bike JC Ward Tour sponsors, they are instrumental to the work we do.</h3>
-                <p>To find out ways your business can partner with Bike JC and help support our mission, please contact us.</p>
+                {MD(`### We are grateful for our 2023 Bike JC Ward Tour sponsors, they are instrumental to the work we do.`)}
+                {MD(`To find out ways your business can partner with Bike JC and help support our mission, please [contact us](mailto:hello@bikejc.org).`)}
             </div>
-            <SponsorsList />
+            <hr/>
+            <SponsorsList2023 />
         </Page>
     )
 }
