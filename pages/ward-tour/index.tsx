@@ -4,7 +4,7 @@ import A from "next-utils/a"
 import {reservoir} from "../../src/img";
 
 import { md as faqMd } from "./faq"
-import {regfox, wt23vol} from "../../src/blurbs";
+import {regfox, wt23poster, wt23vol} from "../../src/blurbs";
 
 export const description = "Register for the Jersey City Ward Tour, Sunday, June 4, 2023 at 11:00am! 3,000 Bikes. 15 Miles. 6 Wards. 1 Great Day in Jersey City!"
 
@@ -31,7 +31,7 @@ export default function Home() {
             <A href={regfox}>
                 <img
                     style={{ margin: 0 }}
-                    src={"/img/wt23/poster_50p.png"}
+                    src={wt23poster}
                     alt={"Bike JC presents the 12th Annual Jersey City Ward Tour, Sunday, June 4, 2023. Start 11 AM at City Hall, end at Jersey City Jazz Fest"}
                 />
             </A>

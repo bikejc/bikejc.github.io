@@ -5,6 +5,7 @@ import React from "react"
 export const schedule2023Tweet = <TweetEmbed tweetId='1620594685185245185' />
 export const regfox = `https://bikejc.regfox.com/ward-tour-2023?t=ref-web`
 export const wt23vol = 'https://docs.google.com/forms/d/e/1FAIpQLSfp4MnwIfZ3U6wsIBs5cQabnuxkC1lipEYqq13b52waDSKDqA/viewform'
+export const wt23poster = '/img/wt23/BikeJC_WT_2023_7x11_.jpg'
 
 export const wtBlurb = MD(`
 #### [Register for the Jersey City Ward Tour!](${regfox}) Sunday, June 4, 2023
@@ -12,7 +13,7 @@ Join 3,000 of your closest friends on a ride through all 6 wards of Jersey City!
 
 [**Register here**](${regfox}), [**sign up to volunteer here**](${wt23vol}), [**subscribe for updates**](#subscribe), or find [**more info here**](/ward-tour).
 
-[![](/img/wt23/poster_50p.png)](${regfox})
+[![](${wt23poster})](${regfox})
 
 ---
 `)
