@@ -1,7 +1,7 @@
 import {BB, Param, ParsedParam} from "next-utils/params";
 import {OptActions} from "next-utils/use-set";
-import {entries, fromEntries, o2a} from "../../../../next-utils/dist/objs";
-import {Dispatch, useCallback, useMemo, useState} from "react";
+import {entries, fromEntries, o2a} from "next-utils/objs";
+import {Dispatch, useMemo, useState} from "react";
 
 export type HideLevel = "None" | "Unpinned" | "All"
 
@@ -40,12 +40,12 @@ export type CaseStringsActions = {
     set: Dispatch<CaseStrings>
     update: (e: string, v: boolean | undefined) => void
     updateAll: (updates: { [e: string]: boolean }) => void
+    reset: () => void
 }
 export function useCaseStrings(init: CaseStrings): [ CaseStrings, CaseStringsActions ] {
     const [ obj, setObj ] = useState(init)
     const actions = useMemo(
         () => {
-            console.log("recomputing obj actions")
             return {
                 update: (e: string, v: boolean | undefined) => {
                     const newObj = {...(obj || {})}
@@ -60,15 +60,8 @@ export function useCaseStrings(init: CaseStrings): [ CaseStrings, CaseStringsAct
                         changed = true
                     }
                     if (changed) {
-                        if (entries(newObj).length) {
-                            console.log("setObj:", newObj, obj, obj === newObj)
-                            setObj(newObj)
-                        } else {
-                            console.log("setObj:", null)
-                            setObj(null)
-                        }
+                        setObj(entries(newObj).length ? newObj : null)
                     }
-                    console.log("update:", e, v, obj, newObj, changed)
                 },
                 updateAll: (updates: { [e: string]: boolean }) => {
                     const newObj = {...(obj || {})}
@@ -85,20 +78,11 @@ export function useCaseStrings(init: CaseStrings): [ CaseStrings, CaseStringsAct
                         }
                     })
                     if (changed) {
-                        if (entries(newObj).length) {
-                            console.log("setObj:", newObj, obj, obj === newObj)
-                            setObj(newObj)
-                        } else {
-                            console.log("setObj:", null)
-                            setObj(null)
-                        }
+                        setObj(entries(newObj).length ? newObj : null)
                     }
-                    console.log("updateAll:", updates, obj, newObj, changed)
                 },
-                set: (cs: CaseStrings) => {
-                    console.log("useCallback setObj:", cs)
-                    setObj(cs)
-                }
+                set: setObj,
+                reset: () => setObj(init),
             }
         },
         [ obj, setObj ]
@@ -109,11 +93,8 @@ export function caseStringsParam(): Param<CaseStrings, CaseStringsActions> {
     const delimiter = ' '
     return {
         encode(t: CaseStrings): string | undefined {
-            if (t === null) {
-                console.log("encoded:", t, undefined)
-                return undefined
-            }
-            const encoded = o2a<string, boolean, string>(t, (e, bool) => {
+            if (t === null) return undefined
+            return o2a<string, boolean, string>(t, (e, bool) => {
                 const lower = e.toLowerCase()
                 const upper = e.toUpperCase()
                 if (lower == upper) {
@@ -121,15 +102,10 @@ export function caseStringsParam(): Param<CaseStrings, CaseStringsActions> {
                 }
                 return bool ? upper : lower
             }).join(delimiter)
-            console.log("encoded:", t, encoded)
-            return encoded
         },
         decode(s: string | undefined): CaseStrings {
-            if (s === undefined) {
-                console.log("decoded:", s, null)
-                return null
-            }
-            const decoded = fromEntries(
+            if (s === undefined) return null
+            return fromEntries(
                 s.split(delimiter).map(e => {
                     const lower = e.toLowerCase()
                     const upper = e.toUpperCase()
@@ -139,8 +115,6 @@ export function caseStringsParam(): Param<CaseStrings, CaseStringsActions> {
                     return [ lower, !!e.match(/[A-Z]/) ]
                 })
             )
-            console.log("decoded:", s, decoded)
-            return decoded
         },
         use: useCaseStrings,
     }

@@ -1,6 +1,6 @@
 import {LL} from "next-utils/params";
-import {entries, fromEntries, mapEntries, o2a} from "next-utils/objs";
-import {Dispatch, Fragment} from "react";
+import {entries, fromEntries, mapEntries, mapValues, o2a} from "next-utils/objs";
+import {Dispatch, Fragment, useMemo} from "react";
 import css from "./routes.module.scss";
 import A from "next-utils/a";
 import MD from "../md"
@@ -65,7 +65,7 @@ export const summitSanford = { lat: 40.743135875341636, lng: -74.05439078807832,
 export const summitCarlton = { lat: 40.74254654709375, lng: -74.05484139919282, name: "Summit & Carlton" }
 
 export const ps3ms4 = { lat: 40.71777784806193, lng: -74.05000269412996, stop: { name: "PS 3 / MS 4", times: { orange: ["7:50am", "8:35am"], green: "8:35am", }}}
-export const groveSt = { lat: 40.71958306715651, lng: -74.04291093349458, stop: { name: "Grove St Plaza", times: { orange: "8:02am", pink: "7:45am" } }}
+export const groveSt = { lat: 40.71958306715651, lng: -74.04291093349458, stop: { name: "Grove St Plaza", times: { pink: ["7:45am", "8:15am"] } }}
 
 // export const westSideToTeccs = [
 //     montgomeryWestSide,
@@ -190,6 +190,16 @@ const bergenMcGinleyPS17 = [
     { lat: 40.72337224169876 , lng: -74.07050013542177, },
 ]
 
+const columbusBarrow = { lat: 40.72020919027281, lng: -74.04511570930482, name: "Columbus & Barrow" }
+const newarkBarrow = { lat: 40.72088816128179, lng: -74.04472947120668, stop: { name: "Newark & Barrow", times: { orange: "8:05am", pink: "8:17am" } } }
+const ps37 = { lat: 40.72755959783345, lng: -74.04340445995332, stop: { name: "PS 37", times: { orange: "8:10am", pink: "8:25am" } }}
+const columbusBarrowPS37 = [
+    columbusBarrow,
+    newarkBarrow,
+    { lat: 40.720790585035964, lng: -74.04443979263307, },
+    ps37,
+]
+
 export const routes: Route[] = [
     {
         name: "red",
@@ -197,7 +207,7 @@ export const routes: Route[] = [
         title: "Red line",
         summary: "Heights to West Side",
         // sub: "Pershing Field, McGinley Square, Lincoln Park",
-        query: "R&S&ll=40.725-74.070&z=13.5&r=red&s=tlb+lccs+ps17+ps33",
+        query: "bb=40.714-74.086+40.745-74.052&r=R&R&s=tlb+lccs+ps17+ps33&S=1",
         rwgps: "https://ridewithgps.com/routes/42858043",
         color: "red",
         positions: [
@@ -228,7 +238,7 @@ export const routes: Route[] = [
         id: "o",
         title: "Orange line",
         summary: "Bergen Lafayette to Downtown",
-        query: "R&S&ll=40.719-74.054&z=14&r=orange&R=&s=ps5+ps3+ps22",
+        query: "bb=40.709-74.065+40.730-74.042&r=O&R&S=1&s=ps5+ps3+ps22",
         rwgps: "https://ridewithgps.com/routes/42858088",
         color: "hsl(27, 100%, 53%)",
         positions: [
@@ -244,13 +254,12 @@ export const routes: Route[] = [
             { lat: 40.717371260430305, lng: -74.04851675033571, },  // Bright & Jersey
             { lat: 40.718054274043766, lng: -74.0481156448484, },  // York & Jersey
             { lat: 40.717571274308085, lng: -74.04657559900382, stop: { name: "Van Vorst Park", time: "7:55am", }},
-            { lat: 40.72088816128179, lng: -74.04472947120668, stop: { name: "Newark Ave Plaza", time: "8:05am", }},
-            { lat: 40.720790585035964, lng: -74.04443979263307, },
-            { lat: 40.72755959783345, lng: -74.04340445995332, stop: { name: "PS 37", time: "8:10am", }},
+            ...columbusBarrowPS37,
             ...hpPs5Ps3,
         ],
         offsets: [
             { start: theGrindShop.stop.name, end: communipawVanHorne.name, offsets: { silver: 5, gold: 5 } },
+            { start: columbusBarrow.name, end: ps37.stop.name, offsets: { pink: -5 } },
             { start: "McWilliams & Pavonia", end: hamiltonPark.stop.name, offsets: { green: -5 }, },
             { start: hamiltonPark.stop.name, end: jersey8th.name, offsets: { green: -5, yellow: 5 }, },
             { start: jersey8th.name, end: "CCD & Brunswick", offsets: { green: -5 }, },
@@ -263,7 +272,7 @@ export const routes: Route[] = [
         id: "y",
         title: "Yellow line",
         summary: "Downtown, West Side, JSQ",
-        query: "R&S&ll=40.727-74.060&z=13.5&r=yellow&s=pp+teccs",
+        query: "bb=40.705-74.074+40.749-74.041&h&r=Y&s=pp+teccs&R&S=1",
         rwgps: "https://ridewithgps.com/routes/42858124",
         color: "hsl(62, 100%, 64%)",
         positions: [
@@ -292,11 +301,11 @@ export const routes: Route[] = [
         ]
     },
     {
-        id: "g",
         name: "green",
+        id: "g",
         title: "Green line",
         summary: "JSQ, Heights, Downtown",
-        query: "R&S&ll=40.727-74.056&z=13.5&r=green&R=&s=ps5+ps3+hpms+hpmsu",
+        query: "bb=40.717-74.067+40.739-74.044&r=G&R&S=1&s=ps5+ps3+hpms+hpmsu",
         rwgps: "https://ridewithgps.com/routes/42858167",
         color: "hsl(119, 100%, 61%)",
         positions: [
@@ -317,11 +326,11 @@ export const routes: Route[] = [
         ]
     },
     {
-        id: "b",
         name: "blue",
+        id: "b",
         title: "Blue line",
         summary: "Heights to Hoboken",
-        query: "R&S&ll=40.739-74.041&z=13.5&r=blue&s=mss+hola+scs",
+        query: "bb=40.732-74.057+40.747-74.031&r=B&R&s=mss+hola+scs&S=1",
         rwgps: "https://ridewithgps.com/routes/42858196",
         color: "hsl(223, 100%, 61%)",
         positions: [
@@ -351,10 +360,11 @@ export const routes: Route[] = [
     },
     {
         name: "purple",
+        // active: false,
         id: "p",
         title: "Purple line",
         summary: "Heights, Western Slope",
-        query: "R&S&ll=40.748-74.057&z=14.5&r=purple&s=jcgcs",
+        query: "bb=40.741-74.065+40.756-74.048&r=P&R&s=jcgcs&S=1",
         rwgps: "https://ridewithgps.com/routes/42858216",
         color: "hsl(275, 100%, 67%)",
         positions: [
@@ -383,7 +393,7 @@ export const routes: Route[] = [
         id: "k",
         title: "Pink line",
         summary: "Paulus Hook / PS16",
-        query: "R&S&ll=40.718-74.038&z=15&r=pink&s=ps16",
+        query: "bb=40.714-74.052+40.729-74.026&r=K&R&s=ps16+hms+ps37+ssjc+faa&S=1",
         rwgps: "https://ridewithgps.com/routes/42858902",
         color: "pink",
         positions: [
@@ -421,15 +431,21 @@ export const routes: Route[] = [
             { lat: 40.71367119886497, lng: -74.03631806373598, },
             { lat: 40.714386831207385, lng: -74.03615713119508, },
             { lat: 40.714586068388364, lng: -74.03790056705476, stop: { name: "PS16", time: "8:05am" }},
-            { lat: 40.71769246486529, lng: -74.03719782829286, stop: { name: "PS16 Annex", time: "8:10am" }}
+            { lat: 40.71769246486529, lng: -74.03719782829286, stop: { name: "PS16 Annex", time: "8:10am" }},
+            ...columbusBarrowPS37,
+            { lat: 40.72826288520644, lng: -74.04330790042879, },
+            { lat: 40.72818158068778, lng: -74.04238522052766, stop: { name: "Scandinavian School", time: "8:30am" }},
         ],
+        offsets: [
+            { start: columbusBarrow.name, end: ps37.stop.name, offsets: { orange: 5 } },
+        ]
     },
     {
         name: "silver",
         id: "s",
         title: `Silver line`,
         summary: "Communipaw to West Side",
-        query: "R&S&ll=40.717-74.082&z=14&r=silver&s=tlb+lccs+ps17+pp",
+        query: "bb=40.706-74.086+40.728-74.063&r=S&R&S=1&s=tlb+lccs+ps17+pp",
         rwgps: "https://ridewithgps.com/routes/42858061",
         color: "lightgrey",
         positions: [
@@ -452,10 +468,11 @@ export const routes: Route[] = [
     },
     {
         name: "gold",
+        // active: false,
         id: "d",
         title: `Gold line`,
         summary: "Communipaw, Bergen Lafayette, Greenville",
-        query: "R&S&ll=40.704-74.079&z=13.5&r=gold&s=a1+ihs+ps20+ps15+ps41+ii",
+        query: "bb=40.690-74.095+40.721-74.062&r=D&R&S=1&s=a1+ihs+ps20+ps15+ps41+ii",
         color: "hsl(49, 100%, 45%)",
         positions: [
             ...grindShopToUnionBergen,
@@ -479,10 +496,11 @@ export const routes: Route[] = [
     },
     {
         name: "teal",
+        // active: false,
         id: "t",
         title: "Teal line",
         summary: "McGinley Square to Greenville",
-        query: "R&S&ll=40.712-74.080&z=13.5&r=teal&s=ps38+ps34+a1+ihs",
+        query: "bb=40.704-74.099+40.726-74.062&r=T&R&s=ps38+ps34+a1+ihs&S=1",
         color: "teal",
         positions: [
             mcginleySquare,
@@ -518,11 +536,30 @@ export const routes: Route[] = [
 export const routesByName: { [name: string]: Route } = fromEntries(routes.map(route => [ route.name, route ]))
 export const routesById: { [id: string]: Route } = fromEntries(routes.map(route => [ route.id, route ]))
 
+export type HM = { h: number, m: number }
+export function parseTime(time: string): HM | undefined {
+    const match = time.match(/^(?<h>\d+):(?<m>\d+)am$/)
+    if (!match?.groups) {
+        console.error(`Unrecognized time: ${time}, route ${name} stop ${stop.name}`)
+        return
+    }
+    const { h, m } = match.groups
+    return { h: parseInt(h), m: parseInt(m) }
+}
+
+export function cmpTimes(l: string, r: string) {
+    const tl = parseTime(l)
+    const tr = parseTime(r)
+    if (!tl) return 1
+    if (!tr) return -1
+    return tl.h*60 + tl.m - (tr.h*60 + tr.m)
+}
+
 export type StopTime = { time: string, name: string }
 export type StopTimes = StopTime[]
+
 export function getRouteStops(route: Route): StopTimes {
     const { name, positions } = route
-    //const stops = [] as StopTimes
     const stops = {} as { [time: string]: string }
     positions.forEach(({ stop }) => {
         if (!stop) return
@@ -536,28 +573,36 @@ export function getRouteStops(route: Route): StopTimes {
             return
         }
         for (let time of times) {
-            stops[time] = name
+            stops[time] = stop.name
         }
     })
-    function parseTime(time: string): { h: number, m: number } | undefined {
-        const match = time.match(/^(?<h>\d+):(?<m>\d+)am$/)
-        if (!match?.groups) {
-            console.error(`Unrecognized time: ${time}, route ${name} stop ${stop.name}`)
-            return
-        }
-        const { h, m } = match.groups
-        return { h: parseInt(h), m: parseInt(m) }
-    }
     const stopTimes = o2a<string, string, StopTime>(stops, (time, name) => ({ time, name }))
-    stopTimes.sort(({ time: l }, { time: r }) => {
-        const tl = parseTime(l)
-        const tr = parseTime(r)
-        if (!tl) return 1
-        if (!tr) return -1
-        return tl.h*60 + tl.m - (tr.h*60 + tr.m)
-    })
+    stopTimes.sort(({ time: l }, { time: r }) => cmpTimes(l, r))
     return stopTimes
 }
+
+export type StopTimeRoutes = [ string, Route[] ]
+export const stop2time2routes: { [stop: string]: { [time: string]: Route[] } } = {}
+routes.forEach(route => {
+    const stops = getRouteStops(route)
+    stops.forEach(({ time, name }) => {
+        if (!(name in stop2time2routes)) {
+            stop2time2routes[name] = {}
+        }
+        if (!(time in stop2time2routes[name])) {
+            stop2time2routes[name][time] = []
+        }
+        stop2time2routes[name][time].push(route)
+    })
+})
+export const stop2routes: { [stop: string]: StopTimeRoutes[]} = mapValues(
+    stop2time2routes,
+    (stop, time2Routes) => {
+        const stopTimeRoutes = Array.from(entries(time2Routes))
+        stopTimeRoutes.sort(( [l], [r] ) => cmpTimes(l, r))
+        return stopTimeRoutes
+    }
+)
 
 export const routeHref = (routeName: string) => `${routeName}-line`
 

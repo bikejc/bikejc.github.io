@@ -1,46 +1,46 @@
-import {ChangeEvent, Dispatch} from "react";
+import {CSSProperties, useMemo} from "react"
+import {fromEntries} from "next-utils/objs"
+
+export type ButtonState = {
+    id: string
+    label: string
+    title: string
+    activate: () => void
+    style?: CSSProperties
+    className?: string
+}
+export type ButtonStateIdx = ButtonState & { idx: number }
 
 export type Button = {
-    label: string
-    title?: string
-    active: boolean
-    setActive: Dispatch<boolean>
-    disabled?: boolean
+    id: string
+    states: ButtonState[]
 }
 
-export type Props = {
+export function Button({ id, states }: Button) {
+    const id2state = useMemo(() => fromEntries(states.map((state, idx) => [ state.id, { ...state, idx } ])), [ states ])
+    const { label, idx } = useMemo(() => id2state[id], [ id, id2state ])
+    const { title, style, className, activate, } = useMemo(() => states[(idx + 1) % states.length], [ idx, states ])
+    return <label title={title} style={{ display: "inline", ...(style || {}), }} className={className || ''}>
+        <input
+            type={"button"}
+            style={{ display: "none", }}
+            onClick={() => activate()}
+        />
+        {label}
+    </label>
+}
+
+export type LayerToggle = {
     label?: string
     title?: string
     buttons: Button[]
 }
 
-export function LayerToggle({ label, title, buttons }: Props) {
-    return <li key={"Schools"}>
+export function LayerToggle({ label, title, buttons }: LayerToggle) {
+    return <li key={label}>
         {label && <span title={title} style={{ display: "inline", fontSize: "1.2em", }}>{label}:</span>}
         {" "}
-        {
-            buttons.map(
-                ({ label, title, active, setActive, disabled }) => {
-                    const opacity = active ? 1 : 0.4
-                    return <label key={label} title={title} style={{display: "inline", opacity, }}>
-                        <input
-                            type={"checkbox"}
-                            disabled={disabled}
-                            style={{ display: "none", }}
-                            onChange={(e: ChangeEvent<HTMLInputElement>) => {
-                                const checked = e.target.checked
-                                if (checked === active) {
-                                    console.error(`layer "Schools": checked ${checked} != active ${active}`)
-                                }
-                                setActive(!active)
-                            }}
-                            checked={active}
-                        />
-                        {label}
-                    </label>
-                }
-            )
-        }
+        {buttons.map(button => <Button key={button.id} {...button} />)}
         {/*<span>{"ℹ️"}</span>*/}
     </li>
 }

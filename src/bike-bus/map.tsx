@@ -7,14 +7,15 @@ import css from './map.module.scss';
 import {Circle, MapContainer, Marker, Polyline, TileLayer, Tooltip, useMapEvents,} from 'react-leaflet'
 import {MapContainerProps} from "react-leaflet/lib/MapContainer";
 import {Props, SchoolSignups} from "./map-utils";
-import {entries, filterEntries, fromEntries, mapEntries, o2a} from "next-utils/objs";
+import {entries, filterEntries, fromEntries, mapEntries, mapValues, o2a, values} from "next-utils/objs";
 import {BB, LL} from "next-utils/params";
 import {CaseStrings, CaseStringsActions, HideLevel, ParsedParams} from "./params";
-import {getRouteStops, routes, routesById, routesByName, Stop} from "./routes";
+import {cmpTimes, getRouteStops, Route, routes, routesById, routesByName, Stop, stop2routes, StopTimeRoutes} from "./routes";
 import {SettingsGear} from "./settings";
 import {OptActions} from "next-utils/use-set";
 import Dot from "../dot";
 import {LayerToggle} from "../map/layer-toggle";
+import {Buttons} from "../map/settings";
 
 export const MAPS = {
     openstreetmap: {
@@ -140,49 +141,30 @@ function getMetersPerPixel(map: L.Map) {
     return (distanceX + distanceY) / 2
 }
 
-const Stop = ({ center, radius, stop, opacity, displayRoute, permanentTooltip, isPinned, handleClick, }: {
+const Stop = ({ center, radius, stop, opacity, displayRoute, permanentTooltip, routeTimes, isPinned, handleClick, }: {
     center: LL
     radius: number
     stop: Stop
     opacity: number
     displayRoute: (route: string, pinnedOnly?: boolean) => boolean
     permanentTooltip: boolean
+    routeTimes: StopTimeRoutes[]
     isPinned?: boolean
     handleClick?: Dispatch<LeafletMouseEvent>
 }) => {
-    let timesNode: ReactNode = stop.time?.replace(/am$/, '')
-    if (!timesNode) {
-        const times = stop.times
-        if (!times) {
-            console.warn("Stop missing time and times:", stop)
-        } else {
-            const filteredTimes = entries(filterEntries(times, route => displayRoute(route, !isPinned)))
-            const times2Routes = {} as { [time: string]: string[] }
-            const showRoutes = [] as string[]
-            filteredTimes.forEach(([ route, time ]) => {
-                const times = time instanceof Array ? time : [time]
-                times.forEach(t => {
-                    if (!(t in times2Routes)) {
-                        times2Routes[t] = []
-                    }
-                    times2Routes[t].push(route)
-                    if (!(showRoutes.includes(route))) {
-                        showRoutes.push(route)
-                    }
-                })
-            })
-            const timeStrs = o2a<string, string[], ReactNode>(times2Routes, (time, showRoutes) => {
-                //const ts = `${t instanceof Array ? t.join(", ") : t}`
-                time = time.replace(/am$/, '')
-                return <Fragment key={time}>
-                    {time}{' '}
-                    {showRoutes.map(route => <Dot key={route} color={routesByName[route].color} style={{ border: "1px solid black", }} />)}
-                </Fragment>
-            })
-            // console.log("stop", stop.name, "filteredTimes:", filteredTimes, times2Routes, timeStrs)
-            timesNode = <>{timeStrs}</>
-        }
-    }
+    const timesNode =
+        routeTimes.map(([ time, routes ]) => {
+            const filteredRoutes = routes.filter(route => displayRoute(route.id, !isPinned))
+            if (!filteredRoutes.length) return
+            return <Fragment key={time}>
+                {time.replace(/am$/, '')}{' '}
+                {
+                    filteredRoutes.map(route =>
+                            <Dot key={route.name} color={route.color} style={{border: "1px solid black",}}/>
+                    )
+                }
+            </Fragment>
+        })
     return <Circle
         center={center} radius={radius}
         weight={3}
@@ -206,7 +188,7 @@ const RoutePoint = ({ name, center, opacity, radius, }: { center: LL, radius: nu
 const Layers = (
     {
         signups, bounds, setBounds,
-        pinnedRoutes, pinnedRouteActions, hideRoutesLevel,
+        pinnedRoutes, pinnedRouteActions, hideRoutesLevel, setHideRoutesLevel,
         pinnedSchools, pinnedSchoolActions, hideSchoolsLevel,
         hideHomesLevel,
         hidePinnedTooltips, setHidePinnedTooltips,
@@ -220,6 +202,7 @@ const Layers = (
         pinnedRoutes: CaseStrings
         pinnedRouteActions: CaseStringsActions
         hideRoutesLevel: HideLevel
+        setHideRoutesLevel: Dispatch<HideLevel>
         // Schools
         pinnedSchools: string[] | null
         pinnedSchoolActions: OptActions<string>
@@ -251,6 +234,7 @@ const Layers = (
         },
         [ pinnedSchools, pinnedSchoolActions, ]
     )
+    console.log("hideRoutesLevel:", hideRoutesLevel)
     const map: L.Map = useMapEvents({
         zoom: () => {
             console.log("map zoom:", map.getZoom())
@@ -376,7 +360,7 @@ const Layers = (
     )
     const displayRoute = useCallback(
         (id: string, pinnedOnly?: boolean) => {
-            return (hideRoutesLevel == 'Unpinned' && pinnedRoutes && pinnedRoutes[id]) || (hideRoutesLevel == 'None' && !pinnedOnly)
+            return (hideRoutesLevel == 'Unpinned' && (!pinnedRoutes || id in pinnedRoutes)) || (hideRoutesLevel == 'None' && !pinnedOnly)
         },
         [ pinnedRoutes, hideRoutesLevel ]
     )
@@ -394,7 +378,7 @@ const Layers = (
                         pinnedRouteActions.update(id, undefined)
                     }
                 } else {
-                    pinnedRouteActions.update(id, false)
+                    pinnedRouteActions.update(id, true)
                 }
             } else if (hideRoutesLevel == 'Unpinned') {
                 if (!pinnedRoutes || !(id in pinnedRoutes)) {
@@ -439,6 +423,7 @@ const Layers = (
                         opacity={routeStopOpacity}
                         displayRoute={displayRoute}
                         permanentTooltip={isPinned}
+                        routeTimes={stop2routes[stop.name]}
                         isPinned={isPinned}
                         handleClick={(e: LeafletMouseEvent) => {
                             console.log("clicked stop", isPinned)
@@ -463,7 +448,6 @@ const Layers = (
         }),
         [ displayRoute, pinnedRoutes, hidePinnedTooltips, zoom, pinnedStop ]
     )
-    console.log("pinnedRoutes:", pinnedRoutes)
     return <>
         <TileLayer url={url} attribution={attribution}/>
         {
@@ -501,8 +485,7 @@ const Layers = (
                         >
                             <Tooltip className={css.tooltip} permanent={permanentTooltip} opacity={tooltipOpacity}>{schoolName}</Tooltip>
                         </Marker>
-                    }
-                    {
+                    } {
                         // Homes
                         showHome &&
                         signups?.map((ll, idx) =>
@@ -658,24 +641,59 @@ const Map = ({ signups, params, ...props }: MapContainerProps & { signups: Props
     } = params
     const { sw, ne } = bounds
     const [ showSettings, setShowSettings ] = useState(false)
-    // const routeLevels = useMemo(
-    //     () =>
-    //         pinnedRoutes
-    //             ? fromEntries(
-    //                 pinnedRoutes.map(name => [ name.toLowerCase(), !!name.match(/[A-Z]/) ])
-    //             )
-    //             : null,
-    //     [ pinnedRoutes ]
-    // )
-    useEffect(
+
+    const [ tooltipRoutes, noTooltipRoutes ] = useMemo(
         () => {
-            console.log("init:", hideRoutesLevel, pinnedRoutes)
-            if (hideRoutesLevel == 'Unpinned' && !pinnedRoutes?.length) {
-                setHideRoutesLevel('None')
+            const tooltipRoutes = [] as string[]
+            const noTooltipRoutes = [] as string[]
+            if (pinnedRoutes) {
+                entries(pinnedRoutes).forEach(([ id, pinned]) => {
+                    if (pinned) {
+                        tooltipRoutes.push(id)
+                    } else {
+                        noTooltipRoutes.push(id)
+                    }
+                })
             }
+            return [ tooltipRoutes, noTooltipRoutes ]
         },
-        []
+        [ pinnedRoutes, ]
     )
+
+    const routeButtons = useMemo(
+        () => {
+            const { title, activate, style } =
+                noTooltipRoutes.length
+                    ? { title: "Show labels", activate: () => pinnedRouteActions.updateAll(fromEntries(noTooltipRoutes.map(r => [r, true]))), style: {} }
+                    : { title: "Hide labels", activate: () => pinnedRouteActions.updateAll(fromEntries(tooltipRoutes.map(r => [r, false]))), style: { opacity: 0.5 } }
+            return [
+                ...Buttons({
+                    type: "route",
+                    hideLevel: hideRoutesLevel, setHideLevel: setHideRoutesLevel,
+                    actions: pinnedRouteActions,
+                    enableUnpinned: !!pinnedRoutes,
+                }),
+                {
+                    id: "tooltips",
+                    states: [{
+                        label: "🪧", id: "tooltips", title, activate, style
+                    }]
+                }
+            ]
+        },
+        [ pinnedRoutes, hideRoutesLevel, setHideRoutesLevel, pinnedRouteActions, tooltipRoutes, noTooltipRoutes, ]
+    )
+
+    const schoolButtons = useMemo(
+        () => Buttons({
+            type: "school",
+            hideLevel: hideSchoolsLevel, setHideLevel: setHideSchoolsLevel,
+            actions: pinnedSchoolActions,
+            enableUnpinned: !!pinnedSchools?.length,
+        }),
+        [ pinnedSchools, hideSchoolsLevel, setHideSchoolsLevel, pinnedSchoolActions, ]
+    )
+
     return <>
         <MapContainer bounds={[ [sw.lat, sw.lng], [ne.lat, ne.lng] ]} maxZoom={18} {...props}>
             <Layers
@@ -691,6 +709,7 @@ const Map = ({ signups, params, ...props }: MapContainerProps & { signups: Props
                 pinnedRoutes={pinnedRoutes}
                 pinnedRouteActions={pinnedRouteActions}
                 hideRoutesLevel={hideRoutesLevel}
+                setHideRoutesLevel={setHideRoutesLevel}
                 // Schools
                 pinnedSchools={pinnedSchools}
                 pinnedSchoolActions={pinnedSchoolActions}
@@ -714,72 +733,8 @@ const Map = ({ signups, params, ...props }: MapContainerProps & { signups: Props
         >
             <div className={css.settings}>
                 <ul className={css.layers}>
-                    <LayerToggle label={"🗺️"} title={"Show/Hide Routes"} buttons={[
-                        { label: "📌", title: `${hideRoutesLevel == 'All' ? "Show pinned" : "Hide all"} routes`, active: hideRoutesLevel != 'All', setActive: active => setHideRoutesLevel(active ? 'Unpinned' : 'All'), },
-                        {
-                            label: "🌎", title: `${hideRoutesLevel != 'None' ? "Show All" : "Hide unpinned"} routes`,
-                            active: hideRoutesLevel != 'None' && !!pinnedRoutes,
-                            setActive: active => {
-                                setHideRoutesLevel(active ? 'None' : 'Unpinned')
-                            },
-                        }, {
-                            label: "♻️", title: `Show all routes, reset pins`,
-                            active: !!pinnedRoutes,
-                            setActive: active => {
-                                if (!active) {
-                                    setHideRoutesLevel('None')
-                                    pinnedRouteActions.set(null)
-                                }
-                            },
-                        },
-                    ]} />
-                    <LayerToggle label={"📚"} title={"Show/Hide Schools"} buttons={[
-                        {
-                            label: "📌", title: `${hideSchoolsLevel == 'All' ? "Show pinned" : "Hide all"} schools`,
-                            active: hideSchoolsLevel != 'All',
-                            setActive: active => {
-                                setHideSchoolsLevel(active ? 'Unpinned' : 'All')
-                                if (!active && hideHomesLevel != 'All') {
-                                    setHideHomesLevel('All')
-                                }
-                            },
-                        },
-                        {
-                            label: "🌎", title: `${hideSchoolsLevel != 'None' ? "Show All" : "Hide unpinned"} schools`,
-                            active: hideSchoolsLevel == 'None',
-                            setActive: active => {
-                                setHideSchoolsLevel(active ? 'None' : 'Unpinned')
-                                if (!active && hideHomesLevel == 'None') {
-                                    setHideHomesLevel('Unpinned')
-                                }
-                            },
-                        },
-                    ]} />
-                    <LayerToggle label={"🏠"} title={"Show/Hide Homes"} buttons={[
-                        {
-                            label: "📌", title: `${hideHomesLevel == 'All' ? "Show pinned schools'" : "Hide all"} homes`,
-                            active: hideHomesLevel != 'All',
-                            setActive: active => {
-                                setHideHomesLevel(active ? 'Unpinned' : 'All')
-                                if (active && hideSchoolsLevel == 'All') {
-                                    setHideSchoolsLevel('Unpinned')
-                                }
-                            },
-                        },
-                        {
-                            label: "🌎", title: `${hideHomesLevel != 'None' ? "Show All" : "Hide unpinned schools'"} homes`,
-                            active: hideHomesLevel == 'None',
-                            setActive: active => {
-                                setHideHomesLevel(active ? 'None' : 'Unpinned')
-                                if (active && hideSchoolsLevel != 'None') {
-                                    setHideSchoolsLevel('None')
-                                }
-                            },
-                        },
-                    ]} />
-                    <LayerToggle label={"🪧️"} title={"Show/Hide Pinned Labels"} buttons={[
-                        { label: "📌", title: `${showPinnedTooltips ? "Show" : "Hide"} labels`, active: !showPinnedTooltips, setActive: active => setShowPinnedTooltips(!active), },
-                    ]} />
+                    <LayerToggle label={"🗺️"} title={"Show/Hide Routes"} buttons={routeButtons} />
+                    <LayerToggle label={"📚"} title={"Show/Hide Schools"} buttons={schoolButtons} />
                 </ul>
             </div>
         </SettingsGear>
