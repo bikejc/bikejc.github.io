@@ -10,6 +10,7 @@ const Home: NextPage = () => {
       <Page
           path={"/"}
           h1={"Welcome to Bike JC"}
+          description={"Bike JC is an all-volunteer organization promoting safe cycling, for transportation and recreation, in Jersey City."}
           banner={[
               { src: "/files/BikeJcHomeSlide1.jpg", alt: "Ward Tour participants" },
               // reservoir,
@@ -19,7 +20,7 @@ const Home: NextPage = () => {
           ]}
       >
           {MD(`
-Welcome to the official website of Bike JC, Jersey City’s advocacy group for bicyclists!
+Welcome to the official website of Bike JC, an all-volunteer organization promoting safe cycling, for transportation and recreation, in Jersey City.
 
 ---
 `)}
