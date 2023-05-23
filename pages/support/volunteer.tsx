@@ -1,8 +1,10 @@
-import {Page} from "../../src/page";
+import {Page} from "../../src/page"
 
 import Script from "next/script"
-import {action, mc_id, mc_u} from "../../src/mc";
-import React from "react";
+import {action, mc_id, mc_u} from "../../src/mc"
+import React from "react"
+import MD from "../../src/md"
+import {wt23vol} from "../../src/blurbs";
 
 const {entries} = Object;
 
@@ -10,10 +12,16 @@ export default function Home() {
     return (
         <Page path={"/support/volunteer"}>
             <div className="field field-name-body field-type-text-with-summary field-label-hidden field-wrapper body field">
+                {MD(`
+### [Click HERE to register to volunteer for the 2023 Ward Tour here](${wt23vol})!
 
-                <p>Volunteer with Bike JC and help make Jersey City a better place for bicyclists of all kinds and in every neighborhood.</p>
-                <p>{"We'd love to meet you!"}</p>
+[The Ward Tour](/ward-tour) is our biggest event of the year, and we need all hands on deck for setup, marshaling, and teardown.
 
+### Other volunteering opportunities
+Volunteer with Bike JC and help make Jersey City a better place for bicyclists of all kinds and in every neighborhood.
+
+We'd love to meet you!
+`)}
                 {/*Begin MailChimp Signup Form*/}
                 <div id="mc_embed_signup">
                     <form action={action} method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" className="validate" target="_blank" noValidate>
