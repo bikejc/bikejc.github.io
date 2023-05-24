@@ -577,7 +577,14 @@ const Layers = (
                 for (let { segment: { offsets }, startIdx, endIdx } of offsetIdxs) {
                     const offset = o2a<string, number, number>(
                         offsets,
-                        (otherRoute, otherOffset) => displayRoute(otherRoute) ? otherOffset : 0,
+                        (otherRouteName, otherOffset) => {
+                            const otherRoute = routesByName[otherRouteName]
+                            if (!otherRoute) {
+                                console.error(`Invalid "other route":`, otherRouteName)
+                                return 0
+                            }
+                            return displayRoute(otherRoute.id) ? otherOffset : 0
+                        },
                     ).reduce((a, b) => a + b, 0)
                     if (startIdx) {
                         segments.push({startIdx: idx, lastIdx: startIdx})
