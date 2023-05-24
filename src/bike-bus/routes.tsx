@@ -67,7 +67,7 @@ export const summitSanford = { lat: 40.743135875341636, lng: -74.05439078807832,
 export const summitCarlton = { lat: 40.74254654709375, lng: -74.05484139919282, name: "Summit & Carlton" }
 
 export const ps3ms4 = { lat: 40.71777784806193, lng: -74.05000269412996, stop: { name: "PS 3 / MS 4", times: { orange: ["7:50am", "8:35am"], green: "8:35am", }}}
-export const groveSt = { lat: 40.71958306715651, lng: -74.04291093349458, stop: { name: "Grove St Plaza", times: { pink: ["7:40am", "8:15am"] } }}
+export const groveSt = { lat: 40.71958306715651, lng: -74.04291093349458, stop: { name: "Grove St Plaza", times: { pink: [ "7:45am", "8:15am", ] } }}
 
 // export const westSideToTeccs = [
 //     montgomeryWestSide,
@@ -417,7 +417,7 @@ export const routes: Route[] = [
         color: "pink",
         positions: [
             // ...washington11thUntilWashingtonBay
-            { lat: 40.72037995010059, lng: -74.036682844162, stop: { name: "Washington & Bay", time: "7:30am" } },
+            { lat: 40.72037995010059, lng: -74.036682844162, stop: { name: "Washington & Bay", time: "7:35am" } },
             // { lat: 40.713442633573116, lng: -74.03457386242185, stop: { name: "Bluestone Lane Coffee", time: "7:30am" }},
             // { lat: 40.71365539708247, lng: -74.036295982652, name: "Greene & Morris" },
             // { lat: 40.72015227023285, lng: -74.035062789917, stop: { name: "Greene & Bay", time: "7:30am", } },
@@ -434,12 +434,12 @@ export const routes: Route[] = [
             { lat: 40.715370813118575, lng: -74.04497623443605, },  // Grove & Regent
             { lat: 40.71513498406821, lng: -74.04281973838808, },  // Marin & Regent
 
-            { lat: 40.7145527, lng: -74.0429482, stop: { name: "Marin & Morris", time: "7:50am", } },
+            { lat: 40.7145527, lng: -74.0429482, stop: { name: "Marin & Morris", time: "7:55am", } },
             // { lat: 40.71390296699984, lng: -74.03803467750551, name: "Washington & Morris" },
             { lat: 40.71367119886497, lng: -74.03631806373598, },
             { lat: 40.714386831207385, lng: -74.03615713119508, },
-            { lat: 40.714586068388364, lng: -74.03790056705476, stop: { name: "PS16", time: "8:00am" }},
-            { lat: 40.71769246486529, lng: -74.03719782829286, stop: { name: "PS16 Annex", time: "8:05am" }},
+            { lat: 40.714586068388364, lng: -74.03790056705476, stop: { name: "PS16", time: "8:05am" }},
+            { lat: 40.71769246486529, lng: -74.03719782829286, stop: { name: "PS16 Annex", time: "8:10am" }},
             ...columbusBarrowPS37,
             { lat: 40.72826288520644, lng: -74.04330790042879, },
             { lat: 40.72818158068778, lng: -74.04238522052766, stop: { name: "Scandinavian School", time: "8:26am" }},
