@@ -146,7 +146,7 @@ const Stop = ({ center, radius, stop, opacity, displayRoute, permanentTooltip, r
     radius: number
     stop: Stop
     opacity: number
-    displayRoute: (route: string, pinnedOnly?: boolean) => boolean
+    displayRoute: (route: Route, pinnedOnly?: boolean) => boolean
     permanentTooltip: boolean
     routeTimes: StopTimeRoutes[]
     isPinned?: boolean
@@ -154,7 +154,7 @@ const Stop = ({ center, radius, stop, opacity, displayRoute, permanentTooltip, r
 }) => {
     const timesNode =
         routeTimes.map(([ time, routes ]) => {
-            const filteredRoutes = routes.filter(route => displayRoute(route.id, !isPinned))
+            const filteredRoutes = routes.filter(route => displayRoute(route, !isPinned))
             if (!filteredRoutes.length) return
             return <Fragment key={time}>
                 {time.replace(/am$/, '')}{' '}
@@ -359,8 +359,15 @@ const Layers = (
         [ map ],
     )
     const displayRoute = useCallback(
-        (id: string, pinnedOnly?: boolean) => {
-            return (hideRoutesLevel == 'Unpinned' && (!pinnedRoutes || id in pinnedRoutes)) || (hideRoutesLevel == 'None' && !pinnedOnly)
+        (route: Route, pinnedOnly?: boolean) => {
+            if (route.active === false) return false
+            if (hideRoutesLevel == 'Unpinned') {
+                return (!pinnedRoutes || route.id in pinnedRoutes)
+            }
+            if (hideRoutesLevel == 'None') {
+                return !pinnedOnly
+            }
+            return false
         },
         [ pinnedRoutes, hideRoutesLevel ]
     )
@@ -406,8 +413,9 @@ const Layers = (
     )
     const showSchoolsKey = useMemo(() => pinnedSchools ? pinnedSchools.join("-") : "-", [ pinnedSchools ])
     const routeStops = useMemo(
-        () => routes.map(({ id, name, color, positions }, idx) => {
-            const showRoute = displayRoute(id)
+        () => routes.map((route, idx) => {
+            const { id, name, color, positions } = route
+            const showRoute = displayRoute(route)
             if (!showRoute) return
             const isSelectedRoute = !pinnedRoutes || (id in pinnedRoutes)
             const isDeselectedRoute = !isSelectedRoute && pinnedRoutes
@@ -556,8 +564,9 @@ const Layers = (
         ))}
         {/* Route lines */}
         {
-            routes.map(({ id, name, active, color, positions, offsets }, routeIdx) => {
-                const showRoute = displayRoute(id)
+            routes.map((route, routeIdx) => {
+                const { id, name, active, color, positions, offsets } = route
+                const showRoute = displayRoute(route)
                 if (!showRoute) return
                 const isSelectedRoute = !pinnedRoutes || (id in pinnedRoutes)
                 const isDeselectedRoute = (pinnedRoutes && !isSelectedRoute) || (active === false)
@@ -583,7 +592,7 @@ const Layers = (
                                 console.error(`Invalid "other route":`, otherRouteName)
                                 return 0
                             }
-                            return displayRoute(otherRoute.id) ? otherOffset : 0
+                            return displayRoute(otherRoute) ? otherOffset : 0
                         },
                     ).reduce((a, b) => a + b, 0)
                     if (startIdx) {

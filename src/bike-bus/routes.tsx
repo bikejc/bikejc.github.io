@@ -38,12 +38,14 @@ export const ps26 = {
     // stop: { name: "PS 26", times: { red: "7:35am", green: "7:56am", blue: "7:56am" }}
 }
 
-export const lincolnPark = { lat: 40.724087769759464, lng: -74.07970547676088, stop: { name: "Lincoln Park", times: { red: "8:15am", silver: "8:05am" } } }
+export const lincolnPark = { lat: 40.724087769759464, lng: -74.07970547676088, stop: { name: "Lincoln Park", time: "8:15am" } }
 export const belmontWestSide = { lat: 40.723689351674786, lng: -74.07892227172853, } // Belmont & West Side
 export const lccs = { lat: 40.722526607709575, lng: -74.07551586627962, stop: { name: "LCCS", times: { red: "8:10am", silver: "8:10am" } }, }
-export const bergenKensington = { lat: 40.72165250359196, lng: -74.07213628292085, stop: { name: "PS 17", times: { red: "8:05am", silver: "8:15am", teal: "7:40am", } }, }
+//export const bergenKensingtonPS17 = { lat: 40.72165250359196, lng: -74.07213628292085, stop: { name: "PS 17", times: { red: "8:05am", silver: "8:15am", teal: "7:40am", } }, }
+export const bergenKensingtonPS17 = { lat: 40.72165250359196, lng: -74.07213628292085, }
 export const kensingtonJFK = { lat: 40.72296975378418, lng: -74.0750813484192, }
-export const bergenBelmont = { lat: 40.720908489648345, lng: -74.07275319099428, name: "Bergen & Belmont" }
+export const bergenBelmont = { lat: 40.720908489648345, lng: -74.07275319099428, stop: { name: "Bergen & Belmont / PS 17", time: "8:05am" } }
+export const jfkBelmont = { lat: 40.72212818027965 , lng: -74.07572507858278, name: "JFK & Belmont" }
 export const jsq = { lat: 40.73080360135806 , lng: -74.06440615653993, stop: { name: "JSQ", times: { red: "7:50am", yellow: "8:05am" } } }
 export const mcginleySquare = { lat: 40.725356186961825, lng: -74.068021774292  , stop: { name: "McGinley Sq.", times: { red: "7:55am", yellow: "7:55am", teal: "7:30am", }, }, }
 export const primaryPrep = { lat: 40.72639696637659, lng: -74.06746863474763, stop: { name: "Primary Prep", times: { red: "7:54am", yellow: "8:00am" } } }
@@ -124,7 +126,7 @@ export const hpPs5Ps3 = [
 
 export const ps33 = {
     lat: 40.718436514755226, lng: -74.0836000442505,
-    stop: { name: "PS 33", times: { red: "8:25am", silver: "7:50am", } },
+    stop: { name: "PS 33", time: "8:25am" },
 }
 const malloryUnion = { lat: 40.72036368727873, lng: -74.08735513687135, name: "Mallory & Union" }
 export const lccsToMalloryUnion = [
@@ -218,9 +220,9 @@ export const routes: Route[] = [
             { lat: 40.73043774421105 , lng: -74.06129479408266, name: "Summit & Sip", },
             ...jsqToMcGinley,
             ...bergenMcGinleyPS17,
-            bergenKensington,
+            bergenKensingtonPS17,
             bergenBelmont,
-            { lat: 40.72212818027965 , lng: -74.07572507858278, },
+            jfkBelmont,
             ...lccsToMalloryUnion,
             ps33,
         ],
@@ -228,9 +230,10 @@ export const routes: Route[] = [
             { start: pershingField.stop.name, end: summitCarlton.name, offsets: { blue: 5, purple: -5 } },
             { start: summitCarlton.name, end: summitHopkins.stop.name, offsets: { blue: 5 } },
             { start: summitHopkins.stop.name, end: "Summit & 139", offsets: { green: 5, } },
-            { start: jsq.stop.name, end: mcginleySquare.stop.name, offsets: { yellow: 5 } },
-            { start: mcginleySquare.stop.name, end: bergenBelmont.name, offsets: { teal: 5 } },
-            { start: lccs.stop.name, end: malloryUnion.name, offsets: { silver: -5 } },
+            { start: jsq.stop.name, end: mcginleySquare.stop.name, offsets: { yellow: -5 } },
+            { start: mcginleySquare.stop.name, end: bergenBelmont.stop.name, offsets: { teal: -5 } },
+            { start: bergenBelmont.stop.name, end: ps33.stop.name, offsets: { silver: 5 } },
+            // { start: lccs.stop.name, end: malloryUnion.name, offsets: { silver: -5 } },
         ]
     },
     {
@@ -297,7 +300,7 @@ export const routes: Route[] = [
         offsets: [
             { start: hamiltonPark.stop.name, end: jersey8th.name, offsets: { orange: -5, green: -5 }, },
             { start: "CCD & Varick", end: "CCD & Brunswick", offsets: { green: 5, orange: 5 }, },
-            { start: mcginleySquare.stop.name, end: jsq.stop.name, offsets: { red: 5 } },
+            { start: mcginleySquare.stop.name, end: jsq.stop.name, offsets: { red: -5 } },
         ]
     },
     {
@@ -360,7 +363,7 @@ export const routes: Route[] = [
     },
     {
         name: "purple",
-        // active: false,
+        active: false,
         id: "p",
         title: "Purple line",
         summary: "Heights, Western Slope",
@@ -451,24 +454,31 @@ export const routes: Route[] = [
         positions: [
             // { lat: 40.71427643262643, lng: -74.08862719563707, stop: { name: "West Side & Grant", time: "7:45am" }},
             ...grindShopToUnionBergen,
+            bergenHarrison,
+            bergenBelmont,
+            jfkBelmont,
+            ...lccsToMalloryUnion,
             ps33,
-            { lat: 40.71785103357191, lng: -74.0841579437256, },  // West Side & Williams
-            { lat: 40.719818880450106, lng: -74.08784866333009, },  // West Side & Mallory
-            // { lat: 40.71374845499957, lng: -74.08924877643587, },  // West Side & Grant
-            // { lat: 40.71524070064235, lng: -74.09210264682771, },  // Grant & Mallory
-            ...malloryUnionToLCCS,
-            kensingtonJFK,
-            bergenKensington,
+            // ps33,
+            // { lat: 40.71785103357191, lng: -74.0841579437256, },  // West Side & Williams
+            // { lat: 40.719818880450106, lng: -74.08784866333009, },  // West Side & Mallory
+            // // { lat: 40.71374845499957, lng: -74.08924877643587, },  // West Side & Grant
+            // // { lat: 40.71524070064235, lng: -74.09210264682771, },  // Grant & Mallory
+            // ...malloryUnionToLCCS,
+            // kensingtonJFK,
+            // bergenKensington,
         ],
         offsets: [
             { start: theGrindShop.stop.name, end: communipawVanHorne.name, offsets: { orange: -5, gold: 5 } },
             { start: communipawVanHorne.name, end: unionBergen.stop.name, offsets: { gold: 5 } },
-            { start: malloryUnion.name, end: lccs.stop.name, offsets: { red: -5 } },
+            // { start: malloryUnion.name, end: lccs.stop.name, offsets: { red: -5 } },
+            { start: unionBergen.stop.name, end: bergenBelmont.stop.name, offsets: { teal: 5 } },
+            { start: bergenBelmont.stop.name, end: ps33.stop.name, offsets: { red: -5 } },
         ]
     },
     {
         name: "gold",
-        // active: false,
+        active: false,
         id: "d",
         title: `Gold line`,
         summary: "Communipaw, Bergen Lafayette, Greenville",
@@ -496,7 +506,7 @@ export const routes: Route[] = [
     },
     {
         name: "teal",
-        // active: false,
+        active: false,
         id: "t",
         title: "Teal line",
         summary: "McGinley Square to Greenville",
@@ -505,7 +515,7 @@ export const routes: Route[] = [
         positions: [
             mcginleySquare,
             ...bergenMcGinleyPS17,
-            bergenKensington,
+            bergenKensingtonPS17,
             bergenBelmont,
             bergenHarrison,
             unionBergen,
@@ -527,7 +537,8 @@ export const routes: Route[] = [
             ps34,
         ],
         offsets: [
-            { start: mcginleySquare.stop.name, end: bergenBelmont.name, offsets: { red: -5 } },
+            { start: mcginleySquare.stop.name, end: bergenBelmont.stop.name, offsets: { red: 5 } },
+            { start: bergenBelmont.stop.name, end: unionBergen.stop.name, offsets: { silver: 5 } },
             { start: unionBergen.stop.name, end: academy1.stop.name, offsets: { gold: 5 } },
         ]
     },
@@ -538,9 +549,9 @@ export const routesById: { [id: string]: Route } = fromEntries(routes.map(route 
 
 export type HM = { h: number, m: number }
 export function parseTime(time: string): HM | undefined {
-    const match = time.match(/^(?<h>\d+):(?<m>\d+)am$/)
+    const match = time.match(/^(?<h>\d+):(?<m>\d+)(?:am)?$/)
     if (!match?.groups) {
-        console.error(`Unrecognized time: ${time}, route ${name} stop ${stop.name}`)
+        console.error(`Unrecognized time: ${time}`)
         return
     }
     const { h, m } = match.groups
