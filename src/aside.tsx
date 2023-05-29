@@ -1,6 +1,7 @@
 import React from "react";
 import {SectionMenu} from "./sectionMenu";
 import A from "next-utils/a";
+import MD from "next-utils/md"
 import Link from "next/link";
 import {regfox} from "./blurbs";
 
@@ -27,11 +28,7 @@ export function Aside({ sectionMenu }: { sectionMenu?: SectionMenu }) {
             }</section>
             <section className="block block-block block-block-13 block-even clearfix">
                 <h2 className="block-title">Ward Tour 2023</h2>
-                <p>
-                    <strong>The Jersey City Ward Tour is back! Sunday, June 4, roll out 11am from City Hall!</strong>
-                    {' '}<strong>3,000 Bikes. 15 Miles. 6 Wards, finishing at the Jersey City Jazz Festival.</strong>
-                    {' '}<strong><A href={regfox}>REGISTER HERE NOW</A></strong>.
-                </p>
+                {MD(`**The Jersey City Ward Tour is back! Sunday, June 4, roll out 11am from City Hall! 1,000's of Bikes. 15 Miles. 6 Wards, finishing at the Jersey City Jazz Festival. [REGISTER HERE NOW!](${regfox})**`)}
             </section>
             <section className="block block-block block-block-14 block-odd clearfix">
                 <h2 className="block-title">Cool Swag!</h2>

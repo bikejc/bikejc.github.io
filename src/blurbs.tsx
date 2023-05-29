@@ -11,7 +11,7 @@ export const wt23rwgps = `https://ridewithgps.com/routes/42028667`
 
 export const wtBlurb = MD(`
 #### [Register for the Jersey City Ward Tour!](${regfox}) Sunday, June 4, 2023
-Join 3,000 of your closest friends on a ride through all 6 wards of Jersey City!
+Join 1,000's of our closest friends on a ride through all 6 wards of Jersey City!
 
 [**Register here**](${regfox}), [**sign up to volunteer here**](${wt23vol}), [**subscribe for updates**](#subscribe), or find [**more info here**](/ward-tour).
 

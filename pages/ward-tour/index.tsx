@@ -7,7 +7,7 @@ import {difficultyMd, md as faqMd} from "./faq"
 import {regfox, wt23poster, wt23rwgps, wt23vol} from "../../src/blurbs";
 import {SponsorsList2023} from "../support/sponsors";
 
-export const description = "Register for the Jersey City Ward Tour, Sunday, June 4, 2023 at 11:00am! 3,000 Bikes. 15 Miles. 6 Wards. 1 Great Day in Jersey City!"
+export const description = "Register for the Jersey City Ward Tour, Sunday, June 4, 2023 at 11:00am! 1,000's of Bikes. 15 Miles. 6 Wards. 1 Great Day in Jersey City!"
 
 export default function Home() {
     return (
@@ -27,7 +27,7 @@ export default function Home() {
 
 #### [Registration is open now!](${regfox})
 
-**3,000 Bikes. 15 Miles. 6 Wards. 1 Great Day in Jersey City!**
+**1,000's of Bikes. 15 Miles. 6 Wards. 1 Great Day in Jersey City!**
 `)}
             <A href={regfox}>
                 <img
@@ -39,7 +39,7 @@ export default function Home() {
             {MD(`
 ---
 
-The Jersey City Ward Tour will roll Sunday, June 4, 2023, taking you (and 3,000 of our closest friends) on a tour of our great city, and passing through all of its wards.
+The Jersey City Ward Tour will roll Sunday, June 4, 2023, taking you (and 1,000's of our closest friends) on a tour of our great city, and passing through all of its wards.
 
 Quick links:
 - [**REGISTER**](${regfox})
