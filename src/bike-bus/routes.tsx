@@ -38,8 +38,8 @@ export const ps26 = {
     // stop: { name: "PS 26", times: { red: "7:35am", green: "7:56am", blue: "7:56am" }}
 }
 
-export const lincolnPark = { lat: 40.724087769759464, lng: -74.07970547676088, stop: { name: "Lincoln Park", time: "8:15am" } }
-export const belmontWestSide = { lat: 40.723689351674786, lng: -74.07892227172853, } // Belmont & West Side
+export const lincolnPark = { lat: 40.724087769759464, lng: -74.07970547676088 }
+export const threeLittleBirds = { lat: 40.72379098916789, lng: -74.0790241956711, stop: { name: "Three Little Birds", time: "8:15am" }}  // Belmont & West Side
 export const lccs = { lat: 40.722526607709575, lng: -74.07551586627962, stop: { name: "LCCS", times: { red: "8:10am", silver: "8:10am" } }, }
 //export const bergenKensingtonPS17 = { lat: 40.72165250359196, lng: -74.07213628292085, stop: { name: "PS 17", times: { red: "8:05am", silver: "8:15am", teal: "7:40am", } }, }
 export const bergenKensingtonPS17 = { lat: 40.72165250359196, lng: -74.07213628292085, }
@@ -129,16 +129,25 @@ export const ps33 = {
     stop: { name: "PS 33", time: "8:25am" },
 }
 const malloryUnion = { lat: 40.72036368727873, lng: -74.08735513687135, name: "Mallory & Union" }
-export const lccsToMalloryUnion = [
+export const lccsToLincolnPark = [
     lccs,
-    belmontWestSide,
+    { lat: 40.722904705003856, lng: -74.07643318176271, },
+    { lat: 40.722880311694844, lng: -74.07701253890993, },
+    threeLittleBirds,
     lincolnPark,
+]
+export const lccsToMalloryUnion = [
+    ...lccsToLincolnPark,
     { lat: 40.723656827644206, lng: -74.08154010772706, },
     { lat: 40.722551001148226, lng: -74.08548831939699, name: "Mallory & Communipaw" },
     malloryUnion,
 ]
-export const malloryUnionToLCCS = [...lccsToMalloryUnion]
-malloryUnionToLCCS.reverse()
+export const lccsToPS33 = [
+    ...lccsToMalloryUnion,
+    ps33
+]
+// export const malloryUnionToLCCS = [...lccsToMalloryUnion]
+// malloryUnionToLCCS.reverse()
 
 const pershingSummitHopkins = [
     pershingField,
@@ -156,11 +165,20 @@ const unionBergen = { lat: 40.71588312852183, lng: -74.07894372940065, stop: { n
 const grindShopToUnionBergen = [
     theGrindShop,
     communipawVanHorne,
-    { lat: 40.71300560369163, lng: -74.0645630310113, },
-    { lat: 40.71448344318709, lng: -74.0666265407144, },
-    { lat: 40.7131436134378, lng: -74.06758243123863, stop: { name: "Berry Lane Park", time: "7:40am" } },
-    { lat: 40.71325287095062, lng: -74.06790106141335, },
-    { lat: 40.71084925545855, lng: -74.06968474388124, name: "Union & Garfield" },
+    { lat: 40.71304094810243, lng: -74.064599275589, /*name: "Communipaw & Woodward"*/ },
+    //{ lat: 40.71448344318709, lng: -74.0666265407144, name: "Communipaw & Berry Lane" },
+    { lat: 40.7119959385303, lng: -74.06606912612916, }, // Enter BLP
+    { lat: 40.71266279478128, lng: -74.06685769557954, },
+    { lat: 40.7129921542462, lng: -74.06772136688234 },
+    { lat: 40.71199927397812, lng: -74.0684321117046, stop: { name: "Berry Lane Park", time: "7:50am" }, },
+    { lat: 40.71074565340344, lng: -74.0693121379015, },
+    // { lat: 40.710751664498055, lng: -74.06929314136507, name: "?" },
+    // { lat: 40.7131436134378, lng: -74.06758243123863 },
+    // { lat: 40.71325287095062, lng: -74.06790106141335, name: "?", },
+
+    { lat: 40.71090618345277, lng: -74.06988859176637, name: "Union & Garfield", },
+    { lat: 40.71190241547326, lng: -74.07173395156862, name: "Union & Arlington", },
+    // { lat: 40.71084925545855, lng: -74.06968474388124, name: "Union & Garfield" },
     unionMLK,
     unionBergen,
 ]
@@ -239,8 +257,7 @@ export const routes: Route[] = [
             bergenKensingtonPS17,
             bergenBelmont,
             jfkBelmont,
-            ...lccsToMalloryUnion,
-            ps33,
+            ...lccsToPS33,
         ],
         offsets: [
             { start: pershingField.stop.name, end: summitCarlton.name, offsets: { blue: 5, purple: -5 } },
@@ -399,8 +416,6 @@ export const routes: Route[] = [
             { lat: 40.7514428158444, lng: -74.05473947525026, name: "Columbia & Thorne" },
             { lat: 40.75527487548953, lng: -74.05223429203035, name: "North & Columbia" },
             { lat: 40.75492947089871, lng: -74.05132770538331, name: "North & Nelson" },
-            // { lat: 40.75252794872285, lng: -74.04791081116464, },
-            // { lat: 40.75406812615908, lng: -74.05181782402161, },
             { lat: 40.75353941255337, lng: -74.05219714565821, stop: { name: "Jersey City Global Charter School", time: "7:50am" } },
         ],
         offsets: [
@@ -418,19 +433,10 @@ export const routes: Route[] = [
         positions: [
             // ...washington11thUntilWashingtonBay
             { lat: 40.72037995010059, lng: -74.036682844162, stop: { name: "Washington & Bay", time: "7:35am" } },
-            // { lat: 40.713442633573116, lng: -74.03457386242185, stop: { name: "Bluestone Lane Coffee", time: "7:30am" }},
-            // { lat: 40.71365539708247, lng: -74.036295982652, name: "Greene & Morris" },
-            // { lat: 40.72015227023285, lng: -74.035062789917, stop: { name: "Greene & Bay", time: "7:30am", } },
             { lat: 40.720558840878894, lng: -74.0383565425873, },
             { lat: 40.72094914636279, lng: -74.0426802635193, },
             groveSt,
             { lat: 40.7161510047829, lng: -74.04484589234092, },
-            // { lat: 40.718290144942145, lng: -74.03882861137392, name: "Columbus & Warren" },
-            // { lat: 40.71554158535769, lng: -74.03934359550477, name: "Grand & Warren" },
-
-            // { lat: 40.71612708685203, lng: -74.0448582172394, name: "Grove & Grand" },
-            // { lat: 40.7158767, lng: -74.0426636, name: "Grand & Marin" },
-
             { lat: 40.715370813118575, lng: -74.04497623443605, },  // Grove & Regent
             { lat: 40.71513498406821, lng: -74.04281973838808, },  // Marin & Regent
 
@@ -457,21 +463,11 @@ export const routes: Route[] = [
         rwgps: "https://ridewithgps.com/routes/42858061",
         color: "lightgrey",
         positions: [
-            // { lat: 40.71427643262643, lng: -74.08862719563707, stop: { name: "West Side & Grant", time: "7:45am" }},
             ...grindShopToUnionBergen,
             bergenHarrison,
             bergenBelmont,
             jfkBelmont,
-            ...lccsToMalloryUnion,
-            ps33,
-            // ps33,
-            // { lat: 40.71785103357191, lng: -74.0841579437256, },  // West Side & Williams
-            // { lat: 40.719818880450106, lng: -74.08784866333009, },  // West Side & Mallory
-            // // { lat: 40.71374845499957, lng: -74.08924877643587, },  // West Side & Grant
-            // // { lat: 40.71524070064235, lng: -74.09210264682771, },  // Grant & Mallory
-            // ...malloryUnionToLCCS,
-            // kensingtonJFK,
-            // bergenKensington,
+            ...lccsToPS33,
         ],
         offsets: [
             { start: theGrindShop.stop.name, end: communipawVanHorne.name, offsets: { orange: -5, gold: 5 } },
@@ -498,10 +494,6 @@ export const routes: Route[] = [
             { lat: 40.695631342680635, lng: -74.09063760031104, },
             { lat: 40.69420485315145, lng: -74.09239765270486, name: "Ocean & " },
             { lat: 40.695608335027316, lng: -74.09386942065487, stop: { name: "Infinity Institute", time: "8:20am" }},
-            // { lat: 40.71147, lng: -74.07839, },
-            // { lat: 40.71043449288867, lng: -74.07959818840028, stop: { name: "MLK & Orient", time: "7:50am", } },
-            // { lat: 40.70870222128798, lng: -74.07695889472963, name: "Ocean & Orient" },
-            // bostwickOcean,
         ],
         offsets: [
             { start: theGrindShop.stop.name, end: communipawVanHorne.name, offsets: { silver: -5, orange: -5 } },
