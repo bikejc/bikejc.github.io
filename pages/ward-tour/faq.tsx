@@ -2,6 +2,8 @@ import { Page } from "../../src/page";
 import {triptych} from "../../src/img";
 
 export const difficultyMd = `[The route](/ward-tour/#route) is about 15 miles long. The riding pace is conversational. Most of of the course is slightly rolling to flat. However, there are a few steady uphill sections, and one steeper but very short hill in Lincoln Park just before the halfway rest point where the ride takes a short water and shade break. People with a wide range of athletic abilities should be able to complete this course.
+
+We’ll ride on streets (or sometimes on one side of a street) that are closed to motor-vehicle traffic by the Jersey City Police Department. Police officers will escort us throughout the ride.
 `
 
 export const md = `

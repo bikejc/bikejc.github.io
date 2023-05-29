@@ -65,7 +65,7 @@ The 2023 Ward Tour route is 15.2mi long, with ≈300' of elevation gain/loss:
 ([View full route on RideWithGPS](${wt23rwgps}))
 
 From [the FAQs below](#difficulty):
-> ${difficultyMd}
+${difficultyMd.split('\n').map(line => `> ${line}`).join('\n')}
 `)}
             {MD(faqMd)}
         </Page>
