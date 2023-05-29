@@ -1,4 +1,5 @@
 import React, {ReactNode} from "react";
+import A from "next-utils/a";
 
 export type Breadcrumb = {
     href: string
@@ -16,7 +17,7 @@ export function Breadcrumbs({ breadcrumbs }: { breadcrumbs: Breadcrumb[] }) {
                         ({ href, node }, idx) => {
                             return (
                                 <li key={href} className={idx + 1 == breadcrumbs.length ? "current" : ""}>
-                                    <a href={href}>{node}</a>
+                                    <A href={href}>{node}</A>
                                 </li>
                             )
                         }

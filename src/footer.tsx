@@ -35,12 +35,12 @@ export default function Footer() {
                 </section>
                 <section className="block block-block site-info block-block-7">
                     <div className="site-credits">
-                        site by <A href="https://designsprawl.com/">design sprawl</A>
+                        site by <A href="https://designsprawl.com/">design sprawl</A> and <A href={"https://neighbor-ryan.org"}>Neighbor Ryan</A>
                     </div>
                 </section>
             </div>
             <div className="copyright large-12 columns">
-                <span> © 2022 bikejc Information likes to be shared.</span>
+                <span>© 2023 bikejc</span>
             </div>
         </footer>
     )

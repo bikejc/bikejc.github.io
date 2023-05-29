@@ -643,8 +643,8 @@ export function routeList(route: Route) {
             stopTimes.map(({ time, name, routes }) => {
                 const otherDots = routes.map(({ active, color: routeColor, name: routeName}) => {
                     if (active === false || route.name == routeName) return
-                    return <Link href={`/bike-bus/${routeName}-line`}>
-                        <Dot key={routeName} color={routeColor} style={dotStyle} />
+                    return <Link key={routeName} href={`/bike-bus/${routeName}-line`}>
+                        <Dot color={routeColor} style={dotStyle} />
                     </Link>
                 })
                 const dots = <span style={{ marginRight: "0.2em", }}>{dot}{otherDots}</span>
@@ -656,6 +656,6 @@ export function routeList(route: Route) {
         {rwgps && MD(`[Turn-by-turn directions on RideWithGPS](${rwgps})`)}
         {MD(`### Map <a id="map"></a>`)}
         <MapEmbed url={url} />
-        <p><A href={url}>(full screen version)</A></p>
+        <p><Link href={url}>(full screen version)</Link></p>
     </Fragment>
 }
