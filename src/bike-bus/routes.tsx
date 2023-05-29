@@ -4,6 +4,10 @@ import {Dispatch, Fragment, useMemo} from "react";
 import css from "./routes.module.scss";
 import A from "next-utils/a";
 import MD from "../md"
+import Dot from "../dot";
+import Link from "next/link";
+
+export const nextDate = `Friday, June 2`
 
 export type Stop = {
     name: string
@@ -563,7 +567,7 @@ export function cmpTimes(l: string, r: string) {
     return tl.h*60 + tl.m - (tr.h*60 + tr.m)
 }
 
-export type StopTime = { time: string, name: string }
+export type StopTime = { time: string, name: string, routes: Route[] }
 export type StopTimes = StopTime[]
 
 export function getRouteStops(route: Route): StopTimes {
@@ -584,7 +588,14 @@ export function getRouteStops(route: Route): StopTimes {
             stops[time] = stop.name
         }
     })
-    const stopTimes = o2a<string, string, StopTime>(stops, (time, name) => ({ time, name }))
+    const stopTimes = o2a<string, string, StopTime>(stops, (time, name) => {
+        let routes: Route[] = []
+        const time2routes = stop2time2routes[name]
+        if (time2routes) {
+            routes = time2routes[time] || []
+        }
+        return { time, name, routes }
+    })
     stopTimes.sort(({ time: l }, { time: r }) => cmpTimes(l, r))
     return stopTimes
 }
@@ -623,10 +634,25 @@ export function routeList(route: Route) {
     const stopTimes = getRouteStops(route)
     const { sub, query, rwgps } = route
     const url = `/bike-bus/map/?${query}`
+    const dotStyle = { border: "1px solid black", marginLeft: "0.3em", marginRight: 0, }
+    const dot = <Dot key={route.name} color={route.color} style={dotStyle} />
     return <Fragment key={route.name}>
         {sub && <p style={{ marginBottom: 0, marginTop: 0 }}>({sub})</p>}
         {MD(`### Stops <a id="stops"></a>`)}
-        {MD(`${stopTimes.map(({ time, name }) => `- **${time}**: ${name}`).join("\n")}`)}
+        <ul>{
+            stopTimes.map(({ time, name, routes }) => {
+                const otherDots = routes.map(({ active, color: routeColor, name: routeName}) => {
+                    if (active === false || route.name == routeName) return
+                    return <Link href={`/bike-bus/${routeName}-line`}>
+                        <Dot key={routeName} color={routeColor} style={dotStyle} />
+                    </Link>
+                })
+                const dots = <span style={{ marginRight: "0.2em", }}>{dot}{otherDots}</span>
+                return <li key={time}>
+                    <strong>{time}</strong>{dots}: {name}
+                </li>
+            })
+        }</ul>
         {rwgps && MD(`[Turn-by-turn directions on RideWithGPS](${rwgps})`)}
         {MD(`### Map <a id="map"></a>`)}
         <MapEmbed url={url} />

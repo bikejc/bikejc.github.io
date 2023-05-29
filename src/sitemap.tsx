@@ -103,7 +103,7 @@ export const Sitemap0: Sitemap0 = {
                 {
                     title: `${title} (${summary})`,
                     node: <Fragment key={title}>
-                        <Dot color={color} />
+                        <Dot color={color} style={{ border: "0px solid black" }} />
                         {title} <span style={{ fontWeight: "normal" }}>({summary})</span>
                     </Fragment>,
                 },

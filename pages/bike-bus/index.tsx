@@ -4,7 +4,7 @@ import MD from "../../src/md";
 import YouTubeEmbed from "next-utils/youtube";
 import {helmets} from "../../src/img";
 import {iframeHtml} from "../../src/insta";
-import {MapEmbed, Route, routeHref, routesByName} from "../../src/bike-bus/routes";
+import {MapEmbed, nextDate, Route, routeHref, routesByName} from "../../src/bike-bus/routes";
 import {filterEntries, o2a} from "next-utils/objs";
 import {ReactNode} from "react";
 import Link from "next/link";
@@ -16,8 +16,8 @@ const signupMd = `
 
 [**Sign up here**](/bike-bus/signup) and Bike JC will help coordinate one in your area!
 
-### Next Bike Bus: Thursday, May 25 <a id="next-bike-bus"></a>
-Next Bike Bus is Thursday, May 25!
+### Next Bike Bus: ${nextDate} <a id="next-bike-bus"></a>
+Next Bike Bus is ${nextDate}!
 
 [**Sign up**](/bike-bus/signup) and [sign the waiver](/bike-bus/waiver) (if you haven't yet), and tell your friends!
 `
@@ -45,7 +45,7 @@ Here are the routes we plan to run (subject to change!):
                         (routeName, { title, summary }) =>
                             <li key={routeName}>
                                 <Link href={`/bike-bus/${routeName}-line`}>
-                                    <Dot color={routesByName[routeName].color} />
+                                    <Dot color={routesByName[routeName].color} style={{ border: "0px solid black" }} />
                                     <strong>{title}</strong>: {summary}
                                 </Link>
                             </li>
@@ -68,6 +68,13 @@ Here are the routes we plan to run (subject to change!):
 [**Parents must sign the waiver for their children who will join**](/bike-bus/waiver).
 
 ### Previous Bike Buses <a id="past"></a>
+
+#### Bike Bus #4: Thursday, May 25 <a id="20230525"></a>
+This week:
+- [The pink line](/bike-bus/pink-line) was extended to include Hudson Montessori, French Academy, Scandi School, and other Hamilton Park schools, for folks coming from the Van Vorst / Paulus Hook direction!
+- [The silver line](/bike-bus/silver-line) also now runs up Bergen Ave (from Union to Belmont), where it meets [the red line](/bike-bus/red-line), and drops off at PS 17, LCCS, and Three Little Birds.
+
+${iframeHtml("CsrTW7bR-5I")}
 
 #### Bike Bus #3: Friday, May 19 <a id="20230519"></a>
 We added a new route this week, [the "silver line"](/bike-bus/silver-line) from Communipaw / Bergen Lafayette to the West Side (Three Little Birds, LCCS, PS 17)

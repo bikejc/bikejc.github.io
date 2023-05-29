@@ -154,8 +154,11 @@ const Stop = ({ center, radius, stop, opacity, displayRoute, permanentTooltip, r
 }) => {
     const timesNode =
         routeTimes.map(([ time, routes ]) => {
-            const filteredRoutes = routes.filter(route => displayRoute(route, !isPinned))
-            if (!filteredRoutes.length) return
+            const filteredRoutes = routes.filter(route => displayRoute(route))
+            if (!filteredRoutes.length) {
+                console.log(`No routes for stop ${stop.name}`)
+                return
+            }
             return <Fragment key={time}>
                 {time.replace(/am$/, '')}{' '}
                 {
@@ -360,7 +363,7 @@ const Layers = (
     )
     const displayRoute = useCallback(
         (route: Route, pinnedOnly?: boolean) => {
-            if (route.active === false) return false
+            if (route.active === false && (!pinnedRoutes || !(route.id in pinnedRoutes))) return false
             if (hideRoutesLevel == 'Unpinned') {
                 return (!pinnedRoutes || route.id in pinnedRoutes)
             }
@@ -569,7 +572,7 @@ const Layers = (
                 const showRoute = displayRoute(route)
                 if (!showRoute) return
                 const isSelectedRoute = !pinnedRoutes || (id in pinnedRoutes)
-                const isDeselectedRoute = (pinnedRoutes && !isSelectedRoute) || (active === false)
+                const isDeselectedRoute = !(pinnedRoutes && id in pinnedRoutes) && ((pinnedRoutes && !isSelectedRoute) || (active === false))
                 const routeLineOpacity = isDeselectedRoute ? 0.4 : 1
                 // console.log(`route ${name}`, isSelectedRoute, isDeselectedRoute, routeLineOpacity)
                 const offsetIdxs = offsets?.map((segment, idx) => {

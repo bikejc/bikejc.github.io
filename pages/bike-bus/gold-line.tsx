@@ -1,3 +1,3 @@
 import RoutePage from "../../src/bike-bus/route-page";
 
-export default function Home() { return RoutePage("gold", { inactive: true }) }
+export default function Home() { return RoutePage("gold") }

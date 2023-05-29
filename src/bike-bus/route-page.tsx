@@ -1,7 +1,8 @@
 import {Page} from "../page";
 import MD from "../../src/md";
 import {helmets} from "../img";
-import {routeList, routesByName} from "./routes";
+import * as routes from "./routes";
+const {routeList, routesByName} = routes
 import Dot from "../dot";
 
 export type Props = {
@@ -11,15 +12,15 @@ export type Props = {
 
 export default function RoutePage(name: string, props?: Props) {
     const route = routesByName[name]
-    const nextDate = props ? props.nextDate : `Thursday, May 25`
-    const body = props?.inactive
+    const nextDate = props ? props.nextDate : routes.nextDate
+    const body = route.active
         ? <>
-            <p><strong>Next {`"${route.title}"`} Bike Bus Date: TBD</strong></p>
-            {MD(`[Sign up](/bike-bus/signup) or [get in touch](mailto:bikebus@bikejc.org) if you'd like to ride this route!`)}
-        </>
-        : <>
             <p><strong>Next {`"${route.title}"`} Bike Bus Date:</strong> {nextDate}.</p>
             {MD(`[Sign up to join here](/bike-bus/signup), and [sign the waiver here](/bike-bus/waiver), or [get in touch](mailto:bikebus@bikejc.org).`)}
+        </>
+        : <>
+            <p><strong>Next {`"${route.title}"`} Bike Bus Date: TBD</strong></p>
+            {MD(`[Sign up](/bike-bus/signup) or [get in touch](mailto:bikebus@bikejc.org) if you'd like to ride this route!`)}
         </>
     const { title, summary } = route
     const { color } = routesByName[name]
@@ -27,7 +28,7 @@ export default function RoutePage(name: string, props?: Props) {
         <Page
             path={`/bike-bus/${name}-line`}
             banner={helmets}
-            h1={<><Dot color={color} /> {title}: {summary}</>}
+            h1={<><Dot color={color} style={{ border: "1px solid black", marginRight: "0.1em" }} /> {title}: {summary}</>}
         >
             {body}
             {routeList(route)}
