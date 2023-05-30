@@ -30,7 +30,7 @@
     "Dickinson HS": { "id": "ds", "lat":  40.72962, "lng": -74.05365 },
     "Ferris HS": { "id": "ferris", "lat":  40.72161, "lng": -74.05381 },
     "Innovation High School": { "id": "ihs", "lat": 40.7101, "lng": -74.0843 },
-    "McNair Academic High School": { "id": "mcnair", "lng": -74.0475072, "lat": 40.7268028 },
+    "McNair Academic High School": { "id": "mcn", "lng": -74.0475072, "lat": 40.7268028 },
     "Scandinavian School of Jersey City": { "id": "ssjc", "lng": -74.0423823, "lat": 40.7282799 },
     "French American Academy of Jersey City": { "id": "faa", "lng": -74.0434138, "lat": 40.7229609 },
     "Hudson Montessori School": { "id": "hms", "lng": -74.0466017, "lat": 40.7153871 },

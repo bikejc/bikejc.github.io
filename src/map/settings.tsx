@@ -2,7 +2,16 @@ import {CaseStringsActions, HideLevel} from "../bike-bus/params"
 import {Dispatch} from "react"
 import {OptActions} from "next-utils/use-set"
 
-export const HideLevelButton = ({ type, hideLevel, setHideLevel, enableUnpinned }: Buttons) => ({
+export type Button = {
+    type: string
+    setHideLevel: Dispatch<HideLevel>
+}
+
+export type HideLevelButton = Button & {
+    hideLevel: HideLevel
+    enableUnpinned: boolean
+}
+export const HideLevelButton = ({ type, hideLevel, setHideLevel, enableUnpinned }: HideLevelButton) => ({
     id: hideLevel,
     states: [
         { label: "👁️", id: "None", title: `Show all ${type}s`, activate: () => setHideLevel("None"), },
@@ -13,7 +22,10 @@ export const HideLevelButton = ({ type, hideLevel, setHideLevel, enableUnpinned 
     ]
 })
 
-export const ResetButton = ({ type, setHideLevel, actions }: Buttons) => ({
+export type ResetButton = Button & {
+    actions: OptActions<string> | CaseStringsActions
+}
+export const ResetButton = ({ type, setHideLevel, actions }: ResetButton) => ({
     id: "reset",
     states: [{
         label: "♻️", id: "reset", title: `Reset ${type}s display`,
@@ -24,12 +36,5 @@ export const ResetButton = ({ type, setHideLevel, actions }: Buttons) => ({
     }]
 })
 
-export type Buttons = {
-    type: string
-    hideLevel: HideLevel
-    setHideLevel: Dispatch<HideLevel>
-    actions: OptActions<string> | CaseStringsActions
-    enableUnpinned: boolean
-}
-
+export type Buttons = HideLevelButton & ResetButton
 export const Buttons = (props: Buttons) => [ HideLevelButton(props), ResetButton(props) ]

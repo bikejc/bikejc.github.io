@@ -42,16 +42,18 @@ export const ps26 = {
     // stop: { name: "PS 26", times: { red: "7:35am", green: "7:56am", blue: "7:56am" }}
 }
 
-export const lincolnPark = { lat: 40.724087769759464, lng: -74.07970547676088 }
-export const threeLittleBirds = { lat: 40.72379098916789, lng: -74.0790241956711, stop: { name: "Three Little Birds", time: "8:15am" }}  // Belmont & West Side
+export const lincolnPark2 = { lat: 40.724087769759464, lng: -74.07970547676088 }
+export const westSideBelmont = { lat: 40.72379098916789, lng: -74.0790241956711, stop: { name: "Lincoln Park", times: { red: "8:15am", silver: "8:15am", aqua: "7:30am", } }}  // Belmont & West Side
+export const kensingtonWestSide = { lat: 40.724534970891085, lng: -74.07829463481904, }
+// export const kensing{ lat: 40.723002278150496, lng: -74.07507598400117, }
 export const lccs = { lat: 40.722526607709575, lng: -74.07551586627962, stop: { name: "LCCS", times: { red: "8:10am", silver: "8:10am" } }, }
 //export const bergenKensingtonPS17 = { lat: 40.72165250359196, lng: -74.07213628292085, stop: { name: "PS 17", times: { red: "8:05am", silver: "8:15am", teal: "7:40am", } }, }
-export const bergenKensingtonPS17 = { lat: 40.72165250359196, lng: -74.07213628292085, }
-export const kensingtonJFK = { lat: 40.72296975378418, lng: -74.0750813484192, }
-export const bergenBelmont = { lat: 40.720908489648345, lng: -74.07275319099428, stop: { name: "Bergen & Belmont / PS 17", time: "8:05am" } }
+export const bergenKensingtonPS17 = { lat: 40.72165250359196, lng: -74.07213628292085, name: "Bergen & Kensington" }
+export const kensingtonJFK = { lat: 40.72296975378418, lng: -74.0750813484192, name: "Kensington & JFK" }
+export const bergenBelmont = { lat: 40.720908489648345, lng: -74.07275319099428, stop: { name: "Bergen & Belmont", times: { red: "8:05am", silver: "8:05am", teal: "7:35" } } }
 export const jfkBelmont = { lat: 40.72212818027965 , lng: -74.07572507858278, name: "JFK & Belmont" }
 export const jsq = { lat: 40.73080360135806 , lng: -74.06440615653993, stop: { name: "JSQ", times: { red: "7:50am", yellow: "8:05am" } } }
-export const mcginleySquare = { lat: 40.725356186961825, lng: -74.068021774292  , stop: { name: "McGinley Sq.", times: { red: "7:55am", yellow: "7:55am", teal: "7:30am", }, }, }
+export const mcginleySquare = { lat: 40.725356186961825, lng: -74.068021774292  , stop: { name: "McGinley Sq", times: { red: "7:55am", yellow: "7:55am", aqua: "7:55am", teal: "7:30am", }, }, }
 export const primaryPrep = { lat: 40.72639696637659, lng: -74.06746863474763, stop: { name: "Primary Prep", times: { red: "7:54am", yellow: "8:00am" } } }
 
 export const jsqToMcGinley = [
@@ -70,7 +72,7 @@ export const pershingField = { lat: 40.742794472027434, lng: -74.05348956584932,
 export const summitSanford = { lat: 40.743135875341636, lng: -74.05439078807832, name: "Summit & Sanford", }
 export const summitCarlton = { lat: 40.74254654709375, lng: -74.05484139919282, name: "Summit & Carlton" }
 
-export const ps3ms4 = { lat: 40.71777784806193, lng: -74.05000269412996, stop: { name: "PS 3 / MS 4", times: { orange: ["7:50am", "8:35am"], green: "8:35am", }}}
+export const ps3ms4 = { lat: 40.71777784806193, lng: -74.05000269412996, stop: { name: "PS 3 / MS 4", times: { orange: [ "7:50am", "8:25am" ], green: "8:25am", }}}
 export const groveSt = { lat: 40.71958306715651, lng: -74.04291093349458, stop: { name: "Grove St Plaza", times: { pink: [ "7:45am", "8:15am", ] } }}
 
 // export const westSideToTeccs = [
@@ -88,7 +90,7 @@ export const ps6ToNJT = [
     { lat: 40.73261659709138, lng: -74.05028700828554, },
     { lat: 40.734023057511926, lng: -74.04897809028627, },
     { lat: 40.73509617494571, lng: -74.0482807159424, },
-    { lat: 40.73570589304912, lng: -74.04555559158327, stop: { name: 'Hoboken Ave & NJ Transit Path', time: '8:05am', }},
+    { lat: 40.73570589304912, lng: -74.04555559158327, stop: { name: 'Hoboken Ave & NJ Transit Path', time: '8:00am', }},
 ]
 export const cancoToNJT = [
     { lat: 40.73783986240655, lng: -74.06729757785799, stop: { name: "Canco Park", time: "7:30am", }},
@@ -103,12 +105,14 @@ export const cancoToNJT = [
     ...ps6ToNJT
 ]
 
-export const hamiltonPark = { lat: 40.72686036833718, lng: -74.04423594474794, stop: { name: "Hamilton Park", times: { green: "8:15am", orange: "8:15am", yellow: "7:30am", }}}
+export const hamiltonPark = { lat: 40.72686036833718, lng: -74.04423594474794, stop: { name: "Hamilton Park", times: { yellow: "7:30am", green: "8:10am", orange: "8:10am", }}}
 const jersey8th = { lat: 40.72692014655555, lng: -74.0451948682466, name: "Jersey & 8th (Hamilton Park)" }
+const ccdBrunswick = { lat: 40.721892375167045, lng: -74.0513062477112, name: "CCD & Brunswick", }
+const ccdVarick = { lat: 40.72110364165123, lng: -74.04821097850801, name: "CCD & Varick" }
 export const ccdBrunswickVarick = [
-    { lat: 40.721892375167045, lng: -74.0513062477112, name: "CCD & Brunswick", },
+    ccdBrunswick,
     { lat: 40.72187204710097, lng: -74.0506410598755, },
-    { lat: 40.72110364165123, lng: -74.04821097850801, name: "CCD & Varick" },
+    ccdVarick,
 ]
 export const ccdVarickBrunswick = [...ccdBrunswickVarick]
 ccdVarickBrunswick.reverse()
@@ -119,7 +123,7 @@ export const hpPs5Ps3 = [
     { lat: 40.727360399481135, lng: -74.05020117759706, },
     { lat: 40.724534970891085, lng: -74.05065715312959, name: "Brunswick & 4th" },
     { lat: 40.724644737982274, lng: -74.05206799507143, },
-    { lat: 40.72494558019309, lng: -74.05242204666139, stop: { name: "PS 5", time: "8:25am", }},
+    { lat: 40.72494558019309, lng: -74.05242204666139, stop: { name: "PS 5", time: "8:20am", }},
     { lat: 40.724429269076595, lng: -74.05327498912813, },
     { lat: 40.72386823355885, lng: -74.05153691768648, },
     { lat: 40.72379505466438, lng: -74.05076444149019, name: "Brunswick & 3rd" },
@@ -137,8 +141,8 @@ export const lccsToLincolnPark = [
     lccs,
     { lat: 40.722904705003856, lng: -74.07643318176271, },
     { lat: 40.722880311694844, lng: -74.07701253890993, },
-    threeLittleBirds,
-    lincolnPark,
+    westSideBelmont,
+    lincolnPark2,
 ]
 export const lccsToMalloryUnion = [
     ...lccsToLincolnPark,
@@ -209,21 +213,42 @@ const unionBergenToOceanStegman = [
     oceanWegman,
 ]
 const bergenHarrison = { lat: 40.71892441180782, lng: -74.07477021217348, }
-const bergenMcGinleyPS17 = [
+const mcGinleyToPS17 = [
     { lat: 40.724429269076595, lng: -74.06975984573366, },
     { lat: 40.72337224169876 , lng: -74.07050013542177, },
 ]
+const ps17UntilMcGinley = [...mcGinleyToPS17]
+ps17UntilMcGinley.reverse()
 
-const columbusBarrow = { lat: 40.72020919027281, lng: -74.04511570930482, name: "Columbus & Barrow" }
-const newarkBarrow = { lat: 40.72088816128179, lng: -74.04472947120668, stop: { name: "Newark & Barrow", times: { orange: "8:05am", pink: "8:17am" } } }
-const ps37 = { lat: 40.72755959783345, lng: -74.04340445995332, stop: { name: "PS 37", times: { orange: "8:10am", pink: "8:24am" } }}
-const columbusBarrowPS37 = [
-    columbusBarrow,
+const ccdBarrow = { lat: 40.72020919027281, lng: -74.04511570930482, name: "Columbus & Barrow" }
+const newarkBarrow = { lat: 40.72088816128179, lng: -74.04472947120668, stop: { name: "Newark & Barrow", times: { orange: "8:00am", pink: "8:17am", aqua: "8:17am" } } }
+const ps37 = { lat: 40.72755959783345, lng: -74.04340445995332, stop: { name: "PS 37", times: { orange: "8:07am", pink: "8:24am", aqua: "8:24am" } }}
+const ccdBarrowPS37 = [
+    ccdBarrow,
     newarkBarrow,
     { lat: 40.720790585035964, lng: -74.04443979263307, }, // Newark & Erie
-    { lat: 40.72321775167592, lng: -74.04406964778902, stop: { name: "French American Academy", times: { pink: "8:20am", orange: "8:08am" }}},
+    { lat: 40.72321775167592, lng: -74.04406964778902, stop: { name: "French American Academy", times: { orange: "8:03am", pink: "8:20am", aqua: "8:20am", }}},
     ps37,
 ]
+const scandiSchool = { lat: 40.72818158068778, lng: -74.04238522052766, stop: { name: "Scandinavian School", time: "8:26am" }}
+const ccdBarrowToScandi = [
+    ...ccdBarrowPS37,
+    { lat: 40.72826288520644, lng: -74.04330790042879, },
+    scandiSchool,
+]
+const ccdJersey = { lat: 40.720704960202205, lng: -74.04669698192752, name: "Jersey & CCD", }
+
+const jerseyColumbusToMcGinley = [
+    ccdJersey,
+    ...ccdVarickBrunswick,
+    { lat: 40.72301631837917, lng: -74.05484481068164, name: "Merseles & CCD" },
+    { lat: 40.721061443563826, lng: -74.0554213795693, name: "Merseles & Montgomery" },
+    { lat: 40.72379825222925, lng: -74.06420646867288, name: "Montgomery & Baldwin" },
+    { lat: 40.72484464933251, lng: -74.0672713874966, },
+    mcginleySquare,
+]
+const McGinleyToJerseyColumbus = [...jerseyColumbusToMcGinley]
+McGinleyToJerseyColumbus.reverse()
 
 const washington11thUntilWashingtonBay = [
     { lat: 40.729210075529004, lng: -74.034880399704, stop: { name: "Washington & 11th", time: "7:15am" } },
@@ -257,7 +282,7 @@ export const routes: Route[] = [
             { lat: 40.73257594750422 , lng: -74.05958890914918, name: "Summit & Pavonia", },
             { lat: 40.73043774421105 , lng: -74.06129479408266, name: "Summit & Sip", },
             ...jsqToMcGinley,
-            ...bergenMcGinleyPS17,
+            ...mcGinleyToPS17,
             bergenKensingtonPS17,
             bergenBelmont,
             jfkBelmont,
@@ -268,7 +293,8 @@ export const routes: Route[] = [
             { start: summitCarlton.name, end: summitHopkins.stop.name, offsets: { blue: 5 } },
             { start: summitHopkins.stop.name, end: "Summit & 139", offsets: { green: 5, } },
             { start: jsq.stop.name, end: mcginleySquare.stop.name, offsets: { yellow: -5 } },
-            { start: mcginleySquare.stop.name, end: bergenBelmont.stop.name, offsets: { teal: -5 } },
+            { start: mcginleySquare.stop.name, end: bergenKensingtonPS17.name, offsets: { teal: -5, aqua: -5 } },
+            { start: bergenKensingtonPS17.name, end: bergenBelmont.stop.name, offsets: { teal: -5 } },
             { start: bergenBelmont.stop.name, end: ps33.stop.name, offsets: { silver: 5 } },
             // { start: lccs.stop.name, end: malloryUnion.name, offsets: { silver: -5 } },
         ]
@@ -294,17 +320,17 @@ export const routes: Route[] = [
             { lat: 40.717371260430305, lng: -74.04851675033571, },  // Bright & Jersey
             { lat: 40.718054274043766, lng: -74.0481156448484, },  // York & Jersey
             { lat: 40.717571274308085, lng: -74.04657559900382, stop: { name: "Van Vorst Park", time: "7:55am", }},
-            ...columbusBarrowPS37,
+            ...ccdBarrowPS37,
             ...hpPs5Ps3,
         ],
         offsets: [
             { start: theGrindShop.stop.name, end: communipawVanHorne.name, offsets: { silver: 5, gold: 5 } },
-            { start: columbusBarrow.name, end: ps37.stop.name, offsets: { pink: -5 } },
+            { start: ccdBarrow.name, end: ps37.stop.name, offsets: { pink: -5, aqua: -5 } },
             { start: "McWilliams & Pavonia", end: hamiltonPark.stop.name, offsets: { green: -5 }, },
             { start: hamiltonPark.stop.name, end: jersey8th.name, offsets: { green: -5, yellow: 5 }, },
-            { start: jersey8th.name, end: "CCD & Brunswick", offsets: { green: -5 }, },
-            { start: "CCD & Brunswick", end: "CCD & Varick", offsets: { yellow: 5, green: -5, }, },
-            { start: "CCD & Varick", end: "PS 3 / MS 4", offsets: { green: -5 }, },
+            { start: jersey8th.name, end: ccdBrunswick.name, offsets: { green: -5 }, },
+            { start: ccdBrunswick.name, end: ccdVarick.name, offsets: { yellow: 5, green: -5, aqua: 5 }, },
+            { start: ccdVarick.name, end: "PS 3 / MS 4", offsets: { green: -5 }, },
         ]
     },
     {
@@ -319,13 +345,8 @@ export const routes: Route[] = [
             hamiltonPark,
             jersey8th,
             { lat: 40.721647912036914, lng: -74.04605972157802, name: "Newark & Jersey", },
-            { lat: 40.720704960202205, lng: -74.04669698192752, name: "Jersey & CCD", },
-            ...ccdVarickBrunswick,
-            { lat: 40.72301631837917, lng: -74.05484481068164, name: "Merseles & CCD" },
-            { lat: 40.721061443563826, lng: -74.0554213795693, name: "Merseles & Montgomery" },
-            { lat: 40.72379825222925, lng: -74.06420646867288, name: "Montgomery & Baldwin" },
-            { lat: 40.72484464933251, lng: -74.0672713874966, },
-            ...mcGinleyToJSQ,
+            ...jerseyColumbusToMcGinley,
+            ...mcGinleyToJSQ.slice(1),
             { lat: 40.731231914467145, lng: -74.06715759100562, },
             { lat: 40.73223448999161, lng: -74.07161593437196, name: "Sip & Corbin" },
             { lat: 40.73420191161954, lng: -74.07041430473329, name: "Pavonia & Corbin" },
@@ -336,7 +357,9 @@ export const routes: Route[] = [
         ],
         offsets: [
             { start: hamiltonPark.stop.name, end: jersey8th.name, offsets: { orange: -5, green: -5 }, },
-            { start: "CCD & Varick", end: "CCD & Brunswick", offsets: { green: 5, orange: 5 }, },
+            { start: ccdJersey.name, end: ccdVarick.name, offsets: { aqua: 5 } },
+            { start: ccdVarick.name, end: ccdBrunswick.name, offsets: { green: 5, orange: 5, aqua: 5 }, },
+            { start: ccdBrunswick.name, end: mcginleySquare.stop.name, offsets: { aqua: 5 } },
             { start: mcginleySquare.stop.name, end: jsq.stop.name, offsets: { red: -5 } },
         ]
     },
@@ -357,12 +380,12 @@ export const routes: Route[] = [
         offsets: [
             { start: "Summit & 139", end: summitHopkins.stop.name, offsets: { red: 5 }, },
             { start: summitHopkins.stop.name, end: 'Hoboken Ave & NJ Transit Path', offsets: { blue: 5 }, },
-            // { start: "McWilliams & Pavonia", end: "CCD & Brunswick", offsets: { orange: 5 }, },
+            // { start: "McWilliams & Pavonia", end: ccdBrunswick.name, offsets: { orange: 5 }, },
             { start: "McWilliams & Pavonia", end: hamiltonPark.stop.name, offsets: { orange: 5 }, },
             { start: hamiltonPark.stop.name, end: jersey8th.name, offsets: { orange: 5, yellow: 5 }, },
-            { start: jersey8th.name, end: "CCD & Brunswick", offsets: { orange: 5 }, },
-            { start: "CCD & Brunswick", end: "CCD & Varick", offsets: { yellow: 5, orange: 5, }, },
-            { start: "CCD & Varick", end: "PS 3 / MS 4", offsets: { orange: 5 }, },
+            { start: jersey8th.name, end: ccdBrunswick.name, offsets: { orange: 5 }, },
+            { start: ccdBrunswick.name, end: ccdVarick.name, offsets: { yellow: 5, orange: 5, aqua: 5 }, },
+            { start: ccdVarick.name, end: "PS 3 / MS 4", offsets: { orange: 5 }, },
         ]
     },
     {
@@ -433,7 +456,7 @@ export const routes: Route[] = [
         summary: "Paulus Hook / PS16",
         query: "bb=40.714-74.052+40.729-74.026&r=K&R&s=ps16+hms+ps37+ssjc+faa&S=1",
         rwgps: "https://ridewithgps.com/routes/42858902",
-        color: "pink",
+        color: "hsl(320, 99%, 77%)",
         positions: [
             // ...washington11thUntilWashingtonBay
             { lat: 40.72037995010059, lng: -74.036682844162, stop: { name: "Washington & Bay", time: "7:35am" } },
@@ -450,12 +473,38 @@ export const routes: Route[] = [
             { lat: 40.714386831207385, lng: -74.03615713119508, },
             { lat: 40.714586068388364, lng: -74.03790056705476, stop: { name: "PS16", time: "8:05am" }},
             { lat: 40.71769246486529, lng: -74.03719782829286, stop: { name: "PS16 Annex", time: "8:10am" }},
-            ...columbusBarrowPS37,
-            { lat: 40.72826288520644, lng: -74.04330790042879, },
-            { lat: 40.72818158068778, lng: -74.04238522052766, stop: { name: "Scandinavian School", time: "8:26am" }},
+            ...ccdBarrowToScandi,
         ],
         offsets: [
-            { start: columbusBarrow.name, end: ps37.stop.name, offsets: { orange: 5 } },
+            { start: ccdBarrow.name, end: ps37.stop.name, offsets: { orange: 5, aqua: 5 } },
+            { start: ps37.stop.name, end: scandiSchool.stop.name, offsets: { aqua: 5 } },
+        ]
+    },
+    {
+        name: "aqua",
+        active: false,
+        id: "w",
+        title: "Aqua line",
+        summary: "West Side to Downtown",
+        query: "bb=40.707-74.081+40.738-74.057&h&r=W&R&s=ps3+ps5+ssjc+faa+ps37+bccs+mcn&S=1",
+        // color: "hsl(36, 71%, 62%)",
+        color: "aqua",
+        positions: [
+            westSideBelmont,
+            kensingtonWestSide,
+            kensingtonJFK,
+            bergenKensingtonPS17,
+            ...ps17UntilMcGinley,
+            ...McGinleyToJerseyColumbus,
+            ...ccdBarrowToScandi,
+        ],
+        offsets: [
+            { start: kensingtonJFK.name, end: mcginleySquare.stop.name, offsets: { red: -5, teal: 5 } },
+            { start: mcginleySquare.stop.name, end: ccdBrunswick.name, offsets: { yellow: 5 } },
+            { start: ccdBrunswick.name, end: ccdVarick.name, offsets: { yellow: 5, green: -5, orange: -5 } },
+            { start: ccdVarick.name, end: ccdJersey.name, offsets: { yellow: 5 } },
+            { start: ccdBarrow.name, end: ps37.stop.name, offsets: { orange: 5, pink: -5 } },
+            { start: ps37.stop.name, end: scandiSchool.stop.name, offsets: { pink: -5 } },
         ]
     },
     {
@@ -515,7 +564,7 @@ export const routes: Route[] = [
         color: "teal",
         positions: [
             mcginleySquare,
-            ...bergenMcGinleyPS17,
+            ...mcGinleyToPS17,
             bergenKensingtonPS17,
             bergenBelmont,
             bergenHarrison,
@@ -538,7 +587,8 @@ export const routes: Route[] = [
             ps34,
         ],
         offsets: [
-            { start: mcginleySquare.stop.name, end: bergenBelmont.stop.name, offsets: { red: 5 } },
+            { start: mcginleySquare.stop.name, end: bergenKensingtonPS17.name, offsets: { red: 5, aqua: 5 } },
+            { start: bergenKensingtonPS17.name, end: bergenBelmont.stop.name, offsets: { red: 5 } },
             { start: bergenBelmont.stop.name, end: unionBergen.stop.name, offsets: { silver: 5 } },
             { start: unionBergen.stop.name, end: academy1.stop.name, offsets: { gold: 5 } },
         ]
@@ -580,7 +630,11 @@ export function getRouteStops(route: Route): StopTimes {
             times = [ stop.time ]
         } else if (stop.times) {
             const routeStopTimes = stop.times[name]
-            times = routeStopTimes instanceof Array ? routeStopTimes : [routeStopTimes]
+            if (routeStopTimes) {
+                times = routeStopTimes instanceof Array ? routeStopTimes : [routeStopTimes]
+            } else {
+                times = []
+            }
         } else {
             return
         }
@@ -641,9 +695,9 @@ export function routeList(route: Route) {
         {MD(`### Stops <a id="stops"></a>`)}
         <ul>{
             stopTimes.map(({ time, name, routes }) => {
-                const otherDots = routes.map(({ active, color: routeColor, name: routeName}) => {
+                const otherDots = routes.map(({ active, color: routeColor, name: routeName, title, summary, }) => {
                     if (active === false || route.name == routeName) return
-                    return <Link key={routeName} href={`/bike-bus/${routeName}-line`}>
+                    return <Link key={routeName} href={`/bike-bus/${routeName}-line`} title={`${title} – ${summary}`}>
                         <Dot color={routeColor} style={dotStyle} />
                     </Link>
                 })

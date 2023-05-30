@@ -15,7 +15,7 @@ import {SettingsGear} from "./settings";
 import {OptActions} from "next-utils/use-set";
 import Dot from "../dot";
 import {LayerToggle} from "../map/layer-toggle";
-import {Buttons} from "../map/settings";
+import {Buttons, HideLevelButton} from "../map/settings";
 
 export const MAPS = {
     openstreetmap: {
@@ -719,6 +719,20 @@ const Map = ({ signups, params, ...props }: MapContainerProps & { signups: Props
         [ pinnedSchools, hideSchoolsLevel, setHideSchoolsLevel, pinnedSchoolActions, ]
     )
 
+    const homeButtons = useMemo(
+        () => {
+            return [
+                HideLevelButton({
+                    type: "home",
+                    hideLevel: hideHomesLevel == 'Unpinned' ? 'None': hideHomesLevel,
+                    setHideLevel: setHideHomesLevel,
+                    enableUnpinned: false,
+                })
+            ]
+        },
+        [ hideHomesLevel, setHideHomesLevel, ]
+    )
+
     return <>
         <MapContainer bounds={[ [sw.lat, sw.lng], [ne.lat, ne.lng] ]} maxZoom={18} {...props}>
             <Layers
@@ -760,6 +774,7 @@ const Map = ({ signups, params, ...props }: MapContainerProps & { signups: Props
                 <ul className={css.layers}>
                     <LayerToggle label={"🗺️"} title={"Show/Hide Routes"} buttons={routeButtons} />
                     <LayerToggle label={"📚"} title={"Show/Hide Schools"} buttons={schoolButtons} />
+                    <LayerToggle label={"🏠"} title={"Show/Hide Homes"} buttons={homeButtons} />
                 </ul>
             </div>
         </SettingsGear>
