@@ -1,7 +1,7 @@
 import {Breadcrumb} from "./breadcrumbs";
 import {routes} from "./bike-bus/routes";
 import {Fragment, ReactNode} from "react";
-import {regfox} from "./blurbs";
+import {regfox, wt23vol} from "./blurbs";
 import Dot from "./dot";
 
 export type Entry = Breadcrumb | string
@@ -117,7 +117,17 @@ export const Sitemap0: Sitemap0 = {
             header: false,
             children: [
                 [ "register", { node: "Register", href: regfox } ],
-                [ "faq", { title: "FAQs", children: [], } ],
+                [ "volunteer", { node: "Volunteer", href: wt23vol } ],
+                [ "bib-pickup", { node: "Bib Pickup (Friday/Saturday)", href: "#bib-pickup" } ],
+                [ "sponsors", { node: "Sponsors", href: "#sponsors" } ],
+                [ "route", { node: "Route", href: "#route" } ],
+                [ "faq", { title: "FAQs", children: [
+                        [ "register", { node: "Register", href: regfox } ],
+                        [ "volunteer", { node: "Volunteer", href: wt23vol } ],
+                        [ "bib-pickup", { node: "Bib Pickup (Friday/Saturday)", href: "#bib-pickup" } ],
+                        [ "sponsors", { node: "Sponsors", href: "/ward-tour#sponsors" } ],
+                        [ "route", { node: "Route", href: "/ward-tour#route" } ],
+                    ], } ],
                 [ "2022", {
                     title: "2022 Ward Tour",
                     children: [

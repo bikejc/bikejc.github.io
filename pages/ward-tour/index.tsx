@@ -44,10 +44,11 @@ The Jersey City Ward Tour will roll Sunday, June 4, 2023, taking you (and 1,000'
 Quick links:
 - [**REGISTER**](${regfox})
 - [**Sign up to volunteer**](${wt23vol})
-- [**Subscribe for updates**](#subscribe)
+- [**Bib pickup (Friday/Saturday)**](#bib-pickup)
 - [**Sponsors**](#sponsors)
 - [**Route**](#route)
 - [**FAQs**](#faqs)
+- [**Subscribe for updates**](#subscribe)
 
 [![Overhead view of the start of the 2022 Ward Tour, at Jersey City Hall](/img/wt22/wt22%20overhead%20city%20hall%20start%20cropped.JPG)](${regfox})
 

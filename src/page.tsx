@@ -103,7 +103,7 @@ export function Page(
             title = parent.node || parent.title
         }
         if (children) {
-            console.log("children:", children)
+            // console.log("children:", children)
             Array.from(children).forEach(([piece, child]) => {
                 //if (piece == "") return
                 let breadcrumb: Breadcrumb
@@ -121,7 +121,7 @@ export function Page(
                 } else {
                     breadcrumb = { node: child, href: `${menuPath}/${piece}` }
                 }
-                console.log("push:", breadcrumb)
+                // console.log("push:", breadcrumb)
                 sectionMenuItems.push(breadcrumb)
             })
             if (sectionMenuItems.length) {

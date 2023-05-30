@@ -19,6 +19,21 @@ Registration begins at 9am, roll out at 11am sharp, so be sure to come early to 
 
 The ride starts at City Hall ([280 Grove St., at Montgomery Street](https://goo.gl/maps/tMHCxVZU4Q3qBGvc8)) and finishes at [the Jersey City Jazz Festival](https://riverviewjazz.org/jersey-city-jazz-festival), at [Exchange Place](https://goo.gl/maps/fv4KrFsXdZKon6VD9). Riders will find a bike parking area and great food, drink, and entertainment options there.
 
+### Early Bib Pickup <a id="bib-pickup"></a>
+
+We encourage riders to pick up their bibs on Friday or Saturday before the event, to avoid the rush on Sunday morning, at one of the following:
+
+#### Friday, 6/2 <a id="bib-pickup-fri"></a>
+- **6pm-9pm:** [**Grove St PATH**](https://goo.gl/maps/mxTWcFqWq6wiQSTNA), at the JC Friday’s [Groove on Grove](https://jcdowntown.org/event/groove-on-grove/) event. We’ll have a table on the plaza
+
+#### Saturday 6/3 <a id="bib-pickup-sat"></a>
+- **9am-11am:** [**ModCup**](https://www.modcup.com/) on [Palisade between Griffith and Bowers](https://goo.gl/maps/XY2CGHfkqoqXLvdF8), on the sidewalk/within the parklet 
+- **12pm to 2pm:**
+  - [**Grove St Bicycles**](https://www.grovestreetbicycles.com/) ([Columbus & Jersey](https://goo.gl/maps/4CmUpw6iaxUM3nsM7), on the sidewalk) 
+  - [**Jersey Cycles**](https://www.facebook.com/jerseycyclesllc/) ([Central & North](https://goo.gl/maps/sBcdFzGSELHa9zR49), on the sidewalk)
+  - [**The Bike Hub**](https://www.instagram.com/thebikehubjc/?hl=en) ([Monticello & Jewett](https://goo.gl/maps/TuGEEJ5UtDyVj7q49), on the sidewalk)
+- **Afternoon / Evening:** [**Jersey City Jazz Festival**](https://riverviewjazz.org/jersey-city-jazz-festival) at [Exchange Place](https://goo.gl/maps/6nBDjbL7cumYRDc1A), afternoon / evening (exact times TBD) 
+
 ### How do I get to the Ward Tour using public transportation? <a id="public-transit"></a>
 
 #### PATH <a id="path"></a>
