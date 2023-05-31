@@ -27,12 +27,12 @@ We encourage riders to pick up their bibs on Friday or Saturday before the event
 - **6pm-9pm:** [**Grove St PATH**](https://goo.gl/maps/mxTWcFqWq6wiQSTNA), at the JC Friday’s [Groove on Grove](https://jcdowntown.org/event/groove-on-grove/) event. We’ll have a table on the plaza
 
 #### Saturday 6/3 <a id="bib-pickup-sat"></a>
-- **9am-11am:** [**ModCup**](https://www.modcup.com/) on [Palisade between Griffith and Bowers](https://goo.gl/maps/XY2CGHfkqoqXLvdF8), on the sidewalk/within the parklet 
+- **9am-11am:** [**ModCup**](https://www.modcup.com/) on [Palisade between Griffith and Bowers](https://goo.gl/maps/XY2CGHfkqoqXLvdF8) (on the sidewalk/within the parklet)
 - **12pm to 2pm:**
   - [**Grove St Bicycles**](https://www.grovestreetbicycles.com/) ([Columbus & Jersey](https://goo.gl/maps/4CmUpw6iaxUM3nsM7), on the sidewalk) 
   - [**Jersey Cycles**](https://www.facebook.com/jerseycyclesllc/) ([Central & North](https://goo.gl/maps/sBcdFzGSELHa9zR49), on the sidewalk)
-  - [**The Bike Hub**](https://www.instagram.com/thebikehubjc/?hl=en) ([Monticello & Jewett](https://goo.gl/maps/TuGEEJ5UtDyVj7q49), on the sidewalk)
-- **Afternoon / Evening:** [**Jersey City Jazz Festival**](https://riverviewjazz.org/jersey-city-jazz-festival) at [Exchange Place](https://goo.gl/maps/6nBDjbL7cumYRDc1A), afternoon / evening (exact times TBD) 
+  - [**The Bike Hub**](https://www.instagram.com/thebikehubjc/) ([Monticello & Jewett](https://goo.gl/maps/TuGEEJ5UtDyVj7q49), on the sidewalk)
+- **12pm to 6pm:** [**Jersey City Jazz Festival**](https://riverviewjazz.org/jersey-city-jazz-festival) ([Exchange Place](https://goo.gl/maps/6nBDjbL7cumYRDc1A), Columbus Drive entrance) 
 
 ### How do I get to the Ward Tour using public transportation? <a id="public-transit"></a>
 
@@ -122,7 +122,8 @@ In the event you feel unwell or sustain an injury, Jersey City Medical Center wi
 <!-- - Ride, friends, ride!-->
 
 #### Local bike rental options
- - [**Grove Street Bicycles** offers bike rentals](https://www.grovestreetbicycles.com/about/rentals-pg110.htm)
+ - ~[**Grove Street Bicycles** offers bike rentals](https://www.grovestreetbicycles.com/about/rentals-pg110.htm)~ Sold out!
+ - We are working on a Citi Bike promo code for 3-hour rentals (for Citi Bike annual members only); stay tuned!
  - [**Zoomo**](https://www.ridezoomo.com/us/plans) offers e-bike rentals in Journal Square
 
 <!--### Is there same-day registration? <a id="day-of-registration"></a>-->
