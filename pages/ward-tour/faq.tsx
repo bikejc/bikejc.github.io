@@ -32,7 +32,7 @@ We encourage riders to pick up their bibs on Friday or Saturday before the event
   - [**Grove St Bicycles**](https://www.grovestreetbicycles.com/) ([Columbus & Jersey](https://goo.gl/maps/4CmUpw6iaxUM3nsM7), on the sidewalk) 
   - [**Jersey Cycles**](https://www.facebook.com/jerseycyclesllc/) ([Central & North](https://goo.gl/maps/sBcdFzGSELHa9zR49), on the sidewalk)
   - [**The Bike Hub**](https://www.instagram.com/thebikehubjc/) ([Monticello & Jewett](https://goo.gl/maps/TuGEEJ5UtDyVj7q49), on the sidewalk)
-- **12pm to 6pm:** [**Jersey City Jazz Festival**](https://riverviewjazz.org/jersey-city-jazz-festival) ([Exchange Place](https://goo.gl/maps/6nBDjbL7cumYRDc1A), Columbus Drive entrance) 
+- **12pm to 6pm:** [**Jersey City Jazz Festival**](https://riverviewjazz.org/jersey-city-jazz-festival) ([Exchange Place](https://goo.gl/maps/tj1DviQ6R3toitDs5), Columbus Drive entrance)
 
 ### How do I get to the Ward Tour using public transportation? <a id="public-transit"></a>
 
