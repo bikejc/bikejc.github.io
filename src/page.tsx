@@ -10,8 +10,7 @@ import Footer from "./footer";
 import {Breadcrumb, Breadcrumbs} from "./breadcrumbs";
 import Triptych from "./triptych";
 import {Img} from "./img";
-import {entries, fromEntries} from "next-utils/objs";
-import {wt23poster, wt23posterSq} from "./blurbs";
+import {wt23posterSq} from "./blurbs";
 
 export function Main({ breadcrumbs, sectionMenu, children }: {
     sectionMenu?: SectionMenu
@@ -33,6 +32,7 @@ export function Main({ breadcrumbs, sectionMenu, children }: {
 export type Page = {
     path: string
     h1?: ReactNode
+    title?: string
     description?: string
     ogImg?: string
     ogImgType?: string
@@ -49,7 +49,7 @@ export type Page = {
 
 export function Page(
     {
-        path, h1,
+        path, h1, title,
         description,
         ogImg = wt23posterSq, ogImgType = "image/png",
         banner, article,
@@ -93,14 +93,14 @@ export function Page(
         const sectionMenuItems: Breadcrumb[] = []
         let children = sitemap?.children
         let menuPath = path
-        let title = sitemap.node || sitemap.title
+        let menuTitle = sitemap.node || sitemap.title
         if (!children?.size) {
             children = parent?.children
             menuPath = path.substring(0, path.lastIndexOf('/'))
             if (!parent) {
                 throw new Error(`No parent or children: ${path}`)
             }
-            title = parent.node || parent.title
+            menuTitle = parent.node || parent.title
         }
         if (children) {
             // console.log("children:", children)
@@ -126,7 +126,7 @@ export function Page(
             })
             if (sectionMenuItems.length) {
                 sectionMenu = {
-                    title,
+                    title: menuTitle,
                     activePath: path,
                     breadcrumbs: sectionMenuItems,
                 }
@@ -146,7 +146,7 @@ export function Page(
         }
     }
 
-    const title = sitemap.title
+    title = title || `Bike JC – ${sitemap.title}`
     const wrapArticle = (children: ReactNode) => <>
         <article className={`node node-page view-mode-full ${(articleClasses || []).join(" ")}`}>
             <div className="field field-name-body field-type-text-with-summary field-label-hidden field-wrapper body field">
@@ -156,35 +156,37 @@ export function Page(
     </>
 
     // TODO: make required
-    const descriptionTag = (name: string) => (description && <meta content={description} name={name} />)
+    const descriptionTag = (attrs: { [k: string]: string }) => (description && <meta content={description} {...attrs} />)
 
     // TODO: add og thumbs
 
+    const domain = 'https://bikejc.org'
+    const url = `${domain}${path}`
     return (
         <>
             <meta content="width=device-width, maximum-scale = 1.0" name="viewport" />
-            {descriptionTag("description")}
-            <link href={path} rel="canonical" />
-            <link href={path} rel="shortlink" />
-            <meta content="Bike JC" property="og:site_name" />
-            <meta content={title} property="og:title" />
-            <meta content="website" property="og:type" />
-            <meta content={path} property="og:url" />
+            <link href={url} rel="canonical" />
+            <link href={url} rel="shortlink" />
+            {descriptionTag({ name: "description" })}
+            <meta property="og:site_name" content="Bike JC" />
+            <meta property="og:title" content={title} />
+            <meta property="og:type" content="website" />
+            <meta property="og:url" content={url} />
             {
                 ogImg && <>
-                    <meta content={`http://bikejc.org${ogImg}`} property="og:image"/>
-                    <meta content={`https://bikejc.org${ogImg}`} property="og:image:secure_url"/>
-                    {ogImgType && <meta property={"og:image:type"} content={ogImgType} />}
+                    <meta property="og:image" content={`http://bikejc.org${ogImg}`} />
+                    <meta property="og:image:secure_url" content={`https://bikejc.org${ogImg}`} />
+                    {ogImgType && <meta content={ogImgType} property={"og:image:type"} />}
                 </>
             }
-            {descriptionTag("og:description")}
-            {mtime && <meta content={mtime} property="og:updated_time" />}
-            <meta content="summary" name="twitter:card" />
-            <meta content={path} name="twitter:url" />
-            <meta content={title} name="twitter:title" />
-            {descriptionTag("twitter:description")}
-            {ctime && <meta content={ctime} property="article:published_time" />}
-            {mtime && <meta content={mtime} property="article:modified_time" />}
+            {descriptionTag({ property: "og:description" })}
+            {mtime && <meta property="og:updated_time" content={mtime} />}
+            <meta name="twitter:card" content="summary_large_image" />
+            <meta name="twitter:url" content={url} />
+            <meta name="twitter:title" content={title} />
+            {descriptionTag({ name: "twitter:description" })}
+            {ctime && <meta property="article:published_time" content={ctime} />}
+            {mtime && <meta property="article:modified_time" content={mtime} />}
             <Script src="/files/drupal.js"></Script>
             <Script src="/files/foundation-init.js"></Script>
             <Head>

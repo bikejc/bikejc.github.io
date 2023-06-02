@@ -1,5 +1,7 @@
 import {Page} from "../../src/page";
 
+export const aboutBlurb = `Bike JC was founded in 2009, and has worked tirelessly since to improve biking infrastructure in Jersey City and organize rides, education, and outreach`
+
 const md = `
 Bike JC is a citizen-based advocacy organization that aims to make Jersey City streets safe and
 welcoming for bicyclists, by promoting traffic law enforcement, bicycle lane creation,
@@ -27,4 +29,4 @@ also economical and easy on the environment, and it transforms the average commu
 workout.
 `
 
-export default function Home() { return <Page path={"/about"} md={md} /> }
+export default function Home() { return <Page path={"/about"} description={aboutBlurb} md={md} /> }

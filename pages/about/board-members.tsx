@@ -38,6 +38,7 @@ const Home: NextPage = () => {
     return (
         <Page
             path={"/about/board-members"}
+            description={`Meet Bike JC's trustees`}
             banner={{ src: "/files/bike-gathering-page-header.jpg", alt: "Ward Tour participants resting in Lincoln Park "}}
             articleClasses={["node-board-members"]}
         >

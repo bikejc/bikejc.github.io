@@ -2,7 +2,7 @@ import {Page} from "../src/page";
 
 export default function Home() {
     return (
-        <Page path={"/contact-us"}>
+        <Page path={"/contact-us"} description={`Get in touch to join a ride, volunteer, or work on improving cycling infrastructure in Jersey City`}>
             <form acceptCharset="UTF-8" action="/contact-us" className="webform-client-form webform-client-form-10" id="webform-client-form-10" method="post">
                 <div>
                     <div className="form-item webform-component webform-component-textfield webform-component--name">

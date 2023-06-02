@@ -4,6 +4,7 @@ import {helmets} from "../img";
 import * as routes from "./routes";
 const {routeList, routesByName} = routes
 import Dot from "../dot";
+import {description} from "../../pages/bike-bus";
 
 export type Props = {
     inactive?: boolean
@@ -27,6 +28,7 @@ export default function RoutePage(name: string, props?: Props) {
     return (
         <Page
             path={`/bike-bus/${name}-line`}
+            description={description}
             banner={helmets}
             h1={<><Dot color={color} style={{ border: "1px solid black", marginRight: "0.1em" }} /> {title}: {summary}</>}
         >

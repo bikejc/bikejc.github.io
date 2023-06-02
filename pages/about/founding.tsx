@@ -1,4 +1,5 @@
 import { Page } from "../../src/page";
+import {aboutBlurb} from "./index";
 
 const md = `
 In 2009, Jersey City had a growing community of bicyclists but no advocacy group. Plenty of folks
@@ -40,4 +41,4 @@ calming, public information about safe cycling, and dedicated bike lanes through
 city.
 `
 
-export default function Home() { return <Page path={"/about/founding"} md={md} /> }
+export default function Home() { return <Page path={"/about/founding"} description={aboutBlurb} md={md} /> }

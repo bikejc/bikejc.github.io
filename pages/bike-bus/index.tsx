@@ -10,6 +10,8 @@ import {ReactNode} from "react";
 import Link from "next/link";
 import Dot from "../../src/dot";
 
+export const description = `"Bike buses" are the new best way to get to school: a group ride picks up kids near their homes, and everyone rides to school together. Learn more and sign up here!`
+
 const signupMd = `
 ### [Sign up for the Jersey City Bike Bus](/bike-bus/signup)
 "Bike buses" are the new best way to get to school: a group ride picks up kids near their homes, and everyone rides to school together. Being in a group improves safety, and there are dedicated "marshals" assisting with intersections and making sure no one is left behind.
@@ -29,7 +31,7 @@ If you don't see a route that works for you, [let us know](mailto:bikebus@bikejc
 export default function Home() {
     const activeRoutes = filterEntries(routesByName, (routeName) => routesByName[routeName].active !== false)
     return (
-        <Page path={"/bike-bus"} banner={helmets}>
+        <Page path={"/bike-bus"} description={description} banner={helmets}>
             {MD(signupMd)}
             {MD(`
 ### Routes <a id="routes"></a>
