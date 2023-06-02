@@ -52,7 +52,7 @@ export const bergenKensingtonPS17 = { lat: 40.72165250359196, lng: -74.072136282
 export const kensingtonJFK = { lat: 40.72296975378418, lng: -74.0750813484192, name: "Kensington & JFK" }
 export const bergenBelmont = { lat: 40.720908489648345, lng: -74.07275319099428, stop: { name: "Bergen & Belmont", times: { red: "8:05am", silver: "8:05am", teal: "7:35" } } }
 export const jfkBelmont = { lat: 40.72212818027965 , lng: -74.07572507858278, name: "JFK & Belmont" }
-export const jsq = { lat: 40.73080360135806 , lng: -74.06440615653993, stop: { name: "JSQ", times: { red: "7:50am", yellow: "8:05am" } } }
+export const jsq = { lat: 40.73080360135806 , lng: -74.06440615653993, stop: { name: "Bergen & Sip", times: { red: "7:50am", yellow: "8:05am" } } }
 export const mcginleySquare = { lat: 40.725356186961825, lng: -74.068021774292  , stop: { name: "McGinley Sq", times: { red: "7:55am", yellow: "7:55am", aqua: "7:55am", teal: "7:30am", }, }, }
 export const primaryPrep = { lat: 40.72639696637659, lng: -74.06746863474763, stop: { name: "Primary Prep", times: { red: "7:54am", yellow: "8:00am" } } }
 
@@ -178,7 +178,7 @@ const grindShopToUnionBergen = [
     { lat: 40.7119959385303, lng: -74.06606912612916, }, // Enter BLP
     { lat: 40.71266279478128, lng: -74.06685769557954, },
     { lat: 40.7129921542462, lng: -74.06772136688234 },
-    { lat: 40.71199927397812, lng: -74.0684321117046, stop: { name: "Berry Lane Park", time: "7:40am" }, },
+    { lat: 40.71199927397812, lng: -74.0684321117046, stop: { name: "Berry Lane Park", time: "7:35am" }, },
     { lat: 40.71074565340344, lng: -74.0693121379015, },
     // { lat: 40.710751664498055, lng: -74.06929314136507, name: "?" },
     // { lat: 40.7131436134378, lng: -74.06758243123863 },
