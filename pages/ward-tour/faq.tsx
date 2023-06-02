@@ -1,5 +1,6 @@
 import { Page } from "../../src/page";
 import {triptych} from "../../src/img";
+import {wt23citibikeForm} from "../../src/blurbs";
 
 export const difficultyMd = `[The route](/ward-tour/#route) is about 15 miles long. The riding pace is conversational. Most of of the course is slightly rolling to flat. However, there are a few steady uphill sections, and one steeper but very short hill in Lincoln Park just before the halfway rest point where the ride takes a short water and shade break. People with a wide range of athletic abilities should be able to complete this course.
 
@@ -114,16 +115,50 @@ In the event you feel unwell or sustain an injury, Jersey City Medical Center wi
 
 ### What if I don't have a bike to ride? <a id="rentals"></a>
 
-<!--#### [**Citi Bike**](https://citibikenyc.com/) is offering members 3-hour rentals on Ward Tour day!-->
-<!-- - Open the Lyft app-->
-<!-- - Tap on the Menu (top-left corner)-->
-<!-- - Tap on Rewards-->
-<!-- - Add Promo Code "JERSEYTOUR22"-->
-<!-- - Ride, friends, ride!-->
+#### Citi Bike Day Pass Request <a id="citibike"></a>
+Citi Bike has provided us with codes for free "day passes" for use on the Jersey City Ward Tour.
+
+[**Enter your email address (the same one you used to register for the Ward Tour) in this form**](${wt23citibikeForm}), and we'll send you one!
+
+The code will provide you a free Citi Bike day pass with extended free ride time. Instead of 45 minutes of free riding, you may ride up to 2 hours at no additional fee. Ebike fees still apply.
+
+**Please note, these codes can only be used by people who do not yet have existing Citi Bike memberships.**
+
+<details><summary>Instructions for redeeming a code</summary>
+
+The code provided here will provide you a free Citi Bike day pass with extended free ride time. Instead of 45 minutes of free riding, you may ride up to 2 hours at no additional fee. Ebike fees still apply.
+
+
+
+Please note, these codes can only be used by people who do not yet have existing Citi Bike memberships.
+
+
+
+DAY PASS MEMBERSHIP CODE REDEMPTION INSTRUCTIONS
+
+Your Code is [INSERT CODE HERE]
+
+Download and sign into the Citi Bike App
+
+Click on the Menu on the top left of screen
+
+Click on Get unlimited rides
+
+Choose Day Pass
+
+Enter your payment information. This is used as a backup in case you use an ebike or ride for over 2 hours. You may use a credit, debit, or prepaid card.
+
+Click Enter promo code, and enter promo code into pop up
+
+Discount/credit will be applied
+
+Finish checking out by clicking Join and Save at the bottom of your screen
+
+This day pass activates immediately and works for 24 hours. If you don't yet have the Citi Bike app on your phone, we recommend you download it at home or in a place where you have access to WiFi. For best results, enter your backup payment information and activate this code the morning you intend to start riding instead of activating it at the start of the ride. If you need help, please arrive to the ride early so we can help you troubleshoot.
+</details>
 
 #### Local bike rental options
  - ~[**Grove Street Bicycles** offers bike rentals](https://www.grovestreetbicycles.com/about/rentals-pg110.htm)~ Sold out!
- - We are working on a Citi Bike promo code for 3-hour rentals (for Citi Bike annual members only); stay tuned!
  - [**Zoomo**](https://www.ridezoomo.com/us/plans) offers e-bike rentals in Journal Square
 
 <!--### Is there same-day registration? <a id="day-of-registration"></a>-->

@@ -8,6 +8,8 @@ export const wt23vol = 'https://docs.google.com/forms/d/e/1FAIpQLSfp4MnwIfZ3U6ws
 export const wt23posterSq = '/img/wt23/poster_50p_sq.png'
 export const wt23poster = '/img/wt23/BikeJC_WT_2023_7x11_.jpg'
 export const wt23rwgps = `https://ridewithgps.com/routes/42028667`
+export const wt23citibikeRedirect = '/ward-tour/citibike'
+export const wt23citibikeForm = 'https://docs.google.com/forms/d/e/1FAIpQLSeQQ4l-areO9v6bOgYA6KNQqbKc9uxRzwJW6g3gfYm7AfufMA/viewform'
 
 export const wtBlurb = MD(`
 #### [Register for the Jersey City Ward Tour!](${regfox}) Sunday, June 4, 2023

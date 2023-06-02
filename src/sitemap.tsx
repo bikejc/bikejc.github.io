@@ -127,7 +127,9 @@ export const Sitemap0: Sitemap0 = {
                         [ "bib-pickup", { node: "Bib Pickup (Friday/Saturday)", href: "#bib-pickup" } ],
                         [ "sponsors", { node: "Sponsors", href: "/ward-tour#sponsors" } ],
                         [ "route", { node: "Route", href: "/ward-tour#route" } ],
+                        [ "citibike", { node: "Citi Bike Day Pass Request", href: "/ward-tour#citibike" } ],
                     ], } ],
+                [ "citibike", { node: "Citi Bike Day Pass Request", href: "/ward-tour#citibike" } ],
                 [ "2022", {
                     title: "2022 Ward Tour",
                     children: [

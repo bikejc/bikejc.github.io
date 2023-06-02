@@ -48,6 +48,7 @@ Quick links:
 - [**Sponsors**](#sponsors)
 - [**Route**](#route)
 - [**FAQs**](#faqs)
+- [**Citi Bike Day Pass Request**](#citibike)
 - [**Subscribe for updates**](#subscribe)
 
 [![Overhead view of the start of the 2022 Ward Tour, at Jersey City Hall](/img/wt22/wt22%20overhead%20city%20hall%20start%20cropped.JPG)](${regfox})
