@@ -38,7 +38,7 @@ export const upcomingEventsBlurb = <>
 
 Join our monthly Light-Up Rides! Usually the 2nd Friday of each month, 15-20 miles, start and finish at Grove St PATH.
 
-**Next ride is Friday, July 14, rolling out from Grove St at 8:30pm (we recommend meeting at Grove St around 8:00pm).**
+**Next ride is Friday, August 11, rolling out from Grove St at 8pm (we recommend meeting at Grove St around 7:30pm).**
 
 ---
 
@@ -51,7 +51,7 @@ Meet times:
 - ~April 14, 7pm (roll at 7:30pm)~
 - ~May 12, 7:30pm (roll at 8pm)~
 - ~June 30, 7:30pm (roll at 8pm)~
-- July 14, 8pm (roll at 8:30pm)
+- ~July 14, 8pm (roll at 8:30pm)~
 - August 11, 7:30pm (roll at 8pm)
 - September 8, 7pm (roll at 7:30pm)
 - October 13, 6:30pm (roll at 7pm)
