@@ -1,5 +1,6 @@
 {
     "/bbsu": "mailto:bikebus@bikejc.org?subject=Sign%20up&body=Please%20sign%20me%20up%20for%20the%20JC%20Bike%20Bus!",
+    "/bbsuf": "/bike-bus/signup",
     "/events/jersey-city-ward-tour": "/ward-tour",
     "/events/jersey-city-ward-tour/volunteer":  "/ward-tour/2022/volunteer",
     "/events/jersey-city-ward-tour/ward-tour-route":  "/ward-tour/2022/ward-tour-route",

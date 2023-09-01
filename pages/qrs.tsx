@@ -11,6 +11,7 @@ const QRs = [
     "wt/register",
     "wt/palm",
     'bbsu',
+    "bbsuf"
 ]
 
 export type Redirects = { [path: string]: string }
