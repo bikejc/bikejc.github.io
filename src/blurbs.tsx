@@ -52,9 +52,9 @@ Meet times:
 - ~May 12, 7:30pm (roll at 8pm)~
 - ~June 30, 7:30pm (roll at 8pm)~
 - ~July 14, 8pm (roll at 8:30pm)~
-- August 11, 7:30pm (roll at 8pm)
-- September 8, 7pm (roll at 7:30pm)
-- October 13, 6:30pm (roll at 7pm)
+- ~August 11, 7:30pm (roll at 8pm)~
+- ~September 8, 7pm (roll at 7:30pm)~
+- ~October 13, 6:30pm (roll at 7pm)~
 - November 10, 6pm (roll at 6:30pm)
 
 ---
