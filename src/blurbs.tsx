@@ -22,17 +22,6 @@ Join 1,000's of our closest friends on a ride through all 6 wards of Jersey City
 ---
 `)
 export const upcomingEventsBlurb = <>
-    {wtBlurb}
-    {MD(`
-#### [Sign up](/bike-bus/signup) for the Jersey City Bike Bus
-"Bike buses" are the new best way to get to school. [**Sign up here**](/bike-bus/signup) and Bike JC will help coordinate one in your area! [**More info here**](/bike-bus).
-
-<iframe src="/bike-bus/map?S" width="100%" style="aspect-ratio: 4/3" loading="lazy"></iframe>
-
-[More info](/bike-bus), [View full screen](/bike-bus/map?S)
-
----
-`)}
     {MD(`
 #### Monthly Light-Up Rides
 

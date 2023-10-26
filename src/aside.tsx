@@ -26,10 +26,6 @@ export function Aside({ sectionMenu }: { sectionMenu?: SectionMenu }) {
                     ? <SectionMenu {...sectionMenu} />
                     : null
             }</section>
-            <section className="block block-block block-block-13 block-even clearfix">
-                <h2 className="block-title">Ward Tour 2023</h2>
-                {MD(`**The Jersey City Ward Tour is back! Sunday, June 4, roll out 11am from City Hall! 1,000's of Bikes. 15 Miles. 6 Wards, finishing at the Jersey City Jazz Festival. [REGISTER HERE NOW!](${regfox})**`)}
-            </section>
             <section className="block block-block block-block-14 block-odd clearfix">
                 <h2 className="block-title">Cool Swag!</h2>
                 <p></p>
