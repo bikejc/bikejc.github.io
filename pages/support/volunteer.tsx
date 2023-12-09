@@ -13,11 +13,6 @@ export default function Home() {
         <Page path={"/support/volunteer"}>
             <div className="field field-name-body field-type-text-with-summary field-label-hidden field-wrapper body field">
                 {MD(`
-### [Click HERE to register to volunteer for the 2023 Ward Tour here](${wt23vol})!
-
-[The Ward Tour](/ward-tour) is our biggest event of the year, and we need all hands on deck for setup, marshaling, and teardown.
-
-### Other volunteering opportunities
 Volunteer with Bike JC and help make Jersey City a better place for bicyclists of all kinds and in every neighborhood.
 
 We'd love to meet you!
